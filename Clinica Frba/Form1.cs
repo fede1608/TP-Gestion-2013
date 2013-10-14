@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,34 @@ namespace Clinica_Frba
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source=localhost\\SQLSERVER2008;Initial Catalog=GD2C2013;User ID=gd;Password=gd2013");
+
+            con.Open();
+            SqlDataReader myReader = null;
+            SqlCommand myCommand = new SqlCommand("SELECT top 1 * from GD2C2013.gd_esquema.Maestra",
+                                                     con);
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                this.textBox1.Text = (myReader[0].ToString());
+                this.textBox2.Text = (myReader[1].ToString());
+            }
+            con.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form formL= new NewFolder10.Form1();
+            formL.Show();
         }
     }
 }

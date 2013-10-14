@@ -54,6 +54,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GD2C2013DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2013DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Login\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +151,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -155,6 +166,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
+    <None Include="GD2C2013DataSet.xsc">
+      <DependentUpon>GD2C2013DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2013DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2013DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2013DataSet.xss">
+      <DependentUpon>GD2C2013DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

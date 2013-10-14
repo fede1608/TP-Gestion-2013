@@ -15,5 +15,10 @@ namespace Clinica_Frba.NewFolder10
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
