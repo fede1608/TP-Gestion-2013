@@ -184,6 +184,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Sql\Adapter.cs" />
+    <Compile Include="Sql\Filters.cs" />
+    <Compile Include="Sql\Runnable.cs" />
+    <Compile Include="Sql\SqlRunner.cs" />
+    <Compile Include="Sql\TransactionalSqlRunner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
