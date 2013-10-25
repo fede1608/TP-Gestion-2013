@@ -128,13 +128,114 @@ CREATE TABLE SIGKILL.tipo_cancelacion(
 GO
 
 -- Tabla 
-CREATE TABLE SIGKILL.(
-	id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+CREATE TABLE SIGKILL.afiliado(
+	afil_numero PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	afil_usuario bigint REFERENCES SIGKILL.usuario(usr_id), 
+	afil_estado_civil bigint REFERENCES SIGKILL.estado_civil(estciv_id), 
+	afil_cant_hijos int DEFAULT 0 NOT NULL,
+	afil_cant_fam_a_cargo int DEFAULT 0 NOT NULL,
+	afil_id_plan_medico 
+	afil_activo int DEFAULT 1 NOT NULL
 	)
 GO
 
 -- Tabla 
-CREATE TABLE SIGKILL.(
-	id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+CREATE TABLE SIGKILL.estado_civil(
+	estciv_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	estciv_descripcion nvarchar(255) NOT NULL
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.turno(
+	trn_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	trn_matricula bigint REFERENCES SIGKILL.profesional(pro_matricula),
+	trn_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	trn_fecha_hora
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.registro_resultado(
+	regr_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	regr_matricula bigint REFERENCES SIGKILL.profesional(pro_matricula),
+	regr_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	regr_fecha_hora
+	regr_sintomas nvarchar(255) NOT NULL,
+	regr_diagnostico nvarchar(255) NOT NULL
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.registro_llegada(
+	rll_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	rll_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	rll_asistioparcialmente int DEFAULT 0 NOT NULL,
+	rll_fecha_hora
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.baja_afiliado(
+	bafil_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	bafil_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bafil_motivo nvarchar(255) NOT NULL,
+	bafil_fecha
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.cambio_plan(
+	capla_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	capla_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	capla_plan_viejo bigint REFERENCES SIGKILL.plan_medico(pmed_id),
+	capla_plan_nuevo bigint REFERENCES SIGKILL.plan_medico(pmed_id),
+	capla_fecha
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.plan_medico(
+	pmed_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	pmed_nombre nvarchar(255) NOT NULL,
+	pmed_precio
+	pmed_precio_bono_consulta
+	pmed_precio_bono_farmacia
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.bono(
+	bono_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	bono_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bono_fecha_compra
+	bono_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
+	bono_nro_consulta
+	bono_consumido int DEFAULT 0 NOT NULL,
+	bono_tipo bigint REFERENCES SIGKILL.tipo_bono(tbono_id),
+	bono_precio
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.receta(
+	rec_nro_receta PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	rec_bono_farmacia bigint REFERENCES SIGKILL.bono(bono_id)	
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.receta_medicamento(
+	recmed_nro_receta PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	recmed_medicamento bigint REFERENCES SIGKILL.medicamento(medic_id)
+	recmed_cantidad int DEFAULT 1 NOT NULL,
+	recmed_aclaracion nvarchar(255) NULL
+	)
+GO
+
+-- Tabla 
+CREATE TABLE SIGKILL.medicamento(
+	medic_id PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	medic_nombrenvarchar(255) NOT NULL
 	)
 GO
