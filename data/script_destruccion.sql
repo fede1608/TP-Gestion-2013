@@ -1,0 +1,27 @@
+DROP TABLE SIGKILL.baja_afiliado
+DROP TABLE SIGKILL.receta_medicamento
+DROP TABLE SIGKILL.medicamento
+DROP TABLE SIGKILL.receta
+DROP TABLE SIGKILL.bono
+DROP TABLE SIGKILL.tipo_bono
+DROP TABLE SIGKILL.cambio_plan
+DROP TABLE SIGKILL.cancelacion_atencion_medica
+DROP TABLE SIGKILL.esp_prof
+DROP TABLE SIGKILL.especialidad
+DROP TABLE SIGKILL.func_rol
+DROP TABLE SIGKILL.funcionalidad
+DROP TABLE SIGKILL.horarios_por_dia
+DROP TABLE SIGKILL.registro_llegada
+DROP TABLE SIGKILL.registro_resultado
+DROP TABLE SIGKILL.tipo_cancelacion
+DROP TABLE SIGKILL.rol_usuario
+DROP TABLE SIGKILL.rol
+DROP TABLE SIGKILL.dias_por_profesional
+DROP TABLE SIGKILL.turno
+DROP TABLE SIGKILL.profesional
+DROP TABLE SIGKILL.afiliado
+DROP TABLE SIGKILL.estado_civil
+DROP TABLE SIGKILL.usuario
+DROP TABLE SIGKILL.plan_medico
+
+DROP SCHEMA SIGKILL
