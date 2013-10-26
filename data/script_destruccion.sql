@@ -8,6 +8,7 @@ DROP TABLE SIGKILL.cambio_plan
 DROP TABLE SIGKILL.cancelacion_atencion_medica
 DROP TABLE SIGKILL.esp_prof
 DROP TABLE SIGKILL.especialidad
+DROP TABLE SIGKILL.tipo_especialidad
 DROP TABLE SIGKILL.func_rol
 DROP TABLE SIGKILL.funcionalidad
 DROP TABLE SIGKILL.horarios_por_dia

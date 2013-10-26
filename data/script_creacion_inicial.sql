@@ -72,10 +72,18 @@ CREATE TABLE SIGKILL.profesional(
 	)
 GO
 
+-- Tabla Tipo especialidad
+CREATE TABLE SIGKILL.tipo_especialidad(
+	tesp_id bigint PRIMARY KEY  NOT NULL,
+	tesp_tipo_nombre nvarchar(255) NOT NULL
+	)
+GO
+
 -- Tabla Especialidad
 CREATE TABLE SIGKILL.especialidad(
-	esp_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	esp_nombre_especialidad nvarchar(255) NOT NULL
+	esp_id bigint PRIMARY KEY NOT NULL,
+	esp_nombre_especialidad nvarchar(255) NOT NULL,
+	esp_tipo bigint REFERENCES SIGKILL.tipo_especialidad(tesp_id)
 	)
 GO
 
@@ -117,7 +125,7 @@ GO
 
 -- Tabla Plan Medico
 CREATE TABLE SIGKILL.plan_medico(
-	pmed_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	pmed_id bigint PRIMARY KEY NOT NULL,
 	pmed_nombre nvarchar(255) NOT NULL,
 	pmed_precio decimal(6,2) NOT NULL,
 	pmed_precio_bono_consulta decimal(6,2) NOT NULL,
@@ -165,7 +173,7 @@ GO
 
 -- Tabla Turno
 CREATE TABLE SIGKILL.turno(
-	trn_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	trn_id bigint PRIMARY KEY NOT NULL,
 	trn_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
 	trn_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	trn_fecha_hora datetime NOT NULL
@@ -269,8 +277,12 @@ VALUES ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Paciente_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra);
 
-INSERT INTO SIGKILL.afiliado (afil_usuario,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_sexo)
-(SELECT DISTINCT usr_id,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,''
+INSERT INTO SIGKILL.plan_medico(pmed_id,pmed_nombre,pmed_precio,pmed_precio_bono_consulta,pmed_precio_bono_farmacia)
+VALUES (555555,'Plan Medico 110',110,96,92),(555556,'Plan Medico 120',120,66,74),(555557,'Plan Medico 130',130,42,45),(555558,'Plan Medico 140',140,28,39),(555559,'Plan Medico 150',150,0,0);
+
+
+INSERT INTO SIGKILL.afiliado (afil_usuario,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico)
+(SELECT DISTINCT usr_id,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo
 FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
 ON (usr_usuario=('u'+CONVERT(nvarchar,Paciente_Dni)))
 )
@@ -278,10 +290,26 @@ ON (usr_usuario=('u'+CONVERT(nvarchar,Paciente_Dni)))
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Medico_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra WHERE Medico_Dni is not NULL);
 
-INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento,pro_sexo)
-(SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,Medico_Dni,Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac,''
-FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
-ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni)))
-)
+INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)
+(SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,Medico_Dni,Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
+ FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
+ ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
+
+INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
+(SELECT DISTINCT Turno_Numero,pro_id,afil_numero,Turno_Fecha
+ FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
+ WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
+ 
+INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
+(SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 
+ FROM gd_esquema.Maestra 
+ WHERE Tipo_Especialidad_Codigo is not null)
+ 
+ INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
+ (SELECT DISTINCT Especialidad_Codigo,Especialidad_Descripcion,Tipo_Especialidad_Codigo 
+  FROM gd_esquema.Maestra 
+  WHERE Especialidad_Codigo is not null)
+
+ 
 
 
