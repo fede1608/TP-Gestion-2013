@@ -268,6 +268,9 @@ GO
 INSERT INTO SIGKILL.rol (rol_nombre,rol_habilitado) 
 VALUES ('Administrador',1),('Profesional',1),('Afiliado',1);
 
+INSERT INTO SIGKILL.estado_civil(estciv_descripcion)
+VALUES ('Soltero/a'),('Casado/a'),('Viudo/a'),('Divorciado/a');
+
 INSERT INTO SIGKILL.tipo_bono (tbono_descripcion) 
 VALUES ('Farmacia'),('Consulta');
 
