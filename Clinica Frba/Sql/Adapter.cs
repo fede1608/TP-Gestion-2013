@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace GrouponDesktop.Sql
+namespace ClinicaSigkill.Sql
 {
     public class Adapter
     {

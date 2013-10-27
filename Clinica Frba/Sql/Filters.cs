@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GrouponDesktop.Sql
+namespace ClinicaSigkill.Sql
 {
     public class Filters
     {
