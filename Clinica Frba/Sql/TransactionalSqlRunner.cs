@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace GrouponDesktop.Sql
+namespace ClinicaSigkill.Sql
 {
     public class TransactionalSqlRunner : SqlRunner
     {

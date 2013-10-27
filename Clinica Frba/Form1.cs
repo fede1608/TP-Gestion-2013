@@ -53,7 +53,7 @@ namespace Clinica_Frba
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form formL= new NewFolder10.Form1();
+            Form formL= new NewFolder10.frmLogin();
             formL.Show();
         }
     }

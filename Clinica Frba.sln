@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinica Frba", "Clinica Frba\Clinica Frba.csproj", "{71DE9239-635F-437B-BF7D-1D898AB408DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaSigkill", "Clinica Frba\ClinicaSigkill.csproj", "{71DE9239-635F-437B-BF7D-1D898AB408DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
