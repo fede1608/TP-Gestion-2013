@@ -21,10 +21,22 @@ namespace Clinica_Frba.Menu
         {
 
             //Por seguridad, por defecto todos los botones son invisibles
-            btn_f1_abmAfililiado.Visible = false;
-            btn_f2_abmProfesional.Visible = false;
-            btn_f3_abmEspecialidad.Visible = false;
-            btn_f4_abmPlan.Visible = false;
+            btn_f13_altaAfiliado.Visible = false;
+            btn_f14_bajaAfiliado.Visible = false;
+            btn_f15_modificarAfiliado.Visible = false;
+
+            btn_f16_altaProfesional.Visible = false;
+            btn_f17_bajaProfesional.Visible = false;
+            btn_f18_modificarProfesional.Visible = false;
+
+            btn_f19_altaEspecialidad.Visible = false;
+            btn_f20_bajaEspecialidad.Visible = false;
+            btn_f21_modificarEspecialidad.Visible = false;
+
+            btn_f22_altaPlan.Visible = false;
+            btn_f23_bajaPlan.Visible = false;
+            btn_f24_modificarPlan.Visible = false;
+
             btn_f5_cancelarAtencion.Visible = false;
             btn_f6_registrarAgenda.Visible = false;
             btn_f7_pedirTurno.Visible = false;
@@ -53,10 +65,29 @@ namespace Clinica_Frba.Menu
         {
 
             //Segun el array de funcionalidades, se mostraran o no los botones.
-            if (funcionalidades[0] == true) btn_f1_abmAfililiado.Visible = true;
-            if (funcionalidades[1] == true) btn_f2_abmProfesional.Visible = true;
-            if (funcionalidades[2] == true) btn_f3_abmEspecialidad.Visible = true;
-            if (funcionalidades[3] == true) btn_f4_abmPlan.Visible = true;
+            if (funcionalidades[0] == true) { //ABM afiliado
+                btn_f13_altaAfiliado.Visible = true;
+                btn_f14_bajaAfiliado.Visible = true;
+                btn_f15_modificarAfiliado.Visible = true;
+                }
+            if (funcionalidades[1] == true) { //ABM profesional
+                btn_f16_altaProfesional.Visible = true;
+                btn_f17_bajaProfesional.Visible = true;
+                btn_f18_modificarProfesional.Visible = true;
+                }
+
+            if (funcionalidades[2] == true) { //ABM especialidad
+                btn_f19_altaEspecialidad.Visible = true;
+                btn_f20_bajaEspecialidad.Visible = true;
+                btn_f21_modificarEspecialidad.Visible = true;
+                }
+
+            if (funcionalidades[3] == true) { //ABM plan
+                btn_f22_altaPlan.Visible = true;
+                btn_f23_bajaPlan.Visible = true;
+                btn_f24_modificarPlan.Visible = true;
+                }
+
             if (funcionalidades[4] == true) btn_f5_cancelarAtencion.Visible = true;
             if (funcionalidades[5] == true) btn_f6_registrarAgenda.Visible = true;
             if (funcionalidades[6] == true) btn_f7_pedirTurno.Visible = true;
