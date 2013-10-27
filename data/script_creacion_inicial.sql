@@ -259,21 +259,27 @@ GO
 --insert de roles
 INSERT INTO SIGKILL.rol (rol_nombre,rol_habilitado) 
 VALUES ('Administrador',1),('Profesional',1),('Afiliado',1);
+GO
 
 INSERT INTO SIGKILL.estado_civil(estciv_descripcion)
 VALUES ('Soltero/a'),('Casado/a'),('Viudo/a'),('Divorciado/a'),('Concubinato');
+GO
 
 INSERT INTO SIGKILL.tipo_bono (tbono_descripcion) 
 VALUES ('Farmacia'),('Consulta');
+GO
 
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password) 
 VALUES ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
+GO
 
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Paciente_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra);
+GO
 
 INSERT INTO SIGKILL.plan_medico(pmed_id,pmed_nombre,pmed_precio,pmed_precio_bono_consulta,pmed_precio_bono_farmacia)
 VALUES (555555,'Plan Medico 110',110,96,92),(555556,'Plan Medico 120',120,66,74),(555557,'Plan Medico 130',130,42,45),(555558,'Plan Medico 140',140,28,39),(555559,'Plan Medico 150',150,0,0);
+GO
 
 
 INSERT INTO SIGKILL.afiliado (afil_usuario,afil_numero,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico)
@@ -297,11 +303,13 @@ INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
 (SELECT DISTINCT Turno_Numero,pro_id,afil_numero,Turno_Fecha
  FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
  WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
+GO
  
 INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
 (SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 
  FROM gd_esquema.Maestra 
  WHERE Tipo_Especialidad_Codigo is not null)
+GO
  
  INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
  (SELECT DISTINCT Especialidad_Codigo,Especialidad_Descripcion,Tipo_Especialidad_Codigo 

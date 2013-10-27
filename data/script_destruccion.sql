@@ -4,6 +4,7 @@ DROP TABLE SIGKILL.baja_afiliado
 DROP TABLE SIGKILL.receta_medicamento
 DROP TABLE SIGKILL.medicamento
 DROP TABLE SIGKILL.receta
+DROP TABLE SIGKILL.consulta
 DROP TABLE SIGKILL.bono
 DROP TABLE SIGKILL.tipo_bono
 DROP TABLE SIGKILL.cambio_plan
@@ -14,7 +15,6 @@ DROP TABLE SIGKILL.tipo_especialidad
 DROP TABLE SIGKILL.func_rol
 DROP TABLE SIGKILL.funcionalidad
 DROP TABLE SIGKILL.horarios_por_dia
-DROP TABLE SIGKILL.consulta
 DROP TABLE SIGKILL.tipo_cancelacion
 DROP TABLE SIGKILL.rol_usuario
 DROP TABLE SIGKILL.rol
