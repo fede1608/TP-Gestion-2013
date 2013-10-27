@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace ClinicaSigkill.Sql
+namespace Clinica_Frba.Sql
 {
     public class Adapter
     {

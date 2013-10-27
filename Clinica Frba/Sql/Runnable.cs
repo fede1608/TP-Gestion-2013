@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 
 
-namespace ClinicaSigkill.Sql
+namespace Clinica_Frba.Sql
 {
     public static class SqlParameterHelpers
     {

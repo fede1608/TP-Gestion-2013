@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abm de Afiliado\frmAfiliadoAlta1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\frmAfiliadoAlta1.Designer.cs">
+      <DependentUpon>frmAfiliadoAlta1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.Designer.cs">
+      <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,12 +87,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Registro de Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm de Afiliado\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm de Afiliado\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm de Profesional\Form1.cs">
@@ -157,6 +163,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAlta1.resx">
+      <DependentUpon>frmAfiliadoAlta1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoPrinc.resx">
+      <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
