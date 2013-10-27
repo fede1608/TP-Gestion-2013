@@ -139,7 +139,6 @@ CREATE TABLE SIGKILL.afiliado(
 	afil_nombre nvarchar(200) NOT NULL,
 	afil_apellido nvarchar(100) NOT NULL,
 	afil_dni numeric(18, 0) NOT NULL,
---	afil_id_rol bigint REFERENCES SIGKILL.Rol(id_rol),
 	afil_direccion nvarchar(255) NOT NULL,
 	afil_telefono nvarchar(25) NOT NULL,
 	afil_mail nvarchar(255),
@@ -199,24 +198,36 @@ CREATE TABLE SIGKILL.cambio_plan(
 	)
 GO
 
-
--- Tabla tipo Bono
-CREATE TABLE SIGKILL.tipo_bono(
-	tbono_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	tbono_descripcion nvarchar(255) NULL
-	)
+-- Tabla Compra Bono
+CREATE TABLE SIGKILL.compra_bono(
+	compra_id bigint PRIMARY KEY identity(1,1) NOT NULL,
+	compra_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	compra_fecha_de_compra datetime NOT NULL,
+	compra_cant_bono_consulta int DEFAULT 0 NOT NULL,
+	compra_cant_bono_farmacia int DEFAULT 0 NOT NULL,
+	compra_total_abonado decimal(7,2) NOT NULL)
 GO
 	
--- Tabla Bono
-CREATE TABLE SIGKILL.bono(
-	bono_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	bono_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
-	bono_fecha_compra datetime NOT NULL,
-	bono_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
-	bono_nro_consulta_individual bigint NULL,
-	bono_consumido int DEFAULT 0 NOT NULL,
-	bono_tipo bigint REFERENCES SIGKILL.tipo_bono(tbono_id),
-	bono_precio decimal(6,2) NOT NULL
+-- Tabla Bono consulta
+CREATE TABLE SIGKILL.bono_consulta(
+	bonoc_id bigint PRIMARY KEY NOT NULL,
+	bonoc_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bonoc_fecha_compra datetime NOT NULL,
+	bonoc_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
+	bonoc_nro_consulta_individual bigint NULL,
+	bonoc_consumido int DEFAULT 0 NOT NULL,
+	bonoc_precio decimal(6,2) NOT NULL
+	)
+GO
+
+-- Tabla Bono farmacia
+CREATE TABLE SIGKILL.bono_farmacia(
+	bonof_id bigint PRIMARY KEY NOT NULL,
+	bonof_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bonof_fecha_compra datetime NOT NULL,
+	bonof_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
+	bonof_consumido int DEFAULT 0 NOT NULL,
+	bonof_precio decimal(6,2) NOT NULL
 	)
 GO
 
@@ -224,7 +235,7 @@ GO
 CREATE TABLE SIGKILL.consulta(
 	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	cons_turno bigint REFERENCES SIGKILL.turno(trn_id),
-	cons_bono_consulta bigint REFERENCES SIGKILL.bono(bono_id),
+	cons_bono_consulta bigint REFERENCES SIGKILL.bono_consulta(bonoc_id),
 	cons_fecha_hora_llegada datetime NOT NULL,
 	cons_fecha_hora_atencion datetime NULL,
 	cons_sintomas nvarchar(255) NULL,
@@ -235,7 +246,7 @@ GO
 -- Tabla Receta
 CREATE TABLE SIGKILL.receta(
 	rec_nro_receta bigint PRIMARY KEY NOT NULL,
-	rec_bono_farmacia bigint REFERENCES SIGKILL.bono(bono_id)	
+	rec_bono_farmacia bigint REFERENCES SIGKILL.bono_farmacia(bonof_id)	
 	)
 GO
 
@@ -255,7 +266,16 @@ CREATE TABLE SIGKILL.receta_medicamento(
 	)
 GO
 
+
 /***** MIGRACION *****/
+INSERT INTO SIGKILL.funcionalidad(func_descripcion)
+VALUES ('ABM de afiliados'),('ABM de profesional'),('ABM de especialidades médicas'),
+('ABM de plan'),('Compra de bonos'),('Venta de bonos en ventanilla'),('Pedir un turno'),
+('Registrar llegada para atención médica'),('Registrar resultado de atención médica'),
+('Cancelar una atención médica'),('Generar una receta médica'),
+('Generar un listado estadístico'),('Registrar agenda de profesional'),('Ver Agenda');
+GO
+
 --insert de roles
 INSERT INTO SIGKILL.rol (rol_nombre,rol_habilitado) 
 VALUES ('Administrador',1),('Profesional',1),('Afiliado',1);
@@ -263,10 +283,6 @@ GO
 
 INSERT INTO SIGKILL.estado_civil(estciv_descripcion)
 VALUES ('Soltero/a'),('Casado/a'),('Viudo/a'),('Divorciado/a'),('Concubinato');
-GO
-
-INSERT INTO SIGKILL.tipo_bono (tbono_descripcion) 
-VALUES ('Farmacia'),('Consulta');
 GO
 
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password) 
@@ -304,6 +320,17 @@ INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
  FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
  WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
 GO
+
+INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)
+(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta FROM gd_esquema.Maestra,SIGKILL.afiliado WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
+
+INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)
+(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia FROM gd_esquema.Maestra,SIGKILL.afiliado WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
+
+INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
+(SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
+FROM gd_esquema.Maestra 
+WHERE Consulta_Sintomas is not null)
  
 INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
 (SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using GrouponDesktop.Helpers;
 
-namespace GrouponDesktop.Sql
+
+namespace ClinicaSigkill.Sql
 {
     public static class SqlParameterHelpers
     {
