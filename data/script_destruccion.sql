@@ -1,3 +1,5 @@
+drop function SIGKILL.getNextNumeroAfiliado
+
 DROP TABLE SIGKILL.baja_afiliado
 DROP TABLE SIGKILL.receta_medicamento
 DROP TABLE SIGKILL.medicamento
@@ -12,8 +14,7 @@ DROP TABLE SIGKILL.tipo_especialidad
 DROP TABLE SIGKILL.func_rol
 DROP TABLE SIGKILL.funcionalidad
 DROP TABLE SIGKILL.horarios_por_dia
-DROP TABLE SIGKILL.registro_llegada
-DROP TABLE SIGKILL.registro_resultado
+DROP TABLE SIGKILL.consulta
 DROP TABLE SIGKILL.tipo_cancelacion
 DROP TABLE SIGKILL.rol_usuario
 DROP TABLE SIGKILL.rol

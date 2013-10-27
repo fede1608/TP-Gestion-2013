@@ -134,7 +134,7 @@ CREATE TABLE SIGKILL.plan_medico(
 GO
 -- Tabla Afiliado
 CREATE TABLE SIGKILL.afiliado(
-	afil_numero bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	afil_numero bigint PRIMARY KEY NOT NULL,
 	afil_usuario bigint REFERENCES SIGKILL.usuario(usr_id), 
 	afil_nombre nvarchar(200) NOT NULL,
 	afil_apellido nvarchar(100) NOT NULL,
@@ -180,26 +180,6 @@ CREATE TABLE SIGKILL.turno(
 	)
 GO
 
--- Tabla Registro Resultado
-CREATE TABLE SIGKILL.registro_resultado(
-	regr_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	regr_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
-	regr_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
-	regr_fecha_hora datetime NOT NULL,
-	regr_sintomas nvarchar(255) NOT NULL,
-	regr_diagnostico nvarchar(255) NOT NULL
-	)
-GO
-
--- Tabla Registro Llegada
-CREATE TABLE SIGKILL.registro_llegada(
-	rll_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	rll_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
-	rll_asistioparcialmente int DEFAULT 0 NOT NULL,
-	rll_fecha_hora datetime NOT NULL
-	)
-GO
-
 -- Tabla Baja Afiliado
 CREATE TABLE SIGKILL.baja_afiliado(
 	bafil_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -233,10 +213,22 @@ CREATE TABLE SIGKILL.bono(
 	bono_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	bono_fecha_compra datetime NOT NULL,
 	bono_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
-	bono_nro_consulta bigint NOT NULL,--TODO:revisar completar
+	bono_nro_consulta_individual bigint NULL,
 	bono_consumido int DEFAULT 0 NOT NULL,
 	bono_tipo bigint REFERENCES SIGKILL.tipo_bono(tbono_id),
 	bono_precio decimal(6,2) NOT NULL
+	)
+GO
+
+-- Tabla Consulta
+CREATE TABLE SIGKILL.consulta(
+	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	cons_turno bigint REFERENCES SIGKILL.turno(trn_id),
+	cons_bono_consulta bigint REFERENCES SIGKILL.bono(bono_id),
+	cons_fecha_hora_llegada datetime NOT NULL,
+	cons_fecha_hora_atencion datetime NULL,
+	cons_sintomas nvarchar(255) NULL,
+	cons_diagnostico nvarchar(255) NULL
 	)
 GO
 
@@ -269,7 +261,7 @@ INSERT INTO SIGKILL.rol (rol_nombre,rol_habilitado)
 VALUES ('Administrador',1),('Profesional',1),('Afiliado',1);
 
 INSERT INTO SIGKILL.estado_civil(estciv_descripcion)
-VALUES ('Soltero/a'),('Casado/a'),('Viudo/a'),('Divorciado/a');
+VALUES ('Soltero/a'),('Casado/a'),('Viudo/a'),('Divorciado/a'),('Concubinato');
 
 INSERT INTO SIGKILL.tipo_bono (tbono_descripcion) 
 VALUES ('Farmacia'),('Consulta');
@@ -284,19 +276,22 @@ INSERT INTO SIGKILL.plan_medico(pmed_id,pmed_nombre,pmed_precio,pmed_precio_bono
 VALUES (555555,'Plan Medico 110',110,96,92),(555556,'Plan Medico 120',120,66,74),(555557,'Plan Medico 130',130,42,45),(555558,'Plan Medico 140',140,28,39),(555559,'Plan Medico 150',150,0,0);
 
 
-INSERT INTO SIGKILL.afiliado (afil_usuario,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico)
-(SELECT DISTINCT usr_id,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo
+INSERT INTO SIGKILL.afiliado (afil_usuario,afil_numero,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico)
+(SELECT DISTINCT usr_id,((usr_id-1)*100+1) as numero_afil,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo
 FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
 ON (usr_usuario=('u'+CONVERT(nvarchar,Paciente_Dni)))
-)
+);
+GO
 
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Medico_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra WHERE Medico_Dni is not NULL);
+GO
 
 INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)
 (SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,Medico_Dni,Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
  FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
  ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
+GO
 
 INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
 (SELECT DISTINCT Turno_Numero,pro_id,afil_numero,Turno_Fecha
@@ -312,7 +307,18 @@ INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
  (SELECT DISTINCT Especialidad_Codigo,Especialidad_Descripcion,Tipo_Especialidad_Codigo 
   FROM gd_esquema.Maestra 
   WHERE Especialidad_Codigo is not null)
-
+go
  
 
-
+/***** FUNCIONES ****/
+create function SIGKILL.getNextNumeroAfiliado
+(
+)
+returns int
+as
+begin
+	DECLARE @numero int
+	SELECT @numero=COUNT(DISTINCT ROUND(afil_numero/100,0)) FROM SIGKILL.afiliado
+	RETURN @numero+1
+end
+go
