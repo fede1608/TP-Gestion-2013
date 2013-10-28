@@ -51,11 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abm de Afiliado\frmAfiliadoAlta1.cs">
+    <Compile Include="Abm de Afiliado\frmAfiliadoAltaMod.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm de Afiliado\frmAfiliadoAlta1.Designer.cs">
-      <DependentUpon>frmAfiliadoAlta1.cs</DependentUpon>
+    <Compile Include="Abm de Afiliado\frmAfiliadoAltaMod.Designer.cs">
+      <DependentUpon>frmAfiliadoAltaMod.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.cs">
       <SubType>Form</SubType>
@@ -166,8 +166,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAlta1.resx">
-      <DependentUpon>frmAfiliadoAlta1.cs</DependentUpon>
+    <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAltaMod.resx">
+      <DependentUpon>frmAfiliadoAltaMod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoPrinc.resx">
       <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>

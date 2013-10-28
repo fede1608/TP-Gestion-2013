@@ -23,12 +23,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Inicializa los posibles dias
-            for (int f = 0; f <= 31; f++)
-            {
-                cbo_ABMAfiliado_Alta_nacdia.Items.Add(f.ToString());
-            }
-            cbo_ABMAfiliado_Alta_nacdia.SelectedIndex = 0;
         }
 
         private void cbo_ABMAfiliado_Alta_nacdia_SelectedIndexChanged(object sender, EventArgs e)

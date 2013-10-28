@@ -40,8 +40,8 @@
             this.lbl_ABMAfiliado_Alta_sexo = new System.Windows.Forms.Label();
             this.lbl_ABMAfiliado_Alta_estadocivil = new System.Windows.Forms.Label();
             this.lbl_ABMAfiliado_Alta_planmed = new System.Windows.Forms.Label();
-            this.btn_ABMAfiliado_Alta_siguiente1 = new System.Windows.Forms.Button();
-            this.btn_ABMAfiliado_Alta_cancelar1 = new System.Windows.Forms.Button();
+            this.btn_ABMAfiliado_AltaMod_siguiente1 = new System.Windows.Forms.Button();
+            this.btn_ABMAfiliado_AltaMod_atras = new System.Windows.Forms.Button();
             this.txt_ABMAfiliado_Alta_nombre = new System.Windows.Forms.TextBox();
             this.txt_ABMAfiliado_Alta_apellido = new System.Windows.Forms.TextBox();
             this.txt_ABMAfiliado_Alta_nrodoc = new System.Windows.Forms.TextBox();
@@ -49,28 +49,32 @@
             this.txt_ABMAfiliado_Alta_telefono = new System.Windows.Forms.TextBox();
             this.txt_ABMAfiliado_Alta_mail = new System.Windows.Forms.TextBox();
             this.cbo_ABMAfiliado_Alta_tipodoc = new System.Windows.Forms.ComboBox();
-            this.cbo_ABMAfiliado_Alta_nacdia = new System.Windows.Forms.ComboBox();
-            this.cbo_ABMAfiliado_Alta_nacmes = new System.Windows.Forms.ComboBox();
             this.cbo_ABMAfiliado_Alta_sexo = new System.Windows.Forms.ComboBox();
             this.cbo_ABMAfiliado_Alta_estadocivil = new System.Windows.Forms.ComboBox();
-            this.cbo_ABMAfiliado_Alta_planmed = new System.Windows.Forms.ComboBox();
             this.txt_ABMAfiliado_Alta_nacanio = new System.Windows.Forms.TextBox();
+            this.btn_ABMAfiliado_AltaMod_limpiar = new System.Windows.Forms.Button();
+            this.upd_ABMAfiliado_AltaMod_dia = new System.Windows.Forms.NumericUpDown();
+            this.upd_ABMAfiliado_AltaMod_mes = new System.Windows.Forms.NumericUpDown();
+            this.btn_ABMAfiliado_AltaMod_seleccionar = new System.Windows.Forms.Button();
+            this.txt_ABMAfiliado_AltaMod_planmedico = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.upd_ABMAfiliado_AltaMod_dia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upd_ABMAfiliado_AltaMod_mes)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_ABMAfiliado_Alta_titulo
             // 
             this.lbl_ABMAfiliado_Alta_titulo.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_titulo.Location = new System.Drawing.Point(166, 9);
+            this.lbl_ABMAfiliado_Alta_titulo.Location = new System.Drawing.Point(138, 9);
             this.lbl_ABMAfiliado_Alta_titulo.Name = "lbl_ABMAfiliado_Alta_titulo";
-            this.lbl_ABMAfiliado_Alta_titulo.Size = new System.Drawing.Size(61, 13);
+            this.lbl_ABMAfiliado_Alta_titulo.Size = new System.Drawing.Size(126, 13);
             this.lbl_ABMAfiliado_Alta_titulo.TabIndex = 0;
-            this.lbl_ABMAfiliado_Alta_titulo.Text = "Alta afiliado";
+            this.lbl_ABMAfiliado_Alta_titulo.Text = "Alta/Modificación afiliado";
             this.lbl_ABMAfiliado_Alta_titulo.Click += new System.EventHandler(this.label1_Click);
             // 
             // lbl_ABMAfiliado_Alta_nombre
             // 
             this.lbl_ABMAfiliado_Alta_nombre.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_nombre.Location = new System.Drawing.Point(55, 48);
+            this.lbl_ABMAfiliado_Alta_nombre.Location = new System.Drawing.Point(53, 48);
             this.lbl_ABMAfiliado_Alta_nombre.Name = "lbl_ABMAfiliado_Alta_nombre";
             this.lbl_ABMAfiliado_Alta_nombre.Size = new System.Drawing.Size(44, 13);
             this.lbl_ABMAfiliado_Alta_nombre.TabIndex = 1;
@@ -79,7 +83,7 @@
             // lbl_ABMAfiliado_Alta_apellido
             // 
             this.lbl_ABMAfiliado_Alta_apellido.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_apellido.Location = new System.Drawing.Point(55, 73);
+            this.lbl_ABMAfiliado_Alta_apellido.Location = new System.Drawing.Point(53, 73);
             this.lbl_ABMAfiliado_Alta_apellido.Name = "lbl_ABMAfiliado_Alta_apellido";
             this.lbl_ABMAfiliado_Alta_apellido.Size = new System.Drawing.Size(44, 13);
             this.lbl_ABMAfiliado_Alta_apellido.TabIndex = 2;
@@ -88,7 +92,7 @@
             // lbl_ABMAfiliado_Alta_tipodoc
             // 
             this.lbl_ABMAfiliado_Alta_tipodoc.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_tipodoc.Location = new System.Drawing.Point(55, 100);
+            this.lbl_ABMAfiliado_Alta_tipodoc.Location = new System.Drawing.Point(53, 100);
             this.lbl_ABMAfiliado_Alta_tipodoc.Name = "lbl_ABMAfiliado_Alta_tipodoc";
             this.lbl_ABMAfiliado_Alta_tipodoc.Size = new System.Drawing.Size(86, 13);
             this.lbl_ABMAfiliado_Alta_tipodoc.TabIndex = 3;
@@ -97,7 +101,7 @@
             // lbl_ABMAfiliado_Alta_nrodoc
             // 
             this.lbl_ABMAfiliado_Alta_nrodoc.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_nrodoc.Location = new System.Drawing.Point(55, 128);
+            this.lbl_ABMAfiliado_Alta_nrodoc.Location = new System.Drawing.Point(53, 128);
             this.lbl_ABMAfiliado_Alta_nrodoc.Name = "lbl_ABMAfiliado_Alta_nrodoc";
             this.lbl_ABMAfiliado_Alta_nrodoc.Size = new System.Drawing.Size(77, 13);
             this.lbl_ABMAfiliado_Alta_nrodoc.TabIndex = 4;
@@ -106,7 +110,7 @@
             // lbl_ABMAfiliado_Alta_direccion
             // 
             this.lbl_ABMAfiliado_Alta_direccion.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_direccion.Location = new System.Drawing.Point(55, 157);
+            this.lbl_ABMAfiliado_Alta_direccion.Location = new System.Drawing.Point(53, 157);
             this.lbl_ABMAfiliado_Alta_direccion.Name = "lbl_ABMAfiliado_Alta_direccion";
             this.lbl_ABMAfiliado_Alta_direccion.Size = new System.Drawing.Size(52, 13);
             this.lbl_ABMAfiliado_Alta_direccion.TabIndex = 5;
@@ -115,7 +119,7 @@
             // lbl_ABMAfiliado_Alta_tel
             // 
             this.lbl_ABMAfiliado_Alta_tel.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_tel.Location = new System.Drawing.Point(55, 184);
+            this.lbl_ABMAfiliado_Alta_tel.Location = new System.Drawing.Point(53, 184);
             this.lbl_ABMAfiliado_Alta_tel.Name = "lbl_ABMAfiliado_Alta_tel";
             this.lbl_ABMAfiliado_Alta_tel.Size = new System.Drawing.Size(49, 13);
             this.lbl_ABMAfiliado_Alta_tel.TabIndex = 6;
@@ -124,7 +128,7 @@
             // lbl_ABMAfiliado_Alta_mail
             // 
             this.lbl_ABMAfiliado_Alta_mail.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_mail.Location = new System.Drawing.Point(55, 211);
+            this.lbl_ABMAfiliado_Alta_mail.Location = new System.Drawing.Point(53, 211);
             this.lbl_ABMAfiliado_Alta_mail.Name = "lbl_ABMAfiliado_Alta_mail";
             this.lbl_ABMAfiliado_Alta_mail.Size = new System.Drawing.Size(26, 13);
             this.lbl_ABMAfiliado_Alta_mail.TabIndex = 7;
@@ -133,7 +137,7 @@
             // lbl_ABMAfiliado_Alta_fechanac
             // 
             this.lbl_ABMAfiliado_Alta_fechanac.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_fechanac.Location = new System.Drawing.Point(55, 240);
+            this.lbl_ABMAfiliado_Alta_fechanac.Location = new System.Drawing.Point(53, 240);
             this.lbl_ABMAfiliado_Alta_fechanac.Name = "lbl_ABMAfiliado_Alta_fechanac";
             this.lbl_ABMAfiliado_Alta_fechanac.Size = new System.Drawing.Size(106, 13);
             this.lbl_ABMAfiliado_Alta_fechanac.TabIndex = 8;
@@ -142,7 +146,7 @@
             // lbl_ABMAfiliado_Alta_sexo
             // 
             this.lbl_ABMAfiliado_Alta_sexo.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_sexo.Location = new System.Drawing.Point(55, 267);
+            this.lbl_ABMAfiliado_Alta_sexo.Location = new System.Drawing.Point(53, 267);
             this.lbl_ABMAfiliado_Alta_sexo.Name = "lbl_ABMAfiliado_Alta_sexo";
             this.lbl_ABMAfiliado_Alta_sexo.Size = new System.Drawing.Size(31, 13);
             this.lbl_ABMAfiliado_Alta_sexo.TabIndex = 9;
@@ -151,7 +155,7 @@
             // lbl_ABMAfiliado_Alta_estadocivil
             // 
             this.lbl_ABMAfiliado_Alta_estadocivil.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_estadocivil.Location = new System.Drawing.Point(55, 296);
+            this.lbl_ABMAfiliado_Alta_estadocivil.Location = new System.Drawing.Point(53, 296);
             this.lbl_ABMAfiliado_Alta_estadocivil.Name = "lbl_ABMAfiliado_Alta_estadocivil";
             this.lbl_ABMAfiliado_Alta_estadocivil.Size = new System.Drawing.Size(61, 13);
             this.lbl_ABMAfiliado_Alta_estadocivil.TabIndex = 10;
@@ -160,33 +164,33 @@
             // lbl_ABMAfiliado_Alta_planmed
             // 
             this.lbl_ABMAfiliado_Alta_planmed.AutoSize = true;
-            this.lbl_ABMAfiliado_Alta_planmed.Location = new System.Drawing.Point(55, 324);
+            this.lbl_ABMAfiliado_Alta_planmed.Location = new System.Drawing.Point(53, 324);
             this.lbl_ABMAfiliado_Alta_planmed.Name = "lbl_ABMAfiliado_Alta_planmed";
             this.lbl_ABMAfiliado_Alta_planmed.Size = new System.Drawing.Size(65, 13);
             this.lbl_ABMAfiliado_Alta_planmed.TabIndex = 11;
             this.lbl_ABMAfiliado_Alta_planmed.Text = "Plan médico";
             // 
-            // btn_ABMAfiliado_Alta_siguiente1
+            // btn_ABMAfiliado_AltaMod_siguiente1
             // 
-            this.btn_ABMAfiliado_Alta_siguiente1.Location = new System.Drawing.Point(122, 373);
-            this.btn_ABMAfiliado_Alta_siguiente1.Name = "btn_ABMAfiliado_Alta_siguiente1";
-            this.btn_ABMAfiliado_Alta_siguiente1.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMAfiliado_Alta_siguiente1.TabIndex = 12;
-            this.btn_ABMAfiliado_Alta_siguiente1.Text = "Siguiente";
-            this.btn_ABMAfiliado_Alta_siguiente1.UseVisualStyleBackColor = true;
+            this.btn_ABMAfiliado_AltaMod_siguiente1.Location = new System.Drawing.Point(265, 362);
+            this.btn_ABMAfiliado_AltaMod_siguiente1.Name = "btn_ABMAfiliado_AltaMod_siguiente1";
+            this.btn_ABMAfiliado_AltaMod_siguiente1.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMAfiliado_AltaMod_siguiente1.TabIndex = 12;
+            this.btn_ABMAfiliado_AltaMod_siguiente1.Text = "Siguiente";
+            this.btn_ABMAfiliado_AltaMod_siguiente1.UseVisualStyleBackColor = true;
             // 
-            // btn_ABMAfiliado_Alta_cancelar1
+            // btn_ABMAfiliado_AltaMod_atras
             // 
-            this.btn_ABMAfiliado_Alta_cancelar1.Location = new System.Drawing.Point(213, 373);
-            this.btn_ABMAfiliado_Alta_cancelar1.Name = "btn_ABMAfiliado_Alta_cancelar1";
-            this.btn_ABMAfiliado_Alta_cancelar1.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMAfiliado_Alta_cancelar1.TabIndex = 13;
-            this.btn_ABMAfiliado_Alta_cancelar1.Text = "Cancelar";
-            this.btn_ABMAfiliado_Alta_cancelar1.UseVisualStyleBackColor = true;
+            this.btn_ABMAfiliado_AltaMod_atras.Location = new System.Drawing.Point(73, 362);
+            this.btn_ABMAfiliado_AltaMod_atras.Name = "btn_ABMAfiliado_AltaMod_atras";
+            this.btn_ABMAfiliado_AltaMod_atras.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMAfiliado_AltaMod_atras.TabIndex = 13;
+            this.btn_ABMAfiliado_AltaMod_atras.Text = "Atrás";
+            this.btn_ABMAfiliado_AltaMod_atras.UseVisualStyleBackColor = true;
             // 
             // txt_ABMAfiliado_Alta_nombre
             // 
-            this.txt_ABMAfiliado_Alta_nombre.Location = new System.Drawing.Point(204, 48);
+            this.txt_ABMAfiliado_Alta_nombre.Location = new System.Drawing.Point(202, 48);
             this.txt_ABMAfiliado_Alta_nombre.MaxLength = 30;
             this.txt_ABMAfiliado_Alta_nombre.Name = "txt_ABMAfiliado_Alta_nombre";
             this.txt_ABMAfiliado_Alta_nombre.Size = new System.Drawing.Size(156, 20);
@@ -194,7 +198,7 @@
             // 
             // txt_ABMAfiliado_Alta_apellido
             // 
-            this.txt_ABMAfiliado_Alta_apellido.Location = new System.Drawing.Point(204, 74);
+            this.txt_ABMAfiliado_Alta_apellido.Location = new System.Drawing.Point(202, 74);
             this.txt_ABMAfiliado_Alta_apellido.MaxLength = 30;
             this.txt_ABMAfiliado_Alta_apellido.Name = "txt_ABMAfiliado_Alta_apellido";
             this.txt_ABMAfiliado_Alta_apellido.Size = new System.Drawing.Size(156, 20);
@@ -202,7 +206,7 @@
             // 
             // txt_ABMAfiliado_Alta_nrodoc
             // 
-            this.txt_ABMAfiliado_Alta_nrodoc.Location = new System.Drawing.Point(204, 128);
+            this.txt_ABMAfiliado_Alta_nrodoc.Location = new System.Drawing.Point(202, 128);
             this.txt_ABMAfiliado_Alta_nrodoc.MaxLength = 8;
             this.txt_ABMAfiliado_Alta_nrodoc.Name = "txt_ABMAfiliado_Alta_nrodoc";
             this.txt_ABMAfiliado_Alta_nrodoc.Size = new System.Drawing.Size(156, 20);
@@ -210,7 +214,7 @@
             // 
             // txt_ABMAfiliado_Alta_direccion
             // 
-            this.txt_ABMAfiliado_Alta_direccion.Location = new System.Drawing.Point(204, 157);
+            this.txt_ABMAfiliado_Alta_direccion.Location = new System.Drawing.Point(202, 157);
             this.txt_ABMAfiliado_Alta_direccion.MaxLength = 50;
             this.txt_ABMAfiliado_Alta_direccion.Name = "txt_ABMAfiliado_Alta_direccion";
             this.txt_ABMAfiliado_Alta_direccion.Size = new System.Drawing.Size(156, 20);
@@ -218,7 +222,7 @@
             // 
             // txt_ABMAfiliado_Alta_telefono
             // 
-            this.txt_ABMAfiliado_Alta_telefono.Location = new System.Drawing.Point(204, 184);
+            this.txt_ABMAfiliado_Alta_telefono.Location = new System.Drawing.Point(202, 184);
             this.txt_ABMAfiliado_Alta_telefono.MaxLength = 8;
             this.txt_ABMAfiliado_Alta_telefono.Name = "txt_ABMAfiliado_Alta_telefono";
             this.txt_ABMAfiliado_Alta_telefono.Size = new System.Drawing.Size(156, 20);
@@ -226,7 +230,7 @@
             // 
             // txt_ABMAfiliado_Alta_mail
             // 
-            this.txt_ABMAfiliado_Alta_mail.Location = new System.Drawing.Point(204, 211);
+            this.txt_ABMAfiliado_Alta_mail.Location = new System.Drawing.Point(202, 211);
             this.txt_ABMAfiliado_Alta_mail.MaxLength = 50;
             this.txt_ABMAfiliado_Alta_mail.Name = "txt_ABMAfiliado_Alta_mail";
             this.txt_ABMAfiliado_Alta_mail.Size = new System.Drawing.Size(156, 20);
@@ -237,40 +241,10 @@
             this.cbo_ABMAfiliado_Alta_tipodoc.FormattingEnabled = true;
             this.cbo_ABMAfiliado_Alta_tipodoc.Items.AddRange(new object[] {
             "DNI"});
-            this.cbo_ABMAfiliado_Alta_tipodoc.Location = new System.Drawing.Point(204, 101);
+            this.cbo_ABMAfiliado_Alta_tipodoc.Location = new System.Drawing.Point(202, 101);
             this.cbo_ABMAfiliado_Alta_tipodoc.Name = "cbo_ABMAfiliado_Alta_tipodoc";
             this.cbo_ABMAfiliado_Alta_tipodoc.Size = new System.Drawing.Size(156, 21);
             this.cbo_ABMAfiliado_Alta_tipodoc.TabIndex = 21;
-            // 
-            // cbo_ABMAfiliado_Alta_nacdia
-            // 
-            this.cbo_ABMAfiliado_Alta_nacdia.FormattingEnabled = true;
-            this.cbo_ABMAfiliado_Alta_nacdia.Location = new System.Drawing.Point(204, 240);
-            this.cbo_ABMAfiliado_Alta_nacdia.Name = "cbo_ABMAfiliado_Alta_nacdia";
-            this.cbo_ABMAfiliado_Alta_nacdia.Size = new System.Drawing.Size(39, 21);
-            this.cbo_ABMAfiliado_Alta_nacdia.TabIndex = 22;
-            this.cbo_ABMAfiliado_Alta_nacdia.SelectedIndexChanged += new System.EventHandler(this.cbo_ABMAfiliado_Alta_nacdia_SelectedIndexChanged);
-            // 
-            // cbo_ABMAfiliado_Alta_nacmes
-            // 
-            this.cbo_ABMAfiliado_Alta_nacmes.FormattingEnabled = true;
-            this.cbo_ABMAfiliado_Alta_nacmes.Items.AddRange(new object[] {
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12"});
-            this.cbo_ABMAfiliado_Alta_nacmes.Location = new System.Drawing.Point(249, 240);
-            this.cbo_ABMAfiliado_Alta_nacmes.Name = "cbo_ABMAfiliado_Alta_nacmes";
-            this.cbo_ABMAfiliado_Alta_nacmes.Size = new System.Drawing.Size(39, 21);
-            this.cbo_ABMAfiliado_Alta_nacmes.TabIndex = 23;
             // 
             // cbo_ABMAfiliado_Alta_sexo
             // 
@@ -278,7 +252,7 @@
             this.cbo_ABMAfiliado_Alta_sexo.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cbo_ABMAfiliado_Alta_sexo.Location = new System.Drawing.Point(204, 267);
+            this.cbo_ABMAfiliado_Alta_sexo.Location = new System.Drawing.Point(202, 267);
             this.cbo_ABMAfiliado_Alta_sexo.Name = "cbo_ABMAfiliado_Alta_sexo";
             this.cbo_ABMAfiliado_Alta_sexo.Size = new System.Drawing.Size(156, 21);
             this.cbo_ABMAfiliado_Alta_sexo.TabIndex = 25;
@@ -292,38 +266,92 @@
             "Viudo/a",
             "Concubinato/a",
             "Divorciado/a"});
-            this.cbo_ABMAfiliado_Alta_estadocivil.Location = new System.Drawing.Point(204, 296);
+            this.cbo_ABMAfiliado_Alta_estadocivil.Location = new System.Drawing.Point(202, 296);
             this.cbo_ABMAfiliado_Alta_estadocivil.Name = "cbo_ABMAfiliado_Alta_estadocivil";
             this.cbo_ABMAfiliado_Alta_estadocivil.Size = new System.Drawing.Size(155, 21);
             this.cbo_ABMAfiliado_Alta_estadocivil.TabIndex = 27;
             // 
-            // cbo_ABMAfiliado_Alta_planmed
-            // 
-            this.cbo_ABMAfiliado_Alta_planmed.FormattingEnabled = true;
-            this.cbo_ABMAfiliado_Alta_planmed.Location = new System.Drawing.Point(204, 324);
-            this.cbo_ABMAfiliado_Alta_planmed.Name = "cbo_ABMAfiliado_Alta_planmed";
-            this.cbo_ABMAfiliado_Alta_planmed.Size = new System.Drawing.Size(155, 21);
-            this.cbo_ABMAfiliado_Alta_planmed.TabIndex = 28;
-            // 
             // txt_ABMAfiliado_Alta_nacanio
             // 
-            this.txt_ABMAfiliado_Alta_nacanio.Location = new System.Drawing.Point(294, 241);
+            this.txt_ABMAfiliado_Alta_nacanio.Location = new System.Drawing.Point(291, 241);
             this.txt_ABMAfiliado_Alta_nacanio.MaxLength = 4;
             this.txt_ABMAfiliado_Alta_nacanio.Name = "txt_ABMAfiliado_Alta_nacanio";
             this.txt_ABMAfiliado_Alta_nacanio.Size = new System.Drawing.Size(66, 20);
             this.txt_ABMAfiliado_Alta_nacanio.TabIndex = 29;
+            // 
+            // btn_ABMAfiliado_AltaMod_limpiar
+            // 
+            this.btn_ABMAfiliado_AltaMod_limpiar.Location = new System.Drawing.Point(170, 362);
+            this.btn_ABMAfiliado_AltaMod_limpiar.Name = "btn_ABMAfiliado_AltaMod_limpiar";
+            this.btn_ABMAfiliado_AltaMod_limpiar.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMAfiliado_AltaMod_limpiar.TabIndex = 30;
+            this.btn_ABMAfiliado_AltaMod_limpiar.Text = "Limpiar";
+            this.btn_ABMAfiliado_AltaMod_limpiar.UseVisualStyleBackColor = true;
+            // 
+            // upd_ABMAfiliado_AltaMod_dia
+            // 
+            this.upd_ABMAfiliado_AltaMod_dia.Location = new System.Drawing.Point(202, 241);
+            this.upd_ABMAfiliado_AltaMod_dia.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.upd_ABMAfiliado_AltaMod_dia.Name = "upd_ABMAfiliado_AltaMod_dia";
+            this.upd_ABMAfiliado_AltaMod_dia.Size = new System.Drawing.Size(39, 20);
+            this.upd_ABMAfiliado_AltaMod_dia.TabIndex = 31;
+            this.upd_ABMAfiliado_AltaMod_dia.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // upd_ABMAfiliado_AltaMod_mes
+            // 
+            this.upd_ABMAfiliado_AltaMod_mes.Location = new System.Drawing.Point(247, 241);
+            this.upd_ABMAfiliado_AltaMod_mes.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.upd_ABMAfiliado_AltaMod_mes.Name = "upd_ABMAfiliado_AltaMod_mes";
+            this.upd_ABMAfiliado_AltaMod_mes.Size = new System.Drawing.Size(39, 20);
+            this.upd_ABMAfiliado_AltaMod_mes.TabIndex = 32;
+            this.upd_ABMAfiliado_AltaMod_mes.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btn_ABMAfiliado_AltaMod_seleccionar
+            // 
+            this.btn_ABMAfiliado_AltaMod_seleccionar.Location = new System.Drawing.Point(280, 325);
+            this.btn_ABMAfiliado_AltaMod_seleccionar.Name = "btn_ABMAfiliado_AltaMod_seleccionar";
+            this.btn_ABMAfiliado_AltaMod_seleccionar.Size = new System.Drawing.Size(77, 23);
+            this.btn_ABMAfiliado_AltaMod_seleccionar.TabIndex = 33;
+            this.btn_ABMAfiliado_AltaMod_seleccionar.Text = "Seleccionar";
+            this.btn_ABMAfiliado_AltaMod_seleccionar.UseVisualStyleBackColor = true;
+            // 
+            // txt_ABMAfiliado_AltaMod_planmedico
+            // 
+            this.txt_ABMAfiliado_AltaMod_planmedico.Enabled = false;
+            this.txt_ABMAfiliado_AltaMod_planmedico.Location = new System.Drawing.Point(202, 326);
+            this.txt_ABMAfiliado_AltaMod_planmedico.Name = "txt_ABMAfiliado_AltaMod_planmedico";
+            this.txt_ABMAfiliado_AltaMod_planmedico.Size = new System.Drawing.Size(72, 20);
+            this.txt_ABMAfiliado_AltaMod_planmedico.TabIndex = 34;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 408);
+            this.Controls.Add(this.txt_ABMAfiliado_AltaMod_planmedico);
+            this.Controls.Add(this.btn_ABMAfiliado_AltaMod_seleccionar);
+            this.Controls.Add(this.upd_ABMAfiliado_AltaMod_mes);
+            this.Controls.Add(this.upd_ABMAfiliado_AltaMod_dia);
+            this.Controls.Add(this.btn_ABMAfiliado_AltaMod_limpiar);
             this.Controls.Add(this.txt_ABMAfiliado_Alta_nacanio);
-            this.Controls.Add(this.cbo_ABMAfiliado_Alta_planmed);
             this.Controls.Add(this.cbo_ABMAfiliado_Alta_estadocivil);
             this.Controls.Add(this.cbo_ABMAfiliado_Alta_sexo);
-            this.Controls.Add(this.cbo_ABMAfiliado_Alta_nacmes);
-            this.Controls.Add(this.cbo_ABMAfiliado_Alta_nacdia);
             this.Controls.Add(this.cbo_ABMAfiliado_Alta_tipodoc);
             this.Controls.Add(this.txt_ABMAfiliado_Alta_mail);
             this.Controls.Add(this.txt_ABMAfiliado_Alta_telefono);
@@ -331,8 +359,8 @@
             this.Controls.Add(this.txt_ABMAfiliado_Alta_nrodoc);
             this.Controls.Add(this.txt_ABMAfiliado_Alta_apellido);
             this.Controls.Add(this.txt_ABMAfiliado_Alta_nombre);
-            this.Controls.Add(this.btn_ABMAfiliado_Alta_cancelar1);
-            this.Controls.Add(this.btn_ABMAfiliado_Alta_siguiente1);
+            this.Controls.Add(this.btn_ABMAfiliado_AltaMod_atras);
+            this.Controls.Add(this.btn_ABMAfiliado_AltaMod_siguiente1);
             this.Controls.Add(this.lbl_ABMAfiliado_Alta_planmed);
             this.Controls.Add(this.lbl_ABMAfiliado_Alta_estadocivil);
             this.Controls.Add(this.lbl_ABMAfiliado_Alta_sexo);
@@ -348,6 +376,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.upd_ABMAfiliado_AltaMod_dia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upd_ABMAfiliado_AltaMod_mes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,8 +397,8 @@
         private System.Windows.Forms.Label lbl_ABMAfiliado_Alta_sexo;
         private System.Windows.Forms.Label lbl_ABMAfiliado_Alta_estadocivil;
         private System.Windows.Forms.Label lbl_ABMAfiliado_Alta_planmed;
-        private System.Windows.Forms.Button btn_ABMAfiliado_Alta_siguiente1;
-        private System.Windows.Forms.Button btn_ABMAfiliado_Alta_cancelar1;
+        private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_siguiente1;
+        private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_atras;
         private System.Windows.Forms.TextBox txt_ABMAfiliado_Alta_nombre;
         private System.Windows.Forms.TextBox txt_ABMAfiliado_Alta_apellido;
         private System.Windows.Forms.TextBox txt_ABMAfiliado_Alta_nrodoc;
@@ -376,11 +406,13 @@
         private System.Windows.Forms.TextBox txt_ABMAfiliado_Alta_telefono;
         private System.Windows.Forms.TextBox txt_ABMAfiliado_Alta_mail;
         private System.Windows.Forms.ComboBox cbo_ABMAfiliado_Alta_tipodoc;
-        private System.Windows.Forms.ComboBox cbo_ABMAfiliado_Alta_nacdia;
-        private System.Windows.Forms.ComboBox cbo_ABMAfiliado_Alta_nacmes;
         private System.Windows.Forms.ComboBox cbo_ABMAfiliado_Alta_sexo;
         private System.Windows.Forms.ComboBox cbo_ABMAfiliado_Alta_estadocivil;
-        private System.Windows.Forms.ComboBox cbo_ABMAfiliado_Alta_planmed;
         private System.Windows.Forms.TextBox txt_ABMAfiliado_Alta_nacanio;
+        private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_limpiar;
+        private System.Windows.Forms.NumericUpDown upd_ABMAfiliado_AltaMod_dia;
+        private System.Windows.Forms.NumericUpDown upd_ABMAfiliado_AltaMod_mes;
+        private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_seleccionar;
+        private System.Windows.Forms.TextBox txt_ABMAfiliado_AltaMod_planmedico;
     }
 }
