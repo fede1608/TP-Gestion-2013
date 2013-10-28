@@ -16,11 +16,11 @@ DROP TABLE SIGKILL.especialidad
 DROP TABLE SIGKILL.tipo_especialidad
 DROP TABLE SIGKILL.func_rol
 DROP TABLE SIGKILL.funcionalidad
-DROP TABLE SIGKILL.horarios_por_dia
+DROP TABLE SIGKILL.horario_agenda
 DROP TABLE SIGKILL.tipo_cancelacion
 DROP TABLE SIGKILL.rol_usuario
 DROP TABLE SIGKILL.rol
-DROP TABLE SIGKILL.dias_por_profesional
+DROP TABLE SIGKILL.agenda_profesional
 DROP TABLE SIGKILL.turno
 DROP TABLE SIGKILL.profesional
 DROP TABLE SIGKILL.afiliado

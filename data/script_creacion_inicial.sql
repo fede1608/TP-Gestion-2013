@@ -19,8 +19,8 @@ CREATE TABLE SIGKILL.usuario(
 	usr_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	usr_usuario nvarchar(255) UNIQUE NOT NULL,
 	usr_password nvarchar(255) NOT NULL,
-	usr_cant_login_fail int DEFAULT 0 NOT NULL)
---	estado numeric(1, 0) NOT NULL,
+	usr_cant_login_fail int DEFAULT 0 NOT NULL,
+	usr_estado numeric(1, 0) DEFAULT 1 NULL)
 GO
 
 -- Tabla Rol
@@ -96,21 +96,22 @@ CREATE TABLE SIGKILL.esp_prof(
 GO
 
 -- Tabla Dias por Profesional
-CREATE TABLE SIGKILL.dias_por_profesional(
-	dpp_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	dpp_fecha_dia date NOT NULL,
-	dpp_dia date NOT NULL, --TODO REVISAR
-	dpp_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
-	dpp_disponible int DEFAULT 1 NOT NULL
+CREATE TABLE SIGKILL.agenda_profesional(
+	agp_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	agp_fecha_inicio date NOT NULL,
+	agp_fecha_fin date NOT NULL,
+	agp_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
+	agp_disponible int DEFAULT 1 NOT NULL
 	)
 GO
 
 -- Tabla Horarios por dia
-CREATE TABLE SIGKILL.horarios_por_dia(
-	hpd_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	hpd_horario time NOT NULL,--TODO:revisar
-	hpd_id_dia bigint REFERENCES SIGKILL.dias_por_profesional(dpp_id),
-	hpd_disponible int DEFAULT 1 NOT NULL
+CREATE TABLE SIGKILL.horario_agenda(
+	hag_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	hag_horario_inicio time NOT NULL,
+	hag_horario_fin time NOT NULL,
+	hag_id_dia bigint REFERENCES SIGKILL.agenda_profesional(agp_id),
+	hag_disponible int DEFAULT 1 NOT NULL
 	)
 GO
 
