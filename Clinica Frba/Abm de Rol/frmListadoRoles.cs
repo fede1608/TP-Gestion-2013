@@ -48,11 +48,15 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Filters filter = new Filters();
+            if (txtId.Text.Length>0){
+                filter.AddEqual("rol_id", txtId.Text);
+            }
             SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
             try
             {
                 var result = runner
-                    .Select("SELECT * FROM SIGKILL.rol");
+                    .Select("SELECT * FROM SIGKILL.rol",filter);
                 dataGridView1.DataSource = result;
 
             }

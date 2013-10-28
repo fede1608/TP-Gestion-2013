@@ -420,7 +420,10 @@ GO
 
 declare @med_string nvarchar(300)
 declare @bono_num bigint
-
+create table #Cursor (
+bononum bigint NOT NULL,
+medname varchar(255)
+)
 declare c1 cursor for (SELECT Bono_Farmacia_Medicamento,Bono_Farmacia_Numero from gd_esquema.Maestra WHERE Consulta_Sintomas is not null )--WHERE Bono_Farmacia_Medicamento is not null )
 open c1
 fetch c1 into @med_string,@bono_num
@@ -428,13 +431,16 @@ while @@FETCH_STATUS = 0
 begin
 	--UPDATE SIGKILL.bono_consulta SET bonoc_consumido=1,bonoc_fecha_compra=@fecha WHERE bonoc_id=@bonoc_num
 	--UPDATE SIGKILL.bono_farmacia SET bonof_consumido=1,bonof_fecha_compra=@fecha WHERE bonof_id=@bono_num 
-	INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+	--INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+	INSERT INTO #Cursor(bononum,medname)
 	(select @bono_num,SIGKILL.getMedicamentoId(Item) from SIGKILL.SplitString(@med_string, '+'))
 	fetch c1 into @med_string,@bono_num
 end
-
+INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+(SELECT * FROM #Cursor)
 close c1
 deallocate c1
+drop table #Cursor
 GO
 
 UPDATE SIGKILL.bono_consulta 
