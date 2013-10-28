@@ -50,17 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abm de Afiliado\frmAfiliadoListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\frmAfiliadoListado.Designer.cs">
+      <DependentUpon>frmAfiliadoListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Afiliado\frmAfiliadoAltaMod.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm de Afiliado\frmAfiliadoAltaMod.Designer.cs">
       <DependentUpon>frmAfiliadoAltaMod.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.Designer.cs">
-      <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm de Rol\frmListadoRoles.cs">
       <SubType>Form</SubType>
@@ -69,7 +69,6 @@
       <DependentUpon>frmListadoRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="ClasesDatosTablas\rol.cs" />
-    <Compile Include="ClasesDatosTablas\toSha256.cs" />
     <Compile Include="ClasesDatosTablas\usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -176,9 +175,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAltaMod.resx">
       <DependentUpon>frmAfiliadoAltaMod.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoPrinc.resx">
-      <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmListadoRoles.resx">
       <DependentUpon>frmListadoRoles.cs</DependentUpon>

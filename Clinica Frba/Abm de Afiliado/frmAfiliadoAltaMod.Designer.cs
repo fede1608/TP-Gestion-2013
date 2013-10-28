@@ -201,6 +201,7 @@
             this.txt_ABMAfiliado_AltaMod_nrodoc.Name = "txt_ABMAfiliado_AltaMod_nrodoc";
             this.txt_ABMAfiliado_AltaMod_nrodoc.Size = new System.Drawing.Size(156, 20);
             this.txt_ABMAfiliado_AltaMod_nrodoc.TabIndex = 17;
+            this.txt_ABMAfiliado_AltaMod_nrodoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMAfiliado_AltaMod_nrodoc_KeyPress);
             // 
             // txt_ABMAfiliado_AltaMod_direccion
             // 
