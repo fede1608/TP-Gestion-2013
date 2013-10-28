@@ -62,6 +62,15 @@ namespace Clinica_Frba.Abm_de_Rol
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var cell = dataGridView1.Rows[e.RowIndex];
+            MessageBox.Show("Se clickeo " + cell.Cells[1].Value.ToString());
+        }
 
     }
 }
