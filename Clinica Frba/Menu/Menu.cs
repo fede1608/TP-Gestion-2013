@@ -21,6 +21,15 @@ namespace Clinica_Frba.Menu
         {
 
             //Por seguridad, por defecto todos los botones son invisibles
+            btn_f5_cancelarAtencion.Visible = false;
+            btn_f6_registrarAgenda.Visible = false;
+            btn_f7_pedirTurno.Visible = false;
+            btn_f8_regLlegada.Visible = false;
+            btn_f9_regResultado.Visible = false;
+            btn_f10_generarReceta.Visible = false;
+            btn_f11_generarEstadisticas.Visible = false;
+            btn_f12_comprarBono.Visible = false;
+            
             btn_f13_altaAfiliado.Visible = false;
             btn_f14_bajaAfiliado.Visible = false;
             btn_f15_modificarAfiliado.Visible = false;
@@ -36,16 +45,6 @@ namespace Clinica_Frba.Menu
             btn_f22_altaPlan.Visible = false;
             btn_f23_bajaPlan.Visible = false;
             btn_f24_modificarPlan.Visible = false;
-
-            btn_f5_cancelarAtencion.Visible = false;
-            btn_f6_registrarAgenda.Visible = false;
-            btn_f7_pedirTurno.Visible = false;
-            btn_f8_regLlegada.Visible = false;
-            btn_f9_regResultado.Visible = false;
-            btn_f10_generarReceta.Visible = false;
-            btn_f11_generarEstadisticas.Visible = false;
-            btn_f12_comprarBono.Visible = false;
-
 
             //Array de funcionalidades: false = NO, true = SI
             bool[] funcionalidades;
