@@ -243,13 +243,6 @@ CREATE TABLE SIGKILL.consulta(
 	)
 GO
 
--- Tabla Receta
-CREATE TABLE SIGKILL.receta(
-	rec_nro_receta bigint PRIMARY KEY NOT NULL,
-	rec_bono_farmacia bigint REFERENCES SIGKILL.bono_farmacia(bonof_id)	
-	)
-GO
-
 -- Tabla Medicamento
 CREATE TABLE SIGKILL.medicamento(
 	medic_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -258,8 +251,9 @@ CREATE TABLE SIGKILL.medicamento(
 GO
 
 -- Tabla Receta Medicamento
-CREATE TABLE SIGKILL.receta_medicamento(
-	recmed_nro_receta bigint REFERENCES SIGKILL.receta(rec_nro_receta),
+CREATE TABLE SIGKILL.medicamento_bono_farmacia(
+	recmed_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	recmed_bono_farmacia bigint REFERENCES SIGKILL.bono_farmacia(bonof_id),
 	recmed_medicamento bigint REFERENCES SIGKILL.medicamento(medic_id),
 	recmed_cantidad int DEFAULT 1 NOT NULL,
 	recmed_aclaracion nvarchar(255) NULL
@@ -347,6 +341,32 @@ GO
   FROM gd_esquema.Maestra 
   WHERE Especialidad_Codigo is not null)
 go
+
+/***** FUNCIONES ****/
+create function SIGKILL.getNextNumeroAfiliado
+(
+)
+returns int
+as
+begin
+	DECLARE @numero int
+	SELECT @numero=COUNT(DISTINCT ROUND(afil_numero/100,0)) FROM SIGKILL.afiliado
+	RETURN @numero+1
+end
+go
+
+create function SIGKILL.getMedicamentoId
+(
+    @med nvarchar(200)
+)
+returns int
+as
+begin
+	DECLARE @numero int
+	SELECT @numero=medic_id FROM SIGKILL.medicamento WHERE medic_nombre=@med
+	RETURN @numero
+end
+go
  
 create function SIGKILL.SplitString 
 (
@@ -381,6 +401,7 @@ from tokens
 
 GO
 
+/****CURSORES****/
 declare @med_string nvarchar(300)
 declare c1 cursor for (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
 open c1
@@ -394,19 +415,39 @@ end
 
 close c1
 deallocate c1
-go
+GO
 
+declare @med_string nvarchar(300)
+declare @bono_num bigint
 
-/***** FUNCIONES ****/
-create function SIGKILL.getNextNumeroAfiliado
-(
-)
-returns int
-as
+declare c1 cursor for (SELECT Bono_Farmacia_Medicamento,Bono_Farmacia_Numero from gd_esquema.Maestra WHERE Consulta_Sintomas is not null )--WHERE Bono_Farmacia_Medicamento is not null )
+open c1
+fetch c1 into @med_string,@bono_num
+while @@FETCH_STATUS = 0
 begin
-	DECLARE @numero int
-	SELECT @numero=COUNT(DISTINCT ROUND(afil_numero/100,0)) FROM SIGKILL.afiliado
-	RETURN @numero+1
+	--UPDATE SIGKILL.bono_consulta SET bonoc_consumido=1,bonoc_fecha_compra=@fecha WHERE bonoc_id=@bonoc_num
+	--UPDATE SIGKILL.bono_farmacia SET bonof_consumido=1,bonof_fecha_compra=@fecha WHERE bonof_id=@bono_num 
+	INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+	(select @bono_num,SIGKILL.getMedicamentoId(Item) from SIGKILL.SplitString(@med_string, '+'))
+	fetch c1 into @med_string,@bono_num
 end
-go
+
+close c1
+deallocate c1
+GO
+
+UPDATE SIGKILL.bono_consulta 
+SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
+FROM SIGKILL.bono_consulta,gd_esquema.Maestra 
+WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero
+	
+UPDATE SIGKILL.bono_farmacia 
+SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha
+FROM SIGKILL.bono_farmacia,gd_esquema.Maestra 
+WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero
+
+UPDATE SIGKILL.bono_consulta
+SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
+from SIGKILL.bono_consulta as bc1
+WHERE bc1.bonoc_consumido=1
 

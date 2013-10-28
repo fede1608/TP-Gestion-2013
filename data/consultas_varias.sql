@@ -24,5 +24,10 @@
 --SELECT * FROM gd_esquema.Maestra as M,gd_esquema.Maestra as M2 WHERE M2.Bono_Farmacia_Numero is not null and M.Bono_Consulta_Numero is not null and M.Bono_Consulta_Numero=M2.Bono_Farmacia_Numero
 --select Item from SIGKILL.SplitString('COMPLEJO B+DEXAMETASONA+LIDOCAINA SOL INY 3AMP', '+') 
 --SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null 
-Select * from SIGKILL.medicamento
+--Select * from SIGKILL.medicamento_bono_farmacia
+SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_consumido=1 and bonoc_afiliado=628101 order by bonoc_nro_consulta_individual
+--UPDATE SIGKILL.bono_consulta
+--SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
+--from SIGKILL.bono_consulta as bc1
+--WHERE bc1.bonoc_consumido=1
 
