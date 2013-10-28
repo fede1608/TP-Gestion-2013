@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace ClinicaSigkill.Sql
+namespace Clinica_Frba.Sql
 {
     public class SqlRunner
     {

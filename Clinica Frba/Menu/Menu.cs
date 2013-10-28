@@ -99,6 +99,6 @@ namespace Clinica_Frba.Menu
         }
 
 
-        }
     }
 }
+

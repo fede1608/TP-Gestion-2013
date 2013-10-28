@@ -1,4 +1,5 @@
-drop function SIGKILL.getNextNumeroAfiliado
+DROP FUNCTION SIGKILL.getNextNumeroAfiliado
+DROP FUNCTION SIGKILL.SplitString 
 
 DROP TABLE SIGKILL.baja_afiliado
 DROP TABLE SIGKILL.receta_medicamento

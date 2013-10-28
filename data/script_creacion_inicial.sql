@@ -322,10 +322,14 @@ INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
 GO
 
 INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)
-(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta FROM gd_esquema.Maestra,SIGKILL.afiliado WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
+(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
+FROM gd_esquema.Maestra,SIGKILL.afiliado 
+WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
 
 INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)
-(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia FROM gd_esquema.Maestra,SIGKILL.afiliado WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
+(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
+FROM gd_esquema.Maestra,SIGKILL.afiliado 
+WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
 
 INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
@@ -344,6 +348,54 @@ GO
   WHERE Especialidad_Codigo is not null)
 go
  
+create function SIGKILL.SplitString 
+(
+    @str nvarchar(max), 
+    @separator char(1)
+)
+returns table
+AS
+return (
+with tokens(p, a, b) AS (
+    select 
+        cast(1 as bigint), 
+        cast(1 as bigint), 
+        charindex(@separator, @str)
+    union all
+    select
+        p + 1, 
+        b + 1, 
+        charindex(@separator, @str, b + 1)
+    from tokens
+    where b > 0
+)
+select
+    p-1 ItemIndex,
+    substring(
+        @str, 
+        a, 
+        case when b > 0 then b-a ELSE LEN(@str) end) 
+    AS Item
+from tokens
+);
+
+GO
+
+declare @med_string nvarchar(300)
+declare c1 cursor for (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
+open c1
+fetch c1 into @med_string
+while @@FETCH_STATUS = 0
+begin
+	INSERT INTO SIGKILL.medicamento (medic_nombre)
+	(select Item from SIGKILL.SplitString(@med_string, '+'))
+	fetch c1 into @med_string
+end
+
+close c1
+deallocate c1
+go
+
 
 /***** FUNCIONES ****/
 create function SIGKILL.getNextNumeroAfiliado
@@ -357,3 +409,4 @@ begin
 	RETURN @numero+1
 end
 go
+

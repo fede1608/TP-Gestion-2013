@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ClinicaSigkill.Sql
+namespace Clinica_Frba.Sql
 {
     public class Filters
     {

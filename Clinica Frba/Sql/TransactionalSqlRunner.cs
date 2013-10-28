@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace ClinicaSigkill.Sql
+namespace Clinica_Frba.Sql
 {
     public class TransactionalSqlRunner : SqlRunner
     {
