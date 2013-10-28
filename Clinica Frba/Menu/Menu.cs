@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Clinica_Frba.Menu
 {
-    public partial class Menu : Form
+    public partial class frm_menuPrincipal : Form
     {
-        public Menu()
+        public frm_menuPrincipal()
         {
             InitializeComponent();
         }

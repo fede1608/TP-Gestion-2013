@@ -69,6 +69,7 @@
       <DependentUpon>frmListadoRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="ClasesDatosTablas\rol.cs" />
+    <Compile Include="ClasesDatosTablas\toSha256.cs" />
     <Compile Include="ClasesDatosTablas\usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

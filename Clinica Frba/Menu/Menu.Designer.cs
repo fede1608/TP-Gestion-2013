@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Frba.Menu
 {
-    partial class Menu
+    partial class frm_menuPrincipal
     {
         /// <summary>
         /// Required designer variable.
