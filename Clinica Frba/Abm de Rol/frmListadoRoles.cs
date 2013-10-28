@@ -41,6 +41,27 @@ namespace Clinica_Frba.Abm_de_Rol
 
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            try
+            {
+                var result = runner
+                    .Select("SELECT * FROM SIGKILL.rol");
+                dataGridView1.DataSource = result;
+
+            }
+            catch
+            {
+                MessageBox.Show("Error de rol");
+            }
+        }
+
 
     }
 }
