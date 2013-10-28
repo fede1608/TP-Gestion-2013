@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.Sql;
 
 namespace Clinica_Frba
 {

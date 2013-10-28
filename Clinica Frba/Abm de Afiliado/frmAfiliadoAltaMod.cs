@@ -29,5 +29,10 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
 
         }
+
+        private void upd_ABMAfiliado_AltaMod_dia_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

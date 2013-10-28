@@ -63,6 +63,7 @@
     <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.Designer.cs">
       <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClasesDatosTablas\usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

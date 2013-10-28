@@ -304,6 +304,7 @@
             0,
             0,
             0});
+            this.upd_ABMAfiliado_AltaMod_dia.ValueChanged += new System.EventHandler(this.upd_ABMAfiliado_AltaMod_dia_ValueChanged);
             // 
             // upd_ABMAfiliado_AltaMod_mes
             // 
