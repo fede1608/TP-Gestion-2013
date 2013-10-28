@@ -96,6 +96,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmListadoRoles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListadoRoles";
             this.Load += new System.EventHandler(this.frmListadoRoles_Load);
             this.groupBox1.ResumeLayout(false);
