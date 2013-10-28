@@ -35,5 +35,11 @@ namespace Clinica_Frba.NewFolder10
 
 
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Rol.frmListadoRoles().Show();
+            
+        }
     }
 }

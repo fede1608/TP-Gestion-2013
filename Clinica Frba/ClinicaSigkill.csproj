@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -63,6 +62,13 @@
     <Compile Include="Abm de Afiliado\frmAfiliadoPrinc.Designer.cs">
       <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm de Rol\frmListadoRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Rol\frmListadoRoles.Designer.cs">
+      <DependentUpon>frmListadoRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClasesDatosTablas\rol.cs" />
     <Compile Include="ClasesDatosTablas\usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoPrinc.resx">
       <DependentUpon>frmAfiliadoPrinc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Rol\frmListadoRoles.resx">
+      <DependentUpon>frmListadoRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
