@@ -177,6 +177,9 @@
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAltaMod.resx">
       <DependentUpon>frmAfiliadoAltaMod.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoListado.resx">
+      <DependentUpon>frmAfiliadoListado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmListadoRoles.resx">
       <DependentUpon>frmListadoRoles.cs</DependentUpon>
     </EmbeddedResource>
