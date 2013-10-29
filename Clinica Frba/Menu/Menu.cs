@@ -38,9 +38,9 @@ namespace Clinica_Frba.Menu
             btn_f17_bajaProfesional.Visible = false;
             btn_f18_modificarProfesional.Visible = false;
 
-            btn_f19_altaEspecialidad.Visible = false;
-            btn_f20_bajaEspecialidad.Visible = false;
-            btn_f21_modificarEspecialidad.Visible = false;
+            btn_f19_altaRol.Visible = false;
+            btn_f20_bajaRol.Visible = false;
+            btn_f21_modificarRol.Visible = false;
 
             btn_f22_altaPlan.Visible = false;
             btn_f23_bajaPlan.Visible = false;
@@ -76,9 +76,9 @@ namespace Clinica_Frba.Menu
                 }
 
             if (funcionalidades[2] == true) { //ABM especialidad
-                btn_f19_altaEspecialidad.Visible = true;
-                btn_f20_bajaEspecialidad.Visible = true;
-                btn_f21_modificarEspecialidad.Visible = true;
+                btn_f19_altaRol.Visible = true;
+                btn_f20_bajaRol.Visible = true;
+                btn_f21_modificarRol.Visible = true;
                 }
 
             if (funcionalidades[3] == true) { //ABM plan
@@ -102,6 +102,23 @@ namespace Clinica_Frba.Menu
         {
             new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
         }
+
+        private void btn_f19_altaRol_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Rol.frmRolAltaMod().Show();
+        }
+
+        private void btn_f21_modificarRol_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Rol.frmListadoRoles(1).Show();
+        }
+
+        private void btn_f20_bajaRol_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Rol.frmListadoRoles(2).Show();
+        }
+
+
 
     }
 }

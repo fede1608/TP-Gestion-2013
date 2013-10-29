@@ -14,10 +14,16 @@ namespace Clinica_Frba.Abm_de_Rol
     public partial class frmListadoRoles : Form
     {
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+        int tipo=1;
         public frmListadoRoles()
         {
             InitializeComponent();
 
+        }
+        public frmListadoRoles(int type)
+        {
+            InitializeComponent();
+            tipo = type;
         }
 
         private void frmListadoRoles_Load(object sender, EventArgs e)
@@ -75,16 +81,30 @@ namespace Clinica_Frba.Abm_de_Rol
         {
             var cell = dataGridView1.Rows[e.RowIndex];
             //MessageBox.Show("Se clickeo " + cell.Cells[0].Value.ToString());
-            var res = runner.Single("SELECT * FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value.ToString());
-            Rol rol = new Adapter().Transform<Rol>(res);
-            new frmRolAltaMod(rol).Show();
-            this.Close();
+            if (tipo == 1)
+            {
+                var res = runner.Single("SELECT * FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value.ToString());
+                Rol rol = new Adapter().Transform<Rol>(res);
+                new frmRolAltaMod(rol).Show();
+                this.Close();
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar el rol "+cell.Cells[1].Value.ToString()+"?", "Eliminar Rol", MessageBoxButtons.YesNo);
+                if(dialogResult == DialogResult.Yes)
+                {
+                    runner.Delete("DELETE FROM SIGKILL.func_rol WHERE frol_rol={0}", cell.Cells[0].Value);
+                    runner.Delete("DELETE FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value);
+                    MessageBox.Show("Se ha eliminado correctamente el Rol");
+                    button1_Click(new object(), new EventArgs());
+                }
+            }
             
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new frmRolAltaMod().Show();
+            new Clinica_Frba.Abm_de_Rol.frmRolAltaMod().Show();
             this.Close();
         }
 

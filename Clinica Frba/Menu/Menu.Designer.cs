@@ -43,9 +43,9 @@
             this.btn_f16_altaProfesional = new System.Windows.Forms.Button();
             this.btn_f17_bajaProfesional = new System.Windows.Forms.Button();
             this.btn_f18_modificarProfesional = new System.Windows.Forms.Button();
-            this.btn_f19_altaEspecialidad = new System.Windows.Forms.Button();
-            this.btn_f20_bajaEspecialidad = new System.Windows.Forms.Button();
-            this.btn_f21_modificarEspecialidad = new System.Windows.Forms.Button();
+            this.btn_f19_altaRol = new System.Windows.Forms.Button();
+            this.btn_f20_bajaRol = new System.Windows.Forms.Button();
+            this.btn_f21_modificarRol = new System.Windows.Forms.Button();
             this.btn_f22_altaPlan = new System.Windows.Forms.Button();
             this.btn_f23_bajaPlan = new System.Windows.Forms.Button();
             this.btn_f24_modificarPlan = new System.Windows.Forms.Button();
@@ -167,7 +167,6 @@
             this.btn_f15_modificarAfiliado.TabIndex = 11;
             this.btn_f15_modificarAfiliado.Text = "Modificar afiliado";
             this.btn_f15_modificarAfiliado.UseVisualStyleBackColor = false;
-            //this.btn_f15_modificarAfiliado.Click += new System.EventHandler(this.btn_f15_modificarAfiliado_Click);
             // 
             // btn_f16_altaProfesional
             // 
@@ -202,38 +201,41 @@
             this.btn_f18_modificarProfesional.Text = "Modificar afiliado";
             this.btn_f18_modificarProfesional.UseVisualStyleBackColor = false;
             // 
-            // btn_f19_altaEspecialidad
+            // btn_f19_altaRol
             // 
-            this.btn_f19_altaEspecialidad.BackColor = System.Drawing.Color.LimeGreen;
-            this.btn_f19_altaEspecialidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_f19_altaEspecialidad.Location = new System.Drawing.Point(385, 314);
-            this.btn_f19_altaEspecialidad.Name = "btn_f19_altaEspecialidad";
-            this.btn_f19_altaEspecialidad.Size = new System.Drawing.Size(181, 41);
-            this.btn_f19_altaEspecialidad.TabIndex = 15;
-            this.btn_f19_altaEspecialidad.Text = "Dar de alta especialidad";
-            this.btn_f19_altaEspecialidad.UseVisualStyleBackColor = false;
+            this.btn_f19_altaRol.BackColor = System.Drawing.Color.LimeGreen;
+            this.btn_f19_altaRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_f19_altaRol.Location = new System.Drawing.Point(385, 314);
+            this.btn_f19_altaRol.Name = "btn_f19_altaRol";
+            this.btn_f19_altaRol.Size = new System.Drawing.Size(181, 41);
+            this.btn_f19_altaRol.TabIndex = 15;
+            this.btn_f19_altaRol.Text = "Dar de alta rol";
+            this.btn_f19_altaRol.UseVisualStyleBackColor = false;
+            this.btn_f19_altaRol.Click += new System.EventHandler(this.btn_f19_altaRol_Click);
             // 
-            // btn_f20_bajaEspecialidad
+            // btn_f20_bajaRol
             // 
-            this.btn_f20_bajaEspecialidad.BackColor = System.Drawing.Color.LimeGreen;
-            this.btn_f20_bajaEspecialidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_f20_bajaEspecialidad.Location = new System.Drawing.Point(385, 361);
-            this.btn_f20_bajaEspecialidad.Name = "btn_f20_bajaEspecialidad";
-            this.btn_f20_bajaEspecialidad.Size = new System.Drawing.Size(181, 41);
-            this.btn_f20_bajaEspecialidad.TabIndex = 16;
-            this.btn_f20_bajaEspecialidad.Text = "Dar de baja especialidad";
-            this.btn_f20_bajaEspecialidad.UseVisualStyleBackColor = false;
+            this.btn_f20_bajaRol.BackColor = System.Drawing.Color.LimeGreen;
+            this.btn_f20_bajaRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_f20_bajaRol.Location = new System.Drawing.Point(385, 361);
+            this.btn_f20_bajaRol.Name = "btn_f20_bajaRol";
+            this.btn_f20_bajaRol.Size = new System.Drawing.Size(181, 41);
+            this.btn_f20_bajaRol.TabIndex = 16;
+            this.btn_f20_bajaRol.Text = "Dar de baja rol";
+            this.btn_f20_bajaRol.UseVisualStyleBackColor = false;
+            this.btn_f20_bajaRol.Click += new System.EventHandler(this.btn_f20_bajaRol_Click);
             // 
-            // btn_f21_modificarEspecialidad
+            // btn_f21_modificarRol
             // 
-            this.btn_f21_modificarEspecialidad.BackColor = System.Drawing.Color.LimeGreen;
-            this.btn_f21_modificarEspecialidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_f21_modificarEspecialidad.Location = new System.Drawing.Point(385, 408);
-            this.btn_f21_modificarEspecialidad.Name = "btn_f21_modificarEspecialidad";
-            this.btn_f21_modificarEspecialidad.Size = new System.Drawing.Size(181, 41);
-            this.btn_f21_modificarEspecialidad.TabIndex = 17;
-            this.btn_f21_modificarEspecialidad.Text = "Modificar especialidad";
-            this.btn_f21_modificarEspecialidad.UseVisualStyleBackColor = false;
+            this.btn_f21_modificarRol.BackColor = System.Drawing.Color.LimeGreen;
+            this.btn_f21_modificarRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_f21_modificarRol.Location = new System.Drawing.Point(385, 408);
+            this.btn_f21_modificarRol.Name = "btn_f21_modificarRol";
+            this.btn_f21_modificarRol.Size = new System.Drawing.Size(181, 41);
+            this.btn_f21_modificarRol.TabIndex = 17;
+            this.btn_f21_modificarRol.Text = "Modificar rol";
+            this.btn_f21_modificarRol.UseVisualStyleBackColor = false;
+            this.btn_f21_modificarRol.Click += new System.EventHandler(this.btn_f21_modificarRol_Click);
             // 
             // btn_f22_altaPlan
             // 
@@ -287,9 +289,9 @@
             this.Controls.Add(this.btn_f24_modificarPlan);
             this.Controls.Add(this.btn_f23_bajaPlan);
             this.Controls.Add(this.btn_f22_altaPlan);
-            this.Controls.Add(this.btn_f21_modificarEspecialidad);
-            this.Controls.Add(this.btn_f20_bajaEspecialidad);
-            this.Controls.Add(this.btn_f19_altaEspecialidad);
+            this.Controls.Add(this.btn_f21_modificarRol);
+            this.Controls.Add(this.btn_f20_bajaRol);
+            this.Controls.Add(this.btn_f19_altaRol);
             this.Controls.Add(this.btn_f18_modificarProfesional);
             this.Controls.Add(this.btn_f17_bajaProfesional);
             this.Controls.Add(this.btn_f16_altaProfesional);
@@ -330,9 +332,9 @@
         private System.Windows.Forms.Button btn_f16_altaProfesional;
         private System.Windows.Forms.Button btn_f17_bajaProfesional;
         private System.Windows.Forms.Button btn_f18_modificarProfesional;
-        private System.Windows.Forms.Button btn_f19_altaEspecialidad;
-        private System.Windows.Forms.Button btn_f20_bajaEspecialidad;
-        private System.Windows.Forms.Button btn_f21_modificarEspecialidad;
+        private System.Windows.Forms.Button btn_f19_altaRol;
+        private System.Windows.Forms.Button btn_f20_bajaRol;
+        private System.Windows.Forms.Button btn_f21_modificarRol;
         private System.Windows.Forms.Button btn_f22_altaPlan;
         private System.Windows.Forms.Button btn_f23_bajaPlan;
         private System.Windows.Forms.Button btn_f24_modificarPlan;
