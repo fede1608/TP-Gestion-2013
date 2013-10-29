@@ -95,7 +95,7 @@ namespace Clinica_Frba.Abm_de_Rol
             var res=runner.Single("SELECT * FROM SIGKILL.rol WHERE rol_nombre='{0}'", txtNombre.Text);
             Rol newrol = new Adapter().Transform<Rol>(res);
             foreach(var f in checkedListBox1.CheckedItems){
-                runner.Insert("INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad) VALUES ({0},{1})",newrol.rol_id.ToString(),(checkedListBox1.CheckedItems.IndexOf(f)+1).ToString());
+                runner.Insert("INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad) VALUES ({0},{1})",newrol.rol_id.ToString(),(checkedListBox1.Items.IndexOf(f)+1).ToString());
             }
             MessageBox.Show("Rol ingresado Correctamente");
                 
