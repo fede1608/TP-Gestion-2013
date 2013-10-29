@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Clinica_Frba.ClasesDatosTablas;
 
 namespace Clinica_Frba.ClasesDatosTablas
 {

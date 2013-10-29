@@ -88,5 +88,10 @@ namespace Clinica_Frba.Abm_de_Rol
             this.Close();
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

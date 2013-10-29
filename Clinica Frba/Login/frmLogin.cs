@@ -17,81 +17,140 @@ namespace Clinica_Frba.NewFolder10
         public frmLogin()
         {
             InitializeComponent();
+            txtUser.Focus();
         }
 
         private string pass = "";
         public int var_global_cant_login_fail = 0;
         public Usuario usuario = new Usuario();
+        public SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         
 
-        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+        //Cuidado con meter alguna letra del usuario admin en mayuscula, se bugea.
+
         private void button1_Click(object sender, EventArgs e)
         {
-            
             pass = txtPass.Text.ToSha256();
+            
             try
             {
                 var result = runner
                     .Single("SELECT * FROM SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
                 var userFromDb = new Adapter().Transform<Usuario>(result);
-                
-                //txtPass.Text = userFromDb.usr_password;
-                if (userFromDb.EstaBloqueado==1)
-                    throw new ApplicationException("El usuario se encuentra bloqueado.");
 
-                  usuario = userFromDb;
-
-                  //txtPass.Text = userFromDb.usr_password;
-
-                if (userFromDb.usr_password == pass)
+                if (userFromDb.usr_password == pass )
                 {
-                    frm_menuPrincipal formMenu = new frm_menuPrincipal();
 
-                    this.Hide();
-                    formMenu.Show();
-                    
-                }
-                else
-                {
-                    MessageBox.Show("ERROR, verifique su Contraseña");
-                    //txtPass.Text = userFromDb.usr_password.ToSha256();
-                   // txtPass.Text = "";
-                    txtPass.Focus();
-                    this.fallas(usuario);
-                }
+                    Filters filter = new Filters();
+
+                    if ((txtUser.Text == userFromDb.usr_usuario) && (pass == userFromDb.usr_password))
+                    {
+                        
+                        filter.AddEqual("rusr_usuario", userFromDb.usr_id.ToString());
+                        this.fallas(usuario);
+                    }
+
+                    try
+                    {
+                        var res = runner
+                            .Select("SELECT * FROM SIGKILL.rol_usuario", filter);
+
+                        int cantRoles = res.Rows.Count;
+
+                        if (cantRoles > 1)
+                        {
+                            this.deshabilitarLogeo();
+                            string[] miArray = new string[cantRoles];
+                            miArray = GetDataRow(res);
+
+                            for (int i = 0; i < cantRoles; i++)
+                            {
+                                var resultRol = runner.Single("Select * FROM SIGKILL.rol WHERE rol_id = '{0}'", miArray[i]);
+                                var userFromDbRol = new Adapter().Transform<Rol>(resultRol);
+                                if (userFromDbRol.rol_habilitado == 1)
+                                {
+                                    cboRol.Items.Add(userFromDbRol.rol_nombre);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Su rol esta deshabilitado, intente con otro.");
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            frm_menuPrincipal formMenu = new frm_menuPrincipal();
+                            this.Hide();
+                            formMenu.Show();
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Usted no tiene asignado ningun Rol");
+                    }
+ 
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR, verifique su Contraseña");
+                        txtPass.Focus();
+                        this.fallas(usuario);
+                    }
             }
             catch
             {
                 MessageBox.Show("ERROR, verifique su Usuario");
                 this.fallas(usuario);
                 txtUser.Text = "";
-                //txtPass.Text = "";
                 txtUser.Focus();
             }
+
+
         }
 
 
         private void fallas(Usuario usuario)
         {
-            //usuario.usr_cant_login_fail++;
-            //usuario.usr_estado = usuario.EstaBloqueado;
-           
-            //textBox1.Text = usuario.usr_estado.ToString();
             var_global_cant_login_fail++;
-            textBox1.Text = (var_global_cant_login_fail).ToString();
-            
-            if (var_global_cant_login_fail>=3)
+            txtIntentos.Text = (3 - var_global_cant_login_fail).ToString();
+
+            if (var_global_cant_login_fail >= 3)
             {
                 btnAceptar.Enabled = false;
                 txtUser.Enabled = false;
                 txtPass.Enabled = false;
-                checkBox1.Enabled = false;
+                chkbPass.Enabled = false;
+                txtIntentos.Enabled = false;
+                lblPass.Enabled = false;
+                lblUser.Enabled = false;
+                lblIntentos.Enabled = false;
+                txtIntentos.Text = (3 - var_global_cant_login_fail).ToString();
+
+
+                //SE SUPONE QUE TENDRIA QUE HACER EL UPDATE, PERO NO LO HACE
+                //try 
+                //{
+                //    var result = runner
+                //        .Single("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '3' WHERE usr_usuario= '{0}' ", txtUser.Text);
+                //    var userFromDb = new Adapter().Transform<Usuario>(result);
+                //    textBox2.Text = userFromDb.usr_cant_login_fail.ToString();
+
+
+
+                //}
+                //catch
+                //{
+                //    MessageBox.Show("ERROR ERROR ERROR");
+
+                //}
             }
- 
         }
 
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+
+        public void btnCancelar_Click(object sender, EventArgs e)
         {
             new Clinica_Frba.Abm_de_Rol.frmListadoRoles().Show();
             
@@ -111,5 +170,65 @@ namespace Clinica_Frba.NewFolder10
                 b = 0;
             }
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        public string[] GetDataRow(DataTable dt)
+        {
+            string[] array = new string[dt.Rows.Count];
+            for (int index = 0; index < dt.Rows.Count; index++)
+            {
+                array[index] = dt.Rows[index]["rusr_rol"].ToString();
+            }
+
+            return array;
+        }
+
+        private void btnAceptarRol_Click(object sender, EventArgs e)
+        {
+            if (cboRol.Text != "")
+            {
+                frm_menuPrincipal formMenu = new frm_menuPrincipal();
+                var_global_cant_login_fail++;
+                this.Hide();
+                formMenu.Show();
+            }
+            else 
+            {
+                MessageBox.Show("Seleccione un Rol");
+            }
+        }
+        private void btnCancelarRol_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Rol.frmListadoRoles().Show();
+        }
+
+        public void deshabilitarLogeo()
+        {
+            btnAceptar.Visible = false;
+            btnCancelar.Visible = false;
+            grbLogin.Enabled = false;
+            txtPass.Enabled = false;
+            txtUser.Enabled = false;
+            chkbPass.Enabled = false;
+            lblPass.Enabled = false;
+            lblUser.Enabled = false;
+            txtIntentos.Enabled = false;
+            lblIntentos.Enabled = false;
+            this.ClientSize = new System.Drawing.Size(570, 199);
+            this.CenterToScreen();
+
+
+            btnAceptarRol.Visible = true;
+            btnCancelarRol.Visible = true;
+            grbRol.Visible = true;
+            cboRol.Visible = true;
+            lblRol.Visible = true;
+            
+        }
+
     }
 }
