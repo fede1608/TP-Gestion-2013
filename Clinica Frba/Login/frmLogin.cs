@@ -20,22 +20,36 @@ namespace Clinica_Frba.NewFolder10
         }
 
         private string pass = "";
+        public int var_global_cant_login_fail = 0;
+        public Usuario usuario = new Usuario();
+        
 
+        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            
             pass = txtPass.Text.ToSha256();
             try
             {
                 var result = runner
                     .Single("SELECT * FROM SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
                 var userFromDb = new Adapter().Transform<Usuario>(result);
+                
                 //txtPass.Text = userFromDb.usr_password;
+                if (userFromDb.EstaBloqueado==1)
+                    throw new ApplicationException("El usuario se encuentra bloqueado.");
+
+                  usuario = userFromDb;
+
+                  //txtPass.Text = userFromDb.usr_password;
+
                 if (userFromDb.usr_password == pass)
                 {
                     frm_menuPrincipal formMenu = new frm_menuPrincipal();
+
                     this.Hide();
                     formMenu.Show();
+                    
                 }
                 else
                 {
@@ -43,18 +57,39 @@ namespace Clinica_Frba.NewFolder10
                     //txtPass.Text = userFromDb.usr_password.ToSha256();
                    // txtPass.Text = "";
                     txtPass.Focus();
+                    this.fallas(usuario);
                 }
             }
             catch
             {
-                MessageBox.Show("Error de Usuario");
+                MessageBox.Show("ERROR, verifique su Usuario");
+                this.fallas(usuario);
                 txtUser.Text = "";
-                txtPass.Text = "";
-                txtPass.Focus();
+                //txtPass.Text = "";
+                txtUser.Focus();
             }
-
-
         }
+
+
+        private void fallas(Usuario usuario)
+        {
+            //usuario.usr_cant_login_fail++;
+            //usuario.usr_estado = usuario.EstaBloqueado;
+           
+            //textBox1.Text = usuario.usr_estado.ToString();
+            var_global_cant_login_fail++;
+            textBox1.Text = (var_global_cant_login_fail).ToString();
+            
+            if (var_global_cant_login_fail>=3)
+            {
+                btnAceptar.Enabled = false;
+                txtUser.Enabled = false;
+                txtPass.Enabled = false;
+                checkBox1.Enabled = false;
+            }
+ 
+        }
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
