@@ -151,5 +151,21 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
         }
 
+        private void txt_ABMAfiliado_AltaMod_check_only_characters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

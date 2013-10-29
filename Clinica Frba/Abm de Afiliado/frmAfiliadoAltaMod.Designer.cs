@@ -197,6 +197,7 @@
             this.txt_ABMAfiliado_AltaMod_telefono.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_telefono.TabIndex = 54;
             this.txt_ABMAfiliado_AltaMod_telefono.TextChanged += new System.EventHandler(this.txt_ABMAfiliado_AltaMod_telefono_TextChanged);
+            this.txt_ABMAfiliado_AltaMod_telefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMAfiliado_AltaMod_check_only_characters_KeyPress);
             // 
             // txt_ABMAfiliado_AltaMod_direccion
             // 
@@ -205,6 +206,7 @@
             this.txt_ABMAfiliado_AltaMod_direccion.Name = "txt_ABMAfiliado_AltaMod_direccion";
             this.txt_ABMAfiliado_AltaMod_direccion.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_direccion.TabIndex = 53;
+            this.txt_ABMAfiliado_AltaMod_direccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMAfiliado_AltaMod_check_only_characters_KeyPress);
             // 
             // txt_ABMAfiliado_AltaMod_nrodoc
             // 
@@ -213,6 +215,7 @@
             this.txt_ABMAfiliado_AltaMod_nrodoc.Name = "txt_ABMAfiliado_AltaMod_nrodoc";
             this.txt_ABMAfiliado_AltaMod_nrodoc.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_nrodoc.TabIndex = 52;
+            this.txt_ABMAfiliado_AltaMod_nrodoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMAfiliado_AltaMod_check_only_characters_KeyPress);
             // 
             // txt_ABMAfiliado_AltaMod_apellido
             // 
@@ -221,6 +224,7 @@
             this.txt_ABMAfiliado_AltaMod_apellido.Name = "txt_ABMAfiliado_AltaMod_apellido";
             this.txt_ABMAfiliado_AltaMod_apellido.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_apellido.TabIndex = 51;
+            this.txt_ABMAfiliado_AltaMod_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMAfiliado_AltaMod_check_only_characters_KeyPress);
             // 
             // txt_ABMAfiliado_AltaMod_nombre
             // 
