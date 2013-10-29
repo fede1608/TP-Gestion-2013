@@ -14,6 +14,7 @@ namespace Clinica_Frba.Abm_de_Rol
 {
     public partial class frmRolAltaMod : Form
     {
+        Rol rolmod;
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         public frmRolAltaMod()
         {
@@ -31,6 +32,7 @@ namespace Clinica_Frba.Abm_de_Rol
         {
             try
             {
+                rolmod = rol;
                 var result = runner
                     .Select("SELECT * FROM SIGKILL.funcionalidad");
                 var funcFromDb = new Adapter().TransformMany<Funcionalidad>(result);
@@ -46,6 +48,8 @@ namespace Clinica_Frba.Abm_de_Rol
                     else 
                         checkedListBox1.Items.Add(func.func_descripcion);
                 }
+                btn_aceptar_alta.Visible = false;
+                btn_aceptar_mod.Visible = true;
 
             }
             catch
@@ -73,6 +77,9 @@ namespace Clinica_Frba.Abm_de_Rol
                 MessageBox.Show("Error de funcionalidad");
             }
 
+            btn_aceptar_alta.Visible = true;
+            btn_aceptar_mod.Visible = false;
+
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,9 +89,10 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void btn_aceptar_alta_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text.Length == 0)
+            var cant = runner.Single("SELECT COUNT(*) as cant FROM SIGKILL.rol WHERE rol_nombre='{0}'", txtNombre.Text);
+            if (txtNombre.Text.Length == 0 || (int)cant["cant"]==1)
             {
-                MessageBox.Show("No ingresaste el nombre");
+                MessageBox.Show("No ingresaste el nombre o el nombre ya existe");
                 return;
             }
             int hab=0;
@@ -99,6 +107,35 @@ namespace Clinica_Frba.Abm_de_Rol
             }
             MessageBox.Show("Rol ingresado Correctamente");
                 
+        }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_aceptar_mod_Click(object sender, EventArgs e)
+        {
+            if (txtNombre.Text != rolmod.rol_nombre || txtNombre.Text.Length == 0)
+            {
+                var cant = runner.Single("SELECT COUNT(*) as cant FROM SIGKILL.rol WHERE rol_nombre='{0}'", txtNombre.Text);
+                if (txtNombre.Text.Length == 0 || (int)cant["cant"] == 1)
+                {
+                    MessageBox.Show("No ingresaste el nombre o el nombre ya existe");
+                    return;
+                }
+            }
+
+            runner.Delete("DELETE FROM SIGKILL.func_rol WHERE frol_rol={0}", rolmod.rol_id);
+            int hab = 0;
+            if (chk_habilitado.Checked)
+                hab = 1;
+            runner.Update("UPDATE SIGKILL.rol SET rol_nombre='{0}', rol_habilitado={1} WHERE rol_id={2}", txtNombre.Text, hab.ToString(), rolmod.rol_id);
+            foreach (var f in checkedListBox1.CheckedItems)
+            {
+                runner.Insert("INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad) VALUES ({0},{1})", rolmod.rol_id.ToString(), (checkedListBox1.Items.IndexOf(f) + 1).ToString());
+            }
+            MessageBox.Show("Rol modificado Correctamente");
         }
     }
 }
