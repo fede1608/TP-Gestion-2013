@@ -196,6 +196,7 @@
             this.txt_ABMAfiliado_AltaMod_telefono.Name = "txt_ABMAfiliado_AltaMod_telefono";
             this.txt_ABMAfiliado_AltaMod_telefono.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_telefono.TabIndex = 54;
+            this.txt_ABMAfiliado_AltaMod_telefono.TextChanged += new System.EventHandler(this.txt_ABMAfiliado_AltaMod_telefono_TextChanged);
             // 
             // txt_ABMAfiliado_AltaMod_direccion
             // 

@@ -25,7 +25,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             if (alta)
             {
                 Text = "Alta";
-                btn_ABMAfiliado_Mod_aceptar.Visible = false;
+                btn_ABMAfiliado_Mod_aceptar.Enabled = false;
                 groupBox_ABMAfiliado_AltaMod_titulo.Text = "Alta afiliado";
             }
             else
@@ -33,12 +33,12 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 Text = "Modificación";
                 groupBox_ABMAfiliado_AltaMod_titulo.Text = "Modificación Afiliado";
                 //Estos campos no se pueden modificar
-                txt_ABMAfiliado_AltaMod_nombre.Visible = false;
-                txt_ABMAfiliado_AltaMod_apellido.Visible = false;
-                txt_ABMAfiliado_AltaMod_nrodoc.Visible = false;
-                monthCalendar_ABMAfiliado_AltaMod_nacimiento.Visible = false;
+                txt_ABMAfiliado_AltaMod_nombre.Enabled = false;
+                txt_ABMAfiliado_AltaMod_apellido.Enabled = false;
+                txt_ABMAfiliado_AltaMod_nrodoc.Enabled = false;
+                monthCalendar_ABMAfiliado_AltaMod_nacimiento.Enabled = false;
                 //Este es el botón siguiente del Alta
-                btn_ABMAfiliado_Alta_siguiente.Visible = false;
+                btn_ABMAfiliado_Alta_siguiente.Enabled = false;
             }
         }
 
@@ -90,21 +90,24 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 && cbo_ABMAfiliado_AltaMod_estadocivil.Text != ""
                 && txt_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
-                /*
-                    SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-                    //pass = txtPass.Text.ToSha256();
-                    //TODO: parsear datos y terminar el insert
-                    try
-                    {
-                        var result = runner
-                            .Single("INSERT INTO SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error al crear el nuevo afiliado");
-                    }
-                 */
-            }
+                    /*
+                    int dni = int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text);
+                    int telefono = int.Parse(txt_ABMAfiliado_AltaMod_telefono.Text);
+                    string nombre_usuario = "u" + Convert.ToString(txt_ABMAfiliado_AltaMod_nrodoc.Text);
+                    
+                        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+                        //TODO: parsear datos y terminar el insert
+                        try
+                        {
+                            var result = runner
+                                .Single("INSERT INTO SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Error al crear el nuevo afiliado");
+                        }
+                     */
+                }
             else
             {
                 MessageBox.Show("Faltan completar datos");
@@ -140,6 +143,10 @@ namespace Clinica_Frba.Abm_de_Afiliado
         private void groupBox_ABMAfiliado_AltaMod_titulo_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_ABMAfiliado_AltaMod_telefono_TextChanged(object sender, EventArgs e)
+        {
         }
 
     }

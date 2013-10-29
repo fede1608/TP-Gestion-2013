@@ -144,6 +144,7 @@
             this.btn_f13_altaAfiliado.TabIndex = 9;
             this.btn_f13_altaAfiliado.Text = "Dar de alta afiliado";
             this.btn_f13_altaAfiliado.UseVisualStyleBackColor = false;
+            this.btn_f13_altaAfiliado.Click += new System.EventHandler(this.btn_f13_altaAfiliado_Click);
             // 
             // btn_f14_bajaAfiliado
             // 
@@ -166,6 +167,7 @@
             this.btn_f15_modificarAfiliado.TabIndex = 11;
             this.btn_f15_modificarAfiliado.Text = "Modificar afiliado";
             this.btn_f15_modificarAfiliado.UseVisualStyleBackColor = false;
+            this.btn_f15_modificarAfiliado.Click += new System.EventHandler(this.btn_f15_modificarAfiliado_Click);
             // 
             // btn_f16_altaProfesional
             // 
@@ -276,7 +278,7 @@
             this.lbl_ABMs.TabIndex = 25;
             this.lbl_ABMs.Text = "Altas, bajas y modificaciones";
             // 
-            // Menu
+            // frm_menuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -303,7 +305,7 @@
             this.Controls.Add(this.btn_f8_regLlegada);
             this.Controls.Add(this.btn_f7_pedirTurno);
             this.Controls.Add(this.btn_f6_registrarAgenda);
-            this.Name = "Menu";
+            this.Name = "frm_menuPrincipal";
             this.Text = "Menu principal";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
