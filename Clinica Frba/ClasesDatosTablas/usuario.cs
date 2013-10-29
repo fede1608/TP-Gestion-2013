@@ -26,10 +26,27 @@ namespace Clinica_Frba.ClasesDatosTablas
             this.usr_usuario = usuario.usr_usuario;
         }
 
-        public bool EstaBloqueado
+        public int EstaBloqueado
         {
-            get { return this.usr_cant_login_fail >= 3; }
+            get
+            {
+                if (this.usr_cant_login_fail >= 3)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
+
+        //public bool EstaBloqueado
+        //{
+        //    get { return this.usr_cant_login_fail >= 3; }
+        //}
+
+
 
     }
 }
