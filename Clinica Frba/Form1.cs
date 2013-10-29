@@ -57,5 +57,10 @@ namespace Clinica_Frba
             Form formL= new NewFolder10.frmLogin();
             formL.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -46,6 +46,19 @@ namespace Clinica_Frba.Sql
             }
         }
 
+        public int Insert(string query, params object[] parameters)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                var queryWithParameters = string.Format(query, parameters);
+                var command = new SqlCommand(queryWithParameters, connection);
+                               
+                return command.ExecuteNonQuery();
+                
+            }
+        }
+
         public DataTable Select(string query, Filters filters)
         {
             using (var connection = new SqlConnection(this.connectionString))

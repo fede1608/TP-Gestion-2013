@@ -13,6 +13,7 @@ namespace Clinica_Frba.Abm_de_Rol
 {
     public partial class frmListadoRoles : Form
     {
+        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         public frmListadoRoles()
         {
             InitializeComponent();
@@ -52,7 +53,7 @@ namespace Clinica_Frba.Abm_de_Rol
             if (txtId.Text.Length>0){
                 filter.AddEqual("rol_id", txtId.Text);
             }
-            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            
             try
             {
                 var result = runner
@@ -73,7 +74,18 @@ namespace Clinica_Frba.Abm_de_Rol
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var cell = dataGridView1.Rows[e.RowIndex];
-            MessageBox.Show("Se clickeo " + cell.Cells[1].Value.ToString());
+            //MessageBox.Show("Se clickeo " + cell.Cells[0].Value.ToString());
+            var res = runner.Single("SELECT * FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value.ToString());
+            Rol rol = new Adapter().Transform<Rol>(res);
+            new frmRolAltaMod(rol).Show();
+            this.Close();
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new frmRolAltaMod().Show();
+            this.Close();
         }
 
     }
