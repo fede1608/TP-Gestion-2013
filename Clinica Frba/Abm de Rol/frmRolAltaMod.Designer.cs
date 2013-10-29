@@ -61,7 +61,7 @@
             this.chk_habilitado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_habilitado.Location = new System.Drawing.Point(142, 74);
             this.chk_habilitado.Name = "chk_habilitado";
-            this.chk_habilitado.Size = new System.Drawing.Size(73, 17);
+            this.chk_habilitado.Size = new System.Drawing.Size(71, 17);
             this.chk_habilitado.TabIndex = 5;
             this.chk_habilitado.Text = "Habilitado";
             this.chk_habilitado.UseVisualStyleBackColor = true;
@@ -141,6 +141,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmRolAltaMod";
             this.Text = "Rol";
+            this.Load += new System.EventHandler(this.frmRolAltaMod_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

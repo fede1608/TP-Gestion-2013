@@ -38,6 +38,8 @@ namespace Clinica_Frba.NewFolder10
                     .Single("SELECT * FROM SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
                 var userFromDb = new Adapter().Transform<Usuario>(result);
 
+                usuario = userFromDb;
+
                 if (userFromDb.usr_password == pass )
                 {
 
@@ -73,7 +75,7 @@ namespace Clinica_Frba.NewFolder10
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Su rol esta deshabilitado, intente con otro.");
+                                    MessageBox.Show("¡CUIDADO! Usted tiene el rol '"+userFromDbRol.rol_nombre+"' deshabilitado, intente ingresar al sistema con otro rol.");
                                 }
                             }
 
@@ -102,7 +104,7 @@ namespace Clinica_Frba.NewFolder10
             catch
             {
                 MessageBox.Show("ERROR, verifique su Usuario");
-                this.fallas(usuario);
+              //  this.fallas(usuario);
                 txtUser.Text = "";
                 txtUser.Focus();
             }
@@ -116,8 +118,12 @@ namespace Clinica_Frba.NewFolder10
             var_global_cant_login_fail++;
             txtIntentos.Text = (3 - var_global_cant_login_fail).ToString();
 
+            runner.Update("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '{0}' WHERE usr_usuario= '{1}' ", var_global_cant_login_fail, usuario.usr_usuario);
+            
+
             if (var_global_cant_login_fail >= 3)
             {
+                runner.Update("UPDATE SIGKILL.Usuario SET usr_estado = '{0}' WHERE usr_usuario= '{1}' ", 0, usuario.usr_usuario);
                 btnAceptar.Enabled = false;
                 txtUser.Enabled = false;
                 txtPass.Enabled = false;
@@ -128,23 +134,6 @@ namespace Clinica_Frba.NewFolder10
                 lblIntentos.Enabled = false;
                 txtIntentos.Text = (3 - var_global_cant_login_fail).ToString();
 
-
-                //SE SUPONE QUE TENDRIA QUE HACER EL UPDATE, PERO NO LO HACE
-                //try 
-                //{
-                //    var result = runner
-                //        .Single("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '3' WHERE usr_usuario= '{0}' ", txtUser.Text);
-                //    var userFromDb = new Adapter().Transform<Usuario>(result);
-                //    textBox2.Text = userFromDb.usr_cant_login_fail.ToString();
-
-
-
-                //}
-                //catch
-                //{
-                //    MessageBox.Show("ERROR ERROR ERROR");
-
-                //}
             }
         }
 
@@ -192,7 +181,8 @@ namespace Clinica_Frba.NewFolder10
             if (cboRol.Text != "")
             {
                 frm_menuPrincipal formMenu = new frm_menuPrincipal();
-                var_global_cant_login_fail++;
+                var_global_cant_login_fail=0;
+                runner.Update("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '{0}' WHERE usr_usuario= '{1}' ", 0, usuario.usr_usuario);
                 this.Hide();
                 formMenu.Show();
             }

@@ -36,13 +36,13 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.chkbPass = new System.Windows.Forms.CheckBox();
             this.grbLogin = new System.Windows.Forms.GroupBox();
+            this.lblIntentos = new System.Windows.Forms.Label();
             this.txtIntentos = new System.Windows.Forms.TextBox();
             this.grbRol = new System.Windows.Forms.GroupBox();
+            this.btnCancelarRol = new System.Windows.Forms.Button();
+            this.btnAceptarRol = new System.Windows.Forms.Button();
             this.cboRol = new System.Windows.Forms.ComboBox();
             this.lblRol = new System.Windows.Forms.Label();
-            this.btnAceptarRol = new System.Windows.Forms.Button();
-            this.btnCancelarRol = new System.Windows.Forms.Button();
-            this.lblIntentos = new System.Windows.Forms.Label();
             this.grbLogin.SuspendLayout();
             this.grbRol.SuspendLayout();
             this.SuspendLayout();
@@ -133,6 +133,16 @@
             this.grbLogin.TabStop = false;
             this.grbLogin.Text = "Login";
             // 
+            // lblIntentos
+            // 
+            this.lblIntentos.AutoSize = true;
+            this.lblIntentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIntentos.Location = new System.Drawing.Point(17, 112);
+            this.lblIntentos.Name = "lblIntentos";
+            this.lblIntentos.Size = new System.Drawing.Size(140, 16);
+            this.lblIntentos.TabIndex = 14;
+            this.lblIntentos.Text = "Intentos Restantes:";
+            // 
             // txtIntentos
             // 
             this.txtIntentos.BackColor = System.Drawing.Color.White;
@@ -155,6 +165,28 @@
             this.grbRol.Text = "Rol";
             this.grbRol.Visible = false;
             // 
+            // btnCancelarRol
+            // 
+            this.btnCancelarRol.Location = new System.Drawing.Point(134, 149);
+            this.btnCancelarRol.Name = "btnCancelarRol";
+            this.btnCancelarRol.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarRol.TabIndex = 13;
+            this.btnCancelarRol.Text = "Cancelar";
+            this.btnCancelarRol.UseVisualStyleBackColor = true;
+            this.btnCancelarRol.Visible = false;
+            this.btnCancelarRol.Click += new System.EventHandler(this.btnCancelarRol_Click);
+            // 
+            // btnAceptarRol
+            // 
+            this.btnAceptarRol.Location = new System.Drawing.Point(53, 149);
+            this.btnAceptarRol.Name = "btnAceptarRol";
+            this.btnAceptarRol.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarRol.TabIndex = 12;
+            this.btnAceptarRol.Text = "Aceptar";
+            this.btnAceptarRol.UseVisualStyleBackColor = true;
+            this.btnAceptarRol.Visible = false;
+            this.btnAceptarRol.Click += new System.EventHandler(this.btnAceptarRol_Click);
+            // 
             // cboRol
             // 
             this.cboRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -173,38 +205,6 @@
             this.lblRol.Size = new System.Drawing.Size(120, 16);
             this.lblRol.TabIndex = 0;
             this.lblRol.Text = "Logearse como:";
-            // 
-            // btnAceptarRol
-            // 
-            this.btnAceptarRol.Location = new System.Drawing.Point(53, 149);
-            this.btnAceptarRol.Name = "btnAceptarRol";
-            this.btnAceptarRol.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarRol.TabIndex = 12;
-            this.btnAceptarRol.Text = "Aceptar";
-            this.btnAceptarRol.UseVisualStyleBackColor = true;
-            this.btnAceptarRol.Visible = false;
-            this.btnAceptarRol.Click += new System.EventHandler(this.btnAceptarRol_Click);
-            // 
-            // btnCancelarRol
-            // 
-            this.btnCancelarRol.Location = new System.Drawing.Point(134, 149);
-            this.btnCancelarRol.Name = "btnCancelarRol";
-            this.btnCancelarRol.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarRol.TabIndex = 13;
-            this.btnCancelarRol.Text = "Cancelar";
-            this.btnCancelarRol.UseVisualStyleBackColor = true;
-            this.btnCancelarRol.Visible = false;
-            this.btnCancelarRol.Click += new System.EventHandler(this.btnCancelarRol_Click);
-            // 
-            // lblIntentos
-            // 
-            this.lblIntentos.AutoSize = true;
-            this.lblIntentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIntentos.Location = new System.Drawing.Point(17, 112);
-            this.lblIntentos.Name = "lblIntentos";
-            this.lblIntentos.Size = new System.Drawing.Size(140, 16);
-            this.lblIntentos.TabIndex = 14;
-            this.lblIntentos.Text = "Intentos Restantes:";
             // 
             // frmLogin
             // 

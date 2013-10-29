@@ -137,5 +137,10 @@ namespace Clinica_Frba.Abm_de_Rol
             }
             MessageBox.Show("Rol modificado Correctamente");
         }
+
+        private void frmRolAltaMod_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
