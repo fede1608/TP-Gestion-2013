@@ -167,7 +167,7 @@
             this.btn_f15_modificarAfiliado.TabIndex = 11;
             this.btn_f15_modificarAfiliado.Text = "Modificar afiliado";
             this.btn_f15_modificarAfiliado.UseVisualStyleBackColor = false;
-            this.btn_f15_modificarAfiliado.Click += new System.EventHandler(this.btn_f15_modificarAfiliado_Click);
+            //this.btn_f15_modificarAfiliado.Click += new System.EventHandler(this.btn_f15_modificarAfiliado_Click);
             // 
             // btn_f16_altaProfesional
             // 

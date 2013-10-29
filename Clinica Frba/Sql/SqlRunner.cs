@@ -46,17 +46,33 @@ namespace Clinica_Frba.Sql
             }
         }
 
-        public int Insert(string query, params object[] parameters)
+        public int executeNonQuery(string query, params object[] parameters)
         {
             using (var connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
                 var queryWithParameters = string.Format(query, parameters);
                 var command = new SqlCommand(queryWithParameters, connection);
-                               
+
                 return command.ExecuteNonQuery();
-                
+
             }
+        }
+
+
+        public int Insert(string query, params object[] parameters)
+        {
+            return this.executeNonQuery(query, parameters);
+        }
+
+        public int Update(string query, params object[] parameters)
+        {
+            return this.executeNonQuery(query, parameters);
+        }
+
+        public int Delete(string query, params object[] parameters)
+        {
+            return this.executeNonQuery(query, parameters);
         }
 
         public DataTable Select(string query, Filters filters)
