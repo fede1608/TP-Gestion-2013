@@ -9,14 +9,19 @@ using System.Windows.Forms;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
-    public partial class Form2 : Form
+    public partial class frmAfiliadoListado : Form
     {
-        public Form2()
+        public frmAfiliadoListado()
         {
             InitializeComponent();
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
         {
 
         }

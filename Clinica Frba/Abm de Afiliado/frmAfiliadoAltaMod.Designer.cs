@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Frba.Abm_de_Afiliado
 {
-    partial class Form1
+    partial class frmAfiliadoAltaMod
     {
         /// <summary>
         /// Required designer variable.
@@ -115,6 +115,7 @@
             this.btn_ABMAfiliado_AltaMod_atras.TabIndex = 49;
             this.btn_ABMAfiliado_AltaMod_atras.Text = "Atrás";
             this.btn_ABMAfiliado_AltaMod_atras.UseVisualStyleBackColor = true;
+            this.btn_ABMAfiliado_AltaMod_atras.Click += new System.EventHandler(this.btn_ABMAfiliado_AltaMod_atras_Click);
             // 
             // btn_ABMAfiliado_Mod_aceptar
             // 
@@ -124,6 +125,7 @@
             this.btn_ABMAfiliado_Mod_aceptar.TabIndex = 61;
             this.btn_ABMAfiliado_Mod_aceptar.Text = "Aceptar";
             this.btn_ABMAfiliado_Mod_aceptar.UseVisualStyleBackColor = true;
+            this.btn_ABMAfiliado_Mod_aceptar.Click += new System.EventHandler(this.btn_ABMAfiliado_Mod_aceptar_Click);
             // 
             // btn_ABMAfiliado_AltaMod_limpiar
             // 
@@ -184,7 +186,7 @@
             this.txt_ABMAfiliado_AltaMod_mail.Location = new System.Drawing.Point(131, 171);
             this.txt_ABMAfiliado_AltaMod_mail.MaxLength = 50;
             this.txt_ABMAfiliado_AltaMod_mail.Name = "txt_ABMAfiliado_AltaMod_mail";
-            this.txt_ABMAfiliado_AltaMod_mail.Size = new System.Drawing.Size(123, 20);
+            this.txt_ABMAfiliado_AltaMod_mail.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_mail.TabIndex = 55;
             // 
             // txt_ABMAfiliado_AltaMod_telefono
@@ -192,7 +194,7 @@
             this.txt_ABMAfiliado_AltaMod_telefono.Location = new System.Drawing.Point(131, 144);
             this.txt_ABMAfiliado_AltaMod_telefono.MaxLength = 8;
             this.txt_ABMAfiliado_AltaMod_telefono.Name = "txt_ABMAfiliado_AltaMod_telefono";
-            this.txt_ABMAfiliado_AltaMod_telefono.Size = new System.Drawing.Size(123, 20);
+            this.txt_ABMAfiliado_AltaMod_telefono.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_telefono.TabIndex = 54;
             // 
             // txt_ABMAfiliado_AltaMod_direccion
@@ -200,7 +202,7 @@
             this.txt_ABMAfiliado_AltaMod_direccion.Location = new System.Drawing.Point(131, 117);
             this.txt_ABMAfiliado_AltaMod_direccion.MaxLength = 50;
             this.txt_ABMAfiliado_AltaMod_direccion.Name = "txt_ABMAfiliado_AltaMod_direccion";
-            this.txt_ABMAfiliado_AltaMod_direccion.Size = new System.Drawing.Size(123, 20);
+            this.txt_ABMAfiliado_AltaMod_direccion.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_direccion.TabIndex = 53;
             // 
             // txt_ABMAfiliado_AltaMod_nrodoc
@@ -208,7 +210,7 @@
             this.txt_ABMAfiliado_AltaMod_nrodoc.Location = new System.Drawing.Point(131, 88);
             this.txt_ABMAfiliado_AltaMod_nrodoc.MaxLength = 8;
             this.txt_ABMAfiliado_AltaMod_nrodoc.Name = "txt_ABMAfiliado_AltaMod_nrodoc";
-            this.txt_ABMAfiliado_AltaMod_nrodoc.Size = new System.Drawing.Size(123, 20);
+            this.txt_ABMAfiliado_AltaMod_nrodoc.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_nrodoc.TabIndex = 52;
             // 
             // txt_ABMAfiliado_AltaMod_apellido
@@ -216,7 +218,7 @@
             this.txt_ABMAfiliado_AltaMod_apellido.Location = new System.Drawing.Point(131, 62);
             this.txt_ABMAfiliado_AltaMod_apellido.MaxLength = 30;
             this.txt_ABMAfiliado_AltaMod_apellido.Name = "txt_ABMAfiliado_AltaMod_apellido";
-            this.txt_ABMAfiliado_AltaMod_apellido.Size = new System.Drawing.Size(123, 20);
+            this.txt_ABMAfiliado_AltaMod_apellido.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_apellido.TabIndex = 51;
             // 
             // txt_ABMAfiliado_AltaMod_nombre
@@ -224,7 +226,7 @@
             this.txt_ABMAfiliado_AltaMod_nombre.Location = new System.Drawing.Point(131, 36);
             this.txt_ABMAfiliado_AltaMod_nombre.MaxLength = 30;
             this.txt_ABMAfiliado_AltaMod_nombre.Name = "txt_ABMAfiliado_AltaMod_nombre";
-            this.txt_ABMAfiliado_AltaMod_nombre.Size = new System.Drawing.Size(123, 20);
+            this.txt_ABMAfiliado_AltaMod_nombre.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_nombre.TabIndex = 50;
             // 
             // btn_ABMAfiliado_Alta_siguiente
@@ -317,13 +319,13 @@
             this.lbl_ABMAfiliado_Alta_nombre.TabIndex = 38;
             this.lbl_ABMAfiliado_Alta_nombre.Text = "Nombre";
             // 
-            // Form1
+            // frmAfiliadoAltaMod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 333);
             this.Controls.Add(this.groupBox_ABMAfiliado_AltaMod_titulo);
-            this.Name = "Form1";
+            this.Name = "frmAfiliadoAltaMod";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox_ABMAfiliado_AltaMod_titulo.ResumeLayout(false);

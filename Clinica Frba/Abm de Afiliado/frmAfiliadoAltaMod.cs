@@ -12,9 +12,9 @@ using Clinica_Frba.Menu;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
-    public partial class Form1 : Form
+    public partial class frmAfiliadoAltaMod : Form
     {
-        public Form1()
+        public frmAfiliadoAltaMod()
         {    
             InitializeComponent();
 
@@ -24,11 +24,13 @@ namespace Clinica_Frba.Abm_de_Afiliado
             Boolean alta = true;
             if (alta)
             {
+                Text = "Alta";
                 btn_ABMAfiliado_Mod_aceptar.Visible = false;
                 groupBox_ABMAfiliado_AltaMod_titulo.Text = "Alta afiliado";
             }
             else
             {
+                Text = "Modificación";
                 groupBox_ABMAfiliado_AltaMod_titulo.Text = "Modificación Afiliado";
                 //Estos campos no se pueden modificar
                 txt_ABMAfiliado_AltaMod_nombre.Visible = false;
@@ -107,14 +109,16 @@ namespace Clinica_Frba.Abm_de_Afiliado
             {
                 MessageBox.Show("Faltan completar datos");
             }
-            
+        }
+
+        private void btn_ABMAfiliado_Mod_aceptar_Click(object sender, EventArgs e)
+        {
 
         }
 
         private void btn_ABMAfiliado_AltaMod_atras_Click(object sender, EventArgs e)
         {
-            //En el caso que jamás se cierre el menú principal
-            //this.Close();
+            this.Hide();
         }
 
         private void txt_ABMAfiliado_Alta_mail_TextChanged(object sender, EventArgs e)
@@ -124,7 +128,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void btn_ABMAfiliado_AltaMod_limpiar_Click_1(object sender, EventArgs e)
         {
-            //Falta resetear dia, mes, sexo y estado civil
             txt_ABMAfiliado_AltaMod_nombre.Clear();
             txt_ABMAfiliado_AltaMod_apellido.Clear();
             txt_ABMAfiliado_AltaMod_nrodoc.Clear();
@@ -138,5 +141,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
 
         }
+
     }
 }
