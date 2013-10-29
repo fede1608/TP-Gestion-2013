@@ -54,6 +54,13 @@ CREATE TABLE SIGKILL.func_rol(
 	)
 GO
 
+-- Tabla tipo Documento
+CREATE TABLE SIGKILL.tipo_doc(
+	tdoc_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	tdoc_descripcion nvarchar(30) NOT NULL
+	)
+GO
+
 -- Tabla Profesional
 CREATE TABLE SIGKILL.profesional(
 	pro_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -61,10 +68,11 @@ CREATE TABLE SIGKILL.profesional(
 	pro_usuario bigint REFERENCES SIGKILL.usuario(usr_id), 
 	pro_nombre nvarchar(200) NOT NULL,
 	pro_apellido nvarchar(100) NOT NULL,
+	pro_tipo_doc bigint REFERENCES SIGKILL.tipo_doc(tdoc_id),
 	pro_dni numeric(18, 0) NOT NULL,
 --	pro_id_rol bigint REFERENCES SIGKILL.Rol(id_rol),
 	pro_direccion nvarchar(255) NOT NULL,
-	pro_telefono nvarchar(25) NOT NULL,
+	pro_telefono decimal(18,0) NOT NULL,
 	pro_mail nvarchar(255),
 	pro_nacimiento datetime,
 	pro_sexo nvarchar(1),
@@ -124,6 +132,8 @@ CREATE TABLE SIGKILL.estado_civil(
 	)
 GO
 
+
+
 -- Tabla Plan Medico
 CREATE TABLE SIGKILL.plan_medico(
 	pmed_id bigint PRIMARY KEY NOT NULL,
@@ -139,9 +149,10 @@ CREATE TABLE SIGKILL.afiliado(
 	afil_usuario bigint REFERENCES SIGKILL.usuario(usr_id), 
 	afil_nombre nvarchar(200) NOT NULL,
 	afil_apellido nvarchar(100) NOT NULL,
+	afil_tipo_doc bigint REFERENCES SIGKILL.tipo_doc(tdoc_id),
 	afil_dni numeric(18, 0) NOT NULL,
 	afil_direccion nvarchar(255) NOT NULL,
-	afil_telefono nvarchar(25) NOT NULL,
+	afil_telefono decimal(18,0) NOT NULL,
 	afil_mail nvarchar(255),
 	afil_nacimiento datetime,
 	afil_sexo nvarchar(1),
@@ -271,9 +282,19 @@ VALUES ('ABM de afiliados'),('ABM de profesional'),('ABM de especialidades médic
 ('Generar un listado estadístico'),('Registrar agenda de profesional'),('Ver Agenda');
 GO
 
+
+
 --insert de roles
 INSERT INTO SIGKILL.rol (rol_nombre,rol_habilitado) 
 VALUES ('Administrador',1),('Profesional',1),('Afiliado',1);
+GO
+
+INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad)
+VALUES (1,1),(1,2),(1,3),(1,4),(1,6),(1,8),(1,10),(1,12),(1,13),(2,9),(2,14),(3,5),(3,7)
+GO
+
+INSERT INTO SIGKILL.tipo_doc(tdoc_descripcion)
+VALUES ('DU'),('Libreta Civica'),('Libreta de Enrolamiento')
 GO
 
 INSERT INTO SIGKILL.estado_civil(estciv_descripcion)
@@ -330,7 +351,22 @@ INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llega
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
 WHERE Consulta_Sintomas is not null)
- 
+
+UPDATE SIGKILL.bono_consulta 
+SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
+FROM SIGKILL.bono_consulta,gd_esquema.Maestra 
+WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero
+	
+UPDATE SIGKILL.bono_farmacia 
+SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha
+FROM SIGKILL.bono_farmacia,gd_esquema.Maestra 
+WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero
+
+UPDATE SIGKILL.bono_consulta
+SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
+from SIGKILL.bono_consulta as bc1
+WHERE bc1.bonoc_consumido=1
+
 INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
 (SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 
  FROM gd_esquema.Maestra 
@@ -443,18 +479,5 @@ deallocate c1
 drop table #Cursor
 GO
 
-UPDATE SIGKILL.bono_consulta 
-SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
-FROM SIGKILL.bono_consulta,gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero
-	
-UPDATE SIGKILL.bono_farmacia 
-SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha
-FROM SIGKILL.bono_farmacia,gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero
 
-UPDATE SIGKILL.bono_consulta
-SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
-from SIGKILL.bono_consulta as bc1
-WHERE bc1.bonoc_consumido=1
 

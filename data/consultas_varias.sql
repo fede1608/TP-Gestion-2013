@@ -2,7 +2,8 @@
 --Select Paciente_Direccion,Paciente_Dni,Paciente_Apellido,Paciente_Nombre from gd_esquema.Maestra group by Paciente_Direccion,Paciente_Dni,Paciente_Apellido,Paciente_Nombre having Paciente_Direccion in (SELECT Paciente_Direccion FROM (Select Paciente_Direccion,Paciente_Dni from gd_esquema.Maestra group by Paciente_Direccion,Paciente_Dni) as a group by a.Paciente_Direccion having COUNT(*)=2 )--Where Paciente_Mail='paz_López@gmail.com')
 --Select Top 100 COUNT(Distinct Paciente_Nombre),Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni order by 1 desc
 --SELECT Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni
---Select * from SIGKILL.usuario
+
+Select * from SIGKILL.usuario
 --Select count(*) from SIGKILL.afiliado
 --Insert into SIGKILL.afiliado(afil_numero,afil_nombre,) VAlues (102),(103),(104)
 --SELECT COUNT(DISTINCT ROUND(afil_numero/100,0)),SIGKILL.getNextNumeroAfiliado() FROM SIGKILL.afiliado
@@ -24,7 +25,7 @@
 --SELECT * FROM gd_esquema.Maestra as M,gd_esquema.Maestra as M2 WHERE M2.Bono_Farmacia_Numero is not null and M.Bono_Consulta_Numero is not null and M.Bono_Consulta_Numero=M2.Bono_Farmacia_Numero
 --select Item from SIGKILL.SplitString('COMPLEJO B+DEXAMETASONA+LIDOCAINA SOL INY 3AMP', '+') 
 --SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null 
-Select * from SIGKILL.medicamento_bono_farmacia
+--SELECT func_id,func_descripcion FROM SIGKILL.funcionalidad inner join SIGKILL.func_rol on(func_id=frol_funcionalidad) Where frol_rol=9
 --SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_consumido=1 and bonoc_afiliado=628101 order by bonoc_nro_consulta_individual
 --UPDATE SIGKILL.bono_consulta
 --SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
