@@ -61,19 +61,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         }
 
-        private void btn_ABMAfiliado_AltaMod_limpiar_Click(object sender, EventArgs e)
-        {
-            //Falta resetear dia, mes, sexo y estado civil
-            txt_ABMAfiliado_AltaMod_nombre.Clear();
-            txt_ABMAfiliado_AltaMod_apellido.Clear();
-            txt_ABMAfiliado_AltaMod_nrodoc.Clear();
-            txt_ABMAfiliado_AltaMod_direccion.Clear();
-            txt_ABMAfiliado_AltaMod_telefono.Clear();
-            txt_ABMAfiliado_AltaMod_mail.Clear();
-            txt_ABMAfiliado_AltaMod_anio.Clear();
-            txt_ABMAfiliado_AltaMod_planmedico.Clear();
-        }
-
         private void cbo_ABMAfiliado_Alta_sexo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -135,6 +122,19 @@ namespace Clinica_Frba.Abm_de_Afiliado
         private void txt_ABMAfiliado_Alta_mail_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_ABMAfiliado_AltaMod_limpiar_Click_1(object sender, EventArgs e)
+        {
+            //Falta resetear dia, mes, sexo y estado civil
+            txt_ABMAfiliado_AltaMod_nombre.Clear();
+            txt_ABMAfiliado_AltaMod_apellido.Clear();
+            txt_ABMAfiliado_AltaMod_nrodoc.Clear();
+            txt_ABMAfiliado_AltaMod_direccion.Clear();
+            txt_ABMAfiliado_AltaMod_telefono.Clear();
+            txt_ABMAfiliado_AltaMod_mail.Clear();
+            txt_ABMAfiliado_AltaMod_anio.Clear();
+            txt_ABMAfiliado_AltaMod_planmedico.Clear();
         }
     }
 }

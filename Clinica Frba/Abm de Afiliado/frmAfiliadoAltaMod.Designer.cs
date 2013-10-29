@@ -268,6 +268,7 @@
             this.btn_ABMAfiliado_AltaMod_limpiar.TabIndex = 30;
             this.btn_ABMAfiliado_AltaMod_limpiar.Text = "Limpiar";
             this.btn_ABMAfiliado_AltaMod_limpiar.UseVisualStyleBackColor = true;
+            this.btn_ABMAfiliado_AltaMod_limpiar.Click += new System.EventHandler(this.btn_ABMAfiliado_AltaMod_limpiar_Click_1);
             // 
             // upd_ABMAfiliado_AltaMod_dia
             // 
