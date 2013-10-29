@@ -101,6 +101,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         {
                             var result = runner
                                 .Single("INSERT INTO SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
+                     * var result = runner
+                                .Single("INSERT INTO SIGKILL.Usuario () usr_usuario= '{0}' ", txtUser.Text);
                         }
                         catch
                         {
