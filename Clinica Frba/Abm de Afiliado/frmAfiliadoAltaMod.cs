@@ -25,18 +25,16 @@ namespace Clinica_Frba.Abm_de_Afiliado
             if (alta)
             {
                 btn_ABMAfiliado_Mod_aceptar.Visible = false;
-                lbl_ABMAfiliado_Alta_titulo.Text = "Alta Afiliado";
+                groupBox_ABMAfiliado_AltaMod_titulo.Text = "Alta afiliado";
             }
             else
             {
-                lbl_ABMAfiliado_Alta_titulo.Text = "Modificación Afiliado";
+                groupBox_ABMAfiliado_AltaMod_titulo.Text = "Modificación Afiliado";
                 //Estos campos no se pueden modificar
                 txt_ABMAfiliado_AltaMod_nombre.Visible = false;
                 txt_ABMAfiliado_AltaMod_apellido.Visible = false;
                 txt_ABMAfiliado_AltaMod_nrodoc.Visible = false;
-                upd_ABMAfiliado_AltaMod_dia.Visible = false;
-                upd_ABMAfiliado_AltaMod_mes.Visible = false;
-                txt_ABMAfiliado_AltaMod_anio.Visible = false;
+                monthCalendar_ABMAfiliado_AltaMod_nacimiento.Visible = false;
                 //Este es el botón siguiente del Alta
                 btn_ABMAfiliado_Alta_siguiente.Visible = false;
             }
@@ -60,6 +58,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
 
         }
+
 
         private void cbo_ABMAfiliado_Alta_sexo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -85,7 +84,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 && txt_ABMAfiliado_AltaMod_direccion.Text != ""
                 && txt_ABMAfiliado_AltaMod_telefono.Text != ""
                 && txt_ABMAfiliado_AltaMod_mail.Text != ""
-                && txt_ABMAfiliado_AltaMod_anio.Text != ""
                 && cbo_ABMAfiliado_AltaMod_sexo.Text != ""
                 && cbo_ABMAfiliado_AltaMod_estadocivil.Text != ""
                 && txt_ABMAfiliado_AltaMod_planmedico.Text != ""
@@ -133,8 +131,12 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txt_ABMAfiliado_AltaMod_direccion.Clear();
             txt_ABMAfiliado_AltaMod_telefono.Clear();
             txt_ABMAfiliado_AltaMod_mail.Clear();
-            txt_ABMAfiliado_AltaMod_anio.Clear();
             txt_ABMAfiliado_AltaMod_planmedico.Clear();
+        }
+
+        private void groupBox_ABMAfiliado_AltaMod_titulo_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
