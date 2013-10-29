@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.ClasesDatosTablas;
+using Clinica_Frba.Sql;
+using Clinica_Frba.Menu;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -89,7 +92,38 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void btn_ABMAfiliado_Mod_siguiente_Click(object sender, EventArgs e)
         {
-            /* Efectivizar modificación de los datos modificados*/
+            if (txt_ABMAfiliado_AltaMod_nombre.Text != ""
+                && txt_ABMAfiliado_AltaMod_apellido.Text != ""
+                && txt_ABMAfiliado_AltaMod_nrodoc.Text != ""
+                && txt_ABMAfiliado_AltaMod_direccion.Text != ""
+                && txt_ABMAfiliado_AltaMod_telefono.Text != ""
+                && txt_ABMAfiliado_AltaMod_mail.Text != ""
+                && txt_ABMAfiliado_AltaMod_anio.Text != ""
+                && cbo_ABMAfiliado_AltaMod_sexo.Text != ""
+                && cbo_ABMAfiliado_AltaMod_estadocivil.Text != ""
+                && txt_ABMAfiliado_AltaMod_planmedico.Text != ""
+                ){
+                /*
+                    SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+                    //pass = txtPass.Text.ToSha256();
+                    //TODO: parsear datos y terminar el insert
+                    try
+                    {
+                        var result = runner
+                            .Single("INSERT INTO SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error al crear el nuevo afiliado");
+                    }
+                 */
+            }
+            else
+            {
+                MessageBox.Show("Faltan completar datos");
+            }
+            
+
         }
 
         private void btn_ABMAfiliado_AltaMod_atras_Click(object sender, EventArgs e)
