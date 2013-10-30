@@ -88,7 +88,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 && txt_ABMpro_mail.Text != ""
                 && cbo_ABMpro_sexo.Text != ""
                 && cbo_ABMpro_estadoCivil.Text != ""
-                && txt_ABMAfiliado_AltaMod_planmedico.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
                     /*
                     int dni = int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text);
@@ -137,7 +137,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txt_ABMpro_direccion.Clear();
             txt_ABMpro_telefono.Clear();
             txt_ABMpro_mail.Clear();
-            txt_ABMAfiliado_AltaMod_planmedico.Clear();
+            //txt_ABMAfiliado_AltaMod_planmedico.Clear();
         }
 
         private void groupBox_ABMAfiliado_AltaMod_titulo_Enter(object sender, EventArgs e)

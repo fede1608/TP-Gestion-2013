@@ -182,6 +182,9 @@
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoListado.resx">
       <DependentUpon>frmAfiliadoListado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Planes\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm de Profesional\frmProfesionalAlta.resx">
       <DependentUpon>frmProfesionalAlta.cs</DependentUpon>
     </EmbeddedResource>

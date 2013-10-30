@@ -18,6 +18,7 @@ namespace Clinica_Frba.NewFolder10
         {
             InitializeComponent();
             txtUser.Focus();
+
         }
 
         private string pass = "";
@@ -82,9 +83,11 @@ namespace Clinica_Frba.NewFolder10
                         }
                         else
                         {
-                            frm_menuPrincipal formMenu = new frm_menuPrincipal();
-                            this.Hide();
-                            formMenu.Show();
+                            //frm_menuPrincipal formMenu = new frm_menuPrincipal();
+                            //this.Hide();
+                            //formMenu.Show();
+                            MessageBox.Show("Usted no posee Rol de Usuario. Para continuar presione en cancelar");
+                            btnAceptar.Enabled = false;
                         }
                     }
                     catch
@@ -185,6 +188,37 @@ namespace Clinica_Frba.NewFolder10
                 runner.Update("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '{0}' WHERE usr_usuario= '{1}' ", 0, usuario.usr_usuario);
                 this.Hide();
                 formMenu.Show();
+                bool[] funcionalidades = new bool[12];
+
+                if (cboRol.Text == "Administrador") 
+                {
+                    funcionalidades[0] = true;
+                    funcionalidades[1] = true;
+                    funcionalidades[2] = true;
+                    funcionalidades[3] = true;
+                    funcionalidades[5] = true;
+                    funcionalidades[7] = true;
+                    funcionalidades[10] = true;
+                    funcionalidades[11] = true;
+                    formMenu.muestraBotones(funcionalidades);
+                    
+                }
+                if (cboRol.Text == "Profesional")
+                {
+                    funcionalidades[4] = true;
+                    funcionalidades[8] = true;
+                    funcionalidades[9] = true;
+                    formMenu.muestraBotones(funcionalidades);
+                }
+
+                if (cboRol.Text == "Afiliado")
+                {
+                    funcionalidades[4] = true;
+                    funcionalidades[6] = true;
+                    funcionalidades[11] = true;
+                    formMenu.muestraBotones(funcionalidades);
+                }
+
             }
             else 
             {

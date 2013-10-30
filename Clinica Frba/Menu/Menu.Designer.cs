@@ -312,7 +312,7 @@
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.CenterToScreen();
         }
 
         #endregion

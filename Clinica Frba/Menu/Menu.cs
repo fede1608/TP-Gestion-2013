@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.NewFolder10;
 
 namespace Clinica_Frba.Menu
 {
@@ -16,10 +17,10 @@ namespace Clinica_Frba.Menu
             InitializeComponent();
         }
 
-
+        
         private void Menu_Load(object sender, EventArgs e)
         {
-
+            
             //Por seguridad, por defecto todos los botones son invisibles
             btn_f5_cancelarAtencion.Visible = false;
             btn_f6_registrarAgenda.Visible = false;
@@ -47,20 +48,20 @@ namespace Clinica_Frba.Menu
             btn_f24_modificarPlan.Visible = false;
 
             //Array de funcionalidades: false = NO, true = SI
-            bool[] funcionalidades;
-            funcionalidades = new bool[12];
+           bool[] funcionalidades;
+           funcionalidades = new bool[12];
             
             //Esto es solo para inicializar un array de prueba
-            for (int i=0; i<=11; i++) funcionalidades[i] = true;
+            //for (int i=0; i<=11; i++) funcionalidades[i] = true;
 
             //Se invoca a la función que determinará que botones mostrar
             //en base al vector de funcionalidades
-            muestraBotones(funcionalidades);
+           // muestraBotones(funcionalidades);
 
             }
         
         //La función muestraBotones recibe 
-        private void muestraBotones (bool[] funcionalidades)
+        public void muestraBotones (bool[] funcionalidades)
         {
 
             //Segun el array de funcionalidades, se mostraran o no los botones.
@@ -87,7 +88,7 @@ namespace Clinica_Frba.Menu
                 btn_f24_modificarPlan.Visible = true;
                 }
 
-            if (funcionalidades[4] == true) btn_f5_cancelarAtencion.Visible = true;
+            if (funcionalidades[4] == true) { btn_f5_cancelarAtencion.Visible = true; lbl_ABMs.Visible = false; }
             if (funcionalidades[5] == true) btn_f6_registrarAgenda.Visible = true;
             if (funcionalidades[6] == true) btn_f7_pedirTurno.Visible = true;
             if (funcionalidades[7] == true) btn_f8_regLlegada.Visible = true;

@@ -1,0 +1,1 @@
+- Solamente se cuenta como intento fallido cuando un usuario coloca mal la contraseña. 
