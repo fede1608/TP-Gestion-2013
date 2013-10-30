@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Clinica_Frba.ClasesDatosTablas;
+using Clinica_Frba.Sql;
 
 namespace Clinica_Frba.ClasesDatosTablas
 {
@@ -40,6 +41,21 @@ namespace Clinica_Frba.ClasesDatosTablas
                     return 0;
                 }
             }
+        }
+        public Afiliado getAfiliado()
+        {
+            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            var result = runner
+                    .Single("SELECT * FROM SIGKILL.afiliado WHERE afil_usuario={0}",this.usr_id.ToString());
+            return new Adapter().Transform<Afiliado>(result);
+        }
+
+        public Profesional getProfesional()
+        {
+            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            var result = runner
+                    .Single("SELECT * FROM SIGKILL.profesional WHERE pro_usuario={0}", this.usr_id.ToString());
+            return new Adapter().Transform<Profesional>(result);
         }
 
         //public bool EstaBloqueado

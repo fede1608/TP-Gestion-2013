@@ -80,11 +80,20 @@
     <Compile Include="Abm de Rol\frmRolAltaMod.Designer.cs">
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClasesDatosTablas\afiliado.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
+    <Compile Include="ClasesDatosTablas\Plan_Medico.cs" />
+    <Compile Include="ClasesDatosTablas\Profesional.cs" />
     <Compile Include="ClasesDatosTablas\rol.cs" />
     <Compile Include="ClasesDatosTablas\rol_usuario.cs" />
     <Compile Include="ClasesDatosTablas\toSha256.cs" />
     <Compile Include="ClasesDatosTablas\usuario.cs" />
+    <Compile Include="Compra de Bono\frmCompraBonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra de Bono\frmCompraBonos.Designer.cs">
+      <DependentUpon>frmCompraBonos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmRolAltaMod.resx">
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra de Bono\frmCompraBonos.resx">
+      <DependentUpon>frmCompraBonos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

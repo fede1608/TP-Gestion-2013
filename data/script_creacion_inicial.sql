@@ -305,14 +305,21 @@ INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 VALUES ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
 GO
 
+INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
+VALUES (1,1)
+GO
+
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Paciente_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra);
+GO
+
+INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
+(SELECT usr_id,2 FROM SIGKILL.usuario WHERE usr_id>1)
 GO
 
 INSERT INTO SIGKILL.plan_medico(pmed_id,pmed_nombre,pmed_precio,pmed_precio_bono_consulta,pmed_precio_bono_farmacia)
 VALUES (555555,'Plan Medico 110',110,96,92),(555556,'Plan Medico 120',120,66,74),(555557,'Plan Medico 130',130,42,45),(555558,'Plan Medico 140',140,28,39),(555559,'Plan Medico 150',150,0,0);
 GO
-
 
 INSERT INTO SIGKILL.afiliado (afil_usuario,afil_numero,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico)
 (SELECT DISTINCT usr_id,((usr_id-1)*100+1) as numero_afil,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo
@@ -323,6 +330,10 @@ GO
 
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Medico_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra WHERE Medico_Dni is not NULL);
+GO
+
+INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
+(SELECT usr_id,3 FROM SIGKILL.usuario WHERE usr_id>7428)
 GO
 
 INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)

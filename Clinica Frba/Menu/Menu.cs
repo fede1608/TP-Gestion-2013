@@ -229,6 +229,11 @@ namespace Clinica_Frba.Menu
             
         }
 
+        private void btn_f12_comprarBono_Click(object sender, EventArgs e)
+        {
+            //new Clinica_Frba.Compra_de_Bono(sesion.usuario);
+        }
+
 
 
     }

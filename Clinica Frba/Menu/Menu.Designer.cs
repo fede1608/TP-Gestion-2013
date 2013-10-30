@@ -138,6 +138,7 @@
             this.btn_f12_comprarBono.TabIndex = 3;
             this.btn_f12_comprarBono.Text = "Comprar un bono";
             this.btn_f12_comprarBono.UseVisualStyleBackColor = true;
+            this.btn_f12_comprarBono.Click += new System.EventHandler(this.btn_f12_comprarBono_Click);
             // 
             // btn_f13_altaAfiliado
             // 
