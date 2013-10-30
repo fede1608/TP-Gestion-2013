@@ -10,15 +10,18 @@ using Clinica_Frba.ClasesDatosTablas;
 using Clinica_Frba.Sql;
 using Clinica_Frba.Menu;
 
-namespace Clinica_Frba.NewFolder10
+namespace Clinica_Frba.Login
 {
     public partial class frmLogin : Form
     {
-        public frmLogin()
+        public frm_menuPrincipal formMenu;
+        public frmLogin(frm_menuPrincipal menu)
         {
             InitializeComponent();
             txtUser.Focus();
-
+            formMenu = menu;
+            //Escondemos el menu hasta que este logeado el usuario
+            menu.Hide();
         }
 
         private string pass = "";
@@ -183,10 +186,11 @@ namespace Clinica_Frba.NewFolder10
         {
             if (cboRol.Text != "")
             {
-                frm_menuPrincipal formMenu = new frm_menuPrincipal();
+                
                 var_global_cant_login_fail=0;
                 runner.Update("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '{0}' WHERE usr_usuario= '{1}' ", 0, usuario.usr_usuario);
-                this.Hide();
+                
+                //Abrimos el menu principal
                 formMenu.Show();
                 bool[] funcionalidades = new bool[12];
 
@@ -218,6 +222,9 @@ namespace Clinica_Frba.NewFolder10
                     funcionalidades[11] = true;
                     formMenu.muestraBotones(funcionalidades);
                 }
+
+                //Cerramos el login
+                this.Close();
 
             }
             else 

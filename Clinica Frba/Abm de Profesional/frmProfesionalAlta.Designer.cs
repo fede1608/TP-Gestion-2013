@@ -1,4 +1,4 @@
-﻿namespace Clinica_Frba.Abm_de_Afiliado
+﻿namespace Clinica_Frba.Abm_de_Profesional
 {
     partial class frm_ABMpro_Alta
     {

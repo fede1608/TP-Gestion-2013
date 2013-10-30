@@ -156,6 +156,7 @@
             this.btn_f14_bajaAfiliado.TabIndex = 10;
             this.btn_f14_bajaAfiliado.Text = "Dar de baja afiliado";
             this.btn_f14_bajaAfiliado.UseVisualStyleBackColor = false;
+            this.btn_f14_bajaAfiliado.Click += new System.EventHandler(this.btn_f14_bajaAfiliado_Click);
             // 
             // btn_f15_modificarAfiliado
             // 
@@ -167,6 +168,7 @@
             this.btn_f15_modificarAfiliado.TabIndex = 11;
             this.btn_f15_modificarAfiliado.Text = "Modificar afiliado";
             this.btn_f15_modificarAfiliado.UseVisualStyleBackColor = false;
+            this.btn_f15_modificarAfiliado.Click += new System.EventHandler(this.btn_f15_modificarAfiliado_Click);
             // 
             // btn_f16_altaProfesional
             // 
@@ -178,6 +180,7 @@
             this.btn_f16_altaProfesional.TabIndex = 12;
             this.btn_f16_altaProfesional.Text = "Dar de alta profesional";
             this.btn_f16_altaProfesional.UseVisualStyleBackColor = false;
+            this.btn_f16_altaProfesional.Click += new System.EventHandler(this.btn_f16_altaProfesional_Click);
             // 
             // btn_f17_bajaProfesional
             // 
@@ -312,7 +315,7 @@
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.CenterToScreen();
+
         }
 
         #endregion

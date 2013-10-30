@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Clinica_Frba.NewFolder10;
+using Clinica_Frba.Login;
 
 namespace Clinica_Frba.Menu
 {
@@ -14,7 +14,13 @@ namespace Clinica_Frba.Menu
     {
         public frm_menuPrincipal()
         {
+
+
             InitializeComponent();
+            new Clinica_Frba.Login.frmLogin(this).Show();
+            
+
+            
         }
 
         
@@ -117,6 +123,21 @@ namespace Clinica_Frba.Menu
         private void btn_f20_bajaRol_Click(object sender, EventArgs e)
         {
             new Clinica_Frba.Abm_de_Rol.frmListadoRoles(2).Show();
+        }
+
+        private void btn_f16_altaProfesional_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Profesional.frm_ABMpro_Alta().Show();
+        }
+
+        private void btn_f14_bajaAfiliado_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado().Show();
+        }
+
+        private void btn_f15_modificarAfiliado_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado().Show();
         }
 
 

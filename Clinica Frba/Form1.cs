@@ -54,8 +54,8 @@ namespace Clinica_Frba
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form formL= new NewFolder10.frmLogin();
-            formL.Show();
+            //Form formL = new Login.frmLogin(form);
+            //formL.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)

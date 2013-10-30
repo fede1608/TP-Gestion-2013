@@ -1,4 +1,4 @@
-﻿namespace Clinica_Frba.NewFolder10
+﻿namespace Clinica_Frba.Login
 {
     partial class frmLogin
     {

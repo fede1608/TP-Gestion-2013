@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
-using Clinica_Frba.NewFolder10;
+using Clinica_Frba.Login;
 
 
 namespace Clinica_Frba
@@ -30,7 +30,7 @@ namespace Clinica_Frba
             //con.Close();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new Clinica_Frba.Menu.frm_menuPrincipal());
         }
     }
 }
