@@ -101,6 +101,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         {
                             var result = runner
                                 .Single("INSERT INTO SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
+                     * var result = runner
+                                .Single("INSERT INTO SIGKILL.Usuario () usr_usuario= '{0}' ", txtUser.Text);
                         }
                         catch
                         {
@@ -147,6 +149,22 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void txt_ABMAfiliado_AltaMod_telefono_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void txt_ABMAfiliado_AltaMod_check_only_characters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
         }
 
     }
