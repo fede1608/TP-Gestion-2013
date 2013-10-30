@@ -109,7 +109,7 @@
             this.chkbPass.AutoSize = true;
             this.chkbPass.Location = new System.Drawing.Point(137, 85);
             this.chkbPass.Name = "chkbPass";
-            this.chkbPass.Size = new System.Drawing.Size(116, 17);
+            this.chkbPass.Size = new System.Drawing.Size(118, 17);
             this.chkbPass.TabIndex = 7;
             this.chkbPass.Text = "Mostrar Contraseña";
             this.chkbPass.UseVisualStyleBackColor = true;
@@ -208,6 +208,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 199);
@@ -217,6 +218,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLogin_FormClosed);
             this.grbLogin.ResumeLayout(false);
             this.grbLogin.PerformLayout();
             this.grbRol.ResumeLayout(false);

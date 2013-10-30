@@ -30,7 +30,8 @@ namespace Clinica_Frba
             //con.Close();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Clinica_Frba.Menu.frm_menuPrincipal());
+            new Clinica_Frba.Menu.frm_menuPrincipal();
+            Application.Run();
             
         }
     }

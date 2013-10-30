@@ -21,7 +21,7 @@ namespace Clinica_Frba.Login
             //txtUser.Focus();
             formMenu = menu;
             //Escondemos el menu hasta que este logeado el usuario
-            menu.Hide();
+            //menu.Hide();
         }
 
         private string pass = "";
@@ -36,8 +36,8 @@ namespace Clinica_Frba.Login
         {
             pass = txtPass.Text.ToSha256();
             
-            try
-            {
+            //try
+            //{
                 var result = runner
                     .Single("SELECT * FROM SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
                 var userFromDb = new Adapter().Transform<Usuario>(result);
@@ -51,26 +51,28 @@ namespace Clinica_Frba.Login
 
                     if ((txtUser.Text == userFromDb.usr_usuario) && (pass == userFromDb.usr_password))
                     {
-                        
+                       
                         filter.AddEqual("rusr_usuario", userFromDb.usr_id.ToString());
                         this.fallas(usuario);
                     }
 
-                    try
-                    {
+                    //try
+                    //{
                         var res = runner
                             .Select("SELECT * FROM SIGKILL.rol_usuario", filter);
 
                         int cantRoles = res.Rows.Count;
-
+                        MessageBox.Show(cantRoles.ToString());
                         if (cantRoles == 1)
                         {
+                            MessageBox.Show("entro");
                             string[] miArray2 = new string[cantRoles];
                             miArray2 = GetDataRow(res);
                             var resultRol = runner.Single("Select * FROM SIGKILL.rol WHERE rol_id = '{0}'", miArray2);
                             var userFromDbRol = new Adapter().Transform<Rol>(resultRol);
                             if (userFromDbRol.rol_habilitado == 1)
                             {
+                                MessageBox.Show("entro2");
                                 cboRol.Text = userFromDbRol.rol_nombre;
                                 this.rollearse();
                             }
@@ -112,11 +114,11 @@ namespace Clinica_Frba.Login
                                 btnAceptar.Enabled = false;
                             }
                         }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Usted no tiene asignado ningun Rol");
-                    }
+                   // }
+                    //catch
+                    //{
+                    //    MessageBox.Show("Usted no tiene asignado ningun Rol");
+                    //}
 
 
                 }
@@ -126,14 +128,14 @@ namespace Clinica_Frba.Login
                     txtPass.Focus();
                     this.fallas(usuario);
                 }
-            }
-            catch
-            {
-                MessageBox.Show("ERROR, verifique su Usuario");
-                //  this.fallas(usuario);
-                txtUser.Text = "";
-                txtUser.Focus();
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("ERROR, verifique su Usuario");
+            //    //  this.fallas(usuario);
+            //    txtUser.Text = "";
+            //    txtUser.Focus();
+            //}
 
 
 
@@ -168,7 +170,7 @@ namespace Clinica_Frba.Login
 
         public void btnCancelar_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Rol.frmListadoRoles().Show();
+            Application.Exit();
             
         }
 
@@ -192,6 +194,7 @@ namespace Clinica_Frba.Login
             
         }
 
+
         public string[] GetDataRow(DataTable dt)
         {
             string[] array = new string[dt.Rows.Count];
@@ -210,7 +213,9 @@ namespace Clinica_Frba.Login
                 this.rollearse();
 
                 //Cerramos el login
+                formMenu.Show();
                 this.Close();
+
 
             }
             else 
@@ -224,7 +229,6 @@ namespace Clinica_Frba.Login
 //            frm_menuPrincipal formMenu = new frm_menuPrincipal();
             var_global_cant_login_fail = 0;
             runner.Update("UPDATE SIGKILL.Usuario SET usr_cant_login_fail = '{0}' WHERE usr_usuario= '{1}' ", 0, usuario.usr_usuario);
-            this.Hide();
             formMenu.Show();
             bool[] funcionalidades = new bool[12];
 
@@ -285,6 +289,12 @@ namespace Clinica_Frba.Login
             cboRol.Visible = true;
             lblRol.Visible = true;
             
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+
         }
 
     }
