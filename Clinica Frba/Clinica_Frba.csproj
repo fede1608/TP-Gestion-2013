@@ -233,7 +233,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="sesion.cs" />
     <Compile Include="Sql\Adapter.cs" />
     <Compile Include="Sql\Filters.cs" />
     <Compile Include="Sql\Runnable.cs" />

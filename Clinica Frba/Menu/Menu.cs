@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.Login;
+using Clinica_Frba.ClasesDatosTablas;
 
 namespace Clinica_Frba.Menu
 {
@@ -23,7 +24,12 @@ namespace Clinica_Frba.Menu
         
         private void Menu_Load(object sender, EventArgs e)
         {
-            
+            this.defaultInvisibility();
+        }
+
+        public void defaultInvisibility()
+        {
+
             //Por seguridad, por defecto todos los botones son invisibles
             btn_f5_cancelarAtencion.Visible = false;
             btn_f6_registrarAgenda.Visible = false;
@@ -33,7 +39,7 @@ namespace Clinica_Frba.Menu
             btn_f10_generarReceta.Visible = false;
             btn_f11_generarEstadisticas.Visible = false;
             btn_f12_comprarBono.Visible = false;
-            
+
             btn_f13_altaAfiliado.Visible = false;
             btn_f14_bajaAfiliado.Visible = false;
             btn_f15_modificarAfiliado.Visible = false;
@@ -50,46 +56,54 @@ namespace Clinica_Frba.Menu
             btn_f23_bajaPlan.Visible = false;
             btn_f24_modificarPlan.Visible = false;
 
+            pnlDer.Visible = false;
+            pnlIzq.Visible = false;
+            lblBienvenida.Visible = false;
+
             //Array de funcionalidades: false = NO, true = SI
-           bool[] funcionalidades;
-           funcionalidades = new bool[12];
-            
+            bool[] funcionalidades;
+            funcionalidades = new bool[12];
+
             //Esto es solo para inicializar un array de prueba
             //for (int i=0; i<=11; i++) funcionalidades[i] = true;
 
             //Se invoca a la función que determinará que botones mostrar
             //en base al vector de funcionalidades
-           // muestraBotones(funcionalidades);
+            // muestraBotones(funcionalidades);
 
-            }
-        
+        }
+
         //La función muestraBotones recibe 
-        public void muestraBotones (bool[] funcionalidades)
+        public void muestraBotones(bool[] funcionalidades)
         {
 
             //Segun el array de funcionalidades, se mostraran o no los botones.
-            if (funcionalidades[0] == true) { //ABM afiliado
+            if (funcionalidades[0] == true)
+            { //ABM afiliado
                 btn_f13_altaAfiliado.Visible = true;
                 btn_f14_bajaAfiliado.Visible = true;
                 btn_f15_modificarAfiliado.Visible = true;
-                }
-            if (funcionalidades[1] == true) { //ABM profesional
+            }
+            if (funcionalidades[1] == true)
+            { //ABM profesional
                 btn_f16_altaProfesional.Visible = true;
                 btn_f17_bajaProfesional.Visible = true;
                 btn_f18_modificarProfesional.Visible = true;
-                }
+            }
 
-            if (funcionalidades[2] == true) { //ABM especialidad
+            if (funcionalidades[2] == true)
+            { //ABM especialidad
                 btn_f19_altaRol.Visible = true;
                 btn_f20_bajaRol.Visible = true;
                 btn_f21_modificarRol.Visible = true;
-                }
+            }
 
-            if (funcionalidades[3] == true) { //ABM plan
+            if (funcionalidades[3] == true)
+            { //ABM plan
                 btn_f22_altaPlan.Visible = true;
                 btn_f23_bajaPlan.Visible = true;
                 btn_f24_modificarPlan.Visible = true;
-                }
+            }
 
             if (funcionalidades[4] == true) { btn_f5_cancelarAtencion.Visible = true; lbl_ABMs.Visible = false; }
             if (funcionalidades[5] == true) btn_f6_registrarAgenda.Visible = true;
@@ -99,6 +113,69 @@ namespace Clinica_Frba.Menu
             if (funcionalidades[9] == true) btn_f10_generarReceta.Visible = true;
             if (funcionalidades[10] == true) btn_f11_generarEstadisticas.Visible = true;
             if (funcionalidades[11] == true) btn_f12_comprarBono.Visible = true;
+        }
+
+        public void ordenarBotones(int parametro, Usuario usuario)
+        {
+            if (parametro == 1) //ADMINISTRADOR
+            {
+                btn_f6_registrarAgenda.Location = new Point(16, 99);
+                btn_f8_regLlegada.Location = new Point(16, 156);
+                btn_f11_generarEstadisticas.Location = new Point(16, 214);
+                btn_f12_comprarBono.Location = new Point(16,268);
+                pnlIzq.Visible = true;
+                pnlDer.Visible = true;
+                pnlIzq.Location = new Point(11, 89);
+                pnlIzq.Height = 229;
+                pnlIzq.Width = 179;
+                lbl_menuPrincipal.Location = new Point(300,-1);
+                this.Height = 360;
+                this.Width = 876;
+                lblBienvenida.Visible = true;
+                lblBienvenida.Text = usuario.WelcomeMessage+" (Administrador)";
+                this.CenterToScreen();
+                
+            }
+
+            if (parametro == 2) //PROFESIONAL
+            {
+                
+                btn_f5_cancelarAtencion.Location = new Point(112, 101);
+                btn_f9_regResultado.Location = new Point(112,158);
+                btn_f10_generarReceta.Location = new Point(112,216);
+                lbl_menuPrincipal.Location = new Point(28, -1);
+                pnlIzq.Visible = true;
+                pnlIzq.Location = new Point(104, 89);
+                pnlIzq.Width = 179;
+                pnlIzq.Height = 179;
+                this.Height = 328;
+                this.Width = 399;
+                lblBienvenida.Visible = true;
+                lblBienvenida.Text = usuario.WelcomeMessage+" (Profesional)";
+                this.CenterToScreen();
+
+
+
+
+
+            }
+
+            if (parametro == 3) //AFILIADO
+            {
+                btn_f5_cancelarAtencion.Location = new Point(112, 101);
+                btn_f7_pedirTurno.Location = new Point(112, 158);
+                btn_f12_comprarBono.Location = new Point(112, 216);
+                lbl_menuPrincipal.Location = new Point(28, -1);
+                pnlIzq.Visible = true;
+                pnlIzq.Location = new Point(104, 89);
+                pnlIzq.Width = 179;
+                pnlIzq.Height = 179;
+                this.Height = 328;
+                this.Width = 399;
+                lblBienvenida.Visible = true;
+                lblBienvenida.Text = usuario.WelcomeMessage + " (Afiliado)";
+                this.CenterToScreen();
+            }
 
         }
 
@@ -140,6 +217,16 @@ namespace Clinica_Frba.Menu
         private void frm_menuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Login.frmLogin(this).Show();
+            //this.Visible = false;
+            this.Hide();
+            
+
+            
         }
 
 

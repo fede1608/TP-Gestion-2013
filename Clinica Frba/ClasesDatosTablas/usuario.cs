@@ -13,10 +13,10 @@ namespace Clinica_Frba.ClasesDatosTablas
         public string usr_password { get; set; }
         public int usr_cant_login_fail { get; set; }
         public int usr_estado { get; set; }
-
+        
         public virtual string WelcomeMessage
         {
-            get { return string.Format("USUARIO: {0}", this.usr_usuario); }
+            get { return string.Format("¡Bienvenido {0}!", this.usr_usuario.ToUpper()); }
         }
 
         public Usuario() { }

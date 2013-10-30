@@ -100,7 +100,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 5;
-            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Text = "Salir";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -109,7 +109,7 @@
             this.chkbPass.AutoSize = true;
             this.chkbPass.Location = new System.Drawing.Point(137, 85);
             this.chkbPass.Name = "chkbPass";
-            this.chkbPass.Size = new System.Drawing.Size(118, 17);
+            this.chkbPass.Size = new System.Drawing.Size(116, 17);
             this.chkbPass.TabIndex = 7;
             this.chkbPass.Text = "Mostrar Contraseña";
             this.chkbPass.UseVisualStyleBackColor = true;

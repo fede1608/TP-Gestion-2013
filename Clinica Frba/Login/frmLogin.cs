@@ -28,8 +28,6 @@ namespace Clinica_Frba.Login
         public int var_global_cant_login_fail = 0;
         public Usuario usuario = new Usuario();
         public SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-        
-
         //Cuidado con meter alguna letra del usuario admin en mayuscula, se bugea.
 
         private void button1_Click(object sender, EventArgs e)
@@ -211,7 +209,9 @@ namespace Clinica_Frba.Login
         {
             if (cboRol.Text != "")
             {
+                formMenu.defaultInvisibility();
                 this.rollearse();
+
             }
             else 
             {
@@ -238,7 +238,8 @@ namespace Clinica_Frba.Login
                 funcionalidades[10] = true;
                 funcionalidades[11] = true;
                 formMenu.muestraBotones(funcionalidades);
-
+                formMenu.ordenarBotones(1,usuario);
+                
             }
             if (cboRol.Text == "Profesional")
             {
@@ -246,6 +247,9 @@ namespace Clinica_Frba.Login
                 funcionalidades[8] = true;
                 funcionalidades[9] = true;
                 formMenu.muestraBotones(funcionalidades);
+                formMenu.ordenarBotones(2,usuario);
+                
+
             }
 
             if (cboRol.Text == "Afiliado")
@@ -254,8 +258,12 @@ namespace Clinica_Frba.Login
                 funcionalidades[6] = true;
                 funcionalidades[11] = true;
                 formMenu.muestraBotones(funcionalidades);
+                formMenu.ordenarBotones(3,usuario);
+                
+
             }
             this.Hide();
+
         }
 
         private void btnCancelarRol_Click(object sender, EventArgs e)
