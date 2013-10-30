@@ -137,6 +137,11 @@ namespace Clinica_Frba.Menu
             new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado().Show();
         }
 
+        private void frm_menuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
 
 
     }

@@ -313,6 +313,7 @@
             this.Name = "frm_menuPrincipal";
             this.Text = "Menu principal";
             this.Load += new System.EventHandler(this.Menu_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_menuPrincipal_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

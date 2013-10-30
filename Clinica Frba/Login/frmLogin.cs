@@ -35,9 +35,9 @@ namespace Clinica_Frba.Login
         private void button1_Click(object sender, EventArgs e)
         {
             pass = txtPass.Text.ToSha256();
-            
-            //try
-            //{
+
+            try
+            {
                 var result = runner
                     .Single("SELECT * FROM SIGKILL.Usuario WHERE usr_usuario= '{0}' ", txtUser.Text);
                 var userFromDb = new Adapter().Transform<Usuario>(result);
@@ -56,25 +56,26 @@ namespace Clinica_Frba.Login
                         this.fallas(usuario);
                     }
 
-                    //try
-                    //{
+                    try
+                    {
                         var res = runner
                             .Select("SELECT * FROM SIGKILL.rol_usuario", filter);
 
                         int cantRoles = res.Rows.Count;
-                        MessageBox.Show(cantRoles.ToString());
+                        
                         if (cantRoles == 1)
                         {
-                            MessageBox.Show("entro");
+                            
                             string[] miArray2 = new string[cantRoles];
                             miArray2 = GetDataRow(res);
                             var resultRol = runner.Single("Select * FROM SIGKILL.rol WHERE rol_id = '{0}'", miArray2);
                             var userFromDbRol = new Adapter().Transform<Rol>(resultRol);
                             if (userFromDbRol.rol_habilitado == 1)
                             {
-                                MessageBox.Show("entro2");
+                               
                                 cboRol.Text = userFromDbRol.rol_nombre;
                                 this.rollearse();
+                                
                             }
                             else
                             {
@@ -114,11 +115,11 @@ namespace Clinica_Frba.Login
                                 btnAceptar.Enabled = false;
                             }
                         }
-                   // }
-                    //catch
-                    //{
-                    //    MessageBox.Show("Usted no tiene asignado ningun Rol");
-                    //}
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Usted no tiene asignado ningun Rol");
+                    }
 
 
                 }
@@ -128,14 +129,14 @@ namespace Clinica_Frba.Login
                     txtPass.Focus();
                     this.fallas(usuario);
                 }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("ERROR, verifique su Usuario");
-            //    //  this.fallas(usuario);
-            //    txtUser.Text = "";
-            //    txtUser.Focus();
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("ERROR, verifique su Usuario");
+                //  this.fallas(usuario);
+                txtUser.Text = "";
+                txtUser.Focus();
+            }
 
 
 
@@ -211,12 +212,6 @@ namespace Clinica_Frba.Login
             if (cboRol.Text != "")
             {
                 this.rollearse();
-
-                //Cerramos el login
-                formMenu.Show();
-                this.Close();
-
-
             }
             else 
             {
@@ -260,6 +255,7 @@ namespace Clinica_Frba.Login
                 funcionalidades[11] = true;
                 formMenu.muestraBotones(funcionalidades);
             }
+            this.Hide();
         }
 
         private void btnCancelarRol_Click(object sender, EventArgs e)
