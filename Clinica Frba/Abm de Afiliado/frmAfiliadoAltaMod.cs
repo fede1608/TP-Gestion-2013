@@ -25,7 +25,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             if (alta)
             {
                 Text = "Alta";
-                btn_ABMAfiliado_Mod_aceptar.Enabled = false;
+                btn_ABMAfiliado_Mod_aceptar.Visible = false;
                 groupBox_ABMAfiliado_AltaMod_titulo.Text = "Alta afiliado";
             }
             else
@@ -38,7 +38,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 txt_ABMAfiliado_AltaMod_nrodoc.Enabled = false;
                 monthCalendar_ABMAfiliado_AltaMod_nacimiento.Enabled = false;
                 //Este es el botón siguiente del Alta
-                btn_ABMAfiliado_Alta_siguiente.Enabled = false;
+                btn_ABMAfiliado_Alta_siguiente.Visible = false;
             }
         }
 
@@ -91,12 +91,13 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 && txt_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
                     /*
+                    String fecha = monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToShortDateString();
+                    txt_ABMAfiliado_AltaMod_nombre.CharacterCasing = CharacterCasing.Upper;
                     int dni = int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text);
                     int telefono = int.Parse(txt_ABMAfiliado_AltaMod_telefono.Text);
                     string nombre_usuario = "u" + Convert.ToString(txt_ABMAfiliado_AltaMod_nrodoc.Text);
                     
                         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-                        //TODO: parsear datos y terminar el insert
                         try
                         {
                             var result = runner
