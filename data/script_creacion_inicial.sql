@@ -314,7 +314,7 @@ INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 GO
 
 INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
-(SELECT usr_id,2 FROM SIGKILL.usuario WHERE usr_id>1)
+(SELECT usr_id,3 FROM SIGKILL.usuario WHERE usr_id>1)
 GO
 
 INSERT INTO SIGKILL.plan_medico(pmed_id,pmed_nombre,pmed_precio,pmed_precio_bono_consulta,pmed_precio_bono_farmacia)
@@ -333,7 +333,7 @@ INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 GO
 
 INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
-(SELECT usr_id,3 FROM SIGKILL.usuario WHERE usr_id>7428)
+(SELECT usr_id,2 FROM SIGKILL.usuario WHERE usr_id>7428)
 GO
 
 INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)

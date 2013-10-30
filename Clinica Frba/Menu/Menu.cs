@@ -13,6 +13,7 @@ namespace Clinica_Frba.Menu
 {
     public partial class frm_menuPrincipal : Form
     {
+        public Usuario temporalUsuarioHastaQueAndresAgreugueSesion;
         public frm_menuPrincipal()
         {
             InitializeComponent();
@@ -117,6 +118,8 @@ namespace Clinica_Frba.Menu
 
         public void ordenarBotones(int parametro, Usuario usuario)
         {
+            temporalUsuarioHastaQueAndresAgreugueSesion = usuario;
+
             if (parametro == 1) //ADMINISTRADOR
             {
                 btn_f6_registrarAgenda.Location = new Point(16, 99);
@@ -231,7 +234,7 @@ namespace Clinica_Frba.Menu
 
         private void btn_f12_comprarBono_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Compra_de_Bono(sesion.usuario);
+            new Clinica_Frba.Compra_de_Bono.frmCompraBonos(temporalUsuarioHastaQueAndresAgreugueSesion).Show();
         }
 
 

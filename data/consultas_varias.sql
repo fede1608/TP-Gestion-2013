@@ -2,9 +2,8 @@
 --Select Paciente_Direccion,Paciente_Dni,Paciente_Apellido,Paciente_Nombre from gd_esquema.Maestra group by Paciente_Direccion,Paciente_Dni,Paciente_Apellido,Paciente_Nombre having Paciente_Direccion in (SELECT Paciente_Direccion FROM (Select Paciente_Direccion,Paciente_Dni from gd_esquema.Maestra group by Paciente_Direccion,Paciente_Dni) as a group by a.Paciente_Direccion having COUNT(*)=2 )--Where Paciente_Mail='paz_López@gmail.com')
 --Select Top 100 COUNT(Distinct Paciente_Nombre),Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni order by 1 desc
 --SELECT Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni
-INSERT INTO SIGKILL.rol_usuario(rusr_rol,rusr_usuario)
-VALUES (1,1)
---Select * from SIGKILL.usuario
+
+Select * from SIGKILL.usuario
 --Select count(*) from SIGKILL.afiliado
 --Insert into SIGKILL.afiliado(afil_numero,afil_nombre,) VAlues (102),(103),(104)
 --SELECT COUNT(DISTINCT ROUND(afil_numero/100,0)),SIGKILL.getNextNumeroAfiliado() FROM SIGKILL.afiliado
