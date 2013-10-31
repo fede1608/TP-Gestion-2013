@@ -1,5 +1,5 @@
-﻿namespace Clinica_Frba.Abm_de_Profesional
-{
+﻿namespace Clinica_Frba.Abm_de_Profesional {
+
     partial class frm_ABMpro_Alta
     {
         /// <summary>
@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.gbox_nuevoProfesional = new System.Windows.Forms.GroupBox();
+            this.lbl_ABMpro_matricula = new System.Windows.Forms.Label();
+            this.txt_ABMpro_matricula = new System.Windows.Forms.TextBox();
             this.monthCalendar_ABMpro_calendario = new System.Windows.Forms.MonthCalendar();
             this.lbl_ABMpro_fnac = new System.Windows.Forms.Label();
             this.btn_ABMpro_atras = new System.Windows.Forms.Button();
             this.btn_ABMpro_aceptar = new System.Windows.Forms.Button();
             this.btn_ABMpro_limpiar = new System.Windows.Forms.Button();
             this.btn_ABMpro_seleccionarEspecialidades = new System.Windows.Forms.Button();
-            this.cbo_ABMpro_estadoCivil = new System.Windows.Forms.ComboBox();
             this.cbo_ABMpro_sexo = new System.Windows.Forms.ComboBox();
             this.txt_ABMpro_mail = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_telefono = new System.Windows.Forms.TextBox();
@@ -43,9 +44,7 @@
             this.txt_ABMpro_NDoc = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_apellido = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
-            this.btn_ABMAfiliado_Alta_siguiente = new System.Windows.Forms.Button();
             this.lbl_ABMpro_especialidades = new System.Windows.Forms.Label();
-            this.lbl_ABMpro_estadoCivil = new System.Windows.Forms.Label();
             this.lbl_ABMpro_sexo = new System.Windows.Forms.Label();
             this.lbl_ABMpro_mail = new System.Windows.Forms.Label();
             this.lbl_ABMpro_telefono = new System.Windows.Forms.Label();
@@ -53,8 +52,6 @@
             this.lbl_ABMpor_NDoc = new System.Windows.Forms.Label();
             this.lbl_ABMpro_apellido = new System.Windows.Forms.Label();
             this.lbl_ABMpro_nombre = new System.Windows.Forms.Label();
-            this.txt_ABMpro_matricula = new System.Windows.Forms.TextBox();
-            this.lbl_ABMpro_matricula = new System.Windows.Forms.Label();
             this.gbox_nuevoProfesional.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +65,6 @@
             this.gbox_nuevoProfesional.Controls.Add(this.btn_ABMpro_aceptar);
             this.gbox_nuevoProfesional.Controls.Add(this.btn_ABMpro_limpiar);
             this.gbox_nuevoProfesional.Controls.Add(this.btn_ABMpro_seleccionarEspecialidades);
-            this.gbox_nuevoProfesional.Controls.Add(this.cbo_ABMpro_estadoCivil);
             this.gbox_nuevoProfesional.Controls.Add(this.cbo_ABMpro_sexo);
             this.gbox_nuevoProfesional.Controls.Add(this.txt_ABMpro_mail);
             this.gbox_nuevoProfesional.Controls.Add(this.txt_ABMpro_telefono);
@@ -76,9 +72,7 @@
             this.gbox_nuevoProfesional.Controls.Add(this.txt_ABMpro_NDoc);
             this.gbox_nuevoProfesional.Controls.Add(this.txt_ABMpro_apellido);
             this.gbox_nuevoProfesional.Controls.Add(this.txt_ABMpro_nombre);
-            this.gbox_nuevoProfesional.Controls.Add(this.btn_ABMAfiliado_Alta_siguiente);
             this.gbox_nuevoProfesional.Controls.Add(this.lbl_ABMpro_especialidades);
-            this.gbox_nuevoProfesional.Controls.Add(this.lbl_ABMpro_estadoCivil);
             this.gbox_nuevoProfesional.Controls.Add(this.lbl_ABMpro_sexo);
             this.gbox_nuevoProfesional.Controls.Add(this.lbl_ABMpro_mail);
             this.gbox_nuevoProfesional.Controls.Add(this.lbl_ABMpro_telefono);
@@ -88,11 +82,28 @@
             this.gbox_nuevoProfesional.Controls.Add(this.lbl_ABMpro_nombre);
             this.gbox_nuevoProfesional.Location = new System.Drawing.Point(12, 12);
             this.gbox_nuevoProfesional.Name = "gbox_nuevoProfesional";
-            this.gbox_nuevoProfesional.Size = new System.Drawing.Size(677, 316);
+            this.gbox_nuevoProfesional.Size = new System.Drawing.Size(677, 291);
             this.gbox_nuevoProfesional.TabIndex = 37;
             this.gbox_nuevoProfesional.TabStop = false;
             this.gbox_nuevoProfesional.Text = "Nuevo profesional";
             this.gbox_nuevoProfesional.Enter += new System.EventHandler(this.groupBox_ABMAfiliado_AltaMod_titulo_Enter);
+            // 
+            // lbl_ABMpro_matricula
+            // 
+            this.lbl_ABMpro_matricula.AutoSize = true;
+            this.lbl_ABMpro_matricula.Location = new System.Drawing.Point(25, 117);
+            this.lbl_ABMpro_matricula.Name = "lbl_ABMpro_matricula";
+            this.lbl_ABMpro_matricula.Size = new System.Drawing.Size(52, 13);
+            this.lbl_ABMpro_matricula.TabIndex = 64;
+            this.lbl_ABMpro_matricula.Text = "Matrícula";
+            // 
+            // txt_ABMpro_matricula
+            // 
+            this.txt_ABMpro_matricula.Location = new System.Drawing.Point(131, 114);
+            this.txt_ABMpro_matricula.MaxLength = 8;
+            this.txt_ABMpro_matricula.Name = "txt_ABMpro_matricula";
+            this.txt_ABMpro_matricula.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_matricula.TabIndex = 63;
             // 
             // monthCalendar_ABMpro_calendario
             // 
@@ -111,7 +122,7 @@
             // 
             // btn_ABMpro_atras
             // 
-            this.btn_ABMpro_atras.Location = new System.Drawing.Point(348, 259);
+            this.btn_ABMpro_atras.Location = new System.Drawing.Point(349, 245);
             this.btn_ABMpro_atras.Name = "btn_ABMpro_atras";
             this.btn_ABMpro_atras.Size = new System.Drawing.Size(75, 23);
             this.btn_ABMpro_atras.TabIndex = 49;
@@ -121,7 +132,7 @@
             // 
             // btn_ABMpro_aceptar
             // 
-            this.btn_ABMpro_aceptar.Location = new System.Drawing.Point(555, 259);
+            this.btn_ABMpro_aceptar.Location = new System.Drawing.Point(555, 245);
             this.btn_ABMpro_aceptar.Name = "btn_ABMpro_aceptar";
             this.btn_ABMpro_aceptar.Size = new System.Drawing.Size(75, 23);
             this.btn_ABMpro_aceptar.TabIndex = 61;
@@ -131,7 +142,7 @@
             // 
             // btn_ABMpro_limpiar
             // 
-            this.btn_ABMpro_limpiar.Location = new System.Drawing.Point(450, 259);
+            this.btn_ABMpro_limpiar.Location = new System.Drawing.Point(450, 245);
             this.btn_ABMpro_limpiar.Name = "btn_ABMpro_limpiar";
             this.btn_ABMpro_limpiar.Size = new System.Drawing.Size(75, 23);
             this.btn_ABMpro_limpiar.TabIndex = 58;
@@ -141,28 +152,12 @@
             // 
             // btn_ABMpro_seleccionarEspecialidades
             // 
-            this.btn_ABMpro_seleccionarEspecialidades.Location = new System.Drawing.Point(131, 272);
+            this.btn_ABMpro_seleccionarEspecialidades.Location = new System.Drawing.Point(131, 245);
             this.btn_ABMpro_seleccionarEspecialidades.Name = "btn_ABMpro_seleccionarEspecialidades";
             this.btn_ABMpro_seleccionarEspecialidades.Size = new System.Drawing.Size(155, 23);
             this.btn_ABMpro_seleccionarEspecialidades.TabIndex = 59;
             this.btn_ABMpro_seleccionarEspecialidades.Text = "Seleccionar";
             this.btn_ABMpro_seleccionarEspecialidades.UseVisualStyleBackColor = true;
-            // 
-            // cbo_ABMpro_estadoCivil
-            // 
-            this.cbo_ABMpro_estadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_ABMpro_estadoCivil.FormattingEnabled = true;
-            this.cbo_ABMpro_estadoCivil.Items.AddRange(new object[] {
-            "Soltero/a",
-            "Casado/a",
-            "Viudo/a",
-            "Concubinato/a",
-            "Divorciado/a"});
-            this.cbo_ABMpro_estadoCivil.Location = new System.Drawing.Point(131, 245);
-            this.cbo_ABMpro_estadoCivil.Name = "cbo_ABMpro_estadoCivil";
-            this.cbo_ABMpro_estadoCivil.Size = new System.Drawing.Size(155, 21);
-            this.cbo_ABMpro_estadoCivil.TabIndex = 57;
-            this.cbo_ABMpro_estadoCivil.SelectedIndexChanged += new System.EventHandler(this.cbo_ABMAfiliado_AltaMod_estadocivil_SelectedIndexChanged);
             // 
             // cbo_ABMpro_sexo
             // 
@@ -225,32 +220,14 @@
             this.txt_ABMpro_nombre.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMpro_nombre.TabIndex = 50;
             // 
-            // btn_ABMAfiliado_Alta_siguiente
-            // 
-            this.btn_ABMAfiliado_Alta_siguiente.Location = new System.Drawing.Point(555, 259);
-            this.btn_ABMAfiliado_Alta_siguiente.Name = "btn_ABMAfiliado_Alta_siguiente";
-            this.btn_ABMAfiliado_Alta_siguiente.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMAfiliado_Alta_siguiente.TabIndex = 48;
-            this.btn_ABMAfiliado_Alta_siguiente.Text = "Siguiente";
-            this.btn_ABMAfiliado_Alta_siguiente.UseVisualStyleBackColor = true;
-            // 
             // lbl_ABMpro_especialidades
             // 
             this.lbl_ABMpro_especialidades.AutoSize = true;
-            this.lbl_ABMpro_especialidades.Location = new System.Drawing.Point(25, 277);
+            this.lbl_ABMpro_especialidades.Location = new System.Drawing.Point(25, 250);
             this.lbl_ABMpro_especialidades.Name = "lbl_ABMpro_especialidades";
             this.lbl_ABMpro_especialidades.Size = new System.Drawing.Size(65, 13);
             this.lbl_ABMpro_especialidades.TabIndex = 47;
             this.lbl_ABMpro_especialidades.Text = "Plan médico";
-            // 
-            // lbl_ABMpro_estadoCivil
-            // 
-            this.lbl_ABMpro_estadoCivil.AutoSize = true;
-            this.lbl_ABMpro_estadoCivil.Location = new System.Drawing.Point(25, 248);
-            this.lbl_ABMpro_estadoCivil.Name = "lbl_ABMpro_estadoCivil";
-            this.lbl_ABMpro_estadoCivil.Size = new System.Drawing.Size(61, 13);
-            this.lbl_ABMpro_estadoCivil.TabIndex = 46;
-            this.lbl_ABMpro_estadoCivil.Text = "Estado civil";
             // 
             // lbl_ABMpro_sexo
             // 
@@ -316,28 +293,11 @@
             this.lbl_ABMpro_nombre.Text = "Nombre";
             this.lbl_ABMpro_nombre.Click += new System.EventHandler(this.lbl_ABMAfiliado_Alta_nombre_Click);
             // 
-            // txt_ABMpro_matricula
-            // 
-            this.txt_ABMpro_matricula.Location = new System.Drawing.Point(131, 114);
-            this.txt_ABMpro_matricula.MaxLength = 8;
-            this.txt_ABMpro_matricula.Name = "txt_ABMpro_matricula";
-            this.txt_ABMpro_matricula.Size = new System.Drawing.Size(155, 20);
-            this.txt_ABMpro_matricula.TabIndex = 63;
-            // 
-            // lbl_ABMpro_matricula
-            // 
-            this.lbl_ABMpro_matricula.AutoSize = true;
-            this.lbl_ABMpro_matricula.Location = new System.Drawing.Point(25, 117);
-            this.lbl_ABMpro_matricula.Name = "lbl_ABMpro_matricula";
-            this.lbl_ABMpro_matricula.Size = new System.Drawing.Size(77, 13);
-            this.lbl_ABMpro_matricula.TabIndex = 64;
-            this.lbl_ABMpro_matricula.Text = "Nº Documento";
-            // 
             // frm_ABMpro_Alta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 339);
+            this.ClientSize = new System.Drawing.Size(701, 313);
             this.Controls.Add(this.gbox_nuevoProfesional);
             this.Name = "frm_ABMpro_Alta";
             this.Text = "Alta de profesional";
@@ -357,7 +317,6 @@
         private System.Windows.Forms.Button btn_ABMpro_aceptar;
         private System.Windows.Forms.Button btn_ABMpro_limpiar;
         private System.Windows.Forms.Button btn_ABMpro_seleccionarEspecialidades;
-        private System.Windows.Forms.ComboBox cbo_ABMpro_estadoCivil;
         private System.Windows.Forms.ComboBox cbo_ABMpro_sexo;
         private System.Windows.Forms.TextBox txt_ABMpro_mail;
         private System.Windows.Forms.TextBox txt_ABMpro_telefono;
@@ -365,9 +324,7 @@
         private System.Windows.Forms.TextBox txt_ABMpro_NDoc;
         private System.Windows.Forms.TextBox txt_ABMpro_apellido;
         private System.Windows.Forms.TextBox txt_ABMpro_nombre;
-        private System.Windows.Forms.Button btn_ABMAfiliado_Alta_siguiente;
         private System.Windows.Forms.Label lbl_ABMpro_especialidades;
-        private System.Windows.Forms.Label lbl_ABMpro_estadoCivil;
         private System.Windows.Forms.Label lbl_ABMpro_sexo;
         private System.Windows.Forms.Label lbl_ABMpro_mail;
         private System.Windows.Forms.Label lbl_ABMpro_telefono;

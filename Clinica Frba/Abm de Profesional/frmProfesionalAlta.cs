@@ -37,8 +37,6 @@ namespace Clinica_Frba.Abm_de_Profesional
                 txt_ABMpro_apellido.Enabled = false;
                 txt_ABMpro_NDoc.Enabled = false;
                 monthCalendar_ABMpro_calendario.Enabled = false;
-                //Este es el botón siguiente del Alta
-                btn_ABMAfiliado_Alta_siguiente.Enabled = false;
             }
         }
 
@@ -87,7 +85,6 @@ namespace Clinica_Frba.Abm_de_Profesional
                 && txt_ABMpro_telefono.Text != ""
                 && txt_ABMpro_mail.Text != ""
                 && cbo_ABMpro_sexo.Text != ""
-                && cbo_ABMpro_estadoCivil.Text != ""
                 //&& txt_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
                     /*
