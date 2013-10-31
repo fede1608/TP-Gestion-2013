@@ -12,7 +12,7 @@ namespace Clinica_Frba.ClasesDatosTablas
         public string afil_nombre { get; set; }
         public string afil_apellido { get; set; }
         public long afil_tipo_doc { get; set; }
-        public long afil_nro_doc { get; set; }
+        public long afil_dni { get; set; }
         public string afil_direccion { get; set; }
         public long afil_telefono { get; set; }
         public string afil_mail { get; set; }

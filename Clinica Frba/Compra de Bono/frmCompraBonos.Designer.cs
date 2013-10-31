@@ -54,8 +54,8 @@
             this.txtConsulta.Name = "txtConsulta";
             this.txtConsulta.Size = new System.Drawing.Size(72, 20);
             this.txtConsulta.TabIndex = 0;
-            this.txtConsulta.Text = "0";
             this.txtConsulta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtConsulta.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConsulta_KeyUp);
             this.txtConsulta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConsulta_KeyPress);
             // 
             // txtFarmacia
@@ -64,8 +64,8 @@
             this.txtFarmacia.Name = "txtFarmacia";
             this.txtFarmacia.Size = new System.Drawing.Size(72, 20);
             this.txtFarmacia.TabIndex = 1;
-            this.txtFarmacia.Text = "0";
             this.txtFarmacia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFarmacia.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtFarmacia_KeyUp);
             // 
             // label1
             // 
@@ -150,6 +150,7 @@
             this.btnComprar.TabIndex = 8;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // label4
             // 
