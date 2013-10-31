@@ -13,7 +13,7 @@ namespace Clinica_Frba.ClasesDatosTablas
         public string pro_nombre{ get; set; }
         public string pro_apellido{ get; set; }
         public int pro_tipo_doc { get; set; }
-        public long pro_nro_doc{ get; set; }
+        public long pro_dni{ get; set; }
         public string pro_direccion{ get; set; }
         public long pro_telefono{ get; set; }
         public string pro_mail{ get; set; }

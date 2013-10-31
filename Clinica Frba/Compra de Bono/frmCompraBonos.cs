@@ -85,6 +85,8 @@ namespace Clinica_Frba.Compra_de_Bono
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
+            if (txtConsulta.Text == "") txtConsulta.Text = "0";
+            if (txtFarmacia.Text == "") txtFarmacia.Text = "0";
             DialogResult dialogResult = MessageBox.Show("¿Estas seguro de comprar " + txtConsulta.Text + " Bono/s de Consulta y " + txtFarmacia.Text + " Bono/s de Farmacia?", "Comprar Bonos", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
