@@ -1,10 +1,8 @@
---Procedimiento que se utiliza para insertar nuevos afiliados
---Nota: no chequea que ya haya otro usuario con el mismo nro de documento
-
 create procedure nuevoAfiliado(@afil_nombre nvarchar(200), @afil_apellido nvarchar(100),
 							  @afil_tipo_doc bigint, @afil_nrodoc numeric(18, 0),
 							  @afil_direccion nvarchar(255), @afil_telefono decimal(18,0), @afil_mail nvarchar(255),
-							  @afil_nacimiento nvarchar(100), @afil_sexo nvarchar(1), @afil_estadocivil varchar(20), @afil_id_plan_medico bigint)
+							  @afil_nacimiento nvarchar(100), @afil_sexo nvarchar(1), @afil_estadocivil varchar(20),
+							  @afil_plan_medico varchar(20), @miembro_familia bigint)
 as
 
 Begin
@@ -13,8 +11,16 @@ Begin
 	declare @afil_numero bigint
 	declare @nombre_usuario_mapeado nvarchar(19)
 	declare @afil_estadocivil_id bigint
+	declare @afil_plan_medico_id bigint
 	
-	set @afil_numero = SIGKILL.getNextNumeroAfiliado()*100+1
+	IF @miembro_familia = 1
+	Begin
+		set @afil_numero = SIGKILL.getNextNumeroAfiliado()*100+1
+	End
+	--ELSE
+	--Begin
+	--	SELECT usr_id FROM GD2C2013.SIGKILL.usuario WHERE usr_usuario = @nombre_usuario_mapeado
+	--End
 	
 	select @afil_estadocivil_id = estciv_id from GD2C2013.SIGKILL.estado_civil where estciv_descripcion = @afil_estadocivil
 	
@@ -28,6 +34,8 @@ Begin
 		
 
 	SELECT @afil_usuario = usr_id FROM GD2C2013.SIGKILL.usuario WHERE usr_usuario = @nombre_usuario_mapeado
+	
+	SELECT @afil_plan_medico_id = pmed_id FROM GD2C2013.SIGKILL.plan_medico WHERE pmed_nombre = @afil_plan_medico
 
 	INSERT into GD2C2013.SIGKILL.afiliado
 	(afil_numero,
@@ -36,5 +44,5 @@ Begin
 	afil_direccion, afil_telefono, afil_mail, afil_nacimiento, afil_sexo, afil_estado_civil,
 	afil_id_plan_medico)
 	values (@afil_numero,@afil_usuario, @afil_nombre, @afil_apellido, @afil_tipo_doc ,@afil_nrodoc, @afil_direccion, @afil_telefono,
-	@afil_mail, @afil_nacimiento, @afil_sexo, @afil_estadocivil_id, @afil_id_plan_medico)
+	@afil_mail, @afil_nacimiento, @afil_sexo, @afil_estadocivil_id, @afil_plan_medico_id)
 End

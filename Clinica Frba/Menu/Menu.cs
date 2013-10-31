@@ -172,7 +172,7 @@ namespace Clinica_Frba.Menu
 
         private void btn_f13_altaAfiliado_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true).Show();
         }
 
         private void btn_f19_altaRol_Click(object sender, EventArgs e)

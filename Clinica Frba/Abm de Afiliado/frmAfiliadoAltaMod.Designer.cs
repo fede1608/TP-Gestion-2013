@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox_ABMAfiliado_AltaMod_titulo = new System.Windows.Forms.GroupBox();
+            this.cbo_ABMAfiliado_AltaMod_planmedico = new System.Windows.Forms.ComboBox();
             this.cbo_ABMAfiliado_AltaMod_tipodoc = new System.Windows.Forms.ComboBox();
             this.lbl_ABMAfiliado_Alta_tipodoc = new System.Windows.Forms.Label();
             this.monthCalendar_ABMAfiliado_AltaMod_nacimiento = new System.Windows.Forms.MonthCalendar();
@@ -36,8 +37,6 @@
             this.btn_ABMAfiliado_AltaMod_atras = new System.Windows.Forms.Button();
             this.btn_ABMAfiliado_Mod_aceptar = new System.Windows.Forms.Button();
             this.btn_ABMAfiliado_AltaMod_limpiar = new System.Windows.Forms.Button();
-            this.txt_ABMAfiliado_AltaMod_planmedico = new System.Windows.Forms.TextBox();
-            this.btn_ABMAfiliado_AltaMod_seleccionar = new System.Windows.Forms.Button();
             this.cbo_ABMAfiliado_AltaMod_estadocivil = new System.Windows.Forms.ComboBox();
             this.cbo_ABMAfiliado_AltaMod_sexo = new System.Windows.Forms.ComboBox();
             this.txt_ABMAfiliado_AltaMod_mail = new System.Windows.Forms.TextBox();
@@ -61,6 +60,7 @@
             // 
             // groupBox_ABMAfiliado_AltaMod_titulo
             // 
+            this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.cbo_ABMAfiliado_AltaMod_planmedico);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.cbo_ABMAfiliado_AltaMod_tipodoc);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.lbl_ABMAfiliado_Alta_tipodoc);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.monthCalendar_ABMAfiliado_AltaMod_nacimiento);
@@ -68,8 +68,6 @@
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.btn_ABMAfiliado_AltaMod_atras);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.btn_ABMAfiliado_Mod_aceptar);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.btn_ABMAfiliado_AltaMod_limpiar);
-            this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.txt_ABMAfiliado_AltaMod_planmedico);
-            this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.btn_ABMAfiliado_AltaMod_seleccionar);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.cbo_ABMAfiliado_AltaMod_estadocivil);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.cbo_ABMAfiliado_AltaMod_sexo);
             this.groupBox_ABMAfiliado_AltaMod_titulo.Controls.Add(this.txt_ABMAfiliado_AltaMod_mail);
@@ -95,6 +93,15 @@
             this.groupBox_ABMAfiliado_AltaMod_titulo.TabStop = false;
             this.groupBox_ABMAfiliado_AltaMod_titulo.Text = "Alta/Mod de afiliado";
             this.groupBox_ABMAfiliado_AltaMod_titulo.Enter += new System.EventHandler(this.groupBox_ABMAfiliado_AltaMod_titulo_Enter);
+            // 
+            // cbo_ABMAfiliado_AltaMod_planmedico
+            // 
+            this.cbo_ABMAfiliado_AltaMod_planmedico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_ABMAfiliado_AltaMod_planmedico.FormattingEnabled = true;
+            this.cbo_ABMAfiliado_AltaMod_planmedico.Location = new System.Drawing.Point(131, 269);
+            this.cbo_ABMAfiliado_AltaMod_planmedico.Name = "cbo_ABMAfiliado_AltaMod_planmedico";
+            this.cbo_ABMAfiliado_AltaMod_planmedico.Size = new System.Drawing.Size(155, 21);
+            this.cbo_ABMAfiliado_AltaMod_planmedico.TabIndex = 65;
             // 
             // cbo_ABMAfiliado_AltaMod_tipodoc
             // 
@@ -160,23 +167,6 @@
             this.btn_ABMAfiliado_AltaMod_limpiar.Text = "Limpiar";
             this.btn_ABMAfiliado_AltaMod_limpiar.UseVisualStyleBackColor = true;
             this.btn_ABMAfiliado_AltaMod_limpiar.Click += new System.EventHandler(this.btn_ABMAfiliado_AltaMod_limpiar_Click_1);
-            // 
-            // txt_ABMAfiliado_AltaMod_planmedico
-            // 
-            this.txt_ABMAfiliado_AltaMod_planmedico.Enabled = false;
-            this.txt_ABMAfiliado_AltaMod_planmedico.Location = new System.Drawing.Point(131, 271);
-            this.txt_ABMAfiliado_AltaMod_planmedico.Name = "txt_ABMAfiliado_AltaMod_planmedico";
-            this.txt_ABMAfiliado_AltaMod_planmedico.Size = new System.Drawing.Size(72, 20);
-            this.txt_ABMAfiliado_AltaMod_planmedico.TabIndex = 60;
-            // 
-            // btn_ABMAfiliado_AltaMod_seleccionar
-            // 
-            this.btn_ABMAfiliado_AltaMod_seleccionar.Location = new System.Drawing.Point(209, 270);
-            this.btn_ABMAfiliado_AltaMod_seleccionar.Name = "btn_ABMAfiliado_AltaMod_seleccionar";
-            this.btn_ABMAfiliado_AltaMod_seleccionar.Size = new System.Drawing.Size(77, 23);
-            this.btn_ABMAfiliado_AltaMod_seleccionar.TabIndex = 59;
-            this.btn_ABMAfiliado_AltaMod_seleccionar.Text = "Seleccionar";
-            this.btn_ABMAfiliado_AltaMod_seleccionar.UseVisualStyleBackColor = true;
             // 
             // cbo_ABMAfiliado_AltaMod_estadocivil
             // 
@@ -370,8 +360,6 @@
         private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_atras;
         private System.Windows.Forms.Button btn_ABMAfiliado_Mod_aceptar;
         private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_limpiar;
-        private System.Windows.Forms.TextBox txt_ABMAfiliado_AltaMod_planmedico;
-        private System.Windows.Forms.Button btn_ABMAfiliado_AltaMod_seleccionar;
         private System.Windows.Forms.ComboBox cbo_ABMAfiliado_AltaMod_estadocivil;
         private System.Windows.Forms.ComboBox cbo_ABMAfiliado_AltaMod_sexo;
         private System.Windows.Forms.TextBox txt_ABMAfiliado_AltaMod_mail;
@@ -392,6 +380,7 @@
         private System.Windows.Forms.Label lbl_ABMAfiliado_Alta_nombre;
         private System.Windows.Forms.ComboBox cbo_ABMAfiliado_AltaMod_tipodoc;
         private System.Windows.Forms.Label lbl_ABMAfiliado_Alta_tipodoc;
+        private System.Windows.Forms.ComboBox cbo_ABMAfiliado_AltaMod_planmedico;
 
     }
 }
