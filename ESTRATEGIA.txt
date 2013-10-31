@@ -1,1 +1,6 @@
 - Solamente se cuenta como intento fallido cuando un usuario coloca mal la contraseña. 
+-Datos (afiliado y profesional) separados ya que son diferentes.
+-Pass harcodeada de usuarios: default y de admin: w32e
+-Planes medicos insertados manualmente por el tema del precio del plan q estaba en el string del nombre y de que eran 5 en total.
+-Fecha de compra de bonos importada es la del momento de la importacion, ya que la fecha en la tabla maestra no es coherente
+-Se cambian los turnos futuros al momento de la migracion que caen domingo al viernes siguiente

@@ -3,8 +3,9 @@
 --Select Top 100 COUNT(Distinct Paciente_Nombre),Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni order by 1 desc
 --SELECT Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni
 
-Select * from SIGKILL.usuario
---Select count(*) from SIGKILL.afiliado
+--Select * from SIGKILL.usuario
+--Select * from SIGKILL.afiliado where afil_usuario=6
+--SELECT MAX(bonof_id)+1 as next FROM SIGKILL.bono_farmacia
 --Insert into SIGKILL.afiliado(afil_numero,afil_nombre,) VAlues (102),(103),(104)
 --SELECT COUNT(DISTINCT ROUND(afil_numero/100,0)),SIGKILL.getNextNumeroAfiliado() FROM SIGKILL.afiliado
 --SELECT distinct Medico_Dni,Medico_Nombre,Medico_Apellido,Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_Nac
@@ -32,3 +33,7 @@ Select * from SIGKILL.usuario
 --from SIGKILL.bono_consulta as bc1
 --WHERE bc1.bonoc_consumido=1
 
+SELECT DISTINCT trn_id, trn_fecha_hora 
+FROM SIGKILL.turno
+WHERE DATEPART(dw, trn_fecha_hora ) = 6
+ORDER BY trn_fecha_hora
