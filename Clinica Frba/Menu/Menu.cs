@@ -13,7 +13,8 @@ namespace Clinica_Frba.Menu
 {
     public partial class frm_menuPrincipal : Form
     {
-        public Usuario temporalUsuarioHastaQueAndresAgreugueSesion;
+        //public Usuario temporalUsuarioHastaQueAndresAgreugueSesion;
+        public sesion sesionActual=new sesion();
         public frm_menuPrincipal()
         {
             InitializeComponent();
@@ -116,36 +117,32 @@ namespace Clinica_Frba.Menu
             if (funcionalidades[11] == true) btn_f12_comprarBono.Visible = true;
         }
 
-        public void ordenarBotones(int parametro, Usuario usuario)
+        public void ordenarBotones(sesion sesionLogeo)
         {
-            temporalUsuarioHastaQueAndresAgreugueSesion = usuario;
-
-            if (parametro == 1) //ADMINISTRADOR
+            sesionActual = sesionLogeo;
+            if (sesionActual.rol.rol_nombre.ToUpper() == "ADMINISTRADOR") //ADMINISTRADOR
             {
                 btn_f6_registrarAgenda.Location = new Point(16, 99);
                 btn_f8_regLlegada.Location = new Point(16, 156);
                 btn_f11_generarEstadisticas.Location = new Point(16, 214);
-                btn_f12_comprarBono.Location = new Point(16,268);
+                btn_f12_comprarBono.Location = new Point(16, 268);
                 pnlIzq.Visible = true;
                 pnlDer.Visible = true;
                 pnlIzq.Location = new Point(11, 89);
                 pnlIzq.Height = 229;
                 pnlIzq.Width = 179;
-                lbl_menuPrincipal.Location = new Point(300,-1);
+                lbl_menuPrincipal.Location = new Point(300, -1);
                 this.Height = 360;
                 this.Width = 876;
-                lblBienvenida.Visible = true;
-                lblBienvenida.Text = usuario.WelcomeMessage+" (Administrador)";
-                this.CenterToScreen();
-                
+ 
             }
 
-            if (parametro == 2) //PROFESIONAL
+            if (sesionActual.rol.rol_nombre.ToUpper() == "PROFESIONAL") //PROFESIONAL
             {
-                
+
                 btn_f5_cancelarAtencion.Location = new Point(112, 101);
-                btn_f9_regResultado.Location = new Point(112,158);
-                btn_f10_generarReceta.Location = new Point(112,216);
+                btn_f9_regResultado.Location = new Point(112, 158);
+                btn_f10_generarReceta.Location = new Point(112, 216);
                 lbl_menuPrincipal.Location = new Point(28, -1);
                 pnlIzq.Visible = true;
                 pnlIzq.Location = new Point(104, 89);
@@ -153,17 +150,9 @@ namespace Clinica_Frba.Menu
                 pnlIzq.Height = 179;
                 this.Height = 328;
                 this.Width = 399;
-                lblBienvenida.Visible = true;
-                lblBienvenida.Text = usuario.WelcomeMessage+" (Profesional)";
-                this.CenterToScreen();
-
-
-
-
-
             }
 
-            if (parametro == 3) //AFILIADO
+            if (sesionActual.rol.rol_nombre.ToUpper() == "AFILIADO") //AFILIADO
             {
                 btn_f5_cancelarAtencion.Location = new Point(112, 101);
                 btn_f7_pedirTurno.Location = new Point(112, 158);
@@ -175,11 +164,10 @@ namespace Clinica_Frba.Menu
                 pnlIzq.Height = 179;
                 this.Height = 328;
                 this.Width = 399;
-                lblBienvenida.Visible = true;
-                lblBienvenida.Text = usuario.WelcomeMessage + " (Afiliado)";
-                this.CenterToScreen();
             }
-
+            lblBienvenida.Text = sesionActual.WelcomeMessage;
+            lblBienvenida.Visible = true;
+            this.CenterToScreen();
         }
 
         private void btn_f13_altaAfiliado_Click(object sender, EventArgs e)
@@ -224,17 +212,20 @@ namespace Clinica_Frba.Menu
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Login.frmLogin(this).Show();
-            //this.Visible = false;
-            this.Hide();
-            
+            DialogResult dialogResult = MessageBox.Show("¿Estas seguro de que deseas salir?", "Cerrar Sesión", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
 
-            
+                new Clinica_Frba.Login.frmLogin(this).Refresh();
+                new Clinica_Frba.Login.frmLogin(this).Show();
+                //this.Visible = false;
+                this.Hide();
+            }
         }
 
         private void btn_f12_comprarBono_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Compra_de_Bono.frmCompraBonos(temporalUsuarioHastaQueAndresAgreugueSesion).Show();
+            new Clinica_Frba.Compra_de_Bono.frmCompraBonos(sesionActual.usuario).Show();
         }
 
         private void btn_f17_bajaProfesional_Click(object sender, EventArgs e)

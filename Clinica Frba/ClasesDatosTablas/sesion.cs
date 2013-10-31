@@ -16,22 +16,29 @@ namespace Clinica_Frba.ClasesDatosTablas
         {
             get
             {
-               switch (rol.rol_nombre)
+                try
                 {
-                    case "Administrador":
+                    if (this.rol.rol_nombre == "Administrador")
+                    {
                         return string.Format("¡Bienvenido {0}! ({1})", this.usuario.usr_usuario, this.rol.rol_nombre);
-                        //break;
-                    case "Profesional":
+                    }
+                    if (this.rol.rol_nombre == "Profesional")
+                    {
                         return string.Format("¡Bienvenido {0} {1}! ({2})", this.usuario.getProfesional().pro_nombre, this.usuario.getProfesional().pro_apellido, this.rol.rol_nombre);
-                        //break;
-                    case "Afiliado":
+                    }
+                    if (this.rol.rol_nombre == "Afiliado")
+                    {
                         return string.Format("¡Bienvenido {0} {1}! ({2})", this.usuario.getAfiliado().afil_nombre, this.usuario.getAfiliado().afil_apellido, this.rol.rol_nombre);
-                        //break;
-                    default:
-                        return "Usted no posee roles de Usuario";
-                        //break;
+                    }
+                    else 
+                    {
+                        return "No posee roles";
+                    }
                 }
-
+                catch
+                {
+                    return "SE ROMPIO TODO";
+                }
             }
         }
     
