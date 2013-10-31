@@ -264,6 +264,7 @@
             this.btn_ABMAfiliado_Alta_siguiente.TabIndex = 48;
             this.btn_ABMAfiliado_Alta_siguiente.Text = "Siguiente";
             this.btn_ABMAfiliado_Alta_siguiente.UseVisualStyleBackColor = true;
+            this.btn_ABMAfiliado_Alta_siguiente.Click += new System.EventHandler(this.btn_ABMAfiliado_Alta_siguiente_Click);
             // 
             // lbl_ABMAfiliado_Alta_planmed
             // 

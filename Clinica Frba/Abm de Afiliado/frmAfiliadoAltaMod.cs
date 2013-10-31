@@ -67,29 +67,76 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         }
 
-        private void btn_ABMAfiliado_Alta_siguiente_Click(object sender, EventArgs e)
-        {
-            /*if(cbo_ABMAfiliado_AltaMod_estadocivil.Text == "Casado"){
-             * new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoPreguntaConyuge().Show();
-             * }
-             * else {
-             * new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoPreguntaHijo().Show();
-             * }
-             */
-        }
-
         private void btn_ABMAfiliado_Mod_siguiente_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btn_ABMAfiliado_Alta_siguiente_Click(object sender, EventArgs e)
+        {
             if (txt_ABMAfiliado_AltaMod_nombre.Text != ""
-                && txt_ABMAfiliado_AltaMod_apellido.Text != ""
-                && txt_ABMAfiliado_AltaMod_nrodoc.Text != ""
-                && txt_ABMAfiliado_AltaMod_direccion.Text != ""
-                && txt_ABMAfiliado_AltaMod_telefono.Text != ""
-                && txt_ABMAfiliado_AltaMod_mail.Text != ""
-                && cbo_ABMAfiliado_AltaMod_sexo.Text != ""
-                && cbo_ABMAfiliado_AltaMod_estadocivil.Text != ""
-                && txt_ABMAfiliado_AltaMod_planmedico.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_apellido.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_nrodoc.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_direccion.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_telefono.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_mail.Text != ""
+                //&& cbo_ABMAfiliado_AltaMod_sexo.Text != ""
+                //&& cbo_ABMAfiliado_AltaMod_estadocivil.Text != ""
+                //&& txt_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
+
+                SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+
+                try
+                {
+                    //var user_check = runner.Single("select COUNT(*) as cant from GD2C2013.SIGKILL.usuario where usr_usuario = '{0}'", usr_usuario);
+
+                    runner.Insert("EXEC nuevoAfiliado '{0}', '{1}', {2}, {3},'{4}',{5},'{6}','{7}','{8}','{9}',{10}",
+                        txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, 1, int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text),
+                        txt_ABMAfiliado_AltaMod_direccion.Text, int.Parse(txt_ABMAfiliado_AltaMod_telefono.Text), txt_ABMAfiliado_AltaMod_mail.Text,
+                        monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToShortDateString(), cbo_ABMAfiliado_AltaMod_sexo.Text,
+                        cbo_ABMAfiliado_AltaMod_estadocivil.Text, 555558);
+
+                    MessageBox.Show("Ok!");
+
+                    // En caso que no exista un usuario, lo crea
+                    // usr_usuario = 'u'+nroDni
+                    // pass = 'default' (SHA256)
+                    /*
+                    if ((int)user_check["cant"] == 0)
+                    {
+                        MessageBox.Show("La cantidad es 0");
+                        runner.Insert("INSERT INTO GD2C2013.SIGKILL.usuario (usr_usuario, usr_password)" +
+                        "VALUES ( '{0}', '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f')", usr_usuario);
+                    }
+
+                    var nro_afiliado = runner.Single("select SIGKILL.getNextNumeroAfiliado()*100+1");
+                    MessageBox.Show("Prox num afiliado: " + nro_afiliado[0]);
+                    int nro_doc = int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text);
+                    MessageBox.Show("Nro doc: " + nro_doc);
+                    String fecha_nacimiento = monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToShortDateString();
+                    MessageBox.Show("Fecha nacimiento: " + fecha_nacimiento);
+                    var estado_civil = runner.Single("select estciv_id from GD2C2013.SIGKILL.estado_civil where estciv_descripcion = '{0}'", cbo_ABMAfiliado_AltaMod_estadocivil.Text);
+                    MessageBox.Show("Estado civil Id: " + estado_civil[0]);
+                     * */
+
+                    /*
+                    runner.Insert("INSERT into GD2C2013.SIGKILL.afiliado (afil_numero, afil_usuario, afil_nombre, afil_apellido, afil_tipo_doc, afil_dni, afil_direccion, afil_telefono, afil_mail, afil_nacimiento, afil_sexo, afil_estado_civil, afil_id_plan_medico)" +
+                    "VALUES ( {0},'{1}', '{2}', '{3}', '{4}', {5}, '{6}', {7}, '{8}', '{9}', '{10}', '{11}', {12})", 50000000, usr_usuario, txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, 1,
+                    nro_doc, txt_ABMAfiliado_AltaMod_direccion.Text, txt_ABMAfiliado_AltaMod_telefono.Text, txt_ABMAfiliado_AltaMod_mail.Text, fecha_nacimiento,
+                    cbo_ABMAfiliado_AltaMod_sexo.Text, estado_civil, txt_ABMAfiliado_AltaMod_planmedico.Text);
+                    
+                    runner.Insert("INSERT into GD2C2013.SIGKILL.afiliado (afil_numero, afil_usuario, afil_nombre, afil_apellido, afil_dni, afil_direccion)" +
+                        "VALUES ({0},'{1}', '{2}', '{3}', {4}, '{5}')", 800000, usr_usuario, nombre, apellido, nro_doc, direccion);
+                    MessageBox.Show("5");
+                    **/
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
                     /*
                     String fecha = monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToShortDateString();
                     txt_ABMAfiliado_AltaMod_nombre.CharacterCasing = CharacterCasing.Upper;
