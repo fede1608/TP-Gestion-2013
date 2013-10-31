@@ -92,6 +92,7 @@
     <Compile Include="ClasesDatosTablas\Profesional.cs" />
     <Compile Include="ClasesDatosTablas\rol.cs" />
     <Compile Include="ClasesDatosTablas\rol_usuario.cs" />
+    <Compile Include="ClasesDatosTablas\sesion.cs" />
     <Compile Include="ClasesDatosTablas\toSha256.cs" />
     <Compile Include="ClasesDatosTablas\usuario.cs" />
     <Compile Include="Compra de Bono\frmCompraBonos.cs">
