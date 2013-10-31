@@ -68,6 +68,12 @@
     <Compile Include="Abm de Profesional\frmProfesionalAlta.designer.cs">
       <DependentUpon>frmProfesionalAlta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm de Profesional\frmProfesionalListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Profesional\frmProfesionalListado.Designer.cs">
+      <DependentUpon>frmProfesionalListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Rol\frmListadoRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Profesional\frmProfesionalAlta.resx">
       <DependentUpon>frmProfesionalAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Profesional\frmProfesionalListado.resx">
+      <DependentUpon>frmProfesionalListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmListadoRoles.resx">
       <DependentUpon>frmListadoRoles.cs</DependentUpon>

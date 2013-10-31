@@ -1,6 +1,6 @@
-﻿namespace Clinica_Frba.Abm_de_Afiliado_Listado
+﻿namespace Clinica_Frba.Abm_de_Profesional_Listado
 {
-    partial class frmAfiliadoListado
+    partial class frm_ABMpro_listado
     {
         /// <summary>
         /// Required designer variable.
@@ -28,53 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dbgrb_ABMAfiliado_Listado_vista = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dbgrb_ABMpro_vistaListado = new System.Windows.Forms.DataGridView();
+            this.gbox_ABMpro_filtros = new System.Windows.Forms.GroupBox();
             this.txt_ABMpro_matricula = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btn_ABMAfiliado_Listado_seleccionarplan = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lbl_ABMAfiliado_Listado_planmedico = new System.Windows.Forms.Label();
-            this.lbl_ABMAfiliado_Listado_dni = new System.Windows.Forms.Label();
-            this.lbl_ABMAfiliado_Listado_apellido = new System.Windows.Forms.Label();
+            this.txt_ABMpro_apellido = new System.Windows.Forms.TextBox();
+            this.txt_ABMpro_dni = new System.Windows.Forms.TextBox();
+            this.btn_ABMpro_seleccionarEspecialidad = new System.Windows.Forms.Button();
+            this.lbl_ABMpro_listado = new System.Windows.Forms.Label();
+            this.lbl_ABMpro_dni = new System.Windows.Forms.Label();
+            this.lbl_ABMpro_apellido = new System.Windows.Forms.Label();
             this.lbl_ABMpro_nombre = new System.Windows.Forms.Label();
             this.lbl_ABMpro_matricula = new System.Windows.Forms.Label();
-            this.btn_ABMAfiliado_Listado_limpiar = new System.Windows.Forms.Button();
-            this.btn_ABMAfiliado_Listado_Buscar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMAfiliado_Listado_vista)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.btn_ABMpro_limpiar = new System.Windows.Forms.Button();
+            this.btn_ABMpro_buscar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMpro_vistaListado)).BeginInit();
+            this.gbox_ABMpro_filtros.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dbgrb_ABMAfiliado_Listado_vista
+            // dbgrb_ABMpro_vistaListado
             // 
-            this.dbgrb_ABMAfiliado_Listado_vista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dbgrb_ABMAfiliado_Listado_vista.Location = new System.Drawing.Point(14, 194);
-            this.dbgrb_ABMAfiliado_Listado_vista.Name = "dbgrb_ABMAfiliado_Listado_vista";
-            this.dbgrb_ABMAfiliado_Listado_vista.Size = new System.Drawing.Size(522, 208);
-            this.dbgrb_ABMAfiliado_Listado_vista.TabIndex = 0;
+            this.dbgrb_ABMpro_vistaListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dbgrb_ABMpro_vistaListado.Location = new System.Drawing.Point(14, 194);
+            this.dbgrb_ABMpro_vistaListado.Name = "dbgrb_ABMpro_vistaListado";
+            this.dbgrb_ABMpro_vistaListado.Size = new System.Drawing.Size(522, 208);
+            this.dbgrb_ABMpro_vistaListado.TabIndex = 0;
             // 
-            // groupBox1
+            // gbox_ABMpro_filtros
             // 
-            this.groupBox1.Controls.Add(this.txt_ABMpro_matricula);
-            this.groupBox1.Controls.Add(this.txt_ABMpro_nombre);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.btn_ABMAfiliado_Listado_seleccionarplan);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.lbl_ABMAfiliado_Listado_planmedico);
-            this.groupBox1.Controls.Add(this.lbl_ABMAfiliado_Listado_dni);
-            this.groupBox1.Controls.Add(this.lbl_ABMAfiliado_Listado_apellido);
-            this.groupBox1.Controls.Add(this.lbl_ABMpro_nombre);
-            this.groupBox1.Controls.Add(this.lbl_ABMpro_matricula);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(522, 130);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtros de búsqueda";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_matricula);
+            this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_nombre);
+            this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_apellido);
+            this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_dni);
+            this.gbox_ABMpro_filtros.Controls.Add(this.btn_ABMpro_seleccionarEspecialidad);
+            this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_listado);
+            this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_dni);
+            this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_apellido);
+            this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_nombre);
+            this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_matricula);
+            this.gbox_ABMpro_filtros.Location = new System.Drawing.Point(12, 12);
+            this.gbox_ABMpro_filtros.Name = "gbox_ABMpro_filtros";
+            this.gbox_ABMpro_filtros.Size = new System.Drawing.Size(522, 130);
+            this.gbox_ABMpro_filtros.TabIndex = 1;
+            this.gbox_ABMpro_filtros.TabStop = false;
+            this.gbox_ABMpro_filtros.Text = "Filtros de búsqueda";
+            this.gbox_ABMpro_filtros.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txt_ABMpro_matricula
             // 
@@ -90,64 +88,56 @@
             this.txt_ABMpro_nombre.Size = new System.Drawing.Size(159, 20);
             this.txt_ABMpro_nombre.TabIndex = 8;
             // 
-            // textBox2
+            // txt_ABMpro_apellido
             // 
-            this.textBox2.Location = new System.Drawing.Point(89, 88);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 20);
-            this.textBox2.TabIndex = 7;
+            this.txt_ABMpro_apellido.Location = new System.Drawing.Point(89, 88);
+            this.txt_ABMpro_apellido.Name = "txt_ABMpro_apellido";
+            this.txt_ABMpro_apellido.Size = new System.Drawing.Size(159, 20);
+            this.txt_ABMpro_apellido.TabIndex = 7;
             // 
-            // textBox1
+            // txt_ABMpro_dni
             // 
-            this.textBox1.Location = new System.Drawing.Point(344, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(152, 20);
-            this.textBox1.TabIndex = 6;
+            this.txt_ABMpro_dni.Location = new System.Drawing.Point(344, 23);
+            this.txt_ABMpro_dni.Name = "txt_ABMpro_dni";
+            this.txt_ABMpro_dni.Size = new System.Drawing.Size(152, 20);
+            this.txt_ABMpro_dni.TabIndex = 6;
             // 
-            // btn_ABMAfiliado_Listado_seleccionarplan
+            // btn_ABMpro_seleccionarEspecialidad
             // 
-            this.btn_ABMAfiliado_Listado_seleccionarplan.Location = new System.Drawing.Point(421, 54);
-            this.btn_ABMAfiliado_Listado_seleccionarplan.Name = "btn_ABMAfiliado_Listado_seleccionarplan";
-            this.btn_ABMAfiliado_Listado_seleccionarplan.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMAfiliado_Listado_seleccionarplan.TabIndex = 5;
-            this.btn_ABMAfiliado_Listado_seleccionarplan.Text = "Seleccionar";
-            this.btn_ABMAfiliado_Listado_seleccionarplan.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_seleccionarEspecialidad.Location = new System.Drawing.Point(344, 54);
+            this.btn_ABMpro_seleccionarEspecialidad.Name = "btn_ABMpro_seleccionarEspecialidad";
+            this.btn_ABMpro_seleccionarEspecialidad.Size = new System.Drawing.Size(152, 23);
+            this.btn_ABMpro_seleccionarEspecialidad.TabIndex = 5;
+            this.btn_ABMpro_seleccionarEspecialidad.Text = "Seleccionar";
+            this.btn_ABMpro_seleccionarEspecialidad.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // lbl_ABMpro_listado
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(344, 55);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(71, 21);
-            this.comboBox1.TabIndex = 4;
+            this.lbl_ABMpro_listado.AutoSize = true;
+            this.lbl_ABMpro_listado.Location = new System.Drawing.Point(273, 58);
+            this.lbl_ABMpro_listado.Name = "lbl_ABMpro_listado";
+            this.lbl_ABMpro_listado.Size = new System.Drawing.Size(65, 13);
+            this.lbl_ABMpro_listado.TabIndex = 4;
+            this.lbl_ABMpro_listado.Text = "Plan médico";
             // 
-            // lbl_ABMAfiliado_Listado_planmedico
+            // lbl_ABMpro_dni
             // 
-            this.lbl_ABMAfiliado_Listado_planmedico.AutoSize = true;
-            this.lbl_ABMAfiliado_Listado_planmedico.Location = new System.Drawing.Point(273, 58);
-            this.lbl_ABMAfiliado_Listado_planmedico.Name = "lbl_ABMAfiliado_Listado_planmedico";
-            this.lbl_ABMAfiliado_Listado_planmedico.Size = new System.Drawing.Size(65, 13);
-            this.lbl_ABMAfiliado_Listado_planmedico.TabIndex = 4;
-            this.lbl_ABMAfiliado_Listado_planmedico.Text = "Plan médico";
+            this.lbl_ABMpro_dni.AutoSize = true;
+            this.lbl_ABMpro_dni.Location = new System.Drawing.Point(273, 26);
+            this.lbl_ABMpro_dni.Name = "lbl_ABMpro_dni";
+            this.lbl_ABMpro_dni.Size = new System.Drawing.Size(26, 13);
+            this.lbl_ABMpro_dni.TabIndex = 3;
+            this.lbl_ABMpro_dni.Text = "DNI";
             // 
-            // lbl_ABMAfiliado_Listado_dni
+            // lbl_ABMpro_apellido
             // 
-            this.lbl_ABMAfiliado_Listado_dni.AutoSize = true;
-            this.lbl_ABMAfiliado_Listado_dni.Location = new System.Drawing.Point(273, 26);
-            this.lbl_ABMAfiliado_Listado_dni.Name = "lbl_ABMAfiliado_Listado_dni";
-            this.lbl_ABMAfiliado_Listado_dni.Size = new System.Drawing.Size(26, 13);
-            this.lbl_ABMAfiliado_Listado_dni.TabIndex = 3;
-            this.lbl_ABMAfiliado_Listado_dni.Text = "DNI";
-            // 
-            // lbl_ABMAfiliado_Listado_apellido
-            // 
-            this.lbl_ABMAfiliado_Listado_apellido.AutoSize = true;
-            this.lbl_ABMAfiliado_Listado_apellido.Location = new System.Drawing.Point(23, 91);
-            this.lbl_ABMAfiliado_Listado_apellido.Name = "lbl_ABMAfiliado_Listado_apellido";
-            this.lbl_ABMAfiliado_Listado_apellido.Size = new System.Drawing.Size(44, 13);
-            this.lbl_ABMAfiliado_Listado_apellido.TabIndex = 2;
-            this.lbl_ABMAfiliado_Listado_apellido.Text = "Apellido";
-            this.lbl_ABMAfiliado_Listado_apellido.Click += new System.EventHandler(this.lbl_ABMAfiliado_Listado_apellido_Click);
+            this.lbl_ABMpro_apellido.AutoSize = true;
+            this.lbl_ABMpro_apellido.Location = new System.Drawing.Point(23, 91);
+            this.lbl_ABMpro_apellido.Name = "lbl_ABMpro_apellido";
+            this.lbl_ABMpro_apellido.Size = new System.Drawing.Size(44, 13);
+            this.lbl_ABMpro_apellido.TabIndex = 2;
+            this.lbl_ABMpro_apellido.Text = "Apellido";
+            this.lbl_ABMpro_apellido.Click += new System.EventHandler(this.lbl_ABMAfiliado_Listado_apellido_Click);
             // 
             // lbl_ABMpro_nombre
             // 
@@ -168,59 +158,57 @@
             this.lbl_ABMpro_matricula.Text = "Matrícula";
             this.lbl_ABMpro_matricula.Click += new System.EventHandler(this.label1_Click);
             // 
-            // btn_ABMAfiliado_Listado_limpiar
+            // btn_ABMpro_limpiar
             // 
-            this.btn_ABMAfiliado_Listado_limpiar.Location = new System.Drawing.Point(12, 148);
-            this.btn_ABMAfiliado_Listado_limpiar.Name = "btn_ABMAfiliado_Listado_limpiar";
-            this.btn_ABMAfiliado_Listado_limpiar.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMAfiliado_Listado_limpiar.TabIndex = 2;
-            this.btn_ABMAfiliado_Listado_limpiar.Text = "Limpiar";
-            this.btn_ABMAfiliado_Listado_limpiar.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_limpiar.Location = new System.Drawing.Point(12, 148);
+            this.btn_ABMpro_limpiar.Name = "btn_ABMpro_limpiar";
+            this.btn_ABMpro_limpiar.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMpro_limpiar.TabIndex = 2;
+            this.btn_ABMpro_limpiar.Text = "Limpiar";
+            this.btn_ABMpro_limpiar.UseVisualStyleBackColor = true;
             // 
-            // btn_ABMAfiliado_Listado_Buscar
+            // btn_ABMpro_buscar
             // 
-            this.btn_ABMAfiliado_Listado_Buscar.Location = new System.Drawing.Point(462, 148);
-            this.btn_ABMAfiliado_Listado_Buscar.Name = "btn_ABMAfiliado_Listado_Buscar";
-            this.btn_ABMAfiliado_Listado_Buscar.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMAfiliado_Listado_Buscar.TabIndex = 3;
-            this.btn_ABMAfiliado_Listado_Buscar.Text = "Buscar";
-            this.btn_ABMAfiliado_Listado_Buscar.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_buscar.Location = new System.Drawing.Point(462, 148);
+            this.btn_ABMpro_buscar.Name = "btn_ABMpro_buscar";
+            this.btn_ABMpro_buscar.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMpro_buscar.TabIndex = 3;
+            this.btn_ABMpro_buscar.Text = "Buscar";
+            this.btn_ABMpro_buscar.UseVisualStyleBackColor = true;
             // 
-            // frmAfiliadoListado
+            // frm_ABMpro_listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 414);
-            this.Controls.Add(this.btn_ABMAfiliado_Listado_Buscar);
-            this.Controls.Add(this.btn_ABMAfiliado_Listado_limpiar);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dbgrb_ABMAfiliado_Listado_vista);
-            this.Name = "frmAfiliadoListado";
-            this.Text = "Listado";
-            this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMAfiliado_Listado_vista)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Controls.Add(this.btn_ABMpro_buscar);
+            this.Controls.Add(this.btn_ABMpro_limpiar);
+            this.Controls.Add(this.gbox_ABMpro_filtros);
+            this.Controls.Add(this.dbgrb_ABMpro_vistaListado);
+            this.Name = "frm_ABMpro_listado";
+            this.Text = "Listado de profesionales";
+            ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMpro_vistaListado)).EndInit();
+            this.gbox_ABMpro_filtros.ResumeLayout(false);
+            this.gbox_ABMpro_filtros.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dbgrb_ABMAfiliado_Listado_vista;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_ABMAfiliado_Listado_limpiar;
-        private System.Windows.Forms.Button btn_ABMAfiliado_Listado_Buscar;
-        private System.Windows.Forms.Label lbl_ABMAfiliado_Listado_dni;
-        private System.Windows.Forms.Label lbl_ABMAfiliado_Listado_apellido;
+        private System.Windows.Forms.DataGridView dbgrb_ABMpro_vistaListado;
+        private System.Windows.Forms.GroupBox gbox_ABMpro_filtros;
+        private System.Windows.Forms.Button btn_ABMpro_limpiar;
+        private System.Windows.Forms.Button btn_ABMpro_buscar;
+        private System.Windows.Forms.Label lbl_ABMpro_dni;
+        private System.Windows.Forms.Label lbl_ABMpro_apellido;
         private System.Windows.Forms.Label lbl_ABMpro_nombre;
         private System.Windows.Forms.Label lbl_ABMpro_matricula;
-        private System.Windows.Forms.Label lbl_ABMAfiliado_Listado_planmedico;
+        private System.Windows.Forms.Label lbl_ABMpro_listado;
         private System.Windows.Forms.TextBox txt_ABMpro_matricula;
         private System.Windows.Forms.TextBox txt_ABMpro_nombre;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btn_ABMAfiliado_Listado_seleccionarplan;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txt_ABMpro_apellido;
+        private System.Windows.Forms.TextBox txt_ABMpro_dni;
+        private System.Windows.Forms.Button btn_ABMpro_seleccionarEspecialidad;
     }
 }

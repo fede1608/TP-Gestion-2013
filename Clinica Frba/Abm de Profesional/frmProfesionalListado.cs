@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Clinica_Frba.Abm_de_Afiliado_Listado
+namespace Clinica_Frba.Abm_de_Profesional_Listado
 {
-    public partial class frmAfiliadoListado : Form
+    public partial class frm_ABMpro_listado : Form
     {
-        public frmAfiliadoListado()
+        public frm_ABMpro_listado()
         {
             InitializeComponent();
         }
@@ -21,10 +21,6 @@ namespace Clinica_Frba.Abm_de_Afiliado_Listado
 
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void lbl_ABMAfiliado_Listado_apellido_Click(object sender, EventArgs e)
         {
@@ -32,6 +28,11 @@ namespace Clinica_Frba.Abm_de_Afiliado_Listado
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ABMpro_seleccionarEspecialidad_Click(object sender, EventArgs e)
         {
 
         }

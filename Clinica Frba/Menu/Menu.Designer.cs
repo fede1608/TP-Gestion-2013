@@ -198,6 +198,7 @@
             this.btn_f17_bajaProfesional.TabIndex = 13;
             this.btn_f17_bajaProfesional.Text = "Dar de baja profesional";
             this.btn_f17_bajaProfesional.UseVisualStyleBackColor = false;
+            this.btn_f17_bajaProfesional.Click += new System.EventHandler(this.btn_f17_bajaProfesional_Click);
             // 
             // btn_f18_modificarProfesional
             // 
@@ -209,6 +210,7 @@
             this.btn_f18_modificarProfesional.TabIndex = 14;
             this.btn_f18_modificarProfesional.Text = "Modificar afiliado";
             this.btn_f18_modificarProfesional.UseVisualStyleBackColor = false;
+            this.btn_f18_modificarProfesional.Click += new System.EventHandler(this.btn_f18_modificarProfesional_Click);
             // 
             // btn_f19_altaRol
             // 

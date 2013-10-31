@@ -1,4 +1,5 @@
-﻿namespace Clinica_Frba.Abm_de_Profesional {
+﻿namespace Clinica_Frba.Abm_de_Profesional_Alta
+{
 
     partial class frm_ABMpro_Alta
     {
@@ -225,9 +226,9 @@
             this.lbl_ABMpro_especialidades.AutoSize = true;
             this.lbl_ABMpro_especialidades.Location = new System.Drawing.Point(25, 250);
             this.lbl_ABMpro_especialidades.Name = "lbl_ABMpro_especialidades";
-            this.lbl_ABMpro_especialidades.Size = new System.Drawing.Size(65, 13);
+            this.lbl_ABMpro_especialidades.Size = new System.Drawing.Size(78, 13);
             this.lbl_ABMpro_especialidades.TabIndex = 47;
-            this.lbl_ABMpro_especialidades.Text = "Plan médico";
+            this.lbl_ABMpro_especialidades.Text = "Especialidades";
             // 
             // lbl_ABMpro_sexo
             // 

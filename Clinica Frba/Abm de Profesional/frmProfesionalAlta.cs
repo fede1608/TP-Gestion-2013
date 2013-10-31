@@ -10,7 +10,7 @@ using Clinica_Frba.ClasesDatosTablas;
 using Clinica_Frba.Sql;
 using Clinica_Frba.Menu;
 
-namespace Clinica_Frba.Abm_de_Profesional
+namespace Clinica_Frba.Abm_de_Profesional_Alta
 {
     public partial class frm_ABMpro_Alta : Form
     {

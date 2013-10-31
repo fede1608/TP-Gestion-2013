@@ -204,7 +204,7 @@ namespace Clinica_Frba.Menu
 
         private void btn_f16_altaProfesional_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Profesional.frm_ABMpro_Alta().Show();
+            new Clinica_Frba.Abm_de_Profesional_Alta.frm_ABMpro_Alta().Show();
         }
 
         private void btn_f14_bajaAfiliado_Click(object sender, EventArgs e)
@@ -235,6 +235,16 @@ namespace Clinica_Frba.Menu
         private void btn_f12_comprarBono_Click(object sender, EventArgs e)
         {
             new Clinica_Frba.Compra_de_Bono.frmCompraBonos(temporalUsuarioHastaQueAndresAgreugueSesion).Show();
+        }
+
+        private void btn_f17_bajaProfesional_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado().Show();  
+        }
+
+        private void btn_f18_modificarProfesional_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado().Show();
         }
 
 
