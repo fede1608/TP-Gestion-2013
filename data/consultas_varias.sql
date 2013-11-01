@@ -34,13 +34,15 @@
 --WHERE bc1.bonoc_consumido=1
 
 --SELECT DATEPART(dw, trn_fecha_hora ) ,* FROM SIGKILL.turno WHERE  trn_profesional=21 ORDER BY 1, trn_fecha_hora 
-INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
-(SELECT GETDATE(),'2014-01-04',pro_id FROM SIGKILL.profesional)
-INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'7:00','17:30',3 from SIGKILL.agenda_profesional)
+--INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
+--(SELECT GETDATE(),'2014-01-04',pro_id FROM SIGKILL.profesional)
+--INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+--(select agp_id,'7:00','17:30',3 from SIGKILL.agenda_profesional)
 
-select agp_id,'7:00','17:30',2 from SIGKILL.agenda_profesional
+--select agp_id,'7:00','17:30',2 from SIGKILL.agenda_profesional
 
-(SELECT Bono_Farmacia_Numero,medic_id from gd_esquema.Maestra,SIGKILL.medicamento WHERE Consulta_Sintomas is not null AND Bono_Farmacia_Medicamento=medic_nombre )
+--(SELECT Bono_Farmacia_Numero,medic_id from gd_esquema.Maestra,SIGKILL.medicamento WHERE Consulta_Sintomas is not null AND Bono_Farmacia_Medicamento=medic_nombre )
 
-select * FROM SIGKILL.horario_agenda
+--select * FROM SIGKILL.horario_agenda
+--select COUNT(*),trn_profesional,DATEPART(dw, trn_fecha_hora ) FROM SIGKILL.turno GROUP BY trn_profesional,DATEPART(dw, trn_fecha_hora ) ORDER BY trn_profesional,DATEPART(dw, trn_fecha_hora )
+Select * FROM SIGKILL.agenda_profesional WHERE agp_profesional=1 AND DATEDIFF(day,agp_fecha_fin,'2014-01-05') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'2014-01-06') >= 0

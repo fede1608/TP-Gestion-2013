@@ -29,41 +29,41 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtp_fin = new System.Windows.Forms.DateTimePicker();
+            this.dtp_inicio = new System.Windows.Forms.DateTimePicker();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.combo_sabado_fin = new System.Windows.Forms.ComboBox();
             this.combo_viernes_fin = new System.Windows.Forms.ComboBox();
             this.combo_jueves_fin = new System.Windows.Forms.ComboBox();
             this.combo_miercoles_fin = new System.Windows.Forms.ComboBox();
             this.combo_martes_fin = new System.Windows.Forms.ComboBox();
             this.combo_lunes_fin = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.combo_sabado_inicio = new System.Windows.Forms.ComboBox();
             this.combo_viernes_inicio = new System.Windows.Forms.ComboBox();
             this.combo_jueves_inicio = new System.Windows.Forms.ComboBox();
             this.combo_miercoles_inicio = new System.Windows.Forms.ComboBox();
             this.combo_martes_inicio = new System.Windows.Forms.ComboBox();
             this.combo_lunes_inicio = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chk_sabado = new System.Windows.Forms.CheckBox();
             this.chk_viernes = new System.Windows.Forms.CheckBox();
             this.chk_jueves = new System.Windows.Forms.CheckBox();
             this.chk_miercoles = new System.Windows.Forms.CheckBox();
             this.chk_martes = new System.Windows.Forms.CheckBox();
             this.chk_lunes = new System.Windows.Forms.CheckBox();
-            this.dtp_fin = new System.Windows.Forms.DateTimePicker();
-            this.dtp_inicio = new System.Windows.Forms.DateTimePicker();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_profesional = new System.Windows.Forms.Label();
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -78,6 +78,66 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agenda";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.dtp_fin);
+            this.groupBox5.Controls.Add(this.dtp_inicio);
+            this.groupBox5.Location = new System.Drawing.Point(13, 19);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(511, 85);
+            this.groupBox5.TabIndex = 29;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Establecer Período";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(291, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Seleccionar Fecha de Fin:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Seleccionar Fecha de Inicio:";
+            // 
+            // dtp_fin
+            // 
+            this.dtp_fin.Location = new System.Drawing.Point(291, 53);
+            this.dtp_fin.Name = "dtp_fin";
+            this.dtp_fin.Size = new System.Drawing.Size(200, 20);
+            this.dtp_fin.TabIndex = 1;
+            // 
+            // dtp_inicio
+            // 
+            this.dtp_inicio.Location = new System.Drawing.Point(15, 53);
+            this.dtp_inicio.Name = "dtp_inicio";
+            this.dtp_inicio.Size = new System.Drawing.Size(200, 20);
+            this.dtp_inicio.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.combo_sabado_fin);
+            this.groupBox4.Controls.Add(this.combo_viernes_fin);
+            this.groupBox4.Controls.Add(this.combo_jueves_fin);
+            this.groupBox4.Controls.Add(this.combo_miercoles_fin);
+            this.groupBox4.Controls.Add(this.combo_martes_fin);
+            this.groupBox4.Controls.Add(this.combo_lunes_fin);
+            this.groupBox4.Location = new System.Drawing.Point(13, 236);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(511, 57);
+            this.groupBox4.TabIndex = 26;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Seleccionar Horario de Fin";
             // 
             // combo_sabado_fin
             // 
@@ -99,7 +159,6 @@
             this.combo_sabado_fin.Name = "combo_sabado_fin";
             this.combo_sabado_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_sabado_fin.TabIndex = 23;
-
             // 
             // combo_viernes_fin
             // 
@@ -137,7 +196,6 @@
             this.combo_viernes_fin.Name = "combo_viernes_fin";
             this.combo_viernes_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_viernes_fin.TabIndex = 22;
-            //this.combo_viernes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_viernes_fin_SelectedIndexChanged);
             // 
             // combo_jueves_fin
             // 
@@ -175,7 +233,6 @@
             this.combo_jueves_fin.Name = "combo_jueves_fin";
             this.combo_jueves_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_jueves_fin.TabIndex = 21;
-            //this.combo_jueves_fin.SelectedIndexChanged += new System.EventHandler(this.combo_jueves_fin_SelectedIndexChanged);
             // 
             // combo_miercoles_fin
             // 
@@ -213,7 +270,6 @@
             this.combo_miercoles_fin.Name = "combo_miercoles_fin";
             this.combo_miercoles_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_miercoles_fin.TabIndex = 20;
-            //this.combo_miercoles_fin.SelectedIndexChanged += new System.EventHandler(this.combo_miercoles_fin_SelectedIndexChanged);
             // 
             // combo_martes_fin
             // 
@@ -251,7 +307,6 @@
             this.combo_martes_fin.Name = "combo_martes_fin";
             this.combo_martes_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_martes_fin.TabIndex = 19;
-            //this.combo_martes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_martes_fin_SelectedIndexChanged);
             // 
             // combo_lunes_fin
             // 
@@ -289,7 +344,21 @@
             this.combo_lunes_fin.Name = "combo_lunes_fin";
             this.combo_lunes_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_lunes_fin.TabIndex = 18;
-            //this.combo_lunes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_lunes_fin_SelectedIndexChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.combo_sabado_inicio);
+            this.groupBox3.Controls.Add(this.combo_viernes_inicio);
+            this.groupBox3.Controls.Add(this.combo_jueves_inicio);
+            this.groupBox3.Controls.Add(this.combo_miercoles_inicio);
+            this.groupBox3.Controls.Add(this.combo_martes_inicio);
+            this.groupBox3.Controls.Add(this.combo_lunes_inicio);
+            this.groupBox3.Location = new System.Drawing.Point(13, 167);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(511, 58);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Seleccionar Horarios de Inicio";
             // 
             // combo_sabado_inicio
             // 
@@ -499,6 +568,21 @@
             this.combo_lunes_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_lunes_inicio.TabIndex = 8;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.chk_sabado);
+            this.groupBox2.Controls.Add(this.chk_viernes);
+            this.groupBox2.Controls.Add(this.chk_jueves);
+            this.groupBox2.Controls.Add(this.chk_miercoles);
+            this.groupBox2.Controls.Add(this.chk_martes);
+            this.groupBox2.Controls.Add(this.chk_lunes);
+            this.groupBox2.Location = new System.Drawing.Point(13, 114);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(512, 43);
+            this.groupBox2.TabIndex = 24;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Seleccionar Días";
+            // 
             // chk_sabado
             // 
             this.chk_sabado.AutoSize = true;
@@ -559,96 +643,6 @@
             this.chk_lunes.Text = "Lunes";
             this.chk_lunes.UseVisualStyleBackColor = true;
             // 
-            // dtp_fin
-            // 
-            this.dtp_fin.Location = new System.Drawing.Point(291, 53);
-            this.dtp_fin.Name = "dtp_fin";
-            this.dtp_fin.Size = new System.Drawing.Size(200, 20);
-            this.dtp_fin.TabIndex = 1;
-            // 
-            // dtp_inicio
-            // 
-            this.dtp_inicio.Location = new System.Drawing.Point(15, 53);
-            this.dtp_inicio.Name = "dtp_inicio";
-            this.dtp_inicio.Size = new System.Drawing.Size(200, 20);
-            this.dtp_inicio.TabIndex = 0;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.chk_sabado);
-            this.groupBox2.Controls.Add(this.chk_viernes);
-            this.groupBox2.Controls.Add(this.chk_jueves);
-            this.groupBox2.Controls.Add(this.chk_miercoles);
-            this.groupBox2.Controls.Add(this.chk_martes);
-            this.groupBox2.Controls.Add(this.chk_lunes);
-            this.groupBox2.Location = new System.Drawing.Point(13, 114);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(512, 43);
-            this.groupBox2.TabIndex = 24;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Seleccionar Días";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.combo_sabado_inicio);
-            this.groupBox3.Controls.Add(this.combo_viernes_inicio);
-            this.groupBox3.Controls.Add(this.combo_jueves_inicio);
-            this.groupBox3.Controls.Add(this.combo_miercoles_inicio);
-            this.groupBox3.Controls.Add(this.combo_martes_inicio);
-            this.groupBox3.Controls.Add(this.combo_lunes_inicio);
-            this.groupBox3.Location = new System.Drawing.Point(13, 167);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(511, 58);
-            this.groupBox3.TabIndex = 25;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Seleccionar Horarios de Inicio";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.combo_sabado_fin);
-            this.groupBox4.Controls.Add(this.combo_viernes_fin);
-            this.groupBox4.Controls.Add(this.combo_jueves_fin);
-            this.groupBox4.Controls.Add(this.combo_miercoles_fin);
-            this.groupBox4.Controls.Add(this.combo_martes_fin);
-            this.groupBox4.Controls.Add(this.combo_lunes_fin);
-            this.groupBox4.Location = new System.Drawing.Point(13, 236);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(511, 57);
-            this.groupBox4.TabIndex = 26;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Seleccionar Horario de Fin";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Seleccionar Fecha de Inicio:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 13);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Seleccionar Fecha de Fin:";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.dtp_fin);
-            this.groupBox5.Controls.Add(this.dtp_inicio);
-            this.groupBox5.Location = new System.Drawing.Point(13, 19);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(511, 85);
-            this.groupBox5.TabIndex = 29;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Establecer Período";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -702,12 +696,12 @@
             this.Text = "Registrar Agenda";
             this.Load += new System.EventHandler(this.frmRegistrarAgenda_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

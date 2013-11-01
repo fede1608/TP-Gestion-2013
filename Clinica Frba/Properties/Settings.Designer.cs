@@ -33,5 +33,14 @@ namespace Clinica_Frba.Properties {
                 return ((string)(this["GD2C2013ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("11/01/2013 18:57:00")]
+        public global::System.DateTime Date {
+            get {
+                return ((global::System.DateTime)(this["Date"]));
+            }
+        }
     }
 }
