@@ -41,20 +41,24 @@
             this.combo_miercoles_inicio = new System.Windows.Forms.ComboBox();
             this.combo_martes_inicio = new System.Windows.Forms.ComboBox();
             this.combo_lunes_inicio = new System.Windows.Forms.ComboBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.chk_sabado = new System.Windows.Forms.CheckBox();
+            this.chk_viernes = new System.Windows.Forms.CheckBox();
+            this.chk_jueves = new System.Windows.Forms.CheckBox();
+            this.chk_miercoles = new System.Windows.Forms.CheckBox();
+            this.chk_martes = new System.Windows.Forms.CheckBox();
+            this.chk_lunes = new System.Windows.Forms.CheckBox();
+            this.dtp_fin = new System.Windows.Forms.DateTimePicker();
+            this.dtp_inicio = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_profesional = new System.Windows.Forms.Label();
+            this.btn_Agregar = new System.Windows.Forms.Button();
+            this.btn_cancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -68,7 +72,7 @@
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 48);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(539, 313);
             this.groupBox1.TabIndex = 0;
@@ -77,6 +81,7 @@
             // 
             // combo_sabado_fin
             // 
+            this.combo_sabado_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_sabado_fin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_sabado_fin.FormattingEnabled = true;
             this.combo_sabado_fin.Items.AddRange(new object[] {
@@ -94,11 +99,11 @@
             this.combo_sabado_fin.Name = "combo_sabado_fin";
             this.combo_sabado_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_sabado_fin.TabIndex = 23;
-            this.combo_sabado_fin.Text = "14:30";
-            this.combo_sabado_fin.SelectedIndexChanged += new System.EventHandler(this.combo_sabado_fin_SelectedIndexChanged);
+
             // 
             // combo_viernes_fin
             // 
+            this.combo_viernes_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_viernes_fin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_viernes_fin.FormattingEnabled = true;
             this.combo_viernes_fin.Items.AddRange(new object[] {
@@ -132,11 +137,11 @@
             this.combo_viernes_fin.Name = "combo_viernes_fin";
             this.combo_viernes_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_viernes_fin.TabIndex = 22;
-            this.combo_viernes_fin.Text = "19:30";
-            this.combo_viernes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_viernes_fin_SelectedIndexChanged);
+            //this.combo_viernes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_viernes_fin_SelectedIndexChanged);
             // 
             // combo_jueves_fin
             // 
+            this.combo_jueves_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_jueves_fin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_jueves_fin.FormattingEnabled = true;
             this.combo_jueves_fin.Items.AddRange(new object[] {
@@ -170,11 +175,11 @@
             this.combo_jueves_fin.Name = "combo_jueves_fin";
             this.combo_jueves_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_jueves_fin.TabIndex = 21;
-            this.combo_jueves_fin.Text = "19:30";
-            this.combo_jueves_fin.SelectedIndexChanged += new System.EventHandler(this.combo_jueves_fin_SelectedIndexChanged);
+            //this.combo_jueves_fin.SelectedIndexChanged += new System.EventHandler(this.combo_jueves_fin_SelectedIndexChanged);
             // 
             // combo_miercoles_fin
             // 
+            this.combo_miercoles_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_miercoles_fin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_miercoles_fin.FormattingEnabled = true;
             this.combo_miercoles_fin.Items.AddRange(new object[] {
@@ -208,11 +213,11 @@
             this.combo_miercoles_fin.Name = "combo_miercoles_fin";
             this.combo_miercoles_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_miercoles_fin.TabIndex = 20;
-            this.combo_miercoles_fin.Text = "19:30";
-            this.combo_miercoles_fin.SelectedIndexChanged += new System.EventHandler(this.combo_miercoles_fin_SelectedIndexChanged);
+            //this.combo_miercoles_fin.SelectedIndexChanged += new System.EventHandler(this.combo_miercoles_fin_SelectedIndexChanged);
             // 
             // combo_martes_fin
             // 
+            this.combo_martes_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_martes_fin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_martes_fin.FormattingEnabled = true;
             this.combo_martes_fin.Items.AddRange(new object[] {
@@ -246,11 +251,11 @@
             this.combo_martes_fin.Name = "combo_martes_fin";
             this.combo_martes_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_martes_fin.TabIndex = 19;
-            this.combo_martes_fin.Text = "19:30";
-            this.combo_martes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_martes_fin_SelectedIndexChanged);
+            //this.combo_martes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_martes_fin_SelectedIndexChanged);
             // 
             // combo_lunes_fin
             // 
+            this.combo_lunes_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_lunes_fin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_lunes_fin.FormattingEnabled = true;
             this.combo_lunes_fin.Items.AddRange(new object[] {
@@ -284,11 +289,11 @@
             this.combo_lunes_fin.Name = "combo_lunes_fin";
             this.combo_lunes_fin.Size = new System.Drawing.Size(55, 21);
             this.combo_lunes_fin.TabIndex = 18;
-            this.combo_lunes_fin.Text = "19:30";
-            this.combo_lunes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_lunes_fin_SelectedIndexChanged);
+            //this.combo_lunes_fin.SelectedIndexChanged += new System.EventHandler(this.combo_lunes_fin_SelectedIndexChanged);
             // 
             // combo_sabado_inicio
             // 
+            this.combo_sabado_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_sabado_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_sabado_inicio.FormattingEnabled = true;
             this.combo_sabado_inicio.Items.AddRange(new object[] {
@@ -306,10 +311,10 @@
             this.combo_sabado_inicio.Name = "combo_sabado_inicio";
             this.combo_sabado_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_sabado_inicio.TabIndex = 13;
-            this.combo_sabado_inicio.Text = "10:00";
             // 
             // combo_viernes_inicio
             // 
+            this.combo_viernes_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_viernes_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_viernes_inicio.FormattingEnabled = true;
             this.combo_viernes_inicio.Items.AddRange(new object[] {
@@ -343,10 +348,10 @@
             this.combo_viernes_inicio.Name = "combo_viernes_inicio";
             this.combo_viernes_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_viernes_inicio.TabIndex = 12;
-            this.combo_viernes_inicio.Text = "7:00";
             // 
             // combo_jueves_inicio
             // 
+            this.combo_jueves_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_jueves_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_jueves_inicio.FormattingEnabled = true;
             this.combo_jueves_inicio.Items.AddRange(new object[] {
@@ -380,10 +385,10 @@
             this.combo_jueves_inicio.Name = "combo_jueves_inicio";
             this.combo_jueves_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_jueves_inicio.TabIndex = 11;
-            this.combo_jueves_inicio.Text = "7:00";
             // 
             // combo_miercoles_inicio
             // 
+            this.combo_miercoles_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_miercoles_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_miercoles_inicio.FormattingEnabled = true;
             this.combo_miercoles_inicio.Items.AddRange(new object[] {
@@ -417,10 +422,10 @@
             this.combo_miercoles_inicio.Name = "combo_miercoles_inicio";
             this.combo_miercoles_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_miercoles_inicio.TabIndex = 10;
-            this.combo_miercoles_inicio.Text = "7:00";
             // 
             // combo_martes_inicio
             // 
+            this.combo_martes_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_martes_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_martes_inicio.FormattingEnabled = true;
             this.combo_martes_inicio.Items.AddRange(new object[] {
@@ -454,10 +459,12 @@
             this.combo_martes_inicio.Name = "combo_martes_inicio";
             this.combo_martes_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_martes_inicio.TabIndex = 9;
-            this.combo_martes_inicio.Text = "7:00";
             // 
             // combo_lunes_inicio
             // 
+            this.combo_lunes_inicio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.combo_lunes_inicio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combo_lunes_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_lunes_inicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.combo_lunes_inicio.FormattingEnabled = true;
             this.combo_lunes_inicio.Items.AddRange(new object[] {
@@ -491,90 +498,89 @@
             this.combo_lunes_inicio.Name = "combo_lunes_inicio";
             this.combo_lunes_inicio.Size = new System.Drawing.Size(55, 21);
             this.combo_lunes_inicio.TabIndex = 8;
-            this.combo_lunes_inicio.Text = "7:00";
             // 
-            // checkBox6
+            // chk_sabado
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(440, 17);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(63, 17);
-            this.checkBox6.TabIndex = 7;
-            this.checkBox6.Text = "Sábado";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.chk_sabado.AutoSize = true;
+            this.chk_sabado.Location = new System.Drawing.Point(440, 17);
+            this.chk_sabado.Name = "chk_sabado";
+            this.chk_sabado.Size = new System.Drawing.Size(63, 17);
+            this.chk_sabado.TabIndex = 7;
+            this.chk_sabado.Text = "Sábado";
+            this.chk_sabado.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // chk_viernes
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(354, 17);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(61, 17);
-            this.checkBox5.TabIndex = 6;
-            this.checkBox5.Text = "Viernes";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.chk_viernes.AutoSize = true;
+            this.chk_viernes.Location = new System.Drawing.Point(354, 17);
+            this.chk_viernes.Name = "chk_viernes";
+            this.chk_viernes.Size = new System.Drawing.Size(61, 17);
+            this.chk_viernes.TabIndex = 6;
+            this.chk_viernes.Text = "Viernes";
+            this.chk_viernes.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // chk_jueves
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(267, 17);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(60, 17);
-            this.checkBox4.TabIndex = 5;
-            this.checkBox4.Text = "Jueves";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.chk_jueves.AutoSize = true;
+            this.chk_jueves.Location = new System.Drawing.Point(267, 17);
+            this.chk_jueves.Name = "chk_jueves";
+            this.chk_jueves.Size = new System.Drawing.Size(60, 17);
+            this.chk_jueves.TabIndex = 5;
+            this.chk_jueves.Text = "Jueves";
+            this.chk_jueves.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // chk_miercoles
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(178, 17);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(71, 17);
-            this.checkBox3.TabIndex = 4;
-            this.checkBox3.Text = "Miércoles";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chk_miercoles.AutoSize = true;
+            this.chk_miercoles.Location = new System.Drawing.Point(178, 17);
+            this.chk_miercoles.Name = "chk_miercoles";
+            this.chk_miercoles.Size = new System.Drawing.Size(71, 17);
+            this.chk_miercoles.TabIndex = 4;
+            this.chk_miercoles.Text = "Miércoles";
+            this.chk_miercoles.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chk_martes
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(92, 17);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(58, 17);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "Martes";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chk_martes.AutoSize = true;
+            this.chk_martes.Location = new System.Drawing.Point(92, 17);
+            this.chk_martes.Name = "chk_martes";
+            this.chk_martes.Size = new System.Drawing.Size(58, 17);
+            this.chk_martes.TabIndex = 3;
+            this.chk_martes.Text = "Martes";
+            this.chk_martes.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chk_lunes
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 17);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(55, 17);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Lunes";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chk_lunes.AutoSize = true;
+            this.chk_lunes.Location = new System.Drawing.Point(12, 17);
+            this.chk_lunes.Name = "chk_lunes";
+            this.chk_lunes.Size = new System.Drawing.Size(55, 17);
+            this.chk_lunes.TabIndex = 2;
+            this.chk_lunes.Text = "Lunes";
+            this.chk_lunes.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
+            // dtp_fin
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(291, 53);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 1;
+            this.dtp_fin.Location = new System.Drawing.Point(291, 53);
+            this.dtp_fin.Name = "dtp_fin";
+            this.dtp_fin.Size = new System.Drawing.Size(200, 20);
+            this.dtp_fin.TabIndex = 1;
             // 
-            // dateTimePicker1
+            // dtp_inicio
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(15, 53);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.dtp_inicio.Location = new System.Drawing.Point(15, 53);
+            this.dtp_inicio.Name = "dtp_inicio";
+            this.dtp_inicio.Size = new System.Drawing.Size(200, 20);
+            this.dtp_inicio.TabIndex = 0;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox6);
-            this.groupBox2.Controls.Add(this.checkBox5);
-            this.groupBox2.Controls.Add(this.checkBox4);
-            this.groupBox2.Controls.Add(this.checkBox3);
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.chk_sabado);
+            this.groupBox2.Controls.Add(this.chk_viernes);
+            this.groupBox2.Controls.Add(this.chk_jueves);
+            this.groupBox2.Controls.Add(this.chk_miercoles);
+            this.groupBox2.Controls.Add(this.chk_martes);
+            this.groupBox2.Controls.Add(this.chk_lunes);
             this.groupBox2.Location = new System.Drawing.Point(13, 114);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(512, 43);
@@ -634,8 +640,8 @@
             // 
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.dateTimePicker2);
-            this.groupBox5.Controls.Add(this.dateTimePicker1);
+            this.groupBox5.Controls.Add(this.dtp_fin);
+            this.groupBox5.Controls.Add(this.dtp_inicio);
             this.groupBox5.Location = new System.Drawing.Point(13, 19);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(511, 85);
@@ -643,14 +649,58 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Establecer Período";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Agregar Agenda al Profesional:";
+            // 
+            // lbl_profesional
+            // 
+            this.lbl_profesional.AutoSize = true;
+            this.lbl_profesional.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_profesional.Location = new System.Drawing.Point(182, 16);
+            this.lbl_profesional.Name = "lbl_profesional";
+            this.lbl_profesional.Size = new System.Drawing.Size(47, 15);
+            this.lbl_profesional.TabIndex = 2;
+            this.lbl_profesional.Text = "label4";
+            // 
+            // btn_Agregar
+            // 
+            this.btn_Agregar.Location = new System.Drawing.Point(463, 18);
+            this.btn_Agregar.Name = "btn_Agregar";
+            this.btn_Agregar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Agregar.TabIndex = 3;
+            this.btn_Agregar.Text = "Agregar";
+            this.btn_Agregar.UseVisualStyleBackColor = true;
+            this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
+            // 
+            // btn_cancelar
+            // 
+            this.btn_cancelar.Location = new System.Drawing.Point(342, 18);
+            this.btn_cancelar.Name = "btn_cancelar";
+            this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.btn_cancelar.TabIndex = 4;
+            this.btn_cancelar.Text = "Cancelar";
+            this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
+            // 
             // frmRegistrarAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 337);
+            this.ClientSize = new System.Drawing.Size(563, 372);
+            this.Controls.Add(this.btn_cancelar);
+            this.Controls.Add(this.btn_Agregar);
+            this.Controls.Add(this.lbl_profesional);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmRegistrarAgenda";
             this.Text = "Registrar Agenda";
+            this.Load += new System.EventHandler(this.frmRegistrarAgenda_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -659,20 +709,21 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DateTimePicker dtp_fin;
+        private System.Windows.Forms.DateTimePicker dtp_inicio;
+        private System.Windows.Forms.CheckBox chk_sabado;
+        private System.Windows.Forms.CheckBox chk_viernes;
+        private System.Windows.Forms.CheckBox chk_jueves;
+        private System.Windows.Forms.CheckBox chk_miercoles;
+        private System.Windows.Forms.CheckBox chk_martes;
+        private System.Windows.Forms.CheckBox chk_lunes;
         private System.Windows.Forms.ComboBox combo_lunes_inicio;
         private System.Windows.Forms.ComboBox combo_sabado_inicio;
         private System.Windows.Forms.ComboBox combo_viernes_inicio;
@@ -691,5 +742,9 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_profesional;
+        private System.Windows.Forms.Button btn_Agregar;
+        private System.Windows.Forms.Button btn_cancelar;
     }
 }

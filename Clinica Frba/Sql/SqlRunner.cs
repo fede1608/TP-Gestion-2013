@@ -90,6 +90,20 @@ namespace Clinica_Frba.Sql
         }
 
 
+        public DataRow Single(string query, Filters filters)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand { Connection = connection })
+                {
+                    var queryWithParameters = query + " " + filters.Build();
+                    return Runnable.Query(queryWithParameters).Single(command);
+                }
+            }
+        }
+
         public DataRow Single(string query, params string[] parameters)
         {
             using (var connection = new SqlConnection(this.connectionString))

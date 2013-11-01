@@ -6,44 +6,106 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Clinica_Frba.ClasesDatosTablas;
+using Clinica_Frba.Sql;
 
 namespace Clinica_Frba.Registrar_Agenda
 {
     public partial class frmRegistrarAgenda : Form
     {
+        Profesional prof = new Adapter().Transform<Profesional>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.profesional WHERE pro_id=1"));
+        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         public frmRegistrarAgenda()
         {
             InitializeComponent();
         }
-
-        private void combo_lunes_fin_SelectedIndexChanged(object sender, EventArgs e)
+        public frmRegistrarAgenda(Profesional p)
         {
-
+            InitializeComponent();
+            prof = p;
         }
 
-        private void combo_martes_fin_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void frmRegistrarAgenda_Load(object sender, EventArgs e)
+        {
+            dtp_fin.Value = dtp_inicio.Value;
+            lbl_profesional.Text = prof.pro_apellido + ", " + prof.pro_nombre;
         }
 
-        private void combo_miercoles_fin_SelectedIndexChanged(object sender, EventArgs e)
+        private void btn_cancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void combo_jueves_fin_SelectedIndexChanged(object sender, EventArgs e)
+        private void btn_Agregar_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(dtp_inicio.Value.ToString("yyyy-MM-dd"));
+            if (dtp_inicio.Value.CompareTo(dtp_fin.Value) > 0)
+                {MessageBox.Show("Has ingresado mal el rango de Fechas"); return;};
+            if (chk_lunes.Checked && (combo_lunes_inicio.SelectedIndex > combo_lunes_fin.SelectedIndex || combo_lunes_inicio.SelectedIndex<0 ||combo_lunes_fin.SelectedIndex<0))
+                {MessageBox.Show("Has ingresado mal el rango de horarios del Lunes");return;};
+            if (chk_martes.Checked && (combo_martes_inicio.SelectedIndex > combo_martes_fin.SelectedIndex || combo_martes_inicio.SelectedIndex < 0 || combo_martes_fin.SelectedIndex < 0))
+                {MessageBox.Show("Has ingresado mal el rango de horarios del martes");return;};
+            if (chk_miercoles.Checked && (combo_miercoles_inicio.SelectedIndex > combo_miercoles_fin.SelectedIndex || combo_miercoles_inicio.SelectedIndex < 0 || combo_miercoles_fin.SelectedIndex < 0))
+                {MessageBox.Show("Has ingresado mal el rango de horarios del miercoles");return;};
+            if (chk_jueves.Checked && (combo_jueves_inicio.SelectedIndex > combo_jueves_fin.SelectedIndex || combo_jueves_inicio.SelectedIndex < 0 || combo_jueves_fin.SelectedIndex < 0))
+                {MessageBox.Show("Has ingresado mal el rango de horarios del jueves");return;};
+            if (chk_viernes.Checked && (combo_viernes_inicio.SelectedIndex > combo_viernes_fin.SelectedIndex || combo_viernes_inicio.SelectedIndex < 0 || combo_viernes_fin.SelectedIndex < 0))
+                {MessageBox.Show("Has ingresado mal el rango de horarios del viernes");return;};
+            if (chk_sabado.Checked && (combo_sabado_inicio.SelectedIndex > combo_sabado_fin.SelectedIndex || combo_sabado_inicio.SelectedIndex < 0 || combo_sabado_fin.SelectedIndex < 0))
+            { MessageBox.Show("Has ingresado mal el rango de horarios del sabado"); return; };
+            try
+            {
+                runner.Insert("INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)" +
+                    "VALUES ('{0}','{1}',{2})", dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"), prof.pro_id.ToString());
+                Filters f = new Filters();
+                f.AddEqual("agp_fecha_inicio", dtp_inicio.Value.ToString("yyyy-MM-dd"));
+                f.AddEqual("agp_fecha_fin", dtp_fin.Value.ToString("yyyy-MM-dd"));
+                f.AddEqual("agp_profesional", prof.pro_id.ToString());
+                var res = runner.Single("SELECT agp_id FROM SIGKILL.agenda_profesional", f);
+                //MessageBox.Show(res["agp_id"].ToString());
 
-        }
+                if (chk_lunes.Checked)
+                {
+                    runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
+                        "VALUES ({0},'{1}','{2}',2)", res["agp_id"].ToString(), combo_lunes_inicio.Text, combo_lunes_fin.Text);
+                }
 
-        private void combo_viernes_fin_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                if (chk_martes.Checked)
+                {
+                    runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
+                        "VALUES ({0},'{1}','{2}',3)", res["agp_id"].ToString(), combo_martes_inicio.Text, combo_martes_fin.Text);
+                }
 
-        }
+                if (chk_miercoles.Checked)
+                {
+                    runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
+                        "VALUES ({0},'{1}','{2}',4)", res["agp_id"].ToString(), combo_miercoles_inicio.Text, combo_miercoles_fin.Text);
+                }
 
-        private void combo_sabado_fin_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                if (chk_jueves.Checked)
+                {
+                    runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
+                        "VALUES ({0},'{1}','{2}',5)", res["agp_id"].ToString(), combo_jueves_inicio.Text, combo_jueves_fin.Text);
+                }
 
+                if (chk_viernes.Checked)
+                {
+                    runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
+                        "VALUES ({0},'{1}','{2}',6)", res["agp_id"].ToString(), combo_viernes_inicio.Text, combo_viernes_fin.Text);
+                }
+
+                if (chk_sabado.Checked)
+                {
+                    runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
+                        "VALUES ({0},'{1}','{2}',7)", res["agp_id"].ToString(), combo_sabado_inicio.Text, combo_sabado_fin.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MessageBox.Show("Se ha agregado en la Agenda Correctamente");
         }
 
     }
