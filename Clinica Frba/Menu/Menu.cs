@@ -238,6 +238,11 @@ namespace Clinica_Frba.Menu
             new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado().Show();
         }
 
+        private void btn_f6_registrarAgenda_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Registrar_Agenda.frmRegistrarAgenda().Show();
+        }
+
 
 
     }

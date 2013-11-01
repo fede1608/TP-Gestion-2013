@@ -33,7 +33,14 @@
 --from SIGKILL.bono_consulta as bc1
 --WHERE bc1.bonoc_consumido=1
 
-SELECT DISTINCT trn_id, trn_fecha_hora 
-FROM SIGKILL.turno
-WHERE DATEPART(dw, trn_fecha_hora ) = 6
-ORDER BY trn_fecha_hora
+--SELECT DATEPART(dw, trn_fecha_hora ) ,* FROM SIGKILL.turno WHERE  trn_profesional=21 ORDER BY 1, trn_fecha_hora 
+INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
+(SELECT GETDATE(),'2014-01-04',pro_id FROM SIGKILL.profesional)
+INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+(select agp_id,'7:00','17:30',3 from SIGKILL.agenda_profesional)
+
+select agp_id,'7:00','17:30',2 from SIGKILL.agenda_profesional
+
+(SELECT Bono_Farmacia_Numero,medic_id from gd_esquema.Maestra,SIGKILL.medicamento WHERE Consulta_Sintomas is not null AND Bono_Farmacia_Medicamento=medic_nombre )
+
+select * FROM SIGKILL.horario_agenda

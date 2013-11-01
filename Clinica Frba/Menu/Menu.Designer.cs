@@ -65,6 +65,7 @@
             this.btn_f6_registrarAgenda.TabIndex = 8;
             this.btn_f6_registrarAgenda.Text = "Registrar agenda de profesional";
             this.btn_f6_registrarAgenda.UseVisualStyleBackColor = true;
+            this.btn_f6_registrarAgenda.Click += new System.EventHandler(this.btn_f6_registrarAgenda_Click);
             // 
             // btn_f7_pedirTurno
             // 

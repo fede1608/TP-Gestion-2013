@@ -118,7 +118,8 @@ CREATE TABLE SIGKILL.horario_agenda(
 	hag_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	hag_horario_inicio time NOT NULL,
 	hag_horario_fin time NOT NULL,
-	hag_id_dia bigint REFERENCES SIGKILL.agenda_profesional(agp_id),
+	hag_id_agenda bigint REFERENCES SIGKILL.agenda_profesional(agp_id),
+	hag_dia_semana int NOT NULL,
 	hag_disponible int DEFAULT 1 NOT NULL
 	)
 GO
@@ -342,6 +343,22 @@ INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro
  ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
 GO
 
+INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
+(SELECT GETDATE(),'2014-01-04',pro_id FROM SIGKILL.profesional)
+GO
+
+INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+(select agp_id,'7:00','17:30',2 from SIGKILL.agenda_profesional)
+INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+(select agp_id,'7:00','17:30',3 from SIGKILL.agenda_profesional)
+INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+(select agp_id,'7:00','17:30',4 from SIGKILL.agenda_profesional)
+INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+(select agp_id,'7:00','17:30',5 from SIGKILL.agenda_profesional)
+INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+(select agp_id,'7:00','17:30',6 from SIGKILL.agenda_profesional)
+GO
+
 INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
 (SELECT DISTINCT Turno_Numero,pro_id,afil_numero,Turno_Fecha
  FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
@@ -393,6 +410,14 @@ GO
   FROM gd_esquema.Maestra 
   WHERE Especialidad_Codigo is not null)
 go
+
+INSERT INTO SIGKILL.medicamento (medic_nombre)
+(SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
+GO
+
+INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+(SELECT Bono_Farmacia_Numero,medic_id from gd_esquema.Maestra,SIGKILL.medicamento WHERE Consulta_Sintomas is not null AND Bono_Farmacia_Medicamento=medic_nombre )
+GO
 
 /***** FUNCIONES ****/
 create function SIGKILL.getNextNumeroAfiliado
@@ -454,45 +479,45 @@ from tokens
 GO
 
 /****CURSORES****/
-declare @med_string nvarchar(300)
-declare c1 cursor for (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
-open c1
-fetch c1 into @med_string
-while @@FETCH_STATUS = 0
-begin
-	INSERT INTO SIGKILL.medicamento (medic_nombre)
-	(select Item from SIGKILL.SplitString(@med_string, '+'))
-	fetch c1 into @med_string
-end
+--declare @med_string nvarchar(300)
+--declare c1 cursor for (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
+--open c1
+--fetch c1 into @med_string
+--while @@FETCH_STATUS = 0
+--begin
+--	INSERT INTO SIGKILL.medicamento (medic_nombre)
+--	(select Item from SIGKILL.SplitString(@med_string, '+'))
+--	fetch c1 into @med_string
+--end
 
-close c1
-deallocate c1
-GO
+--close c1
+--deallocate c1
+--GO
 
-declare @med_string nvarchar(300)
-declare @bono_num bigint
-create table #Cursor (
-bononum bigint NOT NULL,
-medname varchar(255)
-)
-declare c1 cursor for (SELECT Bono_Farmacia_Medicamento,Bono_Farmacia_Numero from gd_esquema.Maestra WHERE Consulta_Sintomas is not null )--WHERE Bono_Farmacia_Medicamento is not null )
-open c1
-fetch c1 into @med_string,@bono_num
-while @@FETCH_STATUS = 0
-begin
-	--UPDATE SIGKILL.bono_consulta SET bonoc_consumido=1,bonoc_fecha_compra=@fecha WHERE bonoc_id=@bonoc_num
-	--UPDATE SIGKILL.bono_farmacia SET bonof_consumido=1,bonof_fecha_compra=@fecha WHERE bonof_id=@bono_num 
-	--INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
-	INSERT INTO #Cursor(bononum,medname)
-	(select @bono_num,SIGKILL.getMedicamentoId(Item) from SIGKILL.SplitString(@med_string, '+'))
-	fetch c1 into @med_string,@bono_num
-end
-INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
-(SELECT * FROM #Cursor)
-close c1
-deallocate c1
-drop table #Cursor
-GO
+--declare @med_string nvarchar(300)
+--declare @bono_num bigint
+--create table #Cursor (
+--bononum bigint NOT NULL,
+--medname varchar(255)
+--)
+--declare c1 cursor for (SELECT Bono_Farmacia_Medicamento,Bono_Farmacia_Numero from gd_esquema.Maestra WHERE Consulta_Sintomas is not null )--WHERE Bono_Farmacia_Medicamento is not null )
+--open c1
+--fetch c1 into @med_string,@bono_num
+--while @@FETCH_STATUS = 0
+--begin
+--	--UPDATE SIGKILL.bono_consulta SET bonoc_consumido=1,bonoc_fecha_compra=@fecha WHERE bonoc_id=@bonoc_num
+--	--UPDATE SIGKILL.bono_farmacia SET bonof_consumido=1,bonof_fecha_compra=@fecha WHERE bonof_id=@bono_num 
+--	--INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+--	INSERT INTO #Cursor(bononum,medname)
+--	(select @bono_num,SIGKILL.getMedicamentoId(Item) from SIGKILL.SplitString(@med_string, '+'))
+--	fetch c1 into @med_string,@bono_num
+--end
+--INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
+--(SELECT * FROM #Cursor)
+--close c1
+--deallocate c1
+--drop table #Cursor
+--GO
 
 
 
