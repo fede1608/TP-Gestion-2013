@@ -28,6 +28,16 @@ namespace Clinica_Frba.ClasesDatosTablas
         {
             return pro_apellido + ", " + pro_nombre;
         }
+        public string nombreCompleto
+        {
+            get
+            {
+                return pro_apellido + ", " + pro_nombre;
+            }
+            set
+            {
+            }
+        }
         public static Profesional newFromId(long id)
         {
             return new Adapter().Transform<Profesional>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.profesional WHERE pro_id={0}",id.ToString()));

@@ -70,7 +70,6 @@ CREATE TABLE SIGKILL.profesional(
 	pro_apellido nvarchar(100) NOT NULL,
 	pro_tipo_doc bigint REFERENCES SIGKILL.tipo_doc(tdoc_id),
 	pro_dni numeric(18, 0) NOT NULL,
---	pro_id_rol bigint REFERENCES SIGKILL.Rol(id_rol),
 	pro_direccion nvarchar(255) NOT NULL,
 	pro_telefono decimal(18,0) NOT NULL,
 	pro_mail nvarchar(255),
@@ -348,15 +347,15 @@ INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profes
 GO
 
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'7:00','17:30',2 from SIGKILL.agenda_profesional)
+(select agp_id,'8:00','17:30',2 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'7:00','17:30',3 from SIGKILL.agenda_profesional)
+(select agp_id,'8:00','17:30',3 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'7:00','17:30',4 from SIGKILL.agenda_profesional)
+(select agp_id,'8:00','17:30',4 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'7:00','17:30',5 from SIGKILL.agenda_profesional)
+(select agp_id,'8:00','17:30',5 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'7:00','17:30',6 from SIGKILL.agenda_profesional)
+(select agp_id,'8:00','17:30',6 from SIGKILL.agenda_profesional)
 GO
 
 INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)

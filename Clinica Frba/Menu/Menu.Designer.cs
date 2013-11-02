@@ -75,6 +75,7 @@
             this.btn_f7_pedirTurno.TabIndex = 1;
             this.btn_f7_pedirTurno.Text = "Pedir un turno";
             this.btn_f7_pedirTurno.UseVisualStyleBackColor = true;
+            this.btn_f7_pedirTurno.Click += new System.EventHandler(this.btn_f7_pedirTurno_Click);
             // 
             // btn_f8_regLlegada
             // 

@@ -87,16 +87,19 @@
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
     </Compile>
     <Compile Include="ClasesDatosTablas\afiliado.cs" />
+    <Compile Include="ClasesDatosTablas\Agenda_Profesional.cs" />
     <Compile Include="ClasesDatosTablas\Bono_Consulta.cs" />
     <Compile Include="ClasesDatosTablas\Consulta.cs" />
     <Compile Include="ClasesDatosTablas\Especialidad.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
+    <Compile Include="ClasesDatosTablas\Horario_Agenda.cs" />
     <Compile Include="ClasesDatosTablas\Plan_Medico.cs" />
     <Compile Include="ClasesDatosTablas\Profesional.cs" />
     <Compile Include="ClasesDatosTablas\rol.cs" />
     <Compile Include="ClasesDatosTablas\rol_usuario.cs" />
     <Compile Include="ClasesDatosTablas\sesion.cs" />
     <Compile Include="ClasesDatosTablas\toSha256.cs" />
+    <Compile Include="ClasesDatosTablas\Turno.cs" />
     <Compile Include="ClasesDatosTablas\usuario.cs" />
     <Compile Include="Compra de Bono\frmCompraBonos.cs">
       <SubType>Form</SubType>
@@ -126,6 +129,12 @@
     </Compile>
     <Compile Include="Menu\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedir Turno\frmSolicitarTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedir Turno\frmSolicitarTurno.Designer.cs">
+      <DependentUpon>frmSolicitarTurno.cs</DependentUpon>
     </Compile>
     <Compile Include="Registrar Agenda\frmRegistrarAgenda.cs">
       <SubType>Form</SubType>
@@ -161,12 +170,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm de Planes\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pedir Turno\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pedir Turno\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Cancelar Atencion\Form1.cs">
@@ -221,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedir Turno\frmSolicitarTurno.resx">
+      <DependentUpon>frmSolicitarTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
