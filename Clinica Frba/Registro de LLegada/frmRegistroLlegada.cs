@@ -46,7 +46,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                 {
                     bono = new Adapter().Transform<Bono_Consulta>(runner.Single("SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_id={0}", txt_bono_consulta.Text));
                 }
-                catch (Exception ex)
+                catch
                 {
                     MessageBox.Show("El número de bono ingresado no existe");
                     return;
@@ -62,6 +62,12 @@ namespace Clinica_Frba.Registro_de_LLegada
                     MessageBox.Show("El Bono ya fue consumido");
                     return;
                 }
+                if (bono.bonoc_plan_medico != afil.afil_id_plan_medico)
+                {
+                    MessageBox.Show("El plan médico ha cambiado");
+                    return;
+                }
+
 
                 runner.Insert("INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada)" +
                     "VALUES ({0},{1},'{2}')", lbl_turno.Text, txt_bono_consulta.Text, lbl_hora_llegada.Text);

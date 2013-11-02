@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Clinica_Frba.Sql;
 
 namespace Clinica_Frba.ClasesDatosTablas
 {
@@ -37,6 +38,11 @@ namespace Clinica_Frba.ClasesDatosTablas
         public long numeroAfiliadoPrincipal(long afil_numero)
         {
             return (long) Math.Floor((double)afil_numero / 100);
+        }
+
+        public static Afiliado newFromId(long id)
+        {
+            return new Adapter().Transform<Afiliado>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.Afiliado WHERE afil_numero={0}", id.ToString()));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Clinica_Frba.Sql;
 
 namespace Clinica_Frba.ClasesDatosTablas
 {
@@ -21,6 +22,16 @@ namespace Clinica_Frba.ClasesDatosTablas
         public string pro_sexo{ get; set; }
         public int pro_cant_hs_acum{ get; set; }
 
+
+
+        public string getName()
+        {
+            return pro_apellido + ", " + pro_nombre;
+        }
+        public static Profesional newFromId(long id)
+        {
+            return new Adapter().Transform<Profesional>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.profesional WHERE pro_id={0}",id.ToString()));
+        }
 
     }
 }

@@ -110,6 +110,16 @@ namespace Clinica_Frba.Registro_de_LLegada
 
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

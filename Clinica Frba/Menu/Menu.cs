@@ -248,6 +248,12 @@ namespace Clinica_Frba.Menu
             new Clinica_Frba.Registro_de_LLegada.frmListadoTurnos().Show();
         }
 
+        private void btn_f9_regResultado_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Registro_Resultado_Atencion.frmListadoConsultas(sesionActual.usuario.getProfesional()).Show();
+
+        }
+
 
 
     }

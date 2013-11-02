@@ -94,6 +94,7 @@
             this.btn_f9_regResultado.TabIndex = 6;
             this.btn_f9_regResultado.Text = "Registrar resultado de atención";
             this.btn_f9_regResultado.UseVisualStyleBackColor = true;
+            this.btn_f9_regResultado.Click += new System.EventHandler(this.btn_f9_regResultado_Click);
             // 
             // btn_f5_cancelarAtencion
             // 

@@ -86,5 +86,17 @@ namespace Clinica_Frba.Sql
             order = string.Format(" ORDER BY {0} {1}", param, orden);
             return this;
         }
+
+        public Filters AddIsNull(string columnName)
+        {
+            this.filters.Add(string.Format(" {0} IS NULL ", columnName));
+            return this;
+        }
+
+        public Filters AddNotIsNull(string columnName)
+        {
+            this.filters.Add(string.Format(" NOT {0} IS NULL ", columnName));
+            return this;
+        }
     }
 }
