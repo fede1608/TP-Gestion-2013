@@ -60,6 +60,7 @@ namespace Clinica_Frba.Sql
         }
 
 
+
         public int Insert(string query, params object[] parameters)
         {
             return this.executeNonQuery(query, parameters);

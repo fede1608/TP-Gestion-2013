@@ -243,6 +243,11 @@ namespace Clinica_Frba.Menu
             new Clinica_Frba.Registrar_Agenda.frmRegistrarAgenda().Show();
         }
 
+        private void btn_f8_regLlegada_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Registro_de_LLegada.frmListadoTurnos().Show();
+        }
+
 
 
     }

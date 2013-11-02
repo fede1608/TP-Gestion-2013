@@ -87,6 +87,7 @@
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
     </Compile>
     <Compile Include="ClasesDatosTablas\afiliado.cs" />
+    <Compile Include="ClasesDatosTablas\Especialidad.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
     <Compile Include="ClasesDatosTablas\Plan_Medico.cs" />
     <Compile Include="ClasesDatosTablas\Profesional.cs" />
@@ -130,6 +131,12 @@
     <Compile Include="Registrar Agenda\frmRegistrarAgenda.Designer.cs">
       <DependentUpon>frmRegistrarAgenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registro de LLegada\frmListadoTurnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de LLegada\frmListadoTurnos.Designer.cs">
+      <DependentUpon>frmListadoTurnos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,12 +153,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm de Planes\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Registrar Agenda\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Registrar Agenda\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Pedir Turno\Form1.cs">
@@ -232,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registrar Agenda\frmRegistrarAgenda.resx">
       <DependentUpon>frmRegistrarAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro de LLegada\frmListadoTurnos.resx">
+      <DependentUpon>frmListadoTurnos.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

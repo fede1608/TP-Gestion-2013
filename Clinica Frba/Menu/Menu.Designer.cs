@@ -84,6 +84,7 @@
             this.btn_f8_regLlegada.TabIndex = 4;
             this.btn_f8_regLlegada.Text = "Registrar llegada";
             this.btn_f8_regLlegada.UseVisualStyleBackColor = true;
+            this.btn_f8_regLlegada.Click += new System.EventHandler(this.btn_f8_regLlegada_Click);
             // 
             // btn_f9_regResultado
             // 

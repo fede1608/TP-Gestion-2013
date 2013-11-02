@@ -35,10 +35,7 @@ namespace Clinica_Frba.Abm_de_Rol
                 var result = runner
                     .Select("SELECT * FROM SIGKILL.rol");
                 var rolFromDb = new Adapter().TransformMany<Rol>(result);
-                foreach (var rol in rolFromDb)
-                {
-                    comboBox1.Items.Add(rol.rol_nombre);
-                }
+
 
             }
             catch
@@ -104,8 +101,7 @@ namespace Clinica_Frba.Abm_de_Rol
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Rol.frmRolAltaMod().Show();
-            this.Close();
+            dataGridView1.DataSource = null;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

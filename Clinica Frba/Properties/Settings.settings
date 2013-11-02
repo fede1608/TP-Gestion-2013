@@ -11,7 +11,7 @@
       <Value Profile="(Default)">Data Source=localhost\SQLSERVER2008;Initial Catalog=GD2C2013;User ID=gd;Password=gd2013</Value>
     </Setting>
     <Setting Name="Date" Type="System.DateTime" Scope="Application">
-      <Value Profile="(Default)">11/01/2013 18:57:00</Value>
+      <Value Profile="(Default)">11/04/2013 12:00:00</Value>
     </Setting>
   </Settings>
 </SettingsFile>
