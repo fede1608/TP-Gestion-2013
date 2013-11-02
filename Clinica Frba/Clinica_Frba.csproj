@@ -86,6 +86,12 @@
     <Compile Include="Abm de Rol\frmRolAltaMod.Designer.cs">
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cancelar Atencion\frmCancelarTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cancelar Atencion\frmCancelarTurno.Designer.cs">
+      <DependentUpon>frmCancelarTurno.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClasesDatosTablas\afiliado.cs" />
     <Compile Include="ClasesDatosTablas\Agenda_Profesional.cs" />
     <Compile Include="ClasesDatosTablas\Bono_Consulta.cs" />
@@ -172,12 +178,6 @@
     <Compile Include="Abm de Planes\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cancelar Atencion\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cancelar Atencion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Generar Receta\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Rol\frmRolAltaMod.resx">
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cancelar Atencion\frmCancelarTurno.resx">
+      <DependentUpon>frmCancelarTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compra de Bono\frmCompraBonos.resx">
       <DependentUpon>frmCompraBonos.cs</DependentUpon>

@@ -4,7 +4,7 @@
 --SELECT Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni
 
 --Select * from SIGKILL.usuario
---Select * from SIGKILL.afiliado where afil_usuario=6
+--Select * from SIGKILL.afiliado where afil_nombre='GENOVEVA'
 --SELECT MAX(bonof_id)+1 as next FROM SIGKILL.bono_farmacia
 --Insert into SIGKILL.afiliado(afil_numero,afil_nombre,) VAlues (102),(103),(104)
 --SELECT COUNT(DISTINCT ROUND(afil_numero/100,0)),SIGKILL.getNextNumeroAfiliado() FROM SIGKILL.afiliado
@@ -47,7 +47,12 @@
 --select COUNT(*),trn_profesional,DATEPART(dw, trn_fecha_hora ) FROM SIGKILL.turno GROUP BY trn_profesional,DATEPART(dw, trn_fecha_hora ) ORDER BY trn_profesional,DATEPART(dw, trn_fecha_hora )
 --Select * FROM SIGKILL.agenda_profesional WHERE agp_profesional=1 AND DATEDIFF(day,agp_fecha_fin,'2014-01-05') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'2014-01-06') >= 0
 SELECT DISTINCT trn_id,trn_fecha_hora,trn_afiliado,afil_Apellido,afil_nombre,trn_profesional,pro_Apellido,pro_nombre FROM SIGKILL.turno,SIGKILL.afiliado,SIGKILL.profesional,SIGKILL.esp_prof,SIGKILL.especialidad WHERE trn_afiliado=afil_numero AND trn_profesional=pro_id AND pro_id=espprof_profesional AND espprof_especialidad=esp_id AND esp_nombre_especialidad='Cardiología' AND DATEDIFF(HOUR,trn_fecha_hora,'2013-11-04 12:00') <= 0 ORDER BY trn_fecha_hora
---SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_afiliado=677201 AND Bonoc_consumido=0
+--SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_afiliado=58301 AND Bonoc_consumido=0
 SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_id=677201
-
+SELECT * FROM SIGKILL.turno WHERE trn_fecha_hora='martes, 2013-11-05'
 --SELECT DISTINCT Especialidad_Codigo,pro_id FROM gd_esquema.Maestra,SIGKILL.profesional WHERE Medico_Dni=pro_dni order by Especialidad_Codigo--order by Medico_Nombre
+SELECT * FROM SIGKILL.horario_Agenda,SIGKILL.agenda_profesional WHERE agp_id=hag_id_agenda AND '2013-11-04' between agp_fecha_inicio AND agp_fecha_fin
+SELECT hag_id,hag_horario_inicio,hag_horario_fin,hag_id_agenda,hag_dia_semana,hag_disponible FROM SIGKILL.horario_Agenda,SIGKILL.agenda_profesional WHERE agp_id=hag_id_agenda AND agp_profesional=1 AND '2013-11-04' between agp_fecha_inicio AND agp_fecha_fin
+
+
+SELECT * FROM SIGKILL.Turno WHERE trn_profesional=1 AND DATEDIFF(day,trn_fecha_hora,'2013-11-04')=0

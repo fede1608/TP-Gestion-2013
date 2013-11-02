@@ -167,8 +167,7 @@ GO
 -- Tabla Tipo Cancelacion
 CREATE TABLE SIGKILL.tipo_cancelacion(
 	tic_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	tic_nombre_tipo nvarchar(255) NOT NULL,
-	tic_motivo nvarchar(255) NOT NULL
+	tic_nombre_tipo nvarchar(255) NOT NULL
 	)
 GO
 
@@ -178,6 +177,7 @@ CREATE TABLE SIGKILL.cancelacion_atencion_medica(
 	cam_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
 	cam_nro_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	cam_tipo_cancelacion bigint REFERENCES SIGKILL.tipo_cancelacion(tic_id),
+	cam_motivo nvarchar(255) NOT NULL,
 	cam_fecha datetime NOT NULL
 	)
 GO

@@ -7,13 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Clinica_Frba.NewFolder7
+namespace Clinica_Frba.Cancelar_Atencion
 {
-    public partial class Form1 : Form
+    public partial class frmCancelarTurno : Form
     {
-        public Form1()
+        public frmCancelarTurno()
         {
             InitializeComponent();
         }
+
+        private void btn_volver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }
