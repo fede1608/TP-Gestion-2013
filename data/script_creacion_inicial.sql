@@ -249,8 +249,8 @@ CREATE TABLE SIGKILL.consulta(
 	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	cons_turno bigint REFERENCES SIGKILL.turno(trn_id),
 	cons_bono_consulta bigint REFERENCES SIGKILL.bono_consulta(bonoc_id),
-	cons_fecha_hora_llegada datetime NOT NULL,
-	cons_fecha_hora_atencion datetime NULL,
+	cons_fecha_hora_llegada time NOT NULL,
+	cons_fecha_hora_atencion time NULL,
 	cons_sintomas nvarchar(255) NULL,
 	cons_diagnostico nvarchar(255) NULL
 	)
@@ -410,6 +410,9 @@ GO
   FROM gd_esquema.Maestra 
   WHERE Especialidad_Codigo is not null)
 go
+
+INSERT INTO SIGKILL.esp_prof(espprof_especialidad,espprof_profesional)
+(SELECT DISTINCT Especialidad_Codigo,pro_id FROM gd_esquema.Maestra,SIGKILL.profesional WHERE Medico_Dni=pro_dni)
 
 INSERT INTO SIGKILL.medicamento (medic_nombre)
 (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )

@@ -23,5 +23,20 @@ namespace Clinica_Frba.ClasesDatosTablas
         public int afil_cant_fam_a_cargo { get; set; }
         public long afil_id_plan_medico { get; set; }
         public int afil_activo { get; set; }
+
+        public string getName()
+        {
+            return afil_apellido+", "+afil_nombre;
+        }
+
+        public long getNumeroAfiliadoPrincipal()
+        {
+            return numeroAfiliadoPrincipal(afil_numero);
+        }
+
+        public long numeroAfiliadoPrincipal(long afil_numero)
+        {
+            return (long) Math.Floor((double)afil_numero / 100);
+        }
     }
 }

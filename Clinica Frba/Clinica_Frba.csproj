@@ -87,6 +87,7 @@
       <DependentUpon>frmRolAltaMod.cs</DependentUpon>
     </Compile>
     <Compile Include="ClasesDatosTablas\afiliado.cs" />
+    <Compile Include="ClasesDatosTablas\Bono_Consulta.cs" />
     <Compile Include="ClasesDatosTablas\Especialidad.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
     <Compile Include="ClasesDatosTablas\Plan_Medico.cs" />
@@ -137,6 +138,12 @@
     <Compile Include="Registro de LLegada\frmListadoTurnos.Designer.cs">
       <DependentUpon>frmListadoTurnos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registro de LLegada\frmRegistroLlegada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de LLegada\frmRegistroLlegada.Designer.cs">
+      <DependentUpon>frmRegistroLlegada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,12 +166,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pedir Turno\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Registro de LLegada\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Registro de LLegada\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro Resultado Atencion\Form1.cs">
@@ -236,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registro de LLegada\frmListadoTurnos.resx">
       <DependentUpon>frmListadoTurnos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro de LLegada\frmRegistroLlegada.resx">
+      <DependentUpon>frmRegistroLlegada.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
