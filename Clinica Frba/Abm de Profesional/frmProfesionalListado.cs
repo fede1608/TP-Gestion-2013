@@ -71,9 +71,25 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
         private void btn_ABMpro_buscar_Click(object sender, EventArgs e)
         {
             Filters filter = new Filters();
+            
             if (txt_ABMpro_matricula.Text.Length > 0)
             {
                 filter.AddEqual("pro_matricula", txt_ABMpro_matricula.Text);
+            }
+
+            if (txt_ABMpro_nombre.Text.Length > 0)
+            {
+                filter.AddEqual("pro_nombre", txt_ABMpro_nombre.Text);
+            }
+
+            if (txt_ABMpro_apellido.Text.Length > 0)
+            {
+                filter.AddEqual("pro_apellido", txt_ABMpro_apellido.Text);
+            }
+
+            if (txt_ABMpro_dni.Text.Length > 0)
+            {
+                filter.AddEqual("pro_dni", txt_ABMpro_dni.Text);
             }
 
             try
