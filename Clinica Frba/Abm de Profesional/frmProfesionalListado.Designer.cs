@@ -166,6 +166,7 @@
             this.btn_ABMpro_limpiar.TabIndex = 2;
             this.btn_ABMpro_limpiar.Text = "Limpiar";
             this.btn_ABMpro_limpiar.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_limpiar.Click += new System.EventHandler(this.btn_ABMpro_limpiar_Click);
             // 
             // btn_ABMpro_buscar
             // 
@@ -175,6 +176,7 @@
             this.btn_ABMpro_buscar.TabIndex = 3;
             this.btn_ABMpro_buscar.Text = "Buscar";
             this.btn_ABMpro_buscar.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_buscar.Click += new System.EventHandler(this.btn_ABMpro_buscar_Click);
             // 
             // frm_ABMpro_listado
             // 
@@ -187,6 +189,7 @@
             this.Controls.Add(this.dbgrb_ABMpro_vistaListado);
             this.Name = "frm_ABMpro_listado";
             this.Text = "Listado de profesionales";
+            this.Load += new System.EventHandler(this.frm_ABMpro_listado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMpro_vistaListado)).EndInit();
             this.gbox_ABMpro_filtros.ResumeLayout(false);
             this.gbox_ABMpro_filtros.PerformLayout();
