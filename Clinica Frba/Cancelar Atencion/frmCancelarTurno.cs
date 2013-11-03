@@ -24,11 +24,22 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             afil = a;
             InitializeComponent();
+            lbl_prf.Visible = false;
+            lbl_profesional.Visible = false;
+            lbl_afiliado.Text = afil.getName();
+            btn_cancelar_periodo.Visible = false;
+            dtp_inicial.Visible = false;
+            dtp_final.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
         }
         public frmCancelarTurno(Profesional p)
         {
             prof = p;
             InitializeComponent();
+            lbl_profesional.Text = prof.getName();
+            lbl_afiliado.Visible = false;
+            lbl_af.Visible = false;
         }
 
         private void btn_volver_Click(object sender, EventArgs e)
@@ -40,6 +51,8 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             new Clinica_Frba.Registro_de_LLegada.frmListadoTurnos(2, afil).Show();
         }
+
+
 
 
     }

@@ -34,10 +34,10 @@
             this.lbl_profesional = new System.Windows.Forms.Label();
             this.lbl_prf = new System.Windows.Forms.Label();
             this.btn_volver = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_cancelar_periodo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtp_inicial = new System.Windows.Forms.DateTimePicker();
+            this.dtp_final = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -66,12 +66,12 @@
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dtp_final);
+            this.groupBox1.Controls.Add(this.dtp_inicial);
             this.groupBox1.Controls.Add(this.lbl_profesional);
             this.groupBox1.Controls.Add(this.lbl_prf);
             this.groupBox1.Controls.Add(this.btn_volver);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btn_cancelar_periodo);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.lbl_afiliado);
             this.groupBox1.Controls.Add(this.lbl_af);
@@ -81,6 +81,7 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cancelar Turno";
+
             // 
             // lbl_profesional
             // 
@@ -111,14 +112,14 @@
             this.btn_volver.UseVisualStyleBackColor = true;
             this.btn_volver.Click += new System.EventHandler(this.btn_volver_Click);
             // 
-            // button2
+            // btn_cancelar_periodo
             // 
-            this.button2.Location = new System.Drawing.Point(94, 194);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Cancelar Período";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_cancelar_periodo.Location = new System.Drawing.Point(94, 194);
+            this.btn_cancelar_periodo.Name = "btn_cancelar_periodo";
+            this.btn_cancelar_periodo.Size = new System.Drawing.Size(111, 23);
+            this.btn_cancelar_periodo.TabIndex = 15;
+            this.btn_cancelar_periodo.Text = "Cancelar Período";
+            this.btn_cancelar_periodo.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -130,19 +131,19 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dateTimePicker1
+            // dtp_inicial
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(94, 135);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 19;
+            this.dtp_inicial.Location = new System.Drawing.Point(94, 135);
+            this.dtp_inicial.Name = "dtp_inicial";
+            this.dtp_inicial.Size = new System.Drawing.Size(200, 20);
+            this.dtp_inicial.TabIndex = 19;
             // 
-            // dateTimePicker2
+            // dtp_final
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(94, 161);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 20;
+            this.dtp_final.Location = new System.Drawing.Point(94, 161);
+            this.dtp_final.Name = "dtp_final";
+            this.dtp_final.Size = new System.Drawing.Size(200, 20);
+            this.dtp_final.TabIndex = 20;
             // 
             // label1
             // 
@@ -182,12 +183,12 @@
         private System.Windows.Forms.Label lbl_af;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_volver;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_cancelar_periodo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbl_profesional;
         private System.Windows.Forms.Label lbl_prf;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtp_final;
+        private System.Windows.Forms.DateTimePicker dtp_inicial;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }
