@@ -259,6 +259,11 @@ namespace Clinica_Frba.Menu
             new Clinica_Frba.Pedir_Turno.frmSolicitarTurno(sesionActual.usuario.getAfiliado()).Show();
         }
 
+        private void btn_f5_cancelarAtencion_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getAfiliado()).Show();
+        }
+
 
 
     }

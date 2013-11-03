@@ -98,5 +98,11 @@ namespace Clinica_Frba.Sql
             this.filters.Add(string.Format(" NOT {0} IS NULL ", columnName));
             return this;
         }
+
+        public Filters AddCustom(string p, string p_2, string p_3)
+        {
+            this.filters.Add(string.Format(" {0} {1} {2} ", p,p_2,p_3));
+            return this;
+        }
     }
 }

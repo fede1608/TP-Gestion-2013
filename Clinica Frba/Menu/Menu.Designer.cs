@@ -105,6 +105,7 @@
             this.btn_f5_cancelarAtencion.TabIndex = 2;
             this.btn_f5_cancelarAtencion.Text = "Cancelar un turno";
             this.btn_f5_cancelarAtencion.UseVisualStyleBackColor = true;
+            this.btn_f5_cancelarAtencion.Click += new System.EventHandler(this.btn_f5_cancelarAtencion_Click);
             // 
             // btn_f10_generarReceta
             // 

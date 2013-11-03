@@ -56,3 +56,6 @@ SELECT hag_id,hag_horario_inicio,hag_horario_fin,hag_id_agenda,hag_dia_semana,ha
 
 
 SELECT * FROM SIGKILL.Turno WHERE trn_profesional=1 AND DATEDIFF(day,trn_fecha_hora,'2013-11-04')=0
+select SIGKILL.getNextAfiliado()*100+1
+
+SELECT DISTINCT trn_id,trn_fecha_hora,trn_afiliado,afil_Apellido,afil_nombre,trn_profesional,pro_Apellido,pro_nombre FROM SIGKILL.turno,SIGKILL.afiliado,SIGKILL.profesional,SIGKILL.esp_prof,SIGKILL.especialidad WHERE trn_afiliado = afil_numero AND trn_profesional = pro_id AND pro_id = espprof_profesional AND espprof_especialidad = esp_id AND DATEDIFF(HOUR,trn_fecha_hora,'2013-11-04 12:00') <= '0' AND afil_nombre LIKE '%MARIÁN%' AND afil_apellido LIKE '%López%' AND afil_numero = '401' AND  trn_id not in (SELECT * FROM SIGKILL.consulta)  ORDER BY trn_fecha_hora ASC
