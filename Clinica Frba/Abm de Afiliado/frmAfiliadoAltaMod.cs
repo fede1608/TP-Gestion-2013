@@ -15,6 +15,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
     public partial class frmAfiliadoAltaMod : Form
     {
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+        Afiliado afiliado_a_modificar;
         long nroAfiliado;
 
         public frmAfiliadoAltaMod(Boolean alta, long unId, Boolean conyuge)
@@ -26,6 +27,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             InitializeComponent();
 
+            //Se inicializa el nro de Afiliado
+            //Si es Alta --> número del afiliado base
+            //Si es Modificación ---> id del afiliado que se quiere modificar
+            nroAfiliado = unId;
+
             if (alta)
             {
                 Text = "Alta";
@@ -35,21 +41,22 @@ namespace Clinica_Frba.Abm_de_Afiliado
             else
             {
                 Text = "Modificación";
+
+                afiliado_a_modificar = Afiliado.newFromId(nroAfiliado);
+
                 groupBox_ABMAfiliado_AltaMod_titulo.Text = "Modificación Afiliado";
                 //Estos campos no se pueden modificar
                 txt_ABMAfiliado_AltaMod_nombre.Enabled = false;
+                txt_ABMAfiliado_AltaMod_nombre.Text = afiliado_a_modificar.afil_nombre;
                 txt_ABMAfiliado_AltaMod_apellido.Enabled = false;
+                txt_ABMAfiliado_AltaMod_apellido.Text = afiliado_a_modificar.afil_apellido;
                 txt_ABMAfiliado_AltaMod_nrodoc.Enabled = false;
+                txt_ABMAfiliado_AltaMod_nrodoc.Text = afiliado_a_modificar.afil_dni.ToString();
                 monthCalendar_ABMAfiliado_AltaMod_nacimiento.Enabled = false;
                 //Este es el botón siguiente del Alta
                 btn_ABMAfiliado_Alta_siguiente.Visible = false;
                 cbo_ABMAfiliado_AltaMod_tipodoc.Enabled = false;
             }
-
-            //Se inicializa el nro de Afiliado
-            //Si es Alta --> número del afiliado base
-            //Si es Modificación ---> id del afiliado que se quiere modificar
-            nroAfiliado = unId;
 
             //Se inicializan las opciones de plan médico
             SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
@@ -59,7 +66,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
             {
                 cbo_ABMAfiliado_AltaMod_planmedico.Items.Add(r.pmed_nombre);
             }
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -134,8 +140,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void btn_ABMAfiliado_Mod_aceptar_Click(object sender, EventArgs e)
         {
-            Afiliado afiliado_a_modificar = Afiliado.newFromId(nroAfiliado);
-
             if (txt_ABMAfiliado_AltaMod_direccion.Text != "")
                 afiliado_a_modificar.afil_direccion = txt_ABMAfiliado_AltaMod_direccion.Text;
             if (txt_ABMAfiliado_AltaMod_telefono.Text != "")
