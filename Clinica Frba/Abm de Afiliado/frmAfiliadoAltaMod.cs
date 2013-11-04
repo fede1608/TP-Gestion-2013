@@ -14,6 +14,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
 {
     public partial class frmAfiliadoAltaMod : Form
     {
+        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+
         public frmAfiliadoAltaMod(Boolean alta)
         {    
             InitializeComponent();
@@ -36,8 +38,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 //Este es el botón siguiente del Alta
                 btn_ABMAfiliado_Alta_siguiente.Visible = false;
             }
-
-            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
 
             //Se inicializan las opciones de plan médico
             var pmed = new Adapter().TransformMany<Plan_Medico>(runner.Select("SELECT * FROM SIGKILL.plan_medico"));
@@ -91,10 +91,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 && cbo_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
 
-                SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-
                 try
-                {
+                    {
                         runner.Insert("EXEC nuevoAfiliado '{0}', '{1}', {2}, {3},'{4}',{5},'{6}','{7}','{8}','{9}','{10}',{11}",
                         txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, 1, int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text),
                         txt_ABMAfiliado_AltaMod_direccion.Text, int.Parse(txt_ABMAfiliado_AltaMod_telefono.Text), txt_ABMAfiliado_AltaMod_mail.Text,
@@ -103,11 +101,17 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
                     MessageBox.Show("Se ha creado el afiliado base correctamente");
 
-                }
+                    }
                 catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                if(cbo_ABMAfiliado_AltaMod_estadocivil.Text == "Casado/a")
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(1).Show();
+                else
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(2).Show();
+
                 }
             else
             {
