@@ -15,9 +15,15 @@ namespace Clinica_Frba.Abm_de_Afiliado
     public partial class frmAfiliadoAltaMod : Form
     {
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+        long nroAfiliado;
 
-        public frmAfiliadoAltaMod(Boolean alta)
+        public frmAfiliadoAltaMod(Boolean alta, long unId, Boolean conyuge)
         {    
+            //alta --> Permite inicializar la form dependiendo
+            //de si es un Alta o una Modificación
+            //unId --> Da el Id base de un grupo familiar, sino es 0
+            //conyuge --> Informa si la form es para dar de Alta un conyuge
+
             InitializeComponent();
 
             if (alta)
@@ -37,9 +43,17 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 monthCalendar_ABMAfiliado_AltaMod_nacimiento.Enabled = false;
                 //Este es el botón siguiente del Alta
                 btn_ABMAfiliado_Alta_siguiente.Visible = false;
+                cbo_ABMAfiliado_AltaMod_tipodoc.Enabled = false;
             }
 
+            //Se inicializa el nro de Afiliado
+            //Si es Alta --> número del afiliado base
+            //Si es Modificación ---> id del afiliado que se quiere modificar
+            nroAfiliado = unId;
+
             //Se inicializan las opciones de plan médico
+            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+
             var pmed = new Adapter().TransformMany<Plan_Medico>(runner.Select("SELECT * FROM SIGKILL.plan_medico"));
             foreach (Plan_Medico r in pmed)
             {
@@ -75,7 +89,6 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void btn_ABMAfiliado_Mod_siguiente_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btn_ABMAfiliado_Alta_siguiente_Click(object sender, EventArgs e)
@@ -121,7 +134,25 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void btn_ABMAfiliado_Mod_aceptar_Click(object sender, EventArgs e)
         {
+            Afiliado afiliado_a_modificar = Afiliado.newFromId(nroAfiliado);
 
+            if (txt_ABMAfiliado_AltaMod_direccion.Text != "")
+                afiliado_a_modificar.afil_direccion = txt_ABMAfiliado_AltaMod_direccion.Text;
+            if (txt_ABMAfiliado_AltaMod_telefono.Text != "")
+                afiliado_a_modificar.afil_telefono = long.Parse(txt_ABMAfiliado_AltaMod_telefono.Text);
+            if (txt_ABMAfiliado_AltaMod_mail.Text != "")
+                afiliado_a_modificar.afil_mail = txt_ABMAfiliado_AltaMod_mail.Text;
+            if (cbo_ABMAfiliado_AltaMod_sexo.Text != "")
+                afiliado_a_modificar.afil_sexo = afiliado_a_modificar.parsearSexo(cbo_ABMAfiliado_AltaMod_sexo.Text);
+            if (cbo_ABMAfiliado_AltaMod_estadocivil.Text != "")
+                afiliado_a_modificar.afil_estado_civil = afiliado_a_modificar.parsearEstadoCivil(cbo_ABMAfiliado_AltaMod_estadocivil.Text);
+            if (cbo_ABMAfiliado_AltaMod_planmedico.Text != "")
+                afiliado_a_modificar.afil_id_plan_medico = afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text);
+            
+            afiliado_a_modificar.commit();
+
+            MessageBox.Show("La modificación fue completada con éxito");
+            this.Close();
         }
 
         private void btn_ABMAfiliado_AltaMod_atras_Click(object sender, EventArgs e)

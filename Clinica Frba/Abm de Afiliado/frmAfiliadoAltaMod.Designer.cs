@@ -176,7 +176,7 @@
             "Soltero/a",
             "Casado/a",
             "Viudo/a",
-            "Concubinato/a",
+            "Concubinato",
             "Divorciado/a"});
             this.cbo_ABMAfiliado_AltaMod_estadocivil.Location = new System.Drawing.Point(131, 241);
             this.cbo_ABMAfiliado_AltaMod_estadocivil.Name = "cbo_ABMAfiliado_AltaMod_estadocivil";

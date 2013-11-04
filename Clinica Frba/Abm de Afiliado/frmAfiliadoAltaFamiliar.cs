@@ -37,13 +37,13 @@ namespace Clinica_Frba.Abm_de_Afiliado
             switch (opcion_form)
             {
                 case 1: 
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true).Show();
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
                     break;
                 case 2:
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true).Show();
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
                     break;
                 case 3:
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true).Show();
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
                     break;
 
             }
