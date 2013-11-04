@@ -118,7 +118,7 @@
             this.lbl_ABMpro_listado.Name = "lbl_ABMpro_listado";
             this.lbl_ABMpro_listado.Size = new System.Drawing.Size(65, 13);
             this.lbl_ABMpro_listado.TabIndex = 4;
-            this.lbl_ABMpro_listado.Text = "Plan médico";
+            this.lbl_ABMpro_listado.Text = "Especialidad";
             // 
             // lbl_ABMpro_dni
             // 

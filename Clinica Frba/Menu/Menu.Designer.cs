@@ -213,7 +213,7 @@
             this.btn_f18_modificarProfesional.Name = "btn_f18_modificarProfesional";
             this.btn_f18_modificarProfesional.Size = new System.Drawing.Size(156, 41);
             this.btn_f18_modificarProfesional.TabIndex = 14;
-            this.btn_f18_modificarProfesional.Text = "Modificar afiliado";
+            this.btn_f18_modificarProfesional.Text = "Modificar Profesional";
             this.btn_f18_modificarProfesional.UseVisualStyleBackColor = false;
             this.btn_f18_modificarProfesional.Click += new System.EventHandler(this.btn_f18_modificarProfesional_Click);
             // 

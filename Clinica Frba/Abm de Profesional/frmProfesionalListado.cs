@@ -66,6 +66,11 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
             }
 
 
+            //Esto es para que al apretar enter (AcceptButton) se "clickee" el boton buscar
+            this.AcceptButton = btn_ABMpro_buscar;
+            //Esto es para que al apretar esc (cancelbutton) se "clickee" el boton limpiar
+            this.CancelButton = btn_ABMpro_limpiar;
+
         }
 
         private void btn_ABMpro_buscar_Click(object sender, EventArgs e)
@@ -133,5 +138,6 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
             }
             */
         }
+
     }
 }
