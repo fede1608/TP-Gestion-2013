@@ -261,7 +261,7 @@ namespace Clinica_Frba.Menu
 
         private void btn_f5_cancelarAtencion_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getAfiliado()).Show();
+            new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getProfesional()).Show();
         }
 
 

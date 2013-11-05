@@ -6,6 +6,7 @@ DROP TABLE SIGKILL.baja_afiliado
 DROP TABLE SIGKILL.medicamento_bono_farmacia
 DROP TABLE SIGKILL.medicamento
 DROP TABLE SIGKILL.consulta
+DROP TABLE SIGKILL.consulta_auxiliar_inconsistencias
 DROP TABLE SIGKILL.bono_consulta
 DROP TABLE SIGKILL.bono_farmacia
 DROP TABLE SIGKILL.compra_bono

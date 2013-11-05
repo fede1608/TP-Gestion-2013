@@ -31,15 +31,15 @@
             this.lbl_afiliado = new System.Windows.Forms.Label();
             this.lbl_af = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtp_final = new System.Windows.Forms.DateTimePicker();
+            this.dtp_inicial = new System.Windows.Forms.DateTimePicker();
             this.lbl_profesional = new System.Windows.Forms.Label();
             this.lbl_prf = new System.Windows.Forms.Label();
             this.btn_volver = new System.Windows.Forms.Button();
             this.btn_cancelar_periodo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dtp_inicial = new System.Windows.Forms.DateTimePicker();
-            this.dtp_final = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,6 +83,38 @@
             this.groupBox1.Text = "Cancelar Turno";
 
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(24, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Fecha Final:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 138);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Fecha Inicial:";
+            // 
+            // dtp_final
+            // 
+            this.dtp_final.Location = new System.Drawing.Point(94, 161);
+            this.dtp_final.Name = "dtp_final";
+            this.dtp_final.Size = new System.Drawing.Size(200, 20);
+            this.dtp_final.TabIndex = 20;
+            // 
+            // dtp_inicial
+            // 
+            this.dtp_inicial.Location = new System.Drawing.Point(94, 135);
+            this.dtp_inicial.Name = "dtp_inicial";
+            this.dtp_inicial.Size = new System.Drawing.Size(200, 20);
+            this.dtp_inicial.TabIndex = 19;
+            // 
             // lbl_profesional
             // 
             this.lbl_profesional.AutoSize = true;
@@ -120,6 +152,7 @@
             this.btn_cancelar_periodo.TabIndex = 15;
             this.btn_cancelar_periodo.Text = "Cancelar Período";
             this.btn_cancelar_periodo.UseVisualStyleBackColor = true;
+            this.btn_cancelar_periodo.Click += new System.EventHandler(this.btn_cancelar_periodo_Click);
             // 
             // button1
             // 
@@ -130,38 +163,6 @@
             this.button1.Text = "Buscar Turno";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dtp_inicial
-            // 
-            this.dtp_inicial.Location = new System.Drawing.Point(94, 135);
-            this.dtp_inicial.Name = "dtp_inicial";
-            this.dtp_inicial.Size = new System.Drawing.Size(200, 20);
-            this.dtp_inicial.TabIndex = 19;
-            // 
-            // dtp_final
-            // 
-            this.dtp_final.Location = new System.Drawing.Point(94, 161);
-            this.dtp_final.Name = "dtp_final";
-            this.dtp_final.Size = new System.Drawing.Size(200, 20);
-            this.dtp_final.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 138);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Fecha Inicial:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Fecha Final:";
             // 
             // frmCancelarTurno
             // 

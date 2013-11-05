@@ -177,8 +177,9 @@ CREATE TABLE SIGKILL.cancelacion_atencion_medica(
 	cam_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
 	cam_nro_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	cam_tipo_cancelacion bigint REFERENCES SIGKILL.tipo_cancelacion(tic_id),
-	cam_motivo nvarchar(255) NOT NULL,
-	cam_fecha datetime NOT NULL
+	cam_motivo nvarchar(255) NULL,
+	cam_fecha_turno datetime NOT NULL,
+	cam_fecha_cancelacion datetime NOT NULL
 	)
 GO
 
@@ -255,6 +256,18 @@ CREATE TABLE SIGKILL.consulta(
 	)
 GO
 
+-- Tabla Consulta Auxiliar
+CREATE TABLE SIGKILL.consulta_auxiliar_inconsistencias(
+	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	cons_turno bigint,
+	cons_bono_consulta bigint,
+	cons_fecha_hora_llegada time NOT NULL,
+	cons_fecha_hora_atencion time NULL,
+	cons_sintomas nvarchar(255) NULL,
+	cons_diagnostico nvarchar(255) NULL
+	)
+GO
+
 -- Tabla Medicamento
 CREATE TABLE SIGKILL.medicamento(
 	medic_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -274,6 +287,7 @@ GO
 
 
 /***** MIGRACION *****/
+--insert de funcionalidades
 INSERT INTO SIGKILL.funcionalidad(func_descripcion)
 VALUES ('ABM de afiliados'),('ABM de profesional'),('ABM de especialidades médicas'),
 ('ABM de plan'),('Compra de bonos'),('Venta de bonos en ventanilla'),('Pedir un turno'),
@@ -282,45 +296,57 @@ VALUES ('ABM de afiliados'),('ABM de profesional'),('ABM de especialidades médic
 ('Generar un listado estadístico'),('Registrar agenda de profesional'),('Ver Agenda');
 GO
 
-
+--insert de tipos de cancelaciones
+INSERT INTO SIGKILL.tipo_cancelacion(tic_nombre_tipo)
+VALUES('Cancelado por Administrador'),('Cancelacion del Afiliado'),('Cancelacion Particular del Profesional'),('Cancelacion General de un período de un Profesional'),('Cancelacion por Migración');
+GO
 
 --insert de roles
 INSERT INTO SIGKILL.rol (rol_nombre,rol_habilitado) 
 VALUES ('Administrador',1),('Profesional',1),('Afiliado',1);
 GO
 
+--insert de relacion funcionalidad-rol
 INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad)
 VALUES (1,1),(1,2),(1,3),(1,4),(1,6),(1,8),(1,10),(1,12),(1,13),(2,9),(2,14),(3,5),(3,7)
 GO
 
+--insert de tipos de documentos
 INSERT INTO SIGKILL.tipo_doc(tdoc_descripcion)
 VALUES ('DU'),('Libreta Civica'),('Libreta de Enrolamiento')
 GO
 
+--insert de estados civiles
 INSERT INTO SIGKILL.estado_civil(estciv_descripcion)
 VALUES ('Soltero/a'),('Casado/a'),('Viudo/a'),('Divorciado/a'),('Concubinato');
 GO
 
+--insert de usuario admin
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password) 
 VALUES ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7');
 GO
 
+--insert de rol de usuario admin
 INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
 VALUES (1,1)
 GO
 
+--insert de usuarios afiliados de la tabla maestra. Formato del username: "u{DNI}" password:"default"
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Paciente_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra);
 GO
 
+--insert de roles de usuarios afiliados
 INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
 (SELECT usr_id,3 FROM SIGKILL.usuario WHERE usr_id>1)
 GO
 
+--insert de planes medicos
 INSERT INTO SIGKILL.plan_medico(pmed_id,pmed_nombre,pmed_precio,pmed_precio_bono_consulta,pmed_precio_bono_farmacia)
 VALUES (555555,'Plan Medico 110',110,96,92),(555556,'Plan Medico 120',120,66,74),(555557,'Plan Medico 130',130,42,45),(555558,'Plan Medico 140',140,28,39),(555559,'Plan Medico 150',150,0,0);
 GO
 
+--insert de datos del afiliado
 INSERT INTO SIGKILL.afiliado (afil_usuario,afil_numero,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico)
 (SELECT DISTINCT usr_id,((usr_id-1)*100+1) as numero_afil,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo
 FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
@@ -328,24 +354,29 @@ ON (usr_usuario=('u'+CONVERT(nvarchar,Paciente_Dni)))
 );
 GO
 
+--insert de usuarios profesionales
 INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)
 (SELECT DISTINCT ('u'+CONVERT(nvarchar,Medico_Dni)), '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f' FROM gd_esquema.Maestra WHERE Medico_Dni is not NULL);
 GO
 
+--insert de roles de usuarios profesinales
 INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
-(SELECT usr_id,2 FROM SIGKILL.usuario WHERE usr_id>7428)
+(SELECT usr_id,2 FROM SIGKILL.usuario WHERE usr_id>(SELECT COUNT(Distinct Paciente_Dni)+1 FROM gd_esquema.Maestra))
 GO
 
+--insert de datos de profesionales
 INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)
 (SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,Medico_Dni,Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
  FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
  ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
 GO
 
+--insert de agendas de profesionales desde el dia de la migracion hasta el ultimo dia que tengan turnos
 INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
-(SELECT GETDATE(),'2014-01-04',pro_id FROM SIGKILL.profesional)
+(SELECT GETDATE(),(SELECT MAX(Turno_Fecha) FROM gd_esquema.Maestra WHERE Medico_Dni=pro_dni),pro_id FROM SIGKILL.profesional)
 GO
 
+--insert de horarios de la agenda (Lunes a Jueves 40Hs semanales)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
 (select agp_id,'8:00','17:30',2 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
@@ -354,69 +385,97 @@ INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_
 (select agp_id,'8:00','17:30',4 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
 (select agp_id,'8:00','17:30',5 from SIGKILL.agenda_profesional)
-INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
-(select agp_id,'8:00','17:30',6 from SIGKILL.agenda_profesional)
+--INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
+--(select agp_id,'8:00','17:30',6 from SIGKILL.agenda_profesional)
 GO
 
+--insert de Turnos
 INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
 (SELECT DISTINCT Turno_Numero,pro_id,afil_numero,Turno_Fecha
  FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
  WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
 GO
 
-UPDATE SIGKILL.turno 
-SET trn_fecha_hora=DATEADD(day,5,trn_fecha_hora) 
+--UPDATE SIGKILL.turno 
+--SET trn_fecha_hora=DATEADD(day,5,trn_fecha_hora) 
+--WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0
+
+--insert de cancelaciones de turnos Domingo
+INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)
+(SELECT trn_profesional,trn_afiliado,5,'Cancelado por dia domingo',trn_fecha_hora,GETDATE() 
+	FROM SIGKILL.turno 
+	WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0)
+
+--Delete de turnos domingo           
+DELETE FROM SIGKILL.turno 
 WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0
 
+--insert de Bonos Consulta
 INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)
 (SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
 
+--insert de Bonos Farmacia
 INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)
 (SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
 
+--insert de Consultas que no hayan sucedido hasta el dia de la migracion
 INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null)
+WHERE Consulta_Sintomas is not null AND NOT( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) < 0))
 
+--insert de Consultas inconsistentes que sucedieron despues del dia de la migracion q son inconsistente para ser revisadas
+INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
+(SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
+FROM gd_esquema.Maestra 
+WHERE Consulta_Sintomas is not null AND ( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) < 0))
+
+--Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos q se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
 UPDATE SIGKILL.bono_consulta 
 SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
 FROM SIGKILL.bono_consulta,gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero
-	
+WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero AND NOT(DATEDIFF(day,Turno_Fecha,GETDATE()) < 0)
+
+--Update de bonos farmacia consumidos hasta la fecha de la migracion(aquellos q se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)	
 UPDATE SIGKILL.bono_farmacia 
 SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha
 FROM SIGKILL.bono_farmacia,gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero
+WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero AND NOT(DATEDIFF(day,Turno_Fecha,GETDATE()) < 0)
 
+--Update de nro de consulta individual de cada bono consulta utilizado
 UPDATE SIGKILL.bono_consulta
 SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
 from SIGKILL.bono_consulta as bc1
 WHERE bc1.bonoc_consumido=1
 
+--inserts de tipos de especialidades
 INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
 (SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 
  FROM gd_esquema.Maestra 
  WHERE Tipo_Especialidad_Codigo is not null)
 GO
- 
- INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
+
+--inserts de especialidades 
+INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
  (SELECT DISTINCT Especialidad_Codigo,Especialidad_Descripcion,Tipo_Especialidad_Codigo 
   FROM gd_esquema.Maestra 
   WHERE Especialidad_Codigo is not null)
 go
 
+--inserts de relacion especialidad-profesional
 INSERT INTO SIGKILL.esp_prof(espprof_especialidad,espprof_profesional)
 (SELECT DISTINCT Especialidad_Codigo,pro_id FROM gd_esquema.Maestra,SIGKILL.profesional WHERE Medico_Dni=pro_dni)
 
+--inserts de medicamentos
 INSERT INTO SIGKILL.medicamento (medic_nombre)
 (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
 GO
 
+--inserts de relacion bono-medicamento
 INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
 (SELECT Bono_Farmacia_Numero,medic_id from gd_esquema.Maestra,SIGKILL.medicamento WHERE Consulta_Sintomas is not null AND Bono_Farmacia_Medicamento=medic_nombre )
 GO

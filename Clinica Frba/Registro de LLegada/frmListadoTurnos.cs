@@ -148,10 +148,15 @@ namespace Clinica_Frba.Registro_de_LLegada
                     DialogResult dialogResult = MessageBox.Show("¿Quieres Cancelar el turno " + cell.Cells[0].Value.ToString() + "?", "Cancelar Turno", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        runner.Delete("DELETE FROM SIGKILL.turno WHERE trn_id={0}", cell.Cells[0].Value.ToString());
-                        //runner.Delete("DELETE FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value);
-                        MessageBox.Show("Se ha cancelado correctamente el turno");
-                        btn_buscar_Click(new object(),new EventArgs());
+                        string value = "Motivo de la cancelacion";
+                        if (InputBox.Show("Cancelar Turno", "Ingrese el motivo de cancelación.", ref value) == DialogResult.OK)
+                        {
+                            runner.Delete("DELETE FROM SIGKILL.turno WHERE trn_id={0}", cell.Cells[0].Value.ToString());
+                            runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)" +
+                            "VALUES ({0},{1},{2},'{3}','{4}','{5}')", cell.Cells[5].Value.ToString(), cell.Cells[2].Value.ToString(), type.ToString(), value, ((DateTime)cell.Cells[1].Value).ToString("yyyy-MM-dd HH:mm"), Properties.Settings.Default.Date.ToString("yyyy-MM-dd HH:mm"));
+                            MessageBox.Show("Se ha cancelado correctamente el turno");
+                            btn_buscar_Click(new object(), new EventArgs());
+                        }
                     }
                     break;
             }

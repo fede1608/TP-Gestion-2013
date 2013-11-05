@@ -102,6 +102,7 @@
     <Compile Include="ClasesDatosTablas\Agenda_Profesional.cs" />
     <Compile Include="ClasesDatosTablas\Bono_Consulta.cs" />
     <Compile Include="ClasesDatosTablas\Consulta.cs" />
+    <Compile Include="ClasesDatosTablas\customInputBox.cs" />
     <Compile Include="ClasesDatosTablas\Especialidad.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
     <Compile Include="ClasesDatosTablas\Horario_Agenda.cs" />
