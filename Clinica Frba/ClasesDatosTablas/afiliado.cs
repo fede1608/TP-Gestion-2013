@@ -70,10 +70,16 @@ namespace Clinica_Frba.ClasesDatosTablas
 
         public Boolean commit()
         {
-            runner.Update("UPDATE SIGKILL.afiliado SET afil_direccion='{0}', afil_telefono={1}, afil_mail='{2}', afil_sexo='{3}', afil_estado_civil={4}, afil_id_plan_medico={5} WHERE afil_numero={6}",
-                    afil_direccion, afil_telefono, afil_mail, afil_sexo, afil_estado_civil, afil_id_plan_medico, afil_numero);
+            runner.Update("UPDATE SIGKILL.afiliado SET afil_direccion='{0}', afil_telefono={1}, afil_mail='{2}', afil_sexo='{3}', afil_estado_civil={4}, afil_id_plan_medico={5}, afil_activo={6} WHERE afil_numero={7}",
+                    afil_direccion, afil_telefono, afil_mail, afil_sexo, afil_estado_civil, afil_id_plan_medico, afil_activo, afil_numero);
 
             return true;
+        }
+
+        public void darDeBaja()
+        {
+            afil_activo = 0;
+            commit();
         }
     }
 }

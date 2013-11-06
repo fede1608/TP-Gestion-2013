@@ -197,12 +197,12 @@ namespace Clinica_Frba.Menu
 
         private void btn_f14_bajaAfiliado_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado().Show();
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado(false).Show();
         }
 
         private void btn_f15_modificarAfiliado_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado().Show();
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado(true).Show();
         }
 
         private void frm_menuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
