@@ -51,8 +51,10 @@ namespace Clinica_Frba.ClasesDatosTablas
         {
             if (sexo == "Masculino")
                 return "M";
-            else
+            else if (sexo == "Femenino")
                 return "F";
+            else
+                return "D";
         }
 
         public long parsearEstadoCivil(String estado_civil_texto)

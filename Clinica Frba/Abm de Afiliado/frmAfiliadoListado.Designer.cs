@@ -107,6 +107,7 @@
             // 
             // cbo_Listado_planmedico
             // 
+            this.cbo_Listado_planmedico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_Listado_planmedico.FormattingEnabled = true;
             this.cbo_Listado_planmedico.Location = new System.Drawing.Point(344, 55);
             this.cbo_Listado_planmedico.Name = "cbo_Listado_planmedico";
