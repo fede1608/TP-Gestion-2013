@@ -46,7 +46,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             }
             if (txt_num_afil.Text.Length > 0)
             {
-                filter.AddEqual("afil_id", txt_num_afil.Text);
+                filter.AddEqual("afil_numero", txt_num_afil.Text);
             }
             try
             {
@@ -71,6 +71,11 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             var cell = dataGridView1.Rows[e.RowIndex];
             new Clinica_Frba.Registro_Resultado_Atencion.frmRegistroAtencion(Afiliado.newFromId((long)cell.Cells[3].Value), prof, Consulta.newFromId((long)cell.Cells[0].Value)).Show();
             this.Close();
+        }
+
+        private void frmListadoConsultas_Load(object sender, EventArgs e)
+        {
+            lbl_profesional.Text = prof.getName();
         }
     }
 }

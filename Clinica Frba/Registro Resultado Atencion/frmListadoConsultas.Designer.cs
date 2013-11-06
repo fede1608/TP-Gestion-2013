@@ -32,6 +32,8 @@
             this.btn_limpiar = new System.Windows.Forms.Button();
             this.btn_buscar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_profesional = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_num_afil = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,8 +42,6 @@
             this.txt_nom_afil = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbl_profesional = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +98,25 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtro de Busqueda";
+            // 
+            // lbl_profesional
+            // 
+            this.lbl_profesional.AutoSize = true;
+            this.lbl_profesional.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_profesional.Location = new System.Drawing.Point(216, 19);
+            this.lbl_profesional.Name = "lbl_profesional";
+            this.lbl_profesional.Size = new System.Drawing.Size(103, 13);
+            this.lbl_profesional.TabIndex = 16;
+            this.lbl_profesional.Text = "Apellido, Nombre";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(147, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Profesional:";
             // 
             // label7
             // 
@@ -163,25 +182,6 @@
             this.txtId.Size = new System.Drawing.Size(100, 20);
             this.txtId.TabIndex = 1;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(147, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Profesional:";
-            // 
-            // lbl_profesional
-            // 
-            this.lbl_profesional.AutoSize = true;
-            this.lbl_profesional.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_profesional.Location = new System.Drawing.Point(216, 19);
-            this.lbl_profesional.Name = "lbl_profesional";
-            this.lbl_profesional.Size = new System.Drawing.Size(103, 13);
-            this.lbl_profesional.TabIndex = 16;
-            this.lbl_profesional.Text = "Apellido, Nombre";
-            // 
             // frmListadoConsultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +191,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmListadoConsultas";
             this.Text = "Listado de Consultas";
+            this.Load += new System.EventHandler(this.frmListadoConsultas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

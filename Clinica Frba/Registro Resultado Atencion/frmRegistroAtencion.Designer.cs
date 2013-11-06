@@ -30,22 +30,22 @@
         {
             this.btn_aceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_cancelar = new System.Windows.Forms.Button();
+            this.btn_receta = new System.Windows.Forms.Button();
+            this.lbl_consulta = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txt_diagnostico = new System.Windows.Forms.TextBox();
+            this.txt_sintomas = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_hora_atencion = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_profesional = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbl_turno = new System.Windows.Forms.Label();
+            this.btn_cancelar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_afiliado = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbl_profesional = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbl_hora_atencion = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txt_sintomas = new System.Windows.Forms.TextBox();
-            this.txt_diagnostico = new System.Windows.Forms.TextBox();
-            this.lbl_consulta = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btn_receta = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,15 +85,106 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar Consulta";
             // 
-            // btn_cancelar
+            // btn_receta
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(195, 223);
-            this.btn_cancelar.Name = "btn_cancelar";
-            this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancelar.TabIndex = 1;
-            this.btn_cancelar.Text = "Cancelar";
-            this.btn_cancelar.UseVisualStyleBackColor = true;
-            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
+            this.btn_receta.Location = new System.Drawing.Point(22, 223);
+            this.btn_receta.Name = "btn_receta";
+            this.btn_receta.Size = new System.Drawing.Size(153, 23);
+            this.btn_receta.TabIndex = 18;
+            this.btn_receta.Text = "Crear Receta";
+            this.btn_receta.UseVisualStyleBackColor = true;
+            this.btn_receta.Click += new System.EventHandler(this.btn_receta_Click);
+            // 
+            // lbl_consulta
+            // 
+            this.lbl_consulta.AutoSize = true;
+            this.lbl_consulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_consulta.Location = new System.Drawing.Point(125, 25);
+            this.lbl_consulta.Name = "lbl_consulta";
+            this.lbl_consulta.Size = new System.Drawing.Size(41, 13);
+            this.lbl_consulta.TabIndex = 17;
+            this.lbl_consulta.Text = "label3";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(19, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Numero de Consulta:";
+            // 
+            // txt_diagnostico
+            // 
+            this.txt_diagnostico.Location = new System.Drawing.Point(195, 132);
+            this.txt_diagnostico.Multiline = true;
+            this.txt_diagnostico.Name = "txt_diagnostico";
+            this.txt_diagnostico.Size = new System.Drawing.Size(153, 79);
+            this.txt_diagnostico.TabIndex = 15;
+            // 
+            // txt_sintomas
+            // 
+            this.txt_sintomas.Location = new System.Drawing.Point(22, 132);
+            this.txt_sintomas.Multiline = true;
+            this.txt_sintomas.Name = "txt_sintomas";
+            this.txt_sintomas.Size = new System.Drawing.Size(153, 79);
+            this.txt_sintomas.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 112);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Síntomas:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(192, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Diagnóstico:";
+            // 
+            // lbl_hora_atencion
+            // 
+            this.lbl_hora_atencion.AutoSize = true;
+            this.lbl_hora_atencion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hora_atencion.Location = new System.Drawing.Point(291, 75);
+            this.lbl_hora_atencion.Name = "lbl_hora_atencion";
+            this.lbl_hora_atencion.Size = new System.Drawing.Size(39, 13);
+            this.lbl_hora_atencion.TabIndex = 11;
+            this.lbl_hora_atencion.Text = "12:00";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(192, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Hora de Atención:";
+            // 
+            // lbl_profesional
+            // 
+            this.lbl_profesional.AutoSize = true;
+            this.lbl_profesional.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_profesional.Location = new System.Drawing.Point(260, 49);
+            this.lbl_profesional.Name = "lbl_profesional";
+            this.lbl_profesional.Size = new System.Drawing.Size(103, 13);
+            this.lbl_profesional.TabIndex = 9;
+            this.lbl_profesional.Text = "Apellido, Nombre";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(192, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Profesional:";
             // 
             // lbl_turno
             // 
@@ -104,6 +195,16 @@
             this.lbl_turno.Size = new System.Drawing.Size(41, 13);
             this.lbl_turno.TabIndex = 7;
             this.lbl_turno.Text = "label3";
+            // 
+            // btn_cancelar
+            // 
+            this.btn_cancelar.Location = new System.Drawing.Point(195, 223);
+            this.btn_cancelar.Name = "btn_cancelar";
+            this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.btn_cancelar.TabIndex = 1;
+            this.btn_cancelar.Text = "Cancelar";
+            this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // label2
             // 
@@ -132,106 +233,6 @@
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Afiliado: ";
-            // 
-            // lbl_profesional
-            // 
-            this.lbl_profesional.AutoSize = true;
-            this.lbl_profesional.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_profesional.Location = new System.Drawing.Point(260, 49);
-            this.lbl_profesional.Name = "lbl_profesional";
-            this.lbl_profesional.Size = new System.Drawing.Size(103, 13);
-            this.lbl_profesional.TabIndex = 9;
-            this.lbl_profesional.Text = "Apellido, Nombre";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(192, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Profesional:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(192, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Hora de Atención:";
-            // 
-            // lbl_hora_atencion
-            // 
-            this.lbl_hora_atencion.AutoSize = true;
-            this.lbl_hora_atencion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_hora_atencion.Location = new System.Drawing.Point(291, 75);
-            this.lbl_hora_atencion.Name = "lbl_hora_atencion";
-            this.lbl_hora_atencion.Size = new System.Drawing.Size(39, 13);
-            this.lbl_hora_atencion.TabIndex = 11;
-            this.lbl_hora_atencion.Text = "12:00";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(192, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Diagnóstico:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 112);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Síntomas:";
-            // 
-            // txt_sintomas
-            // 
-            this.txt_sintomas.Location = new System.Drawing.Point(22, 132);
-            this.txt_sintomas.Multiline = true;
-            this.txt_sintomas.Name = "txt_sintomas";
-            this.txt_sintomas.Size = new System.Drawing.Size(153, 79);
-            this.txt_sintomas.TabIndex = 14;
-            // 
-            // txt_diagnostico
-            // 
-            this.txt_diagnostico.Location = new System.Drawing.Point(195, 132);
-            this.txt_diagnostico.Multiline = true;
-            this.txt_diagnostico.Name = "txt_diagnostico";
-            this.txt_diagnostico.Size = new System.Drawing.Size(153, 79);
-            this.txt_diagnostico.TabIndex = 15;
-            // 
-            // lbl_consulta
-            // 
-            this.lbl_consulta.AutoSize = true;
-            this.lbl_consulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_consulta.Location = new System.Drawing.Point(125, 25);
-            this.lbl_consulta.Name = "lbl_consulta";
-            this.lbl_consulta.Size = new System.Drawing.Size(41, 13);
-            this.lbl_consulta.TabIndex = 17;
-            this.lbl_consulta.Text = "label3";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(106, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Numero de Consulta:";
-            // 
-            // btn_receta
-            // 
-            this.btn_receta.Location = new System.Drawing.Point(22, 223);
-            this.btn_receta.Name = "btn_receta";
-            this.btn_receta.Size = new System.Drawing.Size(153, 23);
-            this.btn_receta.TabIndex = 18;
-            this.btn_receta.Text = "Crear Receta";
-            this.btn_receta.UseVisualStyleBackColor = true;
             // 
             // frmRegistroAtencion
             // 

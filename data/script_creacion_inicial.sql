@@ -233,17 +233,6 @@ CREATE TABLE SIGKILL.bono_consulta(
 	)
 GO
 
--- Tabla Bono farmacia
-CREATE TABLE SIGKILL.bono_farmacia(
-	bonof_id bigint PRIMARY KEY NOT NULL,
-	bonof_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
-	bonof_fecha_compra datetime NOT NULL,
-	bonof_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
-	bonof_consumido int DEFAULT 0 NOT NULL,
-	bonof_precio decimal(6,2) NOT NULL
-	)
-GO
-
 -- Tabla Consulta
 CREATE TABLE SIGKILL.consulta(
 	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -253,6 +242,18 @@ CREATE TABLE SIGKILL.consulta(
 	cons_fecha_hora_atencion time NULL,
 	cons_sintomas nvarchar(255) NULL,
 	cons_diagnostico nvarchar(255) NULL
+	)
+GO
+
+-- Tabla Bono farmacia
+CREATE TABLE SIGKILL.bono_farmacia(
+	bonof_id bigint PRIMARY KEY NOT NULL,
+	bonof_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bonof_fecha_compra datetime NOT NULL,
+	bonof_consulta bigint REFERENCES SIGKILL.consulta(cons_id) NULL,
+	bonof_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
+	bonof_consumido int DEFAULT 0 NOT NULL,
+	bonof_precio decimal(6,2) NOT NULL
 	)
 GO
 
@@ -442,9 +443,9 @@ WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero AND NOT(DA
 
 --Update de bonos farmacia consumidos hasta la fecha de la migracion(aquellos q se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)	
 UPDATE SIGKILL.bono_farmacia 
-SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha
-FROM SIGKILL.bono_farmacia,gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero AND NOT(DATEDIFF(day,Turno_Fecha,GETDATE()) < 0)
+SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha,bonof_consulta=cons_id
+FROM SIGKILL.bono_farmacia,gd_esquema.Maestra,SIGKILL.consulta
+WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero AND Turno_Numero=cons_turno AND NOT(DATEDIFF(day,Turno_Fecha,GETDATE()) < 0)
 
 --Update de nro de consulta individual de cada bono consulta utilizado
 UPDATE SIGKILL.bono_consulta

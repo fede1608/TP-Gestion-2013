@@ -52,7 +52,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                     return;
                 }
 
-                if (afil.getNumeroAfiliadoPrincipal() != afil.numeroAfiliadoPrincipal(Convert.ToInt64(bono.bonoc_afiliado)))
+                if (!bono.esValidoPara(afil))
                 {
                     MessageBox.Show("El Bono ingresado no coincide con el Numero de Afiliado ni con de un Familiar asociado");
                     return;

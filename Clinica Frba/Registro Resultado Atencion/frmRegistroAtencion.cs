@@ -56,5 +56,10 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             lbl_profesional.Text = prof.getName();
             lbl_turno.Text = consulta.cons_turno.ToString();
         }
+
+        private void btn_receta_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Generar_Receta.frmGenerarReceta(prof,afil,consulta).Show();
+        }
     }
 }

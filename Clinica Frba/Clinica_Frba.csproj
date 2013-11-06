@@ -101,11 +101,13 @@
     <Compile Include="ClasesDatosTablas\afiliado.cs" />
     <Compile Include="ClasesDatosTablas\Agenda_Profesional.cs" />
     <Compile Include="ClasesDatosTablas\Bono_Consulta.cs" />
+    <Compile Include="ClasesDatosTablas\Bono_Farmacia.cs" />
     <Compile Include="ClasesDatosTablas\Consulta.cs" />
     <Compile Include="ClasesDatosTablas\customInputBox.cs" />
     <Compile Include="ClasesDatosTablas\Especialidad.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
     <Compile Include="ClasesDatosTablas\Horario_Agenda.cs" />
+    <Compile Include="ClasesDatosTablas\Medicamento.cs" />
     <Compile Include="ClasesDatosTablas\Plan_Medico.cs" />
     <Compile Include="ClasesDatosTablas\Profesional.cs" />
     <Compile Include="ClasesDatosTablas\rol.cs" />
@@ -130,6 +132,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2013DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Receta\frmGenerarReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Receta\frmGenerarReceta.Designer.cs">
+      <DependentUpon>frmGenerarReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -231,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Receta\frmGenerarReceta.resx">
+      <DependentUpon>frmGenerarReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
