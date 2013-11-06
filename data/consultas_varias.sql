@@ -3,8 +3,9 @@
 --Select Top 100 COUNT(Distinct Paciente_Nombre),Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni order by 1 desc
 --SELECT Paciente_Dni from gd_esquema.Maestra group by Paciente_Dni
 --Select * from SIGKILL.bono_consulta WHERE bonoc_afiliado =465501
---Select * from SIGKILL.bono_farmacia
+--Select * from SIGKILL.bono_farmacia WHERE bonof_afiliado =465501
 --Select * from SIGKILL.usuario
+--Select * from SIGKILL.medicamento
 SELECT * FROM SIGKILL.turno WHERE trn_profesional=21 AND trn_fecha_hora between '2013-11-12' and '2013-11-15'
 --Select * from SIGKILL.turno WHERE trn_profesional=22 order by trn_fecha_hora
 --Select * from SIGKILL.afiliado where afil_nombre='Dalila'

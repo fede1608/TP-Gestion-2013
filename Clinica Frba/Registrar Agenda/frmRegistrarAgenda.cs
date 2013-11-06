@@ -40,8 +40,12 @@ namespace Clinica_Frba.Registrar_Agenda
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(dtp_inicio.Value.ToString("yyyy-MM-dd"));
+            
             if (dtp_inicio.Value.CompareTo(dtp_fin.Value) > 0)
                 {MessageBox.Show("Has ingresado mal el rango de Fechas"); return;};
+            TimeSpan span=dtp_fin.Value-Properties.Settings.Default.Date;
+            if (span.TotalDays > 120)
+                {MessageBox.Show("El rango de fechas debe estar entre los próximos 120 días");return;}
             if (chk_lunes.Checked && (combo_lunes_inicio.SelectedIndex > combo_lunes_fin.SelectedIndex || combo_lunes_inicio.SelectedIndex<0 ||combo_lunes_fin.SelectedIndex<0))
                 {MessageBox.Show("Has ingresado mal el rango de horarios del Lunes");return;};
             if (chk_martes.Checked && (combo_martes_inicio.SelectedIndex > combo_martes_fin.SelectedIndex || combo_martes_inicio.SelectedIndex < 0 || combo_martes_fin.SelectedIndex < 0))
