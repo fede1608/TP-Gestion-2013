@@ -48,9 +48,12 @@
             // 
             // dbgrb_ABMAfiliado_Listado_vista
             // 
+            this.dbgrb_ABMAfiliado_Listado_vista.AllowUserToAddRows = false;
+            this.dbgrb_ABMAfiliado_Listado_vista.AllowUserToDeleteRows = false;
             this.dbgrb_ABMAfiliado_Listado_vista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dbgrb_ABMAfiliado_Listado_vista.Location = new System.Drawing.Point(14, 194);
             this.dbgrb_ABMAfiliado_Listado_vista.Name = "dbgrb_ABMAfiliado_Listado_vista";
+            this.dbgrb_ABMAfiliado_Listado_vista.ReadOnly = true;
             this.dbgrb_ABMAfiliado_Listado_vista.Size = new System.Drawing.Size(522, 208);
             this.dbgrb_ABMAfiliado_Listado_vista.TabIndex = 0;
             this.dbgrb_ABMAfiliado_Listado_vista.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dbgrb_ABMAfiliado_Listado_vista_CellClick);
