@@ -24,6 +24,7 @@ namespace Clinica_Frba.Menu
         {
             InitializeComponent();
             new Clinica_Frba.Login.frmLogin(this).Show();
+            
             //this.Visible = false;
             this.Hide();
 

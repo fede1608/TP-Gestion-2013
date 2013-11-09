@@ -24,6 +24,7 @@ namespace Clinica_Frba.Login
             formMenu = menu;
             //Escondemos el menu hasta que este logeado el usuario
             //menu.Hide();
+            habilitarLogeo();
 
         }
 
@@ -194,7 +195,7 @@ namespace Clinica_Frba.Login
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            habilitarLogeo();
         }
 
 
@@ -244,7 +245,7 @@ namespace Clinica_Frba.Login
 
         private void btnCancelarRol_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Rol.frmListadoRoles().Show();
+            habilitarLogeo();
         }
 
         public void deshabilitarLogeo()
@@ -270,6 +271,34 @@ namespace Clinica_Frba.Login
             lblRol.Visible = true;
 
         }
+
+        public void habilitarLogeo()
+        {
+            btnAceptar.Visible = true;
+            btnCancelar.Visible = true;
+            grbLogin.Enabled = true;
+            txtPass.Enabled = true;
+            txtUser.Enabled = true;
+            chkbPass.Enabled = true;
+            lblPass.Enabled = true;
+            lblUser.Enabled = true;
+            txtIntentos.Enabled = true;
+            lblIntentos.Enabled = true;
+            this.ClientSize = new System.Drawing.Size(294, 229);
+            this.CenterToScreen();
+
+
+            btnAceptarRol.Visible = false;
+            btnCancelarRol.Visible = false;
+            grbRol.Visible = false;
+            cboRol.Visible = false;
+            lblRol.Visible = false;
+            txtUser.Focus();
+            cboRol.Items.Clear();
+
+        }
+
+        
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
