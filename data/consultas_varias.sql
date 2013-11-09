@@ -65,3 +65,38 @@ select SIGKILL.getNextAfiliado()*100+1
 SELECT DISTINCT trn_id,trn_fecha_hora,trn_afiliado,afil_Apellido,afil_nombre,trn_profesional,pro_Apellido,pro_nombre FROM SIGKILL.turno,SIGKILL.afiliado,SIGKILL.profesional,SIGKILL.esp_prof,SIGKILL.especialidad WHERE trn_afiliado = afil_numero AND trn_profesional = pro_id AND pro_id = espprof_profesional AND espprof_especialidad = esp_id AND DATEDIFF(HOUR,trn_fecha_hora,'2013-11-04 12:00') <= '0' AND afil_nombre LIKE '%MARIÁN%' AND afil_apellido LIKE '%López%' AND afil_numero = '401' AND  trn_id not in (SELECT * FROM SIGKILL.consulta)  ORDER BY trn_fecha_hora ASC
 
 SELECT * FROM SIGKILL.turno WHERE trn_profesional=1 AND trn_fecha_hora between '2013-11-05' and '2013-11-20'
+
+SELECT TOP 5 esp_nombre_especialidad as Especialidad,Count(*) as Cantidad/*,DATENAME(month,cam_fecha_cancelacion) as Fecha*/ FROM SIGKILL.cancelacion_atencion_medica,SIGKILL.profesional,SIGKILL.esp_prof,SIGKILL.especialidad WHERE cam_profesional=pro_id AND pro_id=espprof_profesional AND espprof_especialidad=esp_id AND cam_tipo_cancelacion in (2,3,4,5) AND MONTH(cam_fecha_cancelacion) in (11) GROUP BY esp_nombre_especialidad--, DATENAME(month,cam_fecha_cancelacion)
+SELECT afil_nombre as Nombre,afil_apellido as Apellido,COUNT(*) as Cantidad FROM SIGKILL.bono_farmacia,SIGKILL.afiliado WHERE bono_farmacia.bonof_afiliado=afil_numero AND bonof_consumido=0  AND DATEADD(day,90,bonof_fecha_compra)<'2014-06-30' AND MONTH(DATEADD(day,90,bonof_fecha_compra)) in (3) GROUP BY afil_numero,afil_nombre,afil_apellido
+
+SELECT TOP 5 esp_nombre_especialidad, COUNT(*) FROM SIGKILL.bono_farmacia,SIGKILL.consulta,SIGKILL.turno,SIGKILL.profesional,SIGKILL.esp_prof,SIGKILL.especialidad WHERE bonof_consumido=1 AND bonof_consulta=cons_id AND cons_turno=trn_id AND trn_profesional=pro_id AND pro_id=espprof_profesional AND espprof_especialidad=esp_id AND MONTH(trn_fecha_hora) in (1) AND YEAR(trn_fecha_hora)=2013 GROUP BY esp_nombre_especialidad ORDER BY 2 DESC,1 DESC
+
+SELECT TOP 10 Nombre,Apellido,SUM(Cantidad) as Cantidad FROM (
+	(SELECT trn_afiliado,afil_nombre as Nombre,afil_apellido as Apellido,COUNT(*) as Cantidad 
+	FROM SIGKILL.bono_consulta,SIGKILL.consulta,SIGKILL.turno,SIGKILL.afiliado 
+	WHERE bonoc_consumido=1 AND cons_bono_consulta=bonoc_id AND cons_turno=trn_id AND trn_afiliado=afil_numero AND bonoc_afiliado!=trn_afiliado AND MONTH(trn_fecha_hora) in (1,2,3,4,5,6) AND YEAR(trn_fecha_hora)=2013 
+	GROUP BY trn_afiliado,afil_nombre,afil_apellido) 
+	Union 
+	(SELECT trn_afiliado,(SELECT afil_nombre FROM SIGKILL.afiliado WHERE afil_numero=trn_afiliado) as Nombre,(SELECT afil_apellido FROM SIGKILL.afiliado WHERE afil_numero=trn_afiliado) as Apellido, COUNT(*) as Cantidad 
+	FROM SIGKILL.bono_farmacia,SIGKILL.consulta,SIGKILL.turno
+	WHERE bonof_consumido=1 AND cons_id=bonof_consulta AND cons_turno=trn_id  AND bonof_afiliado!=trn_afiliado AND MONTH(trn_fecha_hora) in (1,2,3,4,5,6) AND YEAR(trn_fecha_hora)=2013 
+	GROUP BY trn_afiliado)
+) as a 
+GROUP BY a.trn_afiliado,a.Nombre,a.Apellido ORDER BY 3 DESC,2 DESC,1 DESC
+
+
+
+	(SELECT trn_afiliado,afil_nombre as Nombre,afil_apellido as Apellido,COUNT(*) as Cantidad 
+	FROM SIGKILL.bono_farmacia,SIGKILL.consulta,SIGKILL.turno,SIGKILL.afiliado 
+	WHERE bonof_consumido=1 AND trn_afiliado=afil_numero AND cons_id=bonof_consulta AND cons_turno=trn_id  AND bonof_afiliado!=trn_afiliado AND MONTH(trn_fecha_hora) in (1,2,3,4,5,6) AND YEAR(trn_fecha_hora)=2013 
+	GROUP BY trn_afiliado,afil_nombre,afil_apellido)
+	
+	(SELECT trn_afiliado,(SELECT afil_nombre FROM SIGKILL.afiliado WHERE afil_numero=trn_afiliado) as Nombre,(SELECT afil_apellido FROM SIGKILL.afiliado WHERE afil_numero=trn_afiliado) as Apellido, COUNT(*) as Cantidad 
+	FROM SIGKILL.bono_farmacia,SIGKILL.consulta,SIGKILL.turno
+	WHERE bonof_consumido=1 AND cons_id=bonof_consulta AND cons_turno=trn_id  AND bonof_afiliado!=trn_afiliado AND MONTH(trn_fecha_hora) in (1,2,3,4,5,6) AND YEAR(trn_fecha_hora)=2013 
+	GROUP BY trn_afiliado)
+	
+	(SELECT COUNT(*)
+	FROM SIGKILL.bono_consulta,SIGKILL.consulta,SIGKILL.turno,SIGKILL.afiliado 
+	WHERE bonoc_consumido=1 AND cons_bono_consulta=bonoc_id AND cons_turno=trn_id AND trn_afiliado=afil_numero AND bonoc_afiliado!=trn_afiliado AND MONTH(trn_fecha_hora) in (1,2,3,4,5,6) AND YEAR(trn_fecha_hora)=2013 
+	GROUP BY trn_afiliado,afil_nombre,afil_apellido)

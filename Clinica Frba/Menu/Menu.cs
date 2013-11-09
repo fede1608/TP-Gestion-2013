@@ -618,7 +618,7 @@ namespace Clinica_Frba.Menu
         //Evento click de generar estadisticas
         private void btn_generar_estadisticas_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Listados_Estadisticos.frmListadosEstadisticos().Show();
         }
 
         //Evento click de agenda profesional

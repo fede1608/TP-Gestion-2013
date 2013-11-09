@@ -1,6 +1,7 @@
 DROP FUNCTION SIGKILL.getNextNumeroAfiliado
 DROP FUNCTION SIGKILL.SplitString 
 DROP FUNCTION SIGKILL.getMedicamentoId
+DROP FUNCTION SIGKILL.getNumeroAfiliadoPrincipal
 
 DROP TABLE SIGKILL.baja_afiliado
 DROP TABLE SIGKILL.medicamento_bono_farmacia

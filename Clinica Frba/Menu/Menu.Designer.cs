@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 218);
+            this.ClientSize = new System.Drawing.Size(365, 216);
             this.Controls.Add(this.btnCerrarSesion);
             this.Name = "frm_menuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

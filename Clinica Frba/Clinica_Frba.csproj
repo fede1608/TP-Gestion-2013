@@ -105,6 +105,7 @@
     <Compile Include="ClasesDatosTablas\Consulta.cs" />
     <Compile Include="ClasesDatosTablas\customInputBox.cs" />
     <Compile Include="ClasesDatosTablas\Especialidad.cs" />
+    <Compile Include="ClasesDatosTablas\Estadistica.cs" />
     <Compile Include="ClasesDatosTablas\funcionalidad.cs" />
     <Compile Include="ClasesDatosTablas\Horario_Agenda.cs" />
     <Compile Include="ClasesDatosTablas\Medicamento.cs" />
@@ -138,6 +139,18 @@
     </Compile>
     <Compile Include="Generar Receta\frmGenerarReceta.Designer.cs">
       <DependentUpon>frmGenerarReceta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listados Estadisticos\frmListadosEstadisticos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados Estadisticos\frmListadosEstadisticos.Designer.cs">
+      <DependentUpon>frmListadosEstadisticos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listados Estadisticos\frmResultadosEstadisticos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados Estadisticos\frmResultadosEstadisticos.Designer.cs">
+      <DependentUpon>frmResultadosEstadisticos.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -193,12 +206,6 @@
     <Compile Include="Abm de Planes\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listados Estadisticos\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Listados Estadisticos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAltaFamiliar.resx">
@@ -236,6 +243,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Receta\frmGenerarReceta.resx">
       <DependentUpon>frmGenerarReceta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados Estadisticos\frmListadosEstadisticos.resx">
+      <DependentUpon>frmListadosEstadisticos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados Estadisticos\frmResultadosEstadisticos.resx">
+      <DependentUpon>frmResultadosEstadisticos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

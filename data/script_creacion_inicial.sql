@@ -435,7 +435,7 @@ INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consu
 FROM gd_esquema.Maestra 
 WHERE Consulta_Sintomas is not null AND ( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) < 0))
 
---Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos q se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
+--Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos que se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
 UPDATE SIGKILL.bono_consulta 
 SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
 FROM SIGKILL.bono_consulta,gd_esquema.Maestra 
@@ -482,13 +482,25 @@ INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medica
 GO
 
 /***** FUNCIONES ****/
+
+create function SIGKILL.getNumeroAfiliadoPrincipal
+(
+	@num bigint
+)
+returns bigint
+as
+begin
+	RETURN FLOOR(@num/100)
+end
+go
+
 create function SIGKILL.getNextNumeroAfiliado
 (
 )
-returns int
+returns bigint
 as
 begin
-	DECLARE @numero int
+	DECLARE @numero bigint
 	SELECT @numero=COUNT(DISTINCT ROUND(afil_numero/100,0)) FROM SIGKILL.afiliado
 	RETURN @numero+1
 end
