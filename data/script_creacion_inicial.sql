@@ -605,6 +605,25 @@ Begin
 			UPDATE SIGKILL.afiliado SET afil_cant_fam_a_cargo=afil_cant_fam_a_cargo+1 WHERE  afil_numero=@numeroAfilBase*100+1
 	END
 END
+GO
+
+CREATE TRIGGER trg_mod_planMedico ON SIGKILL.afiliado AFTER UPDATE
+AS
+BEGIN
+	declare @idplan bigint
+	declare @idafil bigint
+	declare c1 cursor for (SELECT afil_id_plan_medico,afil_numero  FROM INSERTED)
+	open c1
+	fetch c1 into @idplan,@idafil
+	while @@FETCH_STATUS = 0
+	BEGIN
+		IF (UPDATE(afil_id_plan_medico))
+		BEGIN
+			UPDATE SIGKILL.afiliado SET afil_id_plan_medico=@idplan WHERE FLOOR(afil_numero/100)=FLOOR(@idafil/100)
+		END
+		fetch c1 into @idplan,@idafil
+	END
+END
 
 /****CURSORES****/
 --declare @med_string nvarchar(300)

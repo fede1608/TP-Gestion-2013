@@ -185,7 +185,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
             if (cbo_ABMAfiliado_AltaMod_estadocivil.Text != "")
                 afiliado_a_modificar.afil_estado_civil = afiliado_a_modificar.parsearEstadoCivil(cbo_ABMAfiliado_AltaMod_estadocivil.Text);
             if (cbo_ABMAfiliado_AltaMod_planmedico.Text != "")
+            {
+                runner.Insert("INSERT INTO SIGKILL.cambio_plan(capla_afiliado,capla_plan_viejo,capla_plan_nuevo,capla_fecha)" +
+                    "VALUES ({0},{1},{2},'{3}')", afiliado_a_modificar.afil_numero, afiliado_a_modificar.afil_id_plan_medico, afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text), Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
                 afiliado_a_modificar.afil_id_plan_medico = afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text);
+            }
             
             afiliado_a_modificar.commit();
 

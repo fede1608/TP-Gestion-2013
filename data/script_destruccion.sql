@@ -1,4 +1,7 @@
 DROP PROCEDURE nuevoAfiliado
+
+DROP TRIGGER trg_mod_planMedico
+
 DROP FUNCTION SIGKILL.getNextNumeroAfiliado
 DROP FUNCTION SIGKILL.SplitString 
 DROP FUNCTION SIGKILL.getMedicamentoId
