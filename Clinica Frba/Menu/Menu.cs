@@ -494,7 +494,7 @@ namespace Clinica_Frba.Menu
         //Eventos click de los botones ABM afiliado
         private void btn_alta_afiliado_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(0,1).Show();
         }
 
         private void btn_baja_afiliado_Click(object sender, EventArgs e)

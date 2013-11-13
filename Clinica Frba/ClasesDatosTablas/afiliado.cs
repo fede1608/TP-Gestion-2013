@@ -83,5 +83,10 @@ namespace Clinica_Frba.ClasesDatosTablas
             afil_activo = 0;
             commit();
         }
+
+        public static Afiliado newFromDNI(int p)
+        {
+            return new Adapter().Transform<Afiliado>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT TOP 1 * FROM SIGKILL.Afiliado WHERE afil_dni={0}", p.ToString()));
+        }
     }
 }

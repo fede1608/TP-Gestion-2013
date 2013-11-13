@@ -345,7 +345,7 @@
             this.Controls.Add(this.groupBox_ABMAfiliado_AltaMod_titulo);
             this.Name = "frmAfiliadoAltaMod";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.frmAfiliadoAltaMod_Load);
             this.groupBox_ABMAfiliado_AltaMod_titulo.ResumeLayout(false);
             this.groupBox_ABMAfiliado_AltaMod_titulo.PerformLayout();
             this.ResumeLayout(false);

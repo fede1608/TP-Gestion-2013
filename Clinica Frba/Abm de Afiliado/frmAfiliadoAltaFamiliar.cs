@@ -6,61 +6,52 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using Clinica_Frba.ClasesDatosTablas;
 namespace Clinica_Frba.Abm_de_Afiliado
 {
     public partial class frmAfiliadoAltaFamiliar : Form
     {
         int opcion_form;
-
-        public frmAfiliadoAltaFamiliar(int opcion)
+        Afiliado afil;
+        public frmAfiliadoAltaFamiliar(int opcion, Afiliado  a)
         {
             InitializeComponent();
 
             opcion_form = opcion;
+            afil = a;
+            inicializeTextBox();
 
+        }
+
+        private void inicializeTextBox()
+        {
             switch (opcion_form)
             {
-                case 1: lbl_ABMAfiliado_AltaFamiliar_texto.Text = "¿Desea registrar al cónyuge?";
+                case 2: lbl_ABMAfiliado_AltaFamiliar_texto.Text = "¿Desea registrar al cónyuge?";
                     break;
-                case 2: lbl_ABMAfiliado_AltaFamiliar_texto.Text = "¿Desea registrar a un hijo?";
-                    break;
-                case 3: lbl_ABMAfiliado_AltaFamiliar_texto.Text = "¿Desea registrar a un familiar a cargo?";
+                case 3: default: 
+                    lbl_ABMAfiliado_AltaFamiliar_texto.Text = "¿Desea registrar a un hijo o familiar a cargo?";
                     break;
 
             }
-
         }
 
         private void btn_ABMAfiliado_AltaFamiliar_si_Click(object sender, EventArgs e)
         {
-            switch (opcion_form)
-            {
-                case 1: 
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
-                    break;
-                case 2:
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
-                    break;
-                case 3:
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(true, 0, false).Show();
-                    break;
 
-            }
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod(Math.Floor((double)afil.afil_numero / 100), opcion_form).Show();
+                    this.Close();
         }
 
         private void btn_ABMAfiliado_AltaFamiliar_no_Click(object sender, EventArgs e)
         {
             switch (opcion_form)
             {
-                case 1: 
-                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(2).Show();
-                    this.Close();
+                case 2: 
+                    opcion_form=3;
+                    inicializeTextBox();
                     break;
-                case 2: new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(3).Show();
-                    this.Close();
-                    break;
-                case 3: MessageBox.Show("Se completó el alta de afiliados correctamente");
+                case 3: default: MessageBox.Show("Se completó el alta de afiliados correctamente");
                     this.Close();
                     break;
 

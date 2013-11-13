@@ -95,7 +95,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             var res = runner.Single("SELECT * FROM SIGKILL.afiliado WHERE afil_numero={0}", cell.Cells[0].Value.ToString());
             //Afiliado afil = new Adapter().Transform<Afiliado>(res);
             if (mod_o_baja)
-                new frmAfiliadoAltaMod(false, (long)cell.Cells[0].Value, false).Show();
+                new frmAfiliadoAltaMod((long)cell.Cells[0].Value).Show();
             else
             {
                 Afiliado afiliado_baja = Afiliado.newFromId((long)cell.Cells[0].Value);

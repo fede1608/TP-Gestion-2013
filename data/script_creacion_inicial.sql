@@ -224,7 +224,7 @@ GO
 -- Tabla Bono consulta
 CREATE TABLE SIGKILL.bono_consulta(
 	bonoc_id bigint PRIMARY KEY NOT NULL,
-	bonoc_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bonoc_afiliado bigint ,--REFERENCES SIGKILL.afiliado(afil_numero),
 	bonoc_fecha_compra datetime NOT NULL,
 	bonoc_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
 	bonoc_nro_consulta_individual bigint NULL,
@@ -248,7 +248,7 @@ GO
 -- Tabla Bono farmacia
 CREATE TABLE SIGKILL.bono_farmacia(
 	bonof_id bigint PRIMARY KEY NOT NULL,
-	bonof_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	bonof_afiliado bigint ,--REFERENCES SIGKILL.afiliado(afil_numero),
 	bonof_fecha_compra datetime NOT NULL,
 	bonof_consulta bigint REFERENCES SIGKILL.consulta(cons_id) NULL,
 	bonof_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
@@ -413,13 +413,13 @@ WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()
 
 --insert de Bonos Consulta
 INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)
-(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
+(SELECT Bono_Consulta_Numero,afil_numero+1,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
 
 --insert de Bonos Farmacia
 INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)
-(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
+(SELECT Bono_Farmacia_Numero,afil_numero+1,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
 
@@ -551,6 +551,60 @@ from tokens
 );
 
 GO
+
+/***PROCEDURES***/
+create procedure nuevoAfiliado(@afil_nombre nvarchar(200), @afil_apellido nvarchar(100),
+							  @afil_tipo_doc bigint, @afil_nrodoc numeric(18, 0),
+							  @afil_direccion nvarchar(255), @afil_telefono decimal(18,0), @afil_mail nvarchar(255),
+							  @afil_nacimiento nvarchar(100), @afil_sexo nvarchar(1), @afil_estadocivil varchar(20),
+							  @afil_plan_medico varchar(20), @miembro_familia bigint,@numeroAfilBase bigint)/*@numeroAfilBase=0 si es el afilaido base*/
+as
+
+Begin
+	
+	declare @afil_usuario bigint
+	declare @afil_numero bigint
+	declare @nombre_usuario_mapeado nvarchar(19)
+	declare @afil_estadocivil_id bigint
+	declare @afil_plan_medico_id bigint
+	
+	IF @numeroAfilBase =0
+		set @afil_numero = SIGKILL.getNextNumeroAfiliado()*100+@miembro_familia
+	ELSE
+		set @afil_numero = @numeroAfilBase*100+@miembro_familia
+
+	
+	SELECT @afil_estadocivil_id = estciv_id from GD2C2013.SIGKILL.estado_civil where estciv_descripcion = @afil_estadocivil
+	
+	set @nombre_usuario_mapeado = 'u' + CONVERT(nvarchar(18),@afil_nrodoc)
+	
+	IF (select COUNT(*) from GD2C2013.SIGKILL.usuario where usr_usuario = @nombre_usuario_mapeado) < 1
+		Begin
+			INSERT INTO GD2C2013.SIGKILL.usuario (usr_usuario, usr_password)
+			VALUES (@nombre_usuario_mapeado, '37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f')
+		End
+		
+
+	SELECT @afil_usuario = usr_id FROM GD2C2013.SIGKILL.usuario WHERE usr_usuario = @nombre_usuario_mapeado
+	
+	if(@numeroAfilBase=0)
+		SELECT @afil_plan_medico_id = pmed_id FROM GD2C2013.SIGKILL.plan_medico WHERE pmed_nombre = @afil_plan_medico
+	ELSE
+		SELECT @afil_plan_medico_id = afil_id_plan_medico FROM SIGKILL.afiliado WHERE afil_numero=@numeroAfilBase*100+1
+		
+	INSERT INTO GD2C2013.SIGKILL.afiliado
+	(afil_numero,afil_usuario, afil_nombre,	afil_apellido, afil_tipo_doc, afil_dni,	afil_direccion, afil_telefono, afil_mail, afil_nacimiento, afil_sexo, afil_estado_civil,afil_id_plan_medico)
+	VALUES (@afil_numero,@afil_usuario, @afil_nombre, @afil_apellido, @afil_tipo_doc ,@afil_nrodoc, @afil_direccion, @afil_telefono,
+	@afil_mail, @afil_nacimiento, @afil_sexo, @afil_estadocivil_id, @afil_plan_medico_id)
+	
+	if(@miembro_familia>=3 )
+	BEGIN
+		if(@afil_plan_medico='Hijo')
+			UPDATE SIGKILL.afiliado SET afil_cant_hijos=afil_cant_hijos+1 WHERE  afil_numero=@numeroAfilBase*100+1
+		ELSE
+			UPDATE SIGKILL.afiliado SET afil_cant_fam_a_cargo=afil_cant_fam_a_cargo+1 WHERE  afil_numero=@numeroAfilBase*100+1
+	END
+END
 
 /****CURSORES****/
 --declare @med_string nvarchar(300)
