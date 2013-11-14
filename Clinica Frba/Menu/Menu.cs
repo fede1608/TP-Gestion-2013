@@ -606,7 +606,27 @@ namespace Clinica_Frba.Menu
         //Evento click de cancelar atencion
         private void btn_cancelar_atencion_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getProfesional()).Show();
+            switch (sesionActual.rol.rol_id)
+            {   
+                case 1:                    
+                    new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario).Show();
+                    break;
+                case 2:
+                    new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getProfesional()).Show();
+                    break;
+                case 3:
+                    new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getAfiliado()).Show();
+                    break;
+                default:
+                    if (sesionActual.usuario.hasProfesional())
+                        new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getProfesional()).Show();
+                    else if(sesionActual.usuario.hasAfiliado())
+                        new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario.getAfiliado()).Show();
+                    else
+                        new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(sesionActual.usuario).Show();
+
+                    break;
+            }
         }
 
         //Evento click de generar receta

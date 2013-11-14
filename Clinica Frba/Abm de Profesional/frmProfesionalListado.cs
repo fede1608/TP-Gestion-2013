@@ -14,7 +14,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
     public partial class frm_ABMpro_listado : Form
     {
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-        int tipo = 1;
+        int tipo = 1;//tipo 3 == cancelar atencion !
 
         public frm_ABMpro_listado()
         {
@@ -118,6 +118,14 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
         private void dbgrb_ABMpro_vistaListado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var cell = dbgrb_ABMpro_vistaListado.Rows[e.RowIndex];
+            //PARTE DE CANCELAR ATENCION
+            if (tipo == 3)
+            {
+                new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Profesional.newFromId((long)cell.Cells[0].Value)).Show();
+                this.Close();
+                return;
+            }
+            //FIN CANCELAR ATENCION
             //MessageBox.Show("Se clickeo " + cell.Cells[0].Value.ToString());
            /* if (tipo == 1)
             {

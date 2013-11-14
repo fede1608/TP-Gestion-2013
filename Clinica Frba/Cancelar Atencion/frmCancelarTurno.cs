@@ -13,8 +13,10 @@ namespace Clinica_Frba.Cancelar_Atencion
 {
     public partial class frmCancelarTurno : Form
     {
+        SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         Afiliado afil;//tipo 2
         Profesional prof;//tipo 3
+        Usuario user;//tipo 1 Admin
         int tipo = 2;
         public frmCancelarTurno()
         {
@@ -33,6 +35,9 @@ namespace Clinica_Frba.Cancelar_Atencion
             dtp_final.Visible = false;
             label1.Visible = false;
             label2.Visible = false;
+            lbl_admin.Visible = false;
+            btn_afiliado.Visible = false;
+            btn_profesional.Visible = false;
         }
         public frmCancelarTurno(Profesional p)
         {
@@ -42,6 +47,22 @@ namespace Clinica_Frba.Cancelar_Atencion
             lbl_profesional.Text = prof.getName();
             lbl_afiliado.Visible = false;
             lbl_af.Visible = false;
+            dtp_final.Value = dtp_inicial.Value.AddMinutes(10);
+            lbl_admin.Visible = false;
+            btn_afiliado.Visible = false;
+            btn_profesional.Visible = false;
+        }
+
+        public frmCancelarTurno(Usuario u)
+        {
+            tipo = 1;
+            user = u;
+            InitializeComponent();
+            lbl_prf.Visible = false;
+            lbl_profesional.Visible = false;
+            lbl_afiliado.Visible = false;
+            lbl_af.Visible = false;
+            button1.Visible = false;
             dtp_final.Value = dtp_inicial.Value.AddMinutes(10);
         }
 
@@ -81,7 +102,10 @@ namespace Clinica_Frba.Cancelar_Atencion
                 string value = "Motivo de la cancelacion";
                 if (InputBox.Show("Cancelar Turnos por Período", "¿Está seguro que desea Cancelar todos los turnos del período seleccionado? Si es así, ingrese el motivo.", ref value) == DialogResult.OK)
                 {
-                    prof.cancelarPeriodo(dtp_inicial.Value,dtp_final.Value,4,value);
+                    if (tipo == 2)
+                        cancelarPeriodo(dtp_inicial.Value, dtp_final.Value, 4, value, prof);
+                    else
+                        cancelarPeriodo(dtp_inicial.Value, dtp_final.Value, 6, value);
                     MessageBox.Show("Se ha cancelado correctamente");
                 }else
                     MessageBox.Show("No se ha cancelado los turnos");
@@ -94,7 +118,31 @@ namespace Clinica_Frba.Cancelar_Atencion
         }
 
 
+        public void cancelarPeriodo(DateTime inicio, DateTime fin, int tipo, string razon,Profesional prof)
+        {
+            fin = fin.AddDays(1);
+            runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)" +
+            "(SELECT trn_profesional,trn_afiliado,{3},'{4}',trn_fecha_hora,'{5}' FROM SIGKILL.turno WHERE trn_profesional={0} AND trn_fecha_hora between '{1}' and '{2}')", prof.pro_id.ToString(), inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"), tipo.ToString(), razon, Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
+            runner.Delete("DELETE FROM SIGKILL.turno WHERE trn_profesional={0} AND trn_fecha_hora between '{1}' and '{2}'", prof.pro_id.ToString(), inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"));
+        }
 
+        public void cancelarPeriodo(DateTime inicio, DateTime fin, int tipo, string razon)
+        {
+            fin = fin.AddDays(1);
+            runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)" +
+            "(SELECT trn_profesional,trn_afiliado,{2},'{3}',trn_fecha_hora,'{4}' FROM SIGKILL.turno WHERE  trn_fecha_hora between '{0}' and '{1}')",  inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"), tipo.ToString(), razon, Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
+            runner.Delete("DELETE FROM SIGKILL.turno WHERE trn_fecha_hora between '{0}' and '{1}'", inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"));
+        }
+
+        private void btn_afiliado_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado(3).Show();
+        }
+
+        private void btn_profesional_Click(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado(3).Show();
+        }
 
 
     }

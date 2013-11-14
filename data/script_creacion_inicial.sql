@@ -299,7 +299,7 @@ GO
 
 --insert de tipos de cancelaciones
 INSERT INTO SIGKILL.tipo_cancelacion(tic_nombre_tipo)
-VALUES('Cancelado por Administrador'),('Cancelacion del Afiliado'),('Cancelacion Particular del Profesional'),('Cancelacion General de un período de un Profesional'),('Cancelacion por Migración');
+VALUES('Cancelado por Administrador'),('Cancelacion del Afiliado'),('Cancelacion Particular del Profesional'),('Cancelacion General de un período de un Profesional'),('Cancelacion por Migración'),('Cancelacion General de un período por un Administrador');
 GO
 
 --insert de roles
@@ -427,13 +427,13 @@ WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_S
 INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND NOT( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) < 0))
+WHERE Consulta_Sintomas is not null AND NOT( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 
 --insert de Consultas inconsistentes que sucedieron despues del dia de la migracion q son inconsistente para ser revisadas
 INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND ( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) < 0))
+WHERE Consulta_Sintomas is not null AND ( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 
 --Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos que se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
 UPDATE SIGKILL.bono_consulta 
@@ -553,7 +553,7 @@ from tokens
 GO
 
 /***PROCEDURES***/
-create procedure nuevoAfiliado(@afil_nombre nvarchar(200), @afil_apellido nvarchar(100),
+create procedure SIGKILL.nuevoAfiliado(@afil_nombre nvarchar(200), @afil_apellido nvarchar(100),
 							  @afil_tipo_doc bigint, @afil_nrodoc numeric(18, 0),
 							  @afil_direccion nvarchar(255), @afil_telefono decimal(18,0), @afil_mail nvarchar(255),
 							  @afil_nacimiento nvarchar(100), @afil_sexo nvarchar(1), @afil_estadocivil varchar(20),
@@ -607,7 +607,7 @@ Begin
 END
 GO
 
-CREATE TRIGGER trg_mod_planMedico ON SIGKILL.afiliado AFTER UPDATE
+CREATE TRIGGER SIGKILL.trg_mod_planMedico ON SIGKILL.afiliado AFTER UPDATE
 AS
 BEGIN
 	declare @idplan bigint

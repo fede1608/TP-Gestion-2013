@@ -13,11 +13,18 @@ namespace Clinica_Frba.Abm_de_Afiliado
 {
     public partial class frmAfiliadoListado : Form
     {
-        Boolean mod_o_baja;
+        Boolean mod_o_baja=false;
+        int tipo = 1;
+        public frmAfiliadoListado(int type)
+        {
+            tipo = type;
+            InitializeComponent();
+        }
         public frmAfiliadoListado(Boolean mod_baja)
         {
             InitializeComponent();
             mod_o_baja = mod_baja;
+            tipo = mod_baja ? 1 : 2;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -91,7 +98,13 @@ namespace Clinica_Frba.Abm_de_Afiliado
             SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
 
             var cell = dbgrb_ABMAfiliado_Listado_vista.Rows[e.RowIndex];
-            
+
+            if (tipo == 3)
+            {
+                new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Afiliado.newFromId((long)cell.Cells[0].Value)).Show();
+                this.Close();
+                return;
+            }
             var res = runner.Single("SELECT * FROM SIGKILL.afiliado WHERE afil_numero={0}", cell.Cells[0].Value.ToString());
             //Afiliado afil = new Adapter().Transform<Afiliado>(res);
             if (mod_o_baja)

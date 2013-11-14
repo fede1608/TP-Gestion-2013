@@ -57,7 +57,7 @@
             // lbl_ABMAfiliado_AltaFamiliar_texto
             // 
             this.lbl_ABMAfiliado_AltaFamiliar_texto.AutoSize = true;
-            this.lbl_ABMAfiliado_AltaFamiliar_texto.Location = new System.Drawing.Point(146, 37);
+            this.lbl_ABMAfiliado_AltaFamiliar_texto.Location = new System.Drawing.Point(73, 32);
             this.lbl_ABMAfiliado_AltaFamiliar_texto.Name = "lbl_ABMAfiliado_AltaFamiliar_texto";
             this.lbl_ABMAfiliado_AltaFamiliar_texto.Size = new System.Drawing.Size(43, 13);
             this.lbl_ABMAfiliado_AltaFamiliar_texto.TabIndex = 2;

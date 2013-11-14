@@ -1,6 +1,6 @@
-DROP PROCEDURE nuevoAfiliado
+DROP PROCEDURE SIGKILL.nuevoAfiliado
 
-DROP TRIGGER trg_mod_planMedico
+DROP TRIGGER SIGKILL.trg_mod_planMedico
 
 DROP FUNCTION SIGKILL.getNextNumeroAfiliado
 DROP FUNCTION SIGKILL.SplitString 

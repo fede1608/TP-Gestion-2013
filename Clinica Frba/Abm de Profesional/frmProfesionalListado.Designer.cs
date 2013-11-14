@@ -53,6 +53,8 @@
             this.dbgrb_ABMpro_vistaListado.Name = "dbgrb_ABMpro_vistaListado";
             this.dbgrb_ABMpro_vistaListado.Size = new System.Drawing.Size(522, 208);
             this.dbgrb_ABMpro_vistaListado.TabIndex = 0;
+            this.dbgrb_ABMpro_vistaListado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dbgrb_ABMpro_vistaListado_CellClick);
+            this.dbgrb_ABMpro_vistaListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dbgrb_ABMpro_vistaListado_CellClick);
             // 
             // gbox_ABMpro_filtros
             // 
@@ -116,7 +118,7 @@
             this.lbl_ABMpro_listado.AutoSize = true;
             this.lbl_ABMpro_listado.Location = new System.Drawing.Point(273, 58);
             this.lbl_ABMpro_listado.Name = "lbl_ABMpro_listado";
-            this.lbl_ABMpro_listado.Size = new System.Drawing.Size(65, 13);
+            this.lbl_ABMpro_listado.Size = new System.Drawing.Size(67, 13);
             this.lbl_ABMpro_listado.TabIndex = 4;
             this.lbl_ABMpro_listado.Text = "Especialidad";
             // 

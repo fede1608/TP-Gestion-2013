@@ -63,6 +63,22 @@ namespace Clinica_Frba.ClasesDatosTablas
         //    get { return this.usr_cant_login_fail >= 3; }
         //}
 
+        public bool hasAfiliado()
+        {
+            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            var result = runner
+                    .Single("SELECT COUNT(*) as cant FROM SIGKILL.afiliado WHERE afil_usuario={0}", this.usr_id.ToString());
+            return (int)result["cant"] == 1;
+        }
+
+        public bool hasProfesional()
+        {
+            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            var result = runner
+                    .Single("SELECT COUNT(*) as cant FROM SIGKILL.profesional WHERE pro_usuario={0}", this.usr_id.ToString());
+            return (int)result["cant"] == 1;
+        }
+
 
 
     }
