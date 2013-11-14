@@ -294,7 +294,7 @@ VALUES ('ABM de afiliados'),('ABM de profesional'),('ABM de especialidades médic
 ('ABM de plan'),('Compra de bonos'),('Venta de bonos en ventanilla'),('Pedir un turno'),
 ('Registrar llegada para atención médica'),('Registrar resultado de atención médica'),
 ('Cancelar una atención médica'),('Generar una receta médica'),
-('Generar un listado estadístico'),('Registrar agenda de profesional'),('Ver Agenda');
+('Generar un listado estadístico'),('Registrar agenda de profesional'),('Ver Agenda'),('ABM de Rol');
 GO
 
 --insert de tipos de cancelaciones
@@ -309,7 +309,7 @@ GO
 
 --insert de relacion funcionalidad-rol
 INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad)
-VALUES (1,1),(1,2),(1,3),(1,4),(1,6),(1,8),(1,10),(1,12),(1,13),(2,9),(2,14),(3,5),(3,7)
+VALUES (1,1),(1,2),(1,3),(1,4),(1,6),(1,8),(1,10),(1,12),(1,13),(1,15),(2,9),(2,14),(3,5),(3,7)
 GO
 
 --insert de tipos de documentos

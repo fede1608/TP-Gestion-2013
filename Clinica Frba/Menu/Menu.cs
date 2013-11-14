@@ -273,7 +273,7 @@ namespace Clinica_Frba.Menu
 
                 }
 
-                if (listaAux.Exists(x => x == "ABM del rol"))
+                if (listaAux.Exists(x => x == "ABM de Rol"))
                 {
                     lbl_ABMs.Visible = true;
                     System.Windows.Forms.Button btn_alta_rol = new System.Windows.Forms.Button();
@@ -478,7 +478,7 @@ namespace Clinica_Frba.Menu
             }
             else
             {
-                this.Width = tamañoFormX + 200;
+                this.Width = (tamañoFormX + 200) > 1000 ? 1000 : (tamañoFormX + 200);
 
             }
             this.Height = tamañoFormY + 100;
