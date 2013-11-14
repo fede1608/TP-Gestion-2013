@@ -59,30 +59,53 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
                     return;
                 }
 
+                //Cambiamos el contenido del comboBox de elección de sexo acorde al formato que admite la columna en la BD
+                char sexo;
+                if (cbo_ABMpro_sexo.Text == "Masculino") {sexo='M';} else {sexo='F';}
 
                 //Si llegamos a este punto, ya esta controlado que el profesional no tenga datos
                 //repetidos, por lo que procedemos a crearle un usuario primero si es que no lo tiene
                 string nombre_usuario = "u" + Convert.ToString(txt_ABMpro_NDoc.Text);
                 var existeUsuario = runner.Single("SELECT COUNT(*) as ocurrencias FROM SIGKILL.usuario WHERE usr_usuario='{0}'", nombre_usuario);
-                if ((int)existeUsuario["ocurrencias"] != 0)
+                if ((int)existeUsuario["ocurrencias"] == 0)
                 {
-                    //Si existe un usuario con el mismo documento
-                    MessageBox.Show("el usuario ya exisite");
-                }
-                
-                /*runner.Insert("INSERT INTO SIGKILL.rol(rol_nombre,rol_habilitado) VALUES ('{0}',{1})", txtNombre.Text, hab.ToString());
-                var res = runner.Single("SELECT * FROM SIGKILL.rol WHERE rol_nombre='{0}'", txtNombre.Text);
-                Rol newrol = new Adapter().Transform<Rol>(res);
-                foreach (var f in checkedListBox1.CheckedItems)
-                {
-                    runner.Insert("INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad) VALUES ({0},{1})", newrol.rol_id.ToString(), (checkedListBox1.Items.IndexOf(f) + 1).ToString());
-                }
-                */
-                
+                    //Si NO existe un usuario con el mismo documento
+                    MessageBox.Show("No existe un usuario para este profesional");
 
-                MessageBox.Show("El profesional fue dado de alta satisfactoriamente.",
-                "Operación válida", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                    //Creamos un usuario default para el profesional
+                    //Un usuario default de profesional tiene como usuario uDNI (uXXX) y como pass su MATRICULA
+                    try
+                    {
+                        runner.Insert("INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)" +
+                            "VALUES ('{0}','{1}')", nombre_usuario, toSha256.ToSha256(txt_ABMpro_matricula.Text));
+                        MessageBox.Show("Se creo un usuario default para el profesional");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error al crear el usuario default",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
+                }
+
+
+                //En este punto ya estamos seguros de que existe un usuario para el profesional, 
+                //por lo que ya podemos agregarlo   
+                try
+                {
+                    //TODO: Revisar la sintaxis de esto (sobre todo las variables)
+                    runner.Insert("INSERT INTO SIGKILL.profesional(pro_matricula,pro_usuario,pro_nombre,pro_apellido, pro_dni, pro_direccion, pro_telefono, pro_mail, pro_nacimiento, pro_sexo, pro_cant_hs_acum) VALUES {0}, '{1}', '{2}', '{3}',{4},'{5}',{6},'{7}','{8}','{9}',{10}",
+                    int.Parse(txt_ABMpro_matricula.Text), nombre_usuario, txt_ABMpro_nombre.Text, txt_ABMpro_apellido.Text,
+                    int.Parse(txt_ABMpro_NDoc.Text), txt_ABMpro_direccion.Text, int.Parse(txt_ABMpro_telefono.Text), txt_ABMpro_mail.Text,
+                    monthCalendar_ABMpro_calendario.SelectionRange.Start.ToString("yyyy-MM-dd"), sexo, 0);
+
+                    MessageBox.Show("El profesional fue dado de alta satisfactoriamente.",
+"Operación válida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error al dar de alta el profesional", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                  
             }
             //En el caso de que falten ingresar datos, se procedera a informar al usuario
@@ -120,6 +143,11 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
         private void btn_ABMpro_cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void gbox_ABMpro_nuevoProfesional_Enter(object sender, EventArgs e)
+        {
+
         }
 
 
