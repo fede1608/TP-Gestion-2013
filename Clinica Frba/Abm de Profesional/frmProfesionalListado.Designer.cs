@@ -34,7 +34,6 @@
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_apellido = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_dni = new System.Windows.Forms.TextBox();
-            this.btn_ABMpro_seleccionarEspecialidad = new System.Windows.Forms.Button();
             this.lbl_ABMpro_listado = new System.Windows.Forms.Label();
             this.lbl_ABMpro_dni = new System.Windows.Forms.Label();
             this.lbl_ABMpro_apellido = new System.Windows.Forms.Label();
@@ -42,12 +41,17 @@
             this.lbl_ABMpro_matricula = new System.Windows.Forms.Label();
             this.btn_ABMpro_limpiar = new System.Windows.Forms.Button();
             this.btn_ABMpro_buscar = new System.Windows.Forms.Button();
+            this.combo_especialidad = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMpro_vistaListado)).BeginInit();
             this.gbox_ABMpro_filtros.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbgrb_ABMpro_vistaListado
             // 
+            this.dbgrb_ABMpro_vistaListado.AllowUserToAddRows = false;
+            this.dbgrb_ABMpro_vistaListado.AllowUserToDeleteRows = false;
+            this.dbgrb_ABMpro_vistaListado.AllowUserToOrderColumns = true;
+            this.dbgrb_ABMpro_vistaListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dbgrb_ABMpro_vistaListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dbgrb_ABMpro_vistaListado.Location = new System.Drawing.Point(14, 194);
             this.dbgrb_ABMpro_vistaListado.Name = "dbgrb_ABMpro_vistaListado";
@@ -58,11 +62,11 @@
             // 
             // gbox_ABMpro_filtros
             // 
+            this.gbox_ABMpro_filtros.Controls.Add(this.combo_especialidad);
             this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_matricula);
             this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_nombre);
             this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_apellido);
             this.gbox_ABMpro_filtros.Controls.Add(this.txt_ABMpro_dni);
-            this.gbox_ABMpro_filtros.Controls.Add(this.btn_ABMpro_seleccionarEspecialidad);
             this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_listado);
             this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_dni);
             this.gbox_ABMpro_filtros.Controls.Add(this.lbl_ABMpro_apellido);
@@ -103,15 +107,6 @@
             this.txt_ABMpro_dni.Name = "txt_ABMpro_dni";
             this.txt_ABMpro_dni.Size = new System.Drawing.Size(152, 20);
             this.txt_ABMpro_dni.TabIndex = 6;
-            // 
-            // btn_ABMpro_seleccionarEspecialidad
-            // 
-            this.btn_ABMpro_seleccionarEspecialidad.Location = new System.Drawing.Point(344, 54);
-            this.btn_ABMpro_seleccionarEspecialidad.Name = "btn_ABMpro_seleccionarEspecialidad";
-            this.btn_ABMpro_seleccionarEspecialidad.Size = new System.Drawing.Size(152, 23);
-            this.btn_ABMpro_seleccionarEspecialidad.TabIndex = 5;
-            this.btn_ABMpro_seleccionarEspecialidad.Text = "Seleccionar";
-            this.btn_ABMpro_seleccionarEspecialidad.UseVisualStyleBackColor = true;
             // 
             // lbl_ABMpro_listado
             // 
@@ -180,6 +175,14 @@
             this.btn_ABMpro_buscar.UseVisualStyleBackColor = true;
             this.btn_ABMpro_buscar.Click += new System.EventHandler(this.btn_ABMpro_buscar_Click);
             // 
+            // combo_especialidad
+            // 
+            this.combo_especialidad.FormattingEnabled = true;
+            this.combo_especialidad.Location = new System.Drawing.Point(347, 53);
+            this.combo_especialidad.Name = "combo_especialidad";
+            this.combo_especialidad.Size = new System.Drawing.Size(149, 21);
+            this.combo_especialidad.TabIndex = 10;
+            // 
             // frm_ABMpro_listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +217,6 @@
         private System.Windows.Forms.TextBox txt_ABMpro_nombre;
         private System.Windows.Forms.TextBox txt_ABMpro_apellido;
         private System.Windows.Forms.TextBox txt_ABMpro_dni;
-        private System.Windows.Forms.Button btn_ABMpro_seleccionarEspecialidad;
+        private System.Windows.Forms.ComboBox combo_especialidad;
     }
 }

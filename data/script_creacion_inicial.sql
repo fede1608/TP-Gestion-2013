@@ -75,7 +75,8 @@ CREATE TABLE SIGKILL.profesional(
 	pro_mail nvarchar(255),
 	pro_nacimiento datetime,
 	pro_sexo nvarchar(1),
-	pro_cant_hs_acum int DEFAULT 0 NOT NULL
+	pro_cant_hs_acum int DEFAULT 0 NOT NULL,
+	pro_habilitado int DEFAULT 1 NOT NULL
 	)
 GO
 

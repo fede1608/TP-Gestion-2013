@@ -43,9 +43,7 @@
             this.btn_ABMpro_limpiar = new System.Windows.Forms.Button();
             this.btn_ABMpro_cerrar = new System.Windows.Forms.Button();
             this.txt_ABMpro_matricula = new System.Windows.Forms.TextBox();
-            this.monthCalendar_ABMpro_calendario = new System.Windows.Forms.MonthCalendar();
             this.lbl_ABMpro_fnac = new System.Windows.Forms.Label();
-            this.btn_ABMpro_seleccionarEspecialidades = new System.Windows.Forms.Button();
             this.cbo_ABMpro_sexo = new System.Windows.Forms.ComboBox();
             this.txt_ABMpro_mail = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_telefono = new System.Windows.Forms.TextBox();
@@ -53,11 +51,15 @@
             this.txt_ABMpro_NDoc = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_apellido = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.chlb_especialidades = new System.Windows.Forms.CheckedListBox();
             this.gbox_ABMpro_nuevoProfesional.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbox_ABMpro_nuevoProfesional
             // 
+            this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.chlb_especialidades);
+            this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.dateTimePicker1);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.lbl_ABMpro_especialidades);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.lbl_ABMpro_sexo);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.lbl_ABMpro_mail);
@@ -71,9 +73,7 @@
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.btn_ABMpro_limpiar);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.btn_ABMpro_cerrar);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.txt_ABMpro_matricula);
-            this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.monthCalendar_ABMpro_calendario);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.lbl_ABMpro_fnac);
-            this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.btn_ABMpro_seleccionarEspecialidades);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.cbo_ABMpro_sexo);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.txt_ABMpro_mail);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.txt_ABMpro_telefono);
@@ -92,16 +92,16 @@
             // lbl_ABMpro_especialidades
             // 
             this.lbl_ABMpro_especialidades.AutoSize = true;
-            this.lbl_ABMpro_especialidades.Location = new System.Drawing.Point(24, 250);
+            this.lbl_ABMpro_especialidades.Location = new System.Drawing.Point(352, 24);
             this.lbl_ABMpro_especialidades.Name = "lbl_ABMpro_especialidades";
-            this.lbl_ABMpro_especialidades.Size = new System.Drawing.Size(78, 13);
+            this.lbl_ABMpro_especialidades.Size = new System.Drawing.Size(81, 13);
             this.lbl_ABMpro_especialidades.TabIndex = 77;
-            this.lbl_ABMpro_especialidades.Text = "Especialidades";
+            this.lbl_ABMpro_especialidades.Text = "Especialidades:";
             // 
             // lbl_ABMpro_sexo
             // 
             this.lbl_ABMpro_sexo.AutoSize = true;
-            this.lbl_ABMpro_sexo.Location = new System.Drawing.Point(25, 218);
+            this.lbl_ABMpro_sexo.Location = new System.Drawing.Point(25, 222);
             this.lbl_ABMpro_sexo.Name = "lbl_ABMpro_sexo";
             this.lbl_ABMpro_sexo.Size = new System.Drawing.Size(31, 13);
             this.lbl_ABMpro_sexo.TabIndex = 76;
@@ -110,7 +110,7 @@
             // lbl_ABMpro_mail
             // 
             this.lbl_ABMpro_mail.AutoSize = true;
-            this.lbl_ABMpro_mail.Location = new System.Drawing.Point(25, 195);
+            this.lbl_ABMpro_mail.Location = new System.Drawing.Point(25, 196);
             this.lbl_ABMpro_mail.Name = "lbl_ABMpro_mail";
             this.lbl_ABMpro_mail.Size = new System.Drawing.Size(26, 13);
             this.lbl_ABMpro_mail.TabIndex = 75;
@@ -202,36 +202,21 @@
             // 
             // txt_ABMpro_matricula
             // 
-            this.txt_ABMpro_matricula.Location = new System.Drawing.Point(131, 114);
+            this.txt_ABMpro_matricula.Location = new System.Drawing.Point(132, 114);
             this.txt_ABMpro_matricula.MaxLength = 8;
             this.txt_ABMpro_matricula.Name = "txt_ABMpro_matricula";
-            this.txt_ABMpro_matricula.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_matricula.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_matricula.TabIndex = 63;
-            // 
-            // monthCalendar_ABMpro_calendario
-            // 
-            this.monthCalendar_ABMpro_calendario.Location = new System.Drawing.Point(402, 58);
-            this.monthCalendar_ABMpro_calendario.Name = "monthCalendar_ABMpro_calendario";
-            this.monthCalendar_ABMpro_calendario.TabIndex = 62;
-            this.monthCalendar_ABMpro_calendario.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_ABMpro_calendario_DateChanged);
+            this.txt_ABMpro_matricula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMpro_matricula_KeyPress);
             // 
             // lbl_ABMpro_fnac
             // 
             this.lbl_ABMpro_fnac.AutoSize = true;
-            this.lbl_ABMpro_fnac.Location = new System.Drawing.Point(434, 30);
+            this.lbl_ABMpro_fnac.Location = new System.Drawing.Point(23, 249);
             this.lbl_ABMpro_fnac.Name = "lbl_ABMpro_fnac";
             this.lbl_ABMpro_fnac.Size = new System.Drawing.Size(106, 13);
             this.lbl_ABMpro_fnac.TabIndex = 44;
             this.lbl_ABMpro_fnac.Text = "Fecha de nacimiento";
-            // 
-            // btn_ABMpro_seleccionarEspecialidades
-            // 
-            this.btn_ABMpro_seleccionarEspecialidades.Location = new System.Drawing.Point(131, 245);
-            this.btn_ABMpro_seleccionarEspecialidades.Name = "btn_ABMpro_seleccionarEspecialidades";
-            this.btn_ABMpro_seleccionarEspecialidades.Size = new System.Drawing.Size(155, 23);
-            this.btn_ABMpro_seleccionarEspecialidades.TabIndex = 59;
-            this.btn_ABMpro_seleccionarEspecialidades.Text = "Seleccionar";
-            this.btn_ABMpro_seleccionarEspecialidades.UseVisualStyleBackColor = true;
             // 
             // cbo_ABMpro_sexo
             // 
@@ -240,59 +225,76 @@
             this.cbo_ABMpro_sexo.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cbo_ABMpro_sexo.Location = new System.Drawing.Point(130, 218);
+            this.cbo_ABMpro_sexo.Location = new System.Drawing.Point(131, 218);
             this.cbo_ABMpro_sexo.Name = "cbo_ABMpro_sexo";
-            this.cbo_ABMpro_sexo.Size = new System.Drawing.Size(156, 21);
+            this.cbo_ABMpro_sexo.Size = new System.Drawing.Size(191, 21);
             this.cbo_ABMpro_sexo.TabIndex = 56;
             // 
             // txt_ABMpro_mail
             // 
-            this.txt_ABMpro_mail.Location = new System.Drawing.Point(131, 192);
+            this.txt_ABMpro_mail.Location = new System.Drawing.Point(132, 192);
             this.txt_ABMpro_mail.MaxLength = 50;
             this.txt_ABMpro_mail.Name = "txt_ABMpro_mail";
-            this.txt_ABMpro_mail.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_mail.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_mail.TabIndex = 55;
             // 
             // txt_ABMpro_telefono
             // 
-            this.txt_ABMpro_telefono.Location = new System.Drawing.Point(131, 166);
+            this.txt_ABMpro_telefono.Location = new System.Drawing.Point(132, 166);
             this.txt_ABMpro_telefono.MaxLength = 8;
             this.txt_ABMpro_telefono.Name = "txt_ABMpro_telefono";
-            this.txt_ABMpro_telefono.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_telefono.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_telefono.TabIndex = 54;
+            this.txt_ABMpro_telefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMpro_telefono_KeyPress);
             // 
             // txt_ABMpro_direccion
             // 
-            this.txt_ABMpro_direccion.Location = new System.Drawing.Point(131, 140);
+            this.txt_ABMpro_direccion.Location = new System.Drawing.Point(132, 140);
             this.txt_ABMpro_direccion.MaxLength = 50;
             this.txt_ABMpro_direccion.Name = "txt_ABMpro_direccion";
-            this.txt_ABMpro_direccion.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_direccion.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_direccion.TabIndex = 53;
             this.txt_ABMpro_direccion.TextChanged += new System.EventHandler(this.txt_ABMpro_direccion_TextChanged);
             // 
             // txt_ABMpro_NDoc
             // 
-            this.txt_ABMpro_NDoc.Location = new System.Drawing.Point(131, 88);
+            this.txt_ABMpro_NDoc.Location = new System.Drawing.Point(132, 88);
             this.txt_ABMpro_NDoc.MaxLength = 8;
             this.txt_ABMpro_NDoc.Name = "txt_ABMpro_NDoc";
-            this.txt_ABMpro_NDoc.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_NDoc.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_NDoc.TabIndex = 52;
+            this.txt_ABMpro_NDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMpro_NDoc_KeyPress);
             // 
             // txt_ABMpro_apellido
             // 
-            this.txt_ABMpro_apellido.Location = new System.Drawing.Point(131, 62);
+            this.txt_ABMpro_apellido.Location = new System.Drawing.Point(132, 62);
             this.txt_ABMpro_apellido.MaxLength = 30;
             this.txt_ABMpro_apellido.Name = "txt_ABMpro_apellido";
-            this.txt_ABMpro_apellido.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_apellido.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_apellido.TabIndex = 51;
             // 
             // txt_ABMpro_nombre
             // 
-            this.txt_ABMpro_nombre.Location = new System.Drawing.Point(131, 36);
+            this.txt_ABMpro_nombre.Location = new System.Drawing.Point(132, 36);
             this.txt_ABMpro_nombre.MaxLength = 30;
             this.txt_ABMpro_nombre.Name = "txt_ABMpro_nombre";
-            this.txt_ABMpro_nombre.Size = new System.Drawing.Size(155, 20);
+            this.txt_ABMpro_nombre.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_nombre.TabIndex = 50;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(131, 247);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(191, 20);
+            this.dateTimePicker1.TabIndex = 78;
+            // 
+            // chlb_especialidades
+            // 
+            this.chlb_especialidades.FormattingEnabled = true;
+            this.chlb_especialidades.Location = new System.Drawing.Point(355, 51);
+            this.chlb_especialidades.Name = "chlb_especialidades";
+            this.chlb_especialidades.Size = new System.Drawing.Size(273, 184);
+            this.chlb_especialidades.TabIndex = 79;
             // 
             // frm_ABMpro_Alta
             // 
@@ -302,6 +304,7 @@
             this.Controls.Add(this.gbox_ABMpro_nuevoProfesional);
             this.Name = "frm_ABMpro_Alta";
             this.Text = "Alta de profesional";
+            this.Load += new System.EventHandler(this.frm_ABMpro_Alta_Load);
             this.gbox_ABMpro_nuevoProfesional.ResumeLayout(false);
             this.gbox_ABMpro_nuevoProfesional.PerformLayout();
             this.ResumeLayout(false);
@@ -311,9 +314,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbox_ABMpro_nuevoProfesional;
-        private System.Windows.Forms.MonthCalendar monthCalendar_ABMpro_calendario;
         private System.Windows.Forms.Label lbl_ABMpro_fnac;
-        private System.Windows.Forms.Button btn_ABMpro_seleccionarEspecialidades;
         private System.Windows.Forms.ComboBox cbo_ABMpro_sexo;
         private System.Windows.Forms.TextBox txt_ABMpro_mail;
         private System.Windows.Forms.TextBox txt_ABMpro_telefono;
@@ -334,6 +335,8 @@
         private System.Windows.Forms.Label lbl_ABMpro_direccion;
         private System.Windows.Forms.Label lbl_ABMpro_matricula;
         private System.Windows.Forms.Label lbl_ABMpro_ndoc;
+        private System.Windows.Forms.CheckedListBox chlb_especialidades;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
     }
 }

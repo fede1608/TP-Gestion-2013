@@ -21,6 +21,7 @@ namespace Clinica_Frba.ClasesDatosTablas
         public DateTime pro_nacimiento{ get; set; }
         public string pro_sexo{ get; set; }
         public int pro_cant_hs_acum{ get; set; }
+        public int pro_habilitado { get; set; }
 
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
 

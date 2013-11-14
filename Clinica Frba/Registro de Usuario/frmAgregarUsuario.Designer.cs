@@ -35,11 +35,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.txt_pass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txt_pass2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txt_pass2);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txt_pass);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txt_user);
@@ -55,7 +59,7 @@
             // 
             // txt_user
             // 
-            this.txt_user.Location = new System.Drawing.Point(147, 45);
+            this.txt_user.Location = new System.Drawing.Point(181, 51);
             this.txt_user.Name = "txt_user";
             this.txt_user.Size = new System.Drawing.Size(100, 20);
             this.txt_user.TabIndex = 13;
@@ -63,11 +67,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 48);
+            this.label1.Location = new System.Drawing.Point(10, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(151, 13);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Username:";
+            this.label1.Text = "Ingrese su nombre de Usuario:";
             // 
             // button2
             // 
@@ -90,7 +94,7 @@
             // 
             // txt_pass
             // 
-            this.txt_pass.Location = new System.Drawing.Point(147, 92);
+            this.txt_pass.Location = new System.Drawing.Point(181, 92);
             this.txt_pass.Name = "txt_pass";
             this.txt_pass.Size = new System.Drawing.Size(100, 20);
             this.txt_pass.TabIndex = 15;
@@ -98,11 +102,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 95);
+            this.label2.Location = new System.Drawing.Point(10, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Password:";
+            this.label2.Text = "Ingrese su Password:";
+            // 
+            // txt_pass2
+            // 
+            this.txt_pass2.Location = new System.Drawing.Point(182, 119);
+            this.txt_pass2.Name = "txt_pass2";
+            this.txt_pass2.Size = new System.Drawing.Size(100, 20);
+            this.txt_pass2.TabIndex = 17;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(170, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Ingrese nuevamente su Password:";
             // 
             // frmAgregarUsuario
             // 
@@ -127,5 +147,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txt_pass;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txt_pass2;
+        private System.Windows.Forms.Label label3;
     }
 }

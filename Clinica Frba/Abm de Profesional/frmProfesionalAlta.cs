@@ -36,6 +36,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
                   && txt_ABMpro_telefono.Text != ""
                   && txt_ABMpro_mail.Text != ""
                   && cbo_ABMpro_sexo.Text != ""
+                  && chlb_especialidades.SelectedItems.Count>0
                   )
             {
                 
@@ -65,37 +66,50 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
 
                 //Si llegamos a este punto, ya esta controlado que el profesional no tenga datos
                 //repetidos, por lo que procedemos a crearle un usuario primero si es que no lo tiene
+                Usuario user;
                 string nombre_usuario = "u" + Convert.ToString(txt_ABMpro_NDoc.Text);
                 var existeUsuario = runner.Single("SELECT COUNT(*) as ocurrencias FROM SIGKILL.usuario WHERE usr_usuario='{0}'", nombre_usuario);
+                
                 if ((int)existeUsuario["ocurrencias"] == 0)
                 {
                     //Si NO existe un usuario con el mismo documento
-                    MessageBox.Show("No existe un usuario para este profesional");
+                    //MessageBox.Show("No existe un usuario para este profesional");
 
                     //Creamos un usuario default para el profesional
                     //Un usuario default de profesional tiene como usuario uDNI (uXXX) y como pass su MATRICULA
+                    
                     try
                     {
                         runner.Insert("INSERT INTO SIGKILL.usuario(usr_usuario,usr_password)" +
                             "VALUES ('{0}','{1}')", nombre_usuario, toSha256.ToSha256(txt_ABMpro_matricula.Text));
-                        MessageBox.Show("Se creo un usuario default para el profesional");
+                        MessageBox.Show("Se creo el usuario: "+nombre_usuario+" para el profesional");
+                        
+                        
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Error al crear el usuario default",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
-
+                user = new Adapter().Transform<Usuario>(runner.Single("SELECT * FROM SIGKILL.Usuario WHERE usr_usuario='{0}'", nombre_usuario));
 
                 //En este punto ya estamos seguros de que existe un usuario para el profesional, 
                 //por lo que ya podemos agregarlo   
                 try
                 {
                     //TODO: Revisar la sintaxis de esto (sobre todo las variables)
-                    runner.Insert("INSERT INTO SIGKILL.profesional(pro_matricula,pro_usuario,pro_nombre,pro_apellido, pro_dni, pro_direccion, pro_telefono, pro_mail, pro_nacimiento, pro_sexo, pro_cant_hs_acum) VALUES {0}, '{1}', '{2}', '{3}',{4},'{5}',{6},'{7}','{8}','{9}',{10}",
-                    int.Parse(txt_ABMpro_matricula.Text), nombre_usuario, txt_ABMpro_nombre.Text, txt_ABMpro_apellido.Text,
+                    runner.Insert("INSERT INTO SIGKILL.profesional(pro_matricula,pro_usuario,pro_nombre,pro_apellido, pro_dni, pro_direccion, pro_telefono, pro_mail, pro_nacimiento, pro_sexo)"
+                   + " VALUES ({0}, {1}, '{2}', '{3}',{4},'{5}',{6},'{7}',{8},'{9}')",
+                    int.Parse(txt_ABMpro_matricula.Text), user.usr_id, txt_ABMpro_nombre.Text, txt_ABMpro_apellido.Text,
                     int.Parse(txt_ABMpro_NDoc.Text), txt_ABMpro_direccion.Text, int.Parse(txt_ABMpro_telefono.Text), txt_ABMpro_mail.Text,
-                    monthCalendar_ABMpro_calendario.SelectionRange.Start.ToString("yyyy-MM-dd"), sexo, 0);
+                    dateTimePicker1.Value.ToString("yyyy-MM-dd"), sexo);
+
+                    Profesional pro = new Adapter().Transform<Profesional>(runner.Single("SELECT * FROM SIGKILL.Profesional WHERE pro_dni={0}", txt_ABMpro_NDoc.Text));
+                    foreach (Especialidad esp in chlb_especialidades.CheckedItems)
+                    {
+                        runner.Insert("INSERT INTO SIGKILL.esp_prof (espprof_profesional,espprof_especialidad)" +
+                            "VALUES ({0},{1})", pro.pro_id, esp.esp_id);
+                    }
 
                     MessageBox.Show("El profesional fue dado de alta satisfactoriamente.",
 "Operación válida", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,10 +144,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
 
         }
 
-        private void monthCalendar_ABMpro_calendario_DateChanged(object sender, DateRangeEventArgs e)
-        {
 
-        }
 
         private void txt_ABMpro_direccion_TextChanged(object sender, EventArgs e)
         {
@@ -148,6 +159,63 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
         private void gbox_ABMpro_nuevoProfesional_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_ABMpro_NDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_ABMpro_matricula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_ABMpro_telefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void frm_ABMpro_Alta_Load(object sender, EventArgs e)
+        {
+            IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
+            foreach (Especialidad es in esp)
+            {
+                chlb_especialidades.Items.Add(es);
+            }
         }
 
 

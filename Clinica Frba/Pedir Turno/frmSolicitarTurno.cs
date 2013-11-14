@@ -52,7 +52,7 @@ namespace Clinica_Frba.Pedir_Turno
         {
             combo_profesional.Enabled = true;
             combo_profesional.Items.Clear();
-            var res = new Adapter().TransformMany<Profesional>(runner.Select("SELECT pro_id,pro_matricula,pro_usuario,pro_nombre,pro_apellido,pro_tipo_doc,pro_dni,pro_direccion,pro_telefono,pro_mail,	pro_nacimiento,	pro_sexo,pro_cant_hs_acum  FROM SIGKILL.profesional,SIGKILL.esp_prof WHERE espprof_profesional=pro_id AND espprof_especialidad={0}",((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString()));
+            var res = new Adapter().TransformMany<Profesional>(runner.Select("SELECT pro_id,pro_matricula,pro_usuario,pro_nombre,pro_apellido,pro_tipo_doc,pro_dni,pro_direccion,pro_telefono,pro_mail,	pro_nacimiento,	pro_sexo,pro_cant_hs_acum  FROM SIGKILL.profesional,SIGKILL.esp_prof WHERE espprof_profesional=pro_id AND espprof_especialidad={0} AND pro_habilitado=1",((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString()));
             foreach (Profesional p in res)
             {
                 combo_profesional.Items.Add(p);

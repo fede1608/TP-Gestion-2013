@@ -51,14 +51,20 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
         private void frm_ABMpro_listado_Load(object sender, EventArgs e)
         {
 
-            SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
+            //SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
             try
             {
                 var result = runner
                     .Select("SELECT * FROM SIGKILL.profesional");
                 var profesionalDb = new Adapter().TransformMany<Profesional>(result);
 
+                IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
+                foreach (Especialidad es in esp)
+                {
+                    combo_especialidad.Items.Add(es);
 
+                }
+                combo_especialidad.DisplayMember = ("esp_nombre_especialidad");
             }
             catch
             {
@@ -97,6 +103,11 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
                 filter.AddEqual("pro_dni", txt_ABMpro_dni.Text);
             }
 
+            if (combo_especialidad.SelectedIndex > 0)
+            {
+                filter.AddCustom("pro_id "," in "," (SELECT espprof_profesional FROM SIGKILL.esp_prof WHERE espprof_especialidad="+((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString()+")");
+            }
+            filter.AddEqual("pro_habilitado", "1");
             try
             {
                 var result = runner
