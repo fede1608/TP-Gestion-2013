@@ -33,7 +33,24 @@ namespace Clinica_Frba.Menu
 
         private void Menu_Load(object sender, EventArgs e)
         {
+            switch (sesionActual.rol.rol_id)
+            {
+                case 3:
+                    if (sesionActual.usuario.getAfiliado().afil_tipo_doc == 0)
+                    {
+                        MessageBox.Show("Por favor, Actualice sus datos personales");
+                        new Clinica_Frba.Abm_de_Afiliado.frmActualizarXMigracion(sesionActual.usuario.getAfiliado()).Show();
+                    }
+                    break;
+                case 2:
+                    if (sesionActual.usuario.getProfesional().pro_matricula == 0)
+                    {
+                        MessageBox.Show("Por favor, Actualice sus datos personales");
+                        new Clinica_Frba.Abm_de_Profesional_Alta.frm_ABMpro_Alta(sesionActual.usuario.getProfesional()).Show();
+                    }
+                    break;
 
+            }
         }
 
         public void ordenarBotones(sesion sesionLogeo)
@@ -582,12 +599,15 @@ namespace Clinica_Frba.Menu
         // Evento click Venta de bonos en ventanilla
         private void btn_venta_bonos_ventanilla_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado(5).Show();
         }
 
         private void btn_pedir_turno_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Pedir_Turno.frmSolicitarTurno(sesionActual.usuario.getAfiliado()).Show();
+            if (sesionActual.usuario.hasAfiliado())
+                new Clinica_Frba.Pedir_Turno.frmSolicitarTurno(sesionActual.usuario.getAfiliado()).Show();
+            else
+                new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado(4).Show();
         }
 
 

@@ -99,11 +99,20 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             var cell = dbgrb_ABMAfiliado_Listado_vista.Rows[e.RowIndex];
 
-            if (tipo == 3)
+            switch(tipo)
             {
-                new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Afiliado.newFromId((long)cell.Cells[0].Value)).Show();
-                this.Close();
-                return;
+                case 3:
+                    new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Afiliado.newFromId((long)cell.Cells[0].Value)).Show();
+                    this.Close();
+                    return;
+                case 4:
+                    new Clinica_Frba.Pedir_Turno.frmSolicitarTurno(Afiliado.newFromId((long)cell.Cells[0].Value)).Show();
+                    this.Close();
+                    return;
+                case 5:
+                    new Clinica_Frba.Compra_de_Bono.frmCompraBonos(Usuario.newFromId(Afiliado.newFromId((long)cell.Cells[0].Value).afil_usuario)).Show();
+                    this.Close();
+                    return;
             }
             var res = runner.Single("SELECT * FROM SIGKILL.afiliado WHERE afil_numero={0}", cell.Cells[0].Value.ToString());
             //Afiliado afil = new Adapter().Transform<Afiliado>(res);

@@ -88,7 +88,7 @@
             this.gbox_ABMpro_nuevoProfesional.Size = new System.Drawing.Size(677, 291);
             this.gbox_ABMpro_nuevoProfesional.TabIndex = 37;
             this.gbox_ABMpro_nuevoProfesional.TabStop = false;
-            this.gbox_ABMpro_nuevoProfesional.Text = "Nuevo profesional";
+            this.gbox_ABMpro_nuevoProfesional.Text = "Profesional";
             this.gbox_ABMpro_nuevoProfesional.Enter += new System.EventHandler(this.gbox_ABMpro_nuevoProfesional_Enter);
             // 
             // lbl_ABMpro_especialidades

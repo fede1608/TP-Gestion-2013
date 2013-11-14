@@ -81,6 +81,11 @@ namespace Clinica_Frba.ClasesDatosTablas
 
 
 
+
+        public static Usuario newFromId(long p)
+        {
+            return new Adapter().Transform<Usuario>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.usuario WHERE usr_id={0}", p.ToString()));
+        }
     }
 }
 

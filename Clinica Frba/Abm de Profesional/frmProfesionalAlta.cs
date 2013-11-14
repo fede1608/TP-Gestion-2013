@@ -294,6 +294,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
                 {
                     p2.actualizar(prof,chlb_especialidades.CheckedItems.OfType<Especialidad>().ToList());
                     MessageBox.Show("Se han actualizado correctamente los datos");
+                    this.Close();
                 }
                 catch (Exception ex)
                 {

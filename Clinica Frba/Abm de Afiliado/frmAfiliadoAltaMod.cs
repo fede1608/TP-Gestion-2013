@@ -31,6 +31,14 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             afiliado_a_modificar = Afiliado.newFromId(nroAfiliado);
 
+            cargarDatosModificacion();
+            //Este es el botón siguiente del Alta
+            btn_ABMAfiliado_Alta_siguiente.Visible = false;
+            //cbo_ABMAfiliado_AltaMod_tipodoc.Enabled = false;
+        }
+
+        private void cargarDatosModificacion()
+        {
             groupBox_ABMAfiliado_AltaMod_titulo.Text = "Modificación Afiliado";
             //Estos campos no se pueden modificar
             txt_ABMAfiliado_AltaMod_nombre.Enabled = false;
@@ -40,9 +48,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txt_ABMAfiliado_AltaMod_nrodoc.Enabled = false;
             txt_ABMAfiliado_AltaMod_nrodoc.Text = afiliado_a_modificar.afil_dni.ToString();
             monthCalendar_ABMAfiliado_AltaMod_nacimiento.Enabled = false;
-            //Este es el botón siguiente del Alta
-            btn_ABMAfiliado_Alta_siguiente.Visible = false;
-            cbo_ABMAfiliado_AltaMod_tipodoc.Enabled = false;
+
         }
         public frmAfiliadoAltaMod(double unId, int tipoFamiliar )
         {
