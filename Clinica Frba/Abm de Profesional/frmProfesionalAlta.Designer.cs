@@ -53,11 +53,13 @@
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.chlb_especialidades = new System.Windows.Forms.CheckedListBox();
+            this.btn_ABMpro_actualizar = new System.Windows.Forms.Button();
             this.gbox_ABMpro_nuevoProfesional.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbox_ABMpro_nuevoProfesional
             // 
+            this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.btn_ABMpro_actualizar);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.chlb_especialidades);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.dateTimePicker1);
             this.gbox_ABMpro_nuevoProfesional.Controls.Add(this.lbl_ABMpro_especialidades);
@@ -296,6 +298,17 @@
             this.chlb_especialidades.Size = new System.Drawing.Size(273, 184);
             this.chlb_especialidades.TabIndex = 79;
             // 
+            // btn_ABMpro_actualizar
+            // 
+            this.btn_ABMpro_actualizar.Location = new System.Drawing.Point(553, 245);
+            this.btn_ABMpro_actualizar.Name = "btn_ABMpro_actualizar";
+            this.btn_ABMpro_actualizar.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMpro_actualizar.TabIndex = 80;
+            this.btn_ABMpro_actualizar.Text = "Actualizar";
+            this.btn_ABMpro_actualizar.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_actualizar.Visible = false;
+            this.btn_ABMpro_actualizar.Click += new System.EventHandler(this.btn_ABMpro_actualizar_Click);
+            // 
             // frm_ABMpro_Alta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,6 +350,7 @@
         private System.Windows.Forms.Label lbl_ABMpro_ndoc;
         private System.Windows.Forms.CheckedListBox chlb_especialidades;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btn_ABMpro_actualizar;
 
     }
 }

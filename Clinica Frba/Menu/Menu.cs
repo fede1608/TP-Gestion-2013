@@ -515,12 +515,12 @@ namespace Clinica_Frba.Menu
 
         private void btn_baja_profesional_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado().Show();
+            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado(2).Show();
         }
 
         private void btn_modificar_profesional_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado().Show();
+            new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado(1).Show();
         }
 
         //Eventos click de los botones ABM Esp. Medicas

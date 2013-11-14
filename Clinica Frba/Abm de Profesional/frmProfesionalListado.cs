@@ -129,34 +129,51 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
         private void dbgrb_ABMpro_vistaListado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var cell = dbgrb_ABMpro_vistaListado.Rows[e.RowIndex];
-            //PARTE DE CANCELAR ATENCION
-            if (tipo == 3)
-            {
-                new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Profesional.newFromId((long)cell.Cells[0].Value)).Show();
-                this.Close();
+           
+            switch(tipo)
+            { 
+                    //1: Modificacion
+                    //2:baja
+                    //3:cancelar atencion medica - seleccionar profesional
+            
+                case 1:
+                    var res = runner.Single("SELECT * FROM SIGKILL.profesional WHERE pro_id={0}", cell.Cells[0].Value.ToString());
+                    Profesional pro = new Adapter().Transform<Profesional>(res);
+                    new Clinica_Frba.Abm_de_Profesional_Alta.frm_ABMpro_Alta(pro).Show();
+                    this.Close();
+                    break;
+            
+                case 2:
+                    DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar al profesional " + cell.Cells[1].Value.ToString() + "?", "Eliminar profesional", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            Profesional prof = new Adapter().Transform<Profesional>(runner.Single("SELECT * FROM SIGKILL.profesional WHERE pro_id={0}", cell.Cells[0].Value.ToString()));
+                            prof.darDeBaja();
+                            MessageBox.Show("Se ha eliminado correctamente al profesional");
+                            btn_ABMpro_buscar_Click(new object(), new EventArgs());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
+                        }
+                    }
+                break;
+
+                //PARTE DE CANCELAR ATENCION
+                case 3:
+                    new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Profesional.newFromId((long)cell.Cells[0].Value)).Show();
+                    this.Close();
                 return;
+
+                //FIN CANCELAR ATENCION
             }
-            //FIN CANCELAR ATENCION
-            //MessageBox.Show("Se clickeo " + cell.Cells[0].Value.ToString());
-           /* if (tipo == 1)
-            {
-                var res = runner.Single("SELECT * FROM SIGKILL.profesional WHERE pro_matricula={0}", cell.Cells[0].Value.ToString());
-                Profesional pro = new Adapter().Transform<Profesional>(res);
-                new frm_ABMpro_listado(pro).Show();
-                this.Close();
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar al profesional " + cell.Cells[1].Value.ToString() + "?", "Eliminar profesional", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    runner.Delete("DELETE FROM SIGKILL.profesional WHERE pro_matricula={0}", cell.Cells[0].Value);
-                    MessageBox.Show("Se ha eliminado correctamente al profesional");
-                    btn_ABMpro_buscar_Click(new object(), new EventArgs());
-                }
-            }
-            */
+            
         }
+
+
 
     }
 }

@@ -300,7 +300,11 @@ GO
 
 --insert de tipos de cancelaciones
 INSERT INTO SIGKILL.tipo_cancelacion(tic_nombre_tipo)
-VALUES('Cancelado por Administrador'),('Cancelacion del Afiliado'),('Cancelacion Particular del Profesional'),('Cancelacion General de un período de un Profesional'),('Cancelacion por Migración'),('Cancelacion General de un período por un Administrador');
+VALUES('Cancelado por Administrador'),('Cancelacion del Afiliado'),
+('Cancelacion Particular del Profesional'),
+('Cancelacion General de un período de un Profesional'),
+('Cancelacion por Migración'),('Cancelacion General de un período por un Administrador'),
+('Cancelacion por Baja de Profesional');
 GO
 
 --insert de roles

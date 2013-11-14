@@ -16,12 +16,49 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
     {
         //Profesional profesional;
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-
+        Profesional prof;
+        bool Mod = false;
         public frm_ABMpro_Alta()
         {    
             InitializeComponent();
+ 
+        }
 
+        public frm_ABMpro_Alta(Profesional p)//Modificacion
+        {
+            InitializeComponent();
+            prof = p;
+            Mod = true;
             
+        }
+
+        private void cargarDatos(Profesional prof)
+        {
+            txt_ABMpro_NDoc.Text = prof.pro_dni.ToString();
+            txt_ABMpro_apellido.Text = prof.pro_apellido;
+            txt_ABMpro_direccion.Text = prof.pro_direccion;
+            txt_ABMpro_mail.Text = prof.pro_mail;
+            txt_ABMpro_matricula.Text = prof.pro_matricula.ToString();
+            txt_ABMpro_nombre.Text = prof.pro_nombre;
+            txt_ABMpro_telefono.Text = prof.pro_telefono.ToString();
+            cbo_ABMpro_sexo.SelectedIndex = (prof.pro_sexo == "M" || prof.pro_sexo == "m") ? 0 : 1;
+            dateTimePicker1.Value = prof.pro_nacimiento;
+            //txt_ABMpro_nombre.Enabled = false;
+            txt_ABMpro_NDoc.Enabled = false;
+            //txt_ABMpro_apellido.Enabled = false;
+
+            foreach (Especialidad esp in prof.especialidades())
+            {
+                //foreach (Especialidad esp2 in chlb_especialidades.Items)
+                for (int i =0;i<chlb_especialidades.Items.Count;i++)
+                {
+                    Especialidad esp2 = (Especialidad)chlb_especialidades.Items[i];
+                    if (esp.esp_id == esp2.esp_id)
+                    {
+                        chlb_especialidades.SetItemChecked(chlb_especialidades.Items.IndexOf(esp2),true);
+                    }
+                }
+            }
         }
 
 
@@ -36,7 +73,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
                   && txt_ABMpro_telefono.Text != ""
                   && txt_ABMpro_mail.Text != ""
                   && cbo_ABMpro_sexo.Text != ""
-                  && chlb_especialidades.SelectedItems.Count>0
+                  && chlb_especialidades.CheckedItems.Count > 0
                   )
             {
                 
@@ -216,6 +253,57 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
             {
                 chlb_especialidades.Items.Add(es);
             }
+            if (Mod)
+            {
+                cargarDatos(prof);
+                btn_ABMpro_aceptar.Visible = false;
+                btn_ABMpro_limpiar.Visible = false;
+                btn_ABMpro_actualizar.Visible = true;
+                Text = "Modificacion Profesionales";
+
+            }
+        }
+
+        private void btn_ABMpro_actualizar_Click(object sender, EventArgs e)
+        {
+                        //Validamos que los datos esten completos
+            if (txt_ABMpro_nombre.Text != ""
+                  && txt_ABMpro_apellido.Text != ""
+                  && txt_ABMpro_NDoc.Text != ""
+                  && txt_ABMpro_matricula.Text != ""
+                  && txt_ABMpro_direccion.Text != ""
+                  && txt_ABMpro_telefono.Text != ""
+                  && txt_ABMpro_mail.Text != ""
+                  && cbo_ABMpro_sexo.Text != ""
+                  && chlb_especialidades.CheckedItems.Count > 0
+                  )
+            {
+                Profesional p2 = new Profesional();
+                p2.pro_id = prof.pro_id;
+                p2.pro_apellido = txt_ABMpro_apellido.Text;
+                p2.pro_direccion = txt_ABMpro_direccion.Text;
+                p2.pro_mail = txt_ABMpro_mail.Text;
+                p2.pro_matricula = int.Parse(txt_ABMpro_matricula.Text);
+                p2.pro_nacimiento = dateTimePicker1.Value;
+                p2.pro_nombre = txt_ABMpro_nombre.Text;
+                string sexo;
+                if (cbo_ABMpro_sexo.Text == "Masculino") { sexo = "M"; } else { sexo = "F"; }
+                p2.pro_sexo = sexo;
+                p2.pro_telefono = int.Parse(txt_ABMpro_telefono.Text);
+                try
+                {
+                    p2.actualizar(prof,chlb_especialidades.CheckedItems.OfType<Especialidad>().ToList());
+                    MessageBox.Show("Se han actualizado correctamente los datos");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }else
+                MessageBox.Show("Por favor, complete todos los datos para continuar.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
         }
 
 

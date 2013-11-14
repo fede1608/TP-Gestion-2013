@@ -58,7 +58,6 @@
             this.dbgrb_ABMpro_vistaListado.Size = new System.Drawing.Size(522, 208);
             this.dbgrb_ABMpro_vistaListado.TabIndex = 0;
             this.dbgrb_ABMpro_vistaListado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dbgrb_ABMpro_vistaListado_CellClick);
-            this.dbgrb_ABMpro_vistaListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dbgrb_ABMpro_vistaListado_CellClick);
             // 
             // gbox_ABMpro_filtros
             // 
