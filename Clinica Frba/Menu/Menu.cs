@@ -526,33 +526,33 @@ namespace Clinica_Frba.Menu
         //Eventos click de los botones ABM Esp. Medicas
         private void btn_alta_espmedic_Click(object sender, EventArgs e)
         {
-            //   new Clinica_Frba.Abm_de_profesional.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Abm_de_Especialidades_Medicas.frmAltaModEspMedica().Show();
         }
 
         private void btn_baja_espmedic_Click(object sender, EventArgs e)
         {
-            // new Clinica_Frba.Abm_de_Profesional.frmAfiliadoListado().Show();
+            new Clinica_Frba.Abm_de_Especialidades_Medicas.frmListadoEspMedica().Show();
         }
 
         private void btn_modificar_espmedic_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Profesional.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Abm_de_Especialidades_Medicas.frmListadoEspMedica().Show();
         }
 
         //Eventos click de los botones ABM Plan
         private void btn_alta_plan_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Abm_de_Planes.frmAltaModPlanes().Show();
         }
 
         private void btn_baja_plan_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoListado().Show();
+            new Clinica_Frba.Abm_de_Planes.frmListadoPlanes().Show();
         }
 
         private void btn_modificar_plan_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Abm_de_Planes.frmListadoPlanes().Show();
         }
 
 

@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Clinica_Frba.NewFolder14
+namespace Clinica_Frba.Abm_de_Especialidades_Medicas
 {
-    public partial class Form1 : Form
+    public partial class frmAltaModEspMedica : Form
     {
-        public Form1()
+        public frmAltaModEspMedica()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
