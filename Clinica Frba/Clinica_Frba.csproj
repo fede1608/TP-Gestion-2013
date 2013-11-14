@@ -212,12 +212,6 @@
     <Compile Include="Registro de LLegada\frmRegistroLlegada.Designer.cs">
       <DependentUpon>frmRegistroLlegada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro de Usuario\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Registro de Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Abm de Afiliado\frmAfiliadoAltaFamiliar.resx">
@@ -294,6 +288,9 @@
     <EmbeddedResource Include="Registro de LLegada\frmRegistroLlegada.resx">
       <DependentUpon>frmRegistroLlegada.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registro de Usuario\frmAgregarUsuario.resx">
+      <DependentUpon>frmAgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro Resultado Atencion\frmListadoConsultas.resx">
       <DependentUpon>frmListadoConsultas.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +321,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Registro de Usuario\frmAgregarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\frmAgregarUsuario.Designer.cs">
+      <DependentUpon>frmAgregarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro Resultado Atencion\frmListadoConsultas.cs">
       <SubType>Form</SubType>

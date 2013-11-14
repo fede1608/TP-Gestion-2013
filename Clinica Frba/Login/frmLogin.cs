@@ -306,5 +306,10 @@ namespace Clinica_Frba.Login
 
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            new Clinica_Frba.Registro_de_Usuario.frmAgregarUsuario().Show();
+        }
+
     }
 }

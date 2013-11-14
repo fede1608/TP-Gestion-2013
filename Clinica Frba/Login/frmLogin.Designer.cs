@@ -43,6 +43,7 @@
             this.btnAceptarRol = new System.Windows.Forms.Button();
             this.cboRol = new System.Windows.Forms.ComboBox();
             this.lblRol = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.grbLogin.SuspendLayout();
             this.grbRol.SuspendLayout();
             this.SuspendLayout();
@@ -109,7 +110,7 @@
             this.chkbPass.AutoSize = true;
             this.chkbPass.Location = new System.Drawing.Point(137, 85);
             this.chkbPass.Name = "chkbPass";
-            this.chkbPass.Size = new System.Drawing.Size(116, 17);
+            this.chkbPass.Size = new System.Drawing.Size(118, 17);
             this.chkbPass.TabIndex = 7;
             this.chkbPass.Text = "Mostrar Contraseña";
             this.chkbPass.UseVisualStyleBackColor = true;
@@ -117,6 +118,7 @@
             // 
             // grbLogin
             // 
+            this.grbLogin.Controls.Add(this.button1);
             this.grbLogin.Controls.Add(this.lblIntentos);
             this.grbLogin.Controls.Add(this.btnCancelar);
             this.grbLogin.Controls.Add(this.chkbPass);
@@ -206,6 +208,16 @@
             this.lblRol.TabIndex = 0;
             this.lblRol.Text = "Logearse como:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 149);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Registrarse";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnAceptar;
@@ -244,5 +256,6 @@
         private System.Windows.Forms.Button btnAceptarRol;
         private System.Windows.Forms.Button btnCancelarRol;
         private System.Windows.Forms.Label lblIntentos;
+        private System.Windows.Forms.Button button1;
     }
 }
