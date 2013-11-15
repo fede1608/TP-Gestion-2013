@@ -294,7 +294,7 @@ VALUES('Cancelado por Administrador'),('Cancelacion del Afiliado'),
 ('Cancelacion Particular del Profesional'),
 ('Cancelacion General de un período de un Profesional'),
 ('Cancelacion por Migración'),('Cancelacion General de un período por un Administrador'),
-('Cancelacion por Baja de Profesional');
+('Cancelacion por Baja de Profesional'),('Cancelacion por Baja de Afiliado');
 GO
 
 --insert de roles
@@ -402,13 +402,13 @@ WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()
 
 --insert de Bonos Consulta
 INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)
-(SELECT Bono_Consulta_Numero,afil_numero+1,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
+(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
 
 --insert de Bonos Farmacia
 INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)
-(SELECT Bono_Farmacia_Numero,afil_numero+1,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
+(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
 

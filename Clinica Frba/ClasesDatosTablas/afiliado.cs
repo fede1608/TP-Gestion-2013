@@ -81,9 +81,17 @@ namespace Clinica_Frba.ClasesDatosTablas
         public void darDeBaja()
         {
             afil_activo = 0;
+            cancelarTodasAtencionesAfiliado();
             commit();
         }
-
+        public void cancelarTodasAtencionesAfiliado()
+        {
+            DateTime fin = Properties.Settings.Default.Date;
+            fin.AddDays(1);
+            runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)" +
+            "(SELECT trn_profesional,trn_afiliado,{1},'{2}',trn_fecha_hora,'{3}' FROM SIGKILL.turno WHERE  trn_fecha_hora > '{0}' AND trn_afiliado = {4} AND trn_id not in (SELECT cons_turno FROM SIGKILL.consulta))", fin.ToString("yyyy-MM-dd"), "8", "Baja de Afiliado", Properties.Settings.Default.Date.ToString("yyyy-MM-dd"), this.afil_numero);
+            runner.Delete("DELETE FROM SIGKILL.turno WHERE trn_fecha_hora > '{0}' AND trn_afiliado = {1} AND trn_id not in (SELECT cons_turno FROM SIGKILL.consulta)", fin.ToString("yyyy-MM-dd"), this.afil_numero);
+        }
         public static Afiliado newFromDNI(int p)
         {
             return new Adapter().Transform<Afiliado>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT TOP 1 * FROM SIGKILL.Afiliado WHERE afil_dni={0}", p.ToString()));

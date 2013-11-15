@@ -39,7 +39,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             var pmed = new Adapter().TransformMany<Plan_Medico>(runner.Select("SELECT * FROM SIGKILL.plan_medico"));
             foreach (Plan_Medico r in pmed)
             {
-                cbo_Listado_planmedico.Items.Add(r.pmed_nombre);
+                cbo_Listado_planmedico.Items.Add(r);
             }
             cbo_Listado_planmedico.DisplayMember = "pmed_nombre";
         }
@@ -67,11 +67,10 @@ namespace Clinica_Frba.Abm_de_Afiliado
             }
             if (cbo_Listado_planmedico.Text.Length > 0)
             {
-                //TODO: arreglar
-                Plan_Medico plan_med = (Plan_Medico)cbo_Listado_planmedico.SelectedValue;
+                Plan_Medico plan_med = (Plan_Medico)cbo_Listado_planmedico.SelectedItem;
                 filter.AddEqual("afil_id_plan_medico", plan_med.pmed_id.ToString());
             }
-
+            filter.AddEqual("afil_activo", "1");
             try
             {
                 var result = runner
@@ -120,9 +119,21 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 new frmAfiliadoAltaMod((long)cell.Cells[0].Value).Show();
             else
             {
-                Afiliado afiliado_baja = Afiliado.newFromId((long)cell.Cells[0].Value);
-                afiliado_baja.darDeBaja();
-                MessageBox.Show("El afiliado fue dado de baja correctamente");
+                DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar al Afiliado?", "Eliminar Afiliado", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        Afiliado afiliado_baja = Afiliado.newFromId((long)cell.Cells[0].Value);
+                        afiliado_baja.darDeBaja();
+                        MessageBox.Show("El afiliado fue dado de baja correctamente");
+                        btn_ABMAfiliado_Listado_Buscar_Click(new Object(), new EventArgs());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
         }
     }
