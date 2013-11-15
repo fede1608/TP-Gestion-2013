@@ -19,6 +19,12 @@ namespace Clinica_Frba.ClasesDatosTablas
         {
             return afil.getNumeroAfiliadoPrincipal() == afil.numeroAfiliadoPrincipal(Convert.ToInt64(this.bonof_afiliado));
         }
+
+        internal bool vencido()
+        {
+            DateTime compra=bonof_fecha_compra;
+            return compra.AddDays(90) < Properties.Settings.Default.Date;
+        }
     }
 
     

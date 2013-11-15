@@ -82,6 +82,11 @@ namespace Clinica_Frba.Generar_Receta
                     MessageBox.Show("El plan médico ha cambiado");
                     return;
                 }
+                if (bono.vencido())
+                {
+                    MessageBox.Show("El bono esta vencido");
+                    return;
+                }
                 for (int i = 1; i <= 5; i++)
                 {
                     NumericUpDown curNum = (NumericUpDown)this.groupBox2.Controls["num_med" + i.ToString()];
