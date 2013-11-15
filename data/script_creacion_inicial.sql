@@ -1,17 +1,9 @@
 USE [GD2C2013]
 GO
 
-
-
-
-
 /***** CREAR ESQUEMA *****/
 CREATE SCHEMA SIGKILL AUTHORIZATION gd
 GO
-
-
-
-
 
 /***** CREAR TABLAS *****/
 -- Tabla Usuario
@@ -133,8 +125,6 @@ CREATE TABLE SIGKILL.estado_civil(
 	)
 GO
 
-
-
 -- Tabla Plan Medico
 CREATE TABLE SIGKILL.plan_medico(
 	pmed_id bigint PRIMARY KEY NOT NULL,
@@ -144,6 +134,7 @@ CREATE TABLE SIGKILL.plan_medico(
 	pmed_precio_bono_farmacia decimal(6,2) NOT NULL,
 	)
 GO
+
 -- Tabla Afiliado
 CREATE TABLE SIGKILL.afiliado(
 	afil_numero bigint PRIMARY KEY NOT NULL,
@@ -225,7 +216,7 @@ GO
 -- Tabla Bono consulta
 CREATE TABLE SIGKILL.bono_consulta(
 	bonoc_id bigint PRIMARY KEY NOT NULL,
-	bonoc_afiliado bigint ,--REFERENCES SIGKILL.afiliado(afil_numero),
+	bonoc_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	bonoc_fecha_compra datetime NOT NULL,
 	bonoc_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
 	bonoc_nro_consulta_individual bigint NULL,
@@ -249,7 +240,7 @@ GO
 -- Tabla Bono farmacia
 CREATE TABLE SIGKILL.bono_farmacia(
 	bonof_id bigint PRIMARY KEY NOT NULL,
-	bonof_afiliado bigint ,--REFERENCES SIGKILL.afiliado(afil_numero),
+	bonof_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	bonof_fecha_compra datetime NOT NULL,
 	bonof_consulta bigint REFERENCES SIGKILL.consulta(cons_id) NULL,
 	bonof_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
@@ -286,7 +277,6 @@ CREATE TABLE SIGKILL.medicamento_bono_farmacia(
 	recmed_aclaracion nvarchar(255) NULL
 	)
 GO
-
 
 /***** MIGRACION *****/
 --insert de funcionalidades
@@ -379,7 +369,7 @@ GO
 
 --insert de agendas de profesionales desde el dia de la migracion hasta el ultimo dia que tengan turnos
 INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
-(SELECT GETDATE(),(SELECT MAX(Turno_Fecha) FROM gd_esquema.Maestra WHERE Medico_Dni=pro_dni),pro_id FROM SIGKILL.profesional)
+(SELECT GETDATE(),(SELECT MAX(Turno_Fecha) FROM gd_esquema.Maestra WHERE Medico_Dni=pro_dni AND Turno_Fecha is not null),pro_id FROM SIGKILL.profesional)
 GO
 
 --insert de horarios de la agenda (Lunes a Jueves 40Hs semanales)
@@ -391,8 +381,6 @@ INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_
 (select agp_id,'8:00','17:30',4 from SIGKILL.agenda_profesional)
 INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
 (select agp_id,'8:00','17:30',5 from SIGKILL.agenda_profesional)
---INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)
---(select agp_id,'8:00','17:30',6 from SIGKILL.agenda_profesional)
 GO
 
 --insert de Turnos
@@ -401,10 +389,6 @@ INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
  FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
  WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
 GO
-
---UPDATE SIGKILL.turno 
---SET trn_fecha_hora=DATEADD(day,5,trn_fecha_hora) 
---WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0
 
 --insert de cancelaciones de turnos Domingo
 INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)
@@ -432,13 +416,13 @@ WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_S
 INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND NOT( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
+WHERE Consulta_Sintomas is not null AND NOT( DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 
 --insert de Consultas inconsistentes que sucedieron despues del dia de la migracion q son inconsistente para ser revisadas
 INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
-WHERE Consulta_Sintomas is not null AND ( /*DATEPART(dw, Turno_Fecha) = 1 AND */DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
+WHERE Consulta_Sintomas is not null AND ( DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 
 --Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos que se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
 UPDATE SIGKILL.bono_consulta 
@@ -629,47 +613,5 @@ BEGIN
 		fetch c1 into @idplan,@idafil
 	END
 END
-
-/****CURSORES****/
---declare @med_string nvarchar(300)
---declare c1 cursor for (SELECT DISTINCT Bono_Farmacia_Medicamento from gd_esquema.Maestra WHERE Bono_Farmacia_Medicamento is not null )
---open c1
---fetch c1 into @med_string
---while @@FETCH_STATUS = 0
---begin
---	INSERT INTO SIGKILL.medicamento (medic_nombre)
---	(select Item from SIGKILL.SplitString(@med_string, '+'))
---	fetch c1 into @med_string
---end
-
---close c1
---deallocate c1
---GO
-
---declare @med_string nvarchar(300)
---declare @bono_num bigint
---create table #Cursor (
---bononum bigint NOT NULL,
---medname varchar(255)
---)
---declare c1 cursor for (SELECT Bono_Farmacia_Medicamento,Bono_Farmacia_Numero from gd_esquema.Maestra WHERE Consulta_Sintomas is not null )--WHERE Bono_Farmacia_Medicamento is not null )
---open c1
---fetch c1 into @med_string,@bono_num
---while @@FETCH_STATUS = 0
---begin
---	--UPDATE SIGKILL.bono_consulta SET bonoc_consumido=1,bonoc_fecha_compra=@fecha WHERE bonoc_id=@bonoc_num
---	--UPDATE SIGKILL.bono_farmacia SET bonof_consumido=1,bonof_fecha_compra=@fecha WHERE bonof_id=@bono_num 
---	--INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
---	INSERT INTO #Cursor(bononum,medname)
---	(select @bono_num,SIGKILL.getMedicamentoId(Item) from SIGKILL.SplitString(@med_string, '+'))
---	fetch c1 into @med_string,@bono_num
---end
---INSERT INTO SIGKILL.medicamento_bono_farmacia(recmed_bono_farmacia,recmed_medicamento)
---(SELECT * FROM #Cursor)
---close c1
---deallocate c1
---drop table #Cursor
---GO
-
 
 
