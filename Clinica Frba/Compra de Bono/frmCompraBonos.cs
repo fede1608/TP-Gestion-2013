@@ -85,7 +85,11 @@ namespace Clinica_Frba.Compra_de_Bono
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            if ((txtConsulta.Text != "" && txtConsulta.Text != "0") && (txtFarmacia.Text != "" && txtFarmacia.Text != "0"))
+            if ((txtConsulta.Text == "0" || txtConsulta.Text == "") && (txtFarmacia.Text == "0" || txtFarmacia.Text == ""))
+            {
+                MessageBox.Show("No se pueden comprar 0 bonos consulta y 0 bonos farmacia");
+            }
+            else
             {
                 if (txtConsulta.Text == "") txtConsulta.Text = "0";
                 if (txtFarmacia.Text == "") txtFarmacia.Text = "0";
@@ -122,10 +126,6 @@ namespace Clinica_Frba.Compra_de_Bono
                     MessageBox.Show("Se ha comprado correctamente. Los Numeros de bonos de consulta son: " + num_bonosc + " y los de Farmacia: " + num_bonosf);
 
                 }
-            }
-            else
-            {
-                MessageBox.Show("No se pueden comprar 0 bonos consulta y 0 bonos farmacia");
             }
         }
     }
