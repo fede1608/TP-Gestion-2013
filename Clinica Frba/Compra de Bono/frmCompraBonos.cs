@@ -85,40 +85,47 @@ namespace Clinica_Frba.Compra_de_Bono
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            if (txtConsulta.Text == "") txtConsulta.Text = "0";
-            if (txtFarmacia.Text == "") txtFarmacia.Text = "0";
-            DialogResult dialogResult = MessageBox.Show("¿Estas seguro de comprar " + txtConsulta.Text + " Bono/s de Consulta y " + txtFarmacia.Text + " Bono/s de Farmacia?", "Comprar Bonos", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if ((txtConsulta.Text == "0" || txtConsulta.Text == "") && (txtFarmacia.Text == "0" || txtFarmacia.Text == ""))
             {
-                double total=((pmed.pmed_precio_bono_consulta * Convert.ToDouble(txtConsulta.Text))+(pmed.pmed_precio_bono_farmacia * Convert.ToDouble(txtFarmacia.Text)));
-                runner.Insert("INSERT INTO SIGKILL.compra_bono (compra_afiliado,compra_fecha_de_compra,compra_cant_bono_consulta,compra_cant_bono_farmacia,compra_total_abonado)"+
-                    "VALUES ({0},GETDATE(),{1},{2},{3})",afil.afil_numero.ToString(),txtConsulta.Text,txtFarmacia.Text,total.ToString());
-                
-                var res = runner.Single("SELECT MAX(bonoc_id)+1 as next FROM SIGKILL.bono_consulta");
-                
-                long id = (long)res["next"];
-                long i;
-                string num_bonosc="";
-                for (i = id; i < id + Convert.ToInt64(txtConsulta.Text); i++)
+                MessageBox.Show("No se pueden comprar 0 bonos consulta y 0 bonos farmacia");
+            }
+            else
+            {
+                if (txtConsulta.Text == "") txtConsulta.Text = "0";
+                if (txtFarmacia.Text == "") txtFarmacia.Text = "0";
+                DialogResult dialogResult = MessageBox.Show("¿Estas seguro de comprar " + txtConsulta.Text + " Bono/s de Consulta y " + txtFarmacia.Text + " Bono/s de Farmacia?", "Comprar Bonos", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    num_bonosc += i.ToString() + " ";
-                    runner.Insert("INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)" +
-                        "VALUES ({0},{1},GETDATE(),{2},{3})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_consulta);
+                    double total = ((pmed.pmed_precio_bono_consulta * Convert.ToDouble(txtConsulta.Text)) + (pmed.pmed_precio_bono_farmacia * Convert.ToDouble(txtFarmacia.Text)));
+                    runner.Insert("INSERT INTO SIGKILL.compra_bono (compra_afiliado,compra_fecha_de_compra,compra_cant_bono_consulta,compra_cant_bono_farmacia,compra_total_abonado)" +
+                        "VALUES ({0},GETDATE(),{1},{2},{3})", afil.afil_numero.ToString(), txtConsulta.Text, txtFarmacia.Text, total.ToString());
+
+                    var res = runner.Single("SELECT MAX(bonoc_id)+1 as next FROM SIGKILL.bono_consulta");
+
+                    long id = (long)res["next"];
+                    long i;
+                    string num_bonosc = "";
+                    for (i = id; i < id + Convert.ToInt64(txtConsulta.Text); i++)
+                    {
+                        num_bonosc += i.ToString() + " ";
+                        runner.Insert("INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)" +
+                            "VALUES ({0},{1},GETDATE(),{2},{3})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_consulta);
+
+                    }
+
+                    res = runner.Single("SELECT MAX(bonof_id)+1 as next FROM SIGKILL.bono_farmacia");
+                    long id2 = (long)res["next"];
+                    string num_bonosf = "";
+                    for (i = id2; i < id2 + Convert.ToInt64(txtFarmacia.Text); i++)
+                    {
+                        num_bonosf += i.ToString() + " ";
+                        runner.Insert("INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)" +
+                            "VALUES ({0},{1},GETDATE(),{2},{3})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_farmacia);
+
+                    }
+                    MessageBox.Show("Se ha comprado correctamente. Los Numeros de bonos de consulta son: " + num_bonosc + " y los de Farmacia: " + num_bonosf);
 
                 }
-
-                res = runner.Single("SELECT MAX(bonof_id)+1 as next FROM SIGKILL.bono_farmacia");
-                long id2 = (long)res["next"];
-                string num_bonosf = "";
-                for (i = id2; i < id2 + Convert.ToInt64(txtFarmacia.Text); i++)
-                {
-                    num_bonosf += i.ToString() + " ";
-                    runner.Insert("INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)" +
-                        "VALUES ({0},{1},GETDATE(),{2},{3})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_farmacia);
-
-                }
-                MessageBox.Show("Se ha comprado correctamente. Los Numeros de bonos de consulta son: "+num_bonosc+" y los de Farmacia: "+num_bonosf);
-                
             }
         }
     }
