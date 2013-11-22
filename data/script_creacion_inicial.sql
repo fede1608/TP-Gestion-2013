@@ -221,7 +221,8 @@ CREATE TABLE SIGKILL.bono_consulta(
 	bonoc_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
 	bonoc_nro_consulta_individual bigint NULL,
 	bonoc_consumido int DEFAULT 0 NOT NULL,
-	bonoc_precio decimal(6,2) NOT NULL
+	bonoc_precio decimal(6,2) NOT NULL,
+	bonoc_compra bigint REFERENCES SIGKILL.compra_bono(compra_id)
 	)
 GO
 
@@ -245,7 +246,8 @@ CREATE TABLE SIGKILL.bono_farmacia(
 	bonof_consulta bigint REFERENCES SIGKILL.consulta(cons_id) NULL,
 	bonof_plan_medico bigint REFERENCES SIGKILL.plan_medico(pmed_id),
 	bonof_consumido int DEFAULT 0 NOT NULL,
-	bonof_precio decimal(6,2) NOT NULL
+	bonof_precio decimal(6,2) NOT NULL,
+	bonof_compra bigint REFERENCES SIGKILL.compra_bono(compra_id)
 	)
 GO
 
@@ -309,7 +311,7 @@ GO
 
 --insert de tipos de documentos
 INSERT INTO SIGKILL.tipo_doc(tdoc_descripcion)
-VALUES ('DU'),('Libreta Cívica'),('Libreta de Enrolamiento')
+VALUES ('DU'),('Libreta Cívica'),('Libreta de Enrolamiento'),('Desconocido')
 GO
 
 --insert de estados civiles
@@ -343,8 +345,8 @@ VALUES (555555,'Plan Medico 110',110,96,92),(555556,'Plan Medico 120',120,66,74)
 GO
 
 --insert de datos del afiliado
-INSERT INTO SIGKILL.afiliado (afil_usuario,afil_numero,afil_nombre,afil_apellido,afil_dni,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico,afil_estado_civil)
-(SELECT DISTINCT usr_id,((usr_id-1)*100+1) as numero_afil,Paciente_Nombre,Paciente_Apellido,Paciente_Dni,Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo,6
+INSERT INTO SIGKILL.afiliado (afil_usuario,afil_numero,afil_nombre,afil_apellido,afil_tipo_doc,afil_dni,afil_sexo,afil_direccion,afil_telefono,afil_mail,afil_id_plan_medico,afil_estado_civil)
+(SELECT DISTINCT usr_id,((usr_id-1)*100+1) as numero_afil,Paciente_Nombre,Paciente_Apellido,4,Paciente_Dni,'D',Paciente_Direccion,Paciente_Telefono,Paciente_Mail,Plan_Med_Codigo,6
 FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
 ON (usr_usuario=('u'+CONVERT(nvarchar,Paciente_Dni)))
 );
@@ -361,8 +363,8 @@ INSERT INTO SIGKILL.rol_usuario(rusr_usuario,rusr_rol)
 GO
 
 --insert de datos de profesionales
-INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_dni,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)
-(SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,Medico_Dni,Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
+INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_tipo_doc,pro_dni,pro_sexo,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)
+(SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,4,Medico_Dni,'D',Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
  FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
  ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
 GO
@@ -400,17 +402,43 @@ INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado
 DELETE FROM SIGKILL.turno 
 WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0
 
---insert de Bonos Consulta
-INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)
-(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta 
+-- Tabla Compra Bono auxiliar
+CREATE TABLE #compra_bono(
+	id bigint PRIMARY KEY identity(1,1) NOT NULL,
+	afiliado bigint,
+	fecha_de_compra datetime NOT NULL,
+	cant_bono_consulta int DEFAULT 0 NOT NULL,
+	cant_bono_farmacia int DEFAULT 0 NOT NULL,
+	total_abonado decimal(7,2) NOT NULL,
+	bonoid bigint)
+GO
+
+INSERT INTO #compra_bono(afiliado,fecha_de_compra,cant_bono_consulta,cant_bono_farmacia,total_abonado,bonoid)
+(SELECT afil_numero,GETDATE(),1,0,Plan_Med_Precio_Bono_Consulta,Bono_Consulta_Numero
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
-
---insert de Bonos Farmacia
-INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)
-(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia 
+GO
+INSERT INTO #compra_bono(afiliado,fecha_de_compra,cant_bono_consulta,cant_bono_farmacia,total_abonado,bonoid)
+(SELECT afil_numero,GETDATE(),0,1,Plan_Med_Precio_Bono_Farmacia ,Bono_Farmacia_Numero
 FROM gd_esquema.Maestra,SIGKILL.afiliado 
 WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null and  Consulta_Sintomas is null)
+
+INSERT INTO SIGKILL.compra_bono(compra_afiliado,compra_fecha_de_compra,compra_cant_bono_consulta,compra_cant_bono_farmacia,compra_total_abonado)
+SELECT afiliado,fecha_de_compra,cant_bono_consulta,cant_bono_farmacia,total_abonado FROM #compra_bono order by id
+
+--insert de Bonos Consulta
+INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio,bonoc_compra)
+(SELECT Bono_Consulta_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Consulta,id
+FROM gd_esquema.Maestra,SIGKILL.afiliado,#compra_bono 
+WHERE afil_dni=Paciente_Dni AND Bono_Consulta_Numero=bonoid AND cant_bono_farmacia=0 AND Bono_Consulta_Numero is not null and  Consulta_Sintomas is null)
+
+--insert de Bonos Farmacia
+INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio,bonof_compra)
+(SELECT Bono_Farmacia_Numero,afil_numero,GETDATE(),Plan_Med_Codigo,Plan_Med_Precio_Bono_Farmacia,id
+FROM gd_esquema.Maestra,SIGKILL.afiliado,#compra_bono  
+WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null AND cant_bono_farmacia=1 AND  Bono_Farmacia_Numero=bonoid and  Consulta_Sintomas is null)
+
+DROP TABLE #compra_bono
 
 --insert de Consultas que no hayan sucedido hasta el dia de la migracion
 INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
@@ -424,6 +452,8 @@ INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consu
 FROM gd_esquema.Maestra 
 WHERE Consulta_Sintomas is not null AND ( DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 
+
+	
 --Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos que se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
 UPDATE SIGKILL.bono_consulta 
 SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
