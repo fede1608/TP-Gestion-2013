@@ -31,6 +31,9 @@
             this.lbl_afiliado = new System.Windows.Forms.Label();
             this.lbl_af = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_admin = new System.Windows.Forms.Label();
+            this.btn_profesional = new System.Windows.Forms.Button();
+            this.btn_afiliado = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dtp_final = new System.Windows.Forms.DateTimePicker();
@@ -40,9 +43,6 @@
             this.btn_volver = new System.Windows.Forms.Button();
             this.btn_cancelar_periodo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btn_afiliado = new System.Windows.Forms.Button();
-            this.btn_profesional = new System.Windows.Forms.Button();
-            this.lbl_admin = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +87,36 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cancelar Turno";
+            // 
+            // lbl_admin
+            // 
+            this.lbl_admin.AutoSize = true;
+            this.lbl_admin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_admin.Location = new System.Drawing.Point(109, 16);
+            this.lbl_admin.Name = "lbl_admin";
+            this.lbl_admin.Size = new System.Drawing.Size(83, 13);
+            this.lbl_admin.TabIndex = 25;
+            this.lbl_admin.Text = "Administrador";
+            // 
+            // btn_profesional
+            // 
+            this.btn_profesional.Location = new System.Drawing.Point(201, 88);
+            this.btn_profesional.Name = "btn_profesional";
+            this.btn_profesional.Size = new System.Drawing.Size(75, 23);
+            this.btn_profesional.TabIndex = 24;
+            this.btn_profesional.Text = "Profesional";
+            this.btn_profesional.UseVisualStyleBackColor = true;
+            this.btn_profesional.Click += new System.EventHandler(this.btn_profesional_Click);
+            // 
+            // btn_afiliado
+            // 
+            this.btn_afiliado.Location = new System.Drawing.Point(22, 88);
+            this.btn_afiliado.Name = "btn_afiliado";
+            this.btn_afiliado.Size = new System.Drawing.Size(75, 23);
+            this.btn_afiliado.TabIndex = 23;
+            this.btn_afiliado.Text = "Afiliado";
+            this.btn_afiliado.UseVisualStyleBackColor = true;
+            this.btn_afiliado.Click += new System.EventHandler(this.btn_afiliado_Click);
             // 
             // label2
             // 
@@ -169,36 +199,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btn_afiliado
-            // 
-            this.btn_afiliado.Location = new System.Drawing.Point(22, 88);
-            this.btn_afiliado.Name = "btn_afiliado";
-            this.btn_afiliado.Size = new System.Drawing.Size(75, 23);
-            this.btn_afiliado.TabIndex = 23;
-            this.btn_afiliado.Text = "Afiliado";
-            this.btn_afiliado.UseVisualStyleBackColor = true;
-            this.btn_afiliado.Click += new System.EventHandler(this.btn_afiliado_Click);
-            // 
-            // btn_profesional
-            // 
-            this.btn_profesional.Location = new System.Drawing.Point(201, 88);
-            this.btn_profesional.Name = "btn_profesional";
-            this.btn_profesional.Size = new System.Drawing.Size(75, 23);
-            this.btn_profesional.TabIndex = 24;
-            this.btn_profesional.Text = "Profesional";
-            this.btn_profesional.UseVisualStyleBackColor = true;
-            this.btn_profesional.Click += new System.EventHandler(this.btn_profesional_Click);
-            // 
-            // lbl_admin
-            // 
-            this.lbl_admin.AutoSize = true;
-            this.lbl_admin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_admin.Location = new System.Drawing.Point(109, 16);
-            this.lbl_admin.Name = "lbl_admin";
-            this.lbl_admin.Size = new System.Drawing.Size(83, 13);
-            this.lbl_admin.TabIndex = 25;
-            this.lbl_admin.Text = "Administrador";
-            // 
             // frmCancelarTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +207,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmCancelarTurno";
             this.Text = "Cancelar Turno";
+            this.Load += new System.EventHandler(this.frmCancelarTurno_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

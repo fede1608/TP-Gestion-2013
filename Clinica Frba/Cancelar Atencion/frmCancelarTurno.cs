@@ -144,6 +144,12 @@ namespace Clinica_Frba.Cancelar_Atencion
             new Clinica_Frba.Abm_de_Profesional_Listado.frm_ABMpro_listado(3).Show();
         }
 
+        private void frmCancelarTurno_Load(object sender, EventArgs e)
+        {
+            dtp_final.Value = Properties.Settings.Default.Date;
+            dtp_inicial.Value = Properties.Settings.Default.Date;
+        }
+
 
 
     }

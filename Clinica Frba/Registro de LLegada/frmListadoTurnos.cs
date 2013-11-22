@@ -15,8 +15,8 @@ namespace Clinica_Frba.Registro_de_LLegada
     {
         SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
         int type=1;
-        Afiliado afil;//tipo 2
-        Profesional prof;//tipo 3
+        Afiliado afil;//tipo 2 cancelar tturno
+        Profesional prof;//tipo 3 cancelar turno
         public frmListadoTurnos()
         {
             InitializeComponent();
@@ -96,17 +96,17 @@ namespace Clinica_Frba.Registro_de_LLegada
                     filter.AddCustom("trn_id", "not in", "(SELECT cons_turno FROM SIGKILL.consulta)");
                     break;
             }
-            //try
-            //{
+            try
+            {
                 var result = runner
                     .Select("SELECT DISTINCT trn_id,trn_fecha_hora,trn_afiliado,afil_Apellido,afil_nombre,trn_profesional,pro_Apellido,pro_nombre FROM SIGKILL.turno,SIGKILL.afiliado,SIGKILL.profesional,SIGKILL.esp_prof,SIGKILL.especialidad", filter);
                 dataGridView1.DataSource = result;
 
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Error de Carga de Turnos");
-            //}
+            }
+            catch(Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
         }
 
         private void frmListadoTurnos_Load(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             }
             switch (type)
             {
-                case 2:
+                case 2://cancelar turno afiliado
                     txt_num_afil.Text = afil.afil_numero.ToString();
                     txt_nom_afil.Text = afil.afil_nombre;
                     txt_ape_afil.Text = afil.afil_apellido;
@@ -126,14 +126,16 @@ namespace Clinica_Frba.Registro_de_LLegada
                     txt_nom_afil.Enabled = false;
                     txt_ape_afil.Enabled = false;
                     chk_hoy.Checked = false;
+                    chk_hoy.Visible = false;
                     break;
-                case 3:
+                case 3://cancelar turno profesional
                    
                     txt_nom_prof.Text = prof.pro_nombre;
                     txt_ape_prof.Text = prof.pro_apellido;
                     txt_nom_prof.Enabled = false;
                     txt_ape_prof.Enabled = false;
                     chk_hoy.Checked = false;
+                    chk_hoy.Visible = false;
                     break;
             }
         }

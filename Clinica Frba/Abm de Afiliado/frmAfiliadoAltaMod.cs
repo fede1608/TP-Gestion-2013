@@ -154,7 +154,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
                 try
                     {
-                        runner.Insert("EXEC nuevoAfiliado '{0}', '{1}', {2}, {3},'{4}',{5},'{6}','{7}','{8}','{9}','{10}',{11},{12}",
+                        runner.Insert("EXEC SIGKILL.nuevoAfiliado '{0}', '{1}', {2}, {3},'{4}',{5},'{6}','{7}','{8}','{9}','{10}',{11},{12}",
                         txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, 1, int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text),
                         txt_ABMAfiliado_AltaMod_direccion.Text, int.Parse(txt_ABMAfiliado_AltaMod_telefono.Text), txt_ABMAfiliado_AltaMod_mail.Text,
                         monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToString("yyyy-MM-dd"), cbo_ABMAfiliado_AltaMod_sexo.Text,
@@ -252,7 +252,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             //Se inicializan las opciones de plan médico
             // SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
-
+            monthCalendar_ABMAfiliado_AltaMod_nacimiento.TodayDate = Properties.Settings.Default.Date;
             var pmed = new Adapter().TransformMany<Plan_Medico>(runner.Select("SELECT * FROM SIGKILL.plan_medico"));
             foreach (Plan_Medico r in pmed)
             {

@@ -248,6 +248,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
 
         private void frm_ABMpro_Alta_Load(object sender, EventArgs e)
         {
+            dateTimePicker1.Value = Properties.Settings.Default.Date;
             IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
             foreach (Especialidad es in esp)
             {
