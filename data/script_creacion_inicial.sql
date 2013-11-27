@@ -438,6 +438,7 @@ INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bon
 FROM gd_esquema.Maestra,SIGKILL.afiliado,#compra_bono  
 WHERE afil_dni=Paciente_Dni AND Bono_Farmacia_Numero is not null AND cant_bono_farmacia=1 AND  Bono_Farmacia_Numero=bonoid and  Consulta_Sintomas is null)
 
+
 DROP TABLE #compra_bono
 
 --insert de Consultas que no hayan sucedido hasta el dia de la migracion

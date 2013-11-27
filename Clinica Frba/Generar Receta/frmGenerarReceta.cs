@@ -109,13 +109,16 @@ namespace Clinica_Frba.Generar_Receta
                     "FROM SIGKILL.Bono_Farmacia as bc1 " +
                     "WHERE bc1.bonof_id={0}", bono.bonof_id.ToString(),consulta.cons_id.ToString());
                 MessageBox.Show("Receta Agregada Exitosamente");
+                MessageBox.Show("Si necesita agregar otra receta, vuelva a hacer clic en Generar Receta");
                 this.Close();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
 
 
 

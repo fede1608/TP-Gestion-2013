@@ -162,6 +162,11 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
                     }
                 break;
 
+                case 4://registrar agenda
+                    new Clinica_Frba.Registrar_Agenda.frmRegistrarAgenda(Profesional.newFromId((long)cell.Cells[0].Value)).Show();
+                    this.Close();
+                    return;
+                        
                 //PARTE DE CANCELAR ATENCION
                 case 3:
                     new Clinica_Frba.Cancelar_Atencion.frmCancelarTurno(Profesional.newFromId((long)cell.Cells[0].Value)).Show();

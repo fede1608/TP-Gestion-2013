@@ -91,7 +91,7 @@
             this.btn_receta.Name = "btn_receta";
             this.btn_receta.Size = new System.Drawing.Size(153, 23);
             this.btn_receta.TabIndex = 18;
-            this.btn_receta.Text = "Crear Receta";
+            this.btn_receta.Text = "Generar Receta";
             this.btn_receta.UseVisualStyleBackColor = true;
             this.btn_receta.Click += new System.EventHandler(this.btn_receta_Click);
             // 
