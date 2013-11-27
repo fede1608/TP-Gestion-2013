@@ -100,6 +100,8 @@ namespace Clinica_Frba.Compra_de_Bono
                     runner.Insert("INSERT INTO SIGKILL.compra_bono (compra_afiliado,compra_fecha_de_compra,compra_cant_bono_consulta,compra_cant_bono_farmacia,compra_total_abonado)" +
                         "VALUES ({0},GETDATE(),{1},{2},{3})", afil.afil_numero.ToString(), txtConsulta.Text, txtFarmacia.Text, total.ToString());
 
+                    var res0 = runner.Single("SELECT MAX(compra_id) as next FROM SIGKILL.compra_bono");
+                    long compra = (long)res0["next"];
                     var res = runner.Single("SELECT MAX(bonoc_id)+1 as next FROM SIGKILL.bono_consulta");
 
                     long id = (long)res["next"];
@@ -108,8 +110,8 @@ namespace Clinica_Frba.Compra_de_Bono
                     for (i = id; i < id + Convert.ToInt64(txtConsulta.Text); i++)
                     {
                         num_bonosc += i.ToString() + " ";
-                        runner.Insert("INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio)" +
-                            "VALUES ({0},{1},GETDATE(),{2},{3})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_consulta);
+                        runner.Insert("INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio,bonoc_compra)" +
+                            "VALUES ({0},{1},GETDATE(),{2},{3},{4})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_consulta,compra);
 
                     }
 
@@ -119,8 +121,8 @@ namespace Clinica_Frba.Compra_de_Bono
                     for (i = id2; i < id2 + Convert.ToInt64(txtFarmacia.Text); i++)
                     {
                         num_bonosf += i.ToString() + " ";
-                        runner.Insert("INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio)" +
-                            "VALUES ({0},{1},GETDATE(),{2},{3})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_farmacia);
+                        runner.Insert("INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio,bonof_compra)" +
+                            "VALUES ({0},{1},GETDATE(),{2},{3},{4})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_farmacia,compra);
 
                     }
                     MessageBox.Show("Se ha comprado correctamente. Los Numeros de bonos de consulta son: " + num_bonosc + " y los de Farmacia: " + num_bonosf);
