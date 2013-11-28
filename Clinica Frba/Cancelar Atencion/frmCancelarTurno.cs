@@ -121,17 +121,21 @@ namespace Clinica_Frba.Cancelar_Atencion
         public void cancelarPeriodo(DateTime inicio, DateTime fin, int tipo, string razon,Profesional prof)
         {
             fin = fin.AddDays(1);
+
             runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion,cam_turno_id)" +
-            "(SELECT trn_profesional,trn_afiliado,{3},'{4}',trn_fecha_hora,'{5}',trn_id FROM SIGKILL.turno WHERE trn_profesional={0} AND trn_fecha_hora between '{1}' and '{2}' AND trn_valido=1)", prof.pro_id.ToString(), inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"), tipo.ToString(), razon, Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
-            runner.Update("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_profesional={0} AND trn_fecha_hora between '{1}' and '{2}' AND trn_valido=1", prof.pro_id.ToString(), inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"));
+            "(SELECT trn_profesional,trn_afiliado,{3},'{4}',trn_fecha_hora,'{5}',trn_id FROM SIGKILL.turno WHERE trn_profesional={0} AND trn_fecha_hora between CONVERT(datetime,'{1}',101) and CONVERT(datetime,'{2}',101) AND trn_valido=1)", prof.pro_id.ToString(), inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"), tipo.ToString(), razon, Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
+            runner.Update("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_profesional={0} AND trn_fecha_hora between CONVERT(datetime,'{1}',101) and CONVERT(datetime,'{2}',101) AND trn_valido=1", prof.pro_id.ToString(), inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"));
+
         }
 
         public void cancelarPeriodo(DateTime inicio, DateTime fin, int tipo, string razon)
         {
             fin = fin.AddDays(1);
+
             runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion,cam_turno_id)" +
-            "(SELECT trn_profesional,trn_afiliado,{2},'{3}',trn_fecha_hora,'{4}',trn_id FROM SIGKILL.turno WHERE  trn_fecha_hora between '{0}' and '{1}' AND trn_valido=1)",  inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"), tipo.ToString(), razon, Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
-            runner.Update("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_fecha_hora between '{0}' and '{1}' AND trn_valido=1", inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"));
+            "(SELECT trn_profesional,trn_afiliado,{2},'{3}',trn_fecha_hora,'{4}',trn_id FROM SIGKILL.turno WHERE  trn_fecha_hora between CONVERT(datetime,'{0}',101) and CONVERT(datetime,'{1}',101) AND trn_valido=1)", inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"), tipo.ToString(), razon, Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
+            runner.Update("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_fecha_hora between CONVERT(datetime,'{0}',101) and CONVERT(datetime,'{1}',101) AND trn_valido=1", inicio.ToString("yyyy-MM-dd"), fin.ToString("yyyy-MM-dd"));
+
         }
 
         private void btn_afiliado_Click(object sender, EventArgs e)
