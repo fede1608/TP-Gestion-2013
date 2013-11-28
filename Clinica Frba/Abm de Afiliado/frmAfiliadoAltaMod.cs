@@ -168,8 +168,16 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         MessageBox.Show(ex.Message);
                     }
 
-                new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(idTipoNumeroAfiliado + 1, Afiliado.newFromDNI(int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text))).Show();
-                    this.Close();
+                if (cbo_ABMAfiliado_AltaMod_estadocivil.Text == "Casado/a" || cbo_ABMAfiliado_AltaMod_estadocivil.Text == "Concubinato")
+                {
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(idTipoNumeroAfiliado + 1, Afiliado.newFromDNI(int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text))).Show();
+                }
+                else
+                {
+                    new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaFamiliar(idTipoNumeroAfiliado + 2, Afiliado.newFromDNI(int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text))).Show();
+                }
+
+                this.Close();
 
                 }
             else

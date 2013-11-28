@@ -616,7 +616,7 @@ Begin
 	INSERT INTO GD2C2013.SIGKILL.afiliado
 	(afil_numero,afil_usuario, afil_nombre,	afil_apellido, afil_tipo_doc, afil_dni,	afil_direccion, afil_telefono, afil_mail, afil_nacimiento, afil_sexo, afil_estado_civil,afil_id_plan_medico)
 	VALUES (@afil_numero,@afil_usuario, @afil_nombre, @afil_apellido, @afil_tipo_doc ,@afil_nrodoc, @afil_direccion, @afil_telefono,
-	@afil_mail, @afil_nacimiento, @afil_sexo, @afil_estadocivil_id, @afil_plan_medico_id)
+	@afil_mail, CONVERT(datetime,@afil_nacimiento,101), @afil_sexo, @afil_estadocivil_id, @afil_plan_medico_id)
 	
 	if(@miembro_familia>=3 )
 	BEGIN
