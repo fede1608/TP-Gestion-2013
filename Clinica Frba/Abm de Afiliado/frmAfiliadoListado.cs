@@ -90,6 +90,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txt_Listado_nombre.Clear();
             txt_Listado_nroafiliado.Clear();
             txt_Listado_nrodoc.Clear();
+            dbgrb_ABMAfiliado_Listado_vista.DataSource = null;
         }
 
         private void dbgrb_ABMAfiliado_Listado_vista_CellClick(object sender, DataGridViewCellEventArgs e)

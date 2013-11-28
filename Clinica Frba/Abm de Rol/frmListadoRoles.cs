@@ -56,6 +56,11 @@ namespace Clinica_Frba.Abm_de_Rol
             if (txtId.Text.Length>0){
                 filter.AddEqual("rol_id", txtId.Text);
             }
+
+            if (txtnombre.Text.Length > 0)
+            {
+                filter.AddEqual("rol_nombre", txtnombre.Text);
+            }
             
             try
             {
@@ -102,6 +107,8 @@ namespace Clinica_Frba.Abm_de_Rol
         private void button2_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
+            txtId.Text = "";
+            txtnombre.Text = "";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
