@@ -156,7 +156,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
                     {
                         runner.Insert("EXEC SIGKILL.nuevoAfiliado '{0}', '{1}', {2}, {3},'{4}',{5},'{6}','{7}','{8}','{9}','{10}',{11},{12}",
                         txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, 1, int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text),
-                        txt_ABMAfiliado_AltaMod_direccion.Text, int.Parse(txt_ABMAfiliado_AltaMod_telefono.Text), txt_ABMAfiliado_AltaMod_mail.Text,
+                        txt_ABMAfiliado_AltaMod_direccion.Text, long.Parse(txt_ABMAfiliado_AltaMod_telefono.Text), txt_ABMAfiliado_AltaMod_mail.Text,
                         monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToString("yyyy-MM-dd"), cbo_ABMAfiliado_AltaMod_sexo.Text,
                         cbo_ABMAfiliado_AltaMod_estadocivil.Text, cbo_ABMAfiliado_AltaMod_planmedico.Text, idTipoNumeroAfiliado.ToString(), nroAfiliado.ToString());
 

@@ -225,7 +225,7 @@
             // txt_ABMAfiliado_AltaMod_nrodoc
             // 
             this.txt_ABMAfiliado_AltaMod_nrodoc.Location = new System.Drawing.Point(131, 100);
-            this.txt_ABMAfiliado_AltaMod_nrodoc.MaxLength = 10;
+            this.txt_ABMAfiliado_AltaMod_nrodoc.MaxLength = 8;
             this.txt_ABMAfiliado_AltaMod_nrodoc.Name = "txt_ABMAfiliado_AltaMod_nrodoc";
             this.txt_ABMAfiliado_AltaMod_nrodoc.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_nrodoc.TabIndex = 52;
