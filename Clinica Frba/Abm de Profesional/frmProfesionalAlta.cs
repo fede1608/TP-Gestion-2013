@@ -134,10 +134,13 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
                 //por lo que ya podemos agregarlo   
                 try
                 {
+                    //Se supone que el tipo de DNI es DU
+                    var tipodni = runner.Single("SELECT tdoc_id FROM SIGKILL.tipo_doc WHERE tdoc_descripcion = 'DU'");
+
                     //TODO: Revisar la sintaxis de esto (sobre todo las variables)
-                    runner.Insert("INSERT INTO SIGKILL.profesional(pro_matricula,pro_usuario,pro_nombre,pro_apellido, pro_dni, pro_direccion, pro_telefono, pro_mail, pro_nacimiento, pro_sexo)"
-                   + " VALUES ({0}, {1}, '{2}', '{3}',{4},'{5}',{6},'{7}',{8},'{9}')",
-                    int.Parse(txt_ABMpro_matricula.Text), user.usr_id, txt_ABMpro_nombre.Text, txt_ABMpro_apellido.Text,
+                    runner.Insert("INSERT INTO SIGKILL.profesional(pro_matricula,pro_usuario,pro_nombre,pro_apellido, pro_tipo_doc, pro_dni, pro_direccion, pro_telefono, pro_mail, pro_nacimiento, pro_sexo)"
+                   + " VALUES ({0}, {1}, '{2}', '{3}',{4} ,{5},'{6}',{7},'{8}',{9},'{10}')",
+                    int.Parse(txt_ABMpro_matricula.Text), user.usr_id, txt_ABMpro_nombre.Text, txt_ABMpro_apellido.Text, tipodni[0],
                     int.Parse(txt_ABMpro_NDoc.Text), txt_ABMpro_direccion.Text, int.Parse(txt_ABMpro_telefono.Text), txt_ABMpro_mail.Text,
                     dateTimePicker1.Value.ToString("yyyy-MM-dd"), sexo);
 
