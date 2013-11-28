@@ -89,12 +89,12 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             if (dtp_inicial.Value > dtp_final.Value)
             {
-                MessageBox.Show("Has ingresado un período incorrecto. Verifica los datos ingresados.");
+                MessageBox.Show("Has ingresado un período incorrecto. Verifica los datos ingresados.", "Cancelar turno", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (dtp_inicial.Value < Properties.Settings.Default.Date)
             {
-                MessageBox.Show("Has ingresado un periodo anterior al día de hoy.");
+                MessageBox.Show("Has ingresado un periodo anterior al día de hoy.", "Cancelar turno", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             try
@@ -106,9 +106,9 @@ namespace Clinica_Frba.Cancelar_Atencion
                         cancelarPeriodo(dtp_inicial.Value, dtp_final.Value, 4, value, prof);
                     else
                         cancelarPeriodo(dtp_inicial.Value, dtp_final.Value, 6, value);
-                    MessageBox.Show("Se ha cancelado correctamente");
+                    MessageBox.Show("Se ha cancelado correctamente", "Cancelar turno");
                 }else
-                    MessageBox.Show("No se ha cancelado los turnos");
+                    MessageBox.Show("No se ha cancelado los turnos", "Cancelar turno", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 
             }
             catch (Exception ex)
