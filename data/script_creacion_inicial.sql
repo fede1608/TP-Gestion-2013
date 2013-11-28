@@ -200,6 +200,7 @@ CREATE TABLE SIGKILL.cambio_plan(
 	capla_plan_viejo bigint REFERENCES SIGKILL.plan_medico(pmed_id),
 	capla_plan_nuevo bigint REFERENCES SIGKILL.plan_medico(pmed_id),
 	capla_fecha datetime NOT NULL,
+	capla_motivo varchar(255) NOT NULL
 	)
 GO
 

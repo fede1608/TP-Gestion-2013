@@ -160,7 +160,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToString("yyyy-MM-dd"), cbo_ABMAfiliado_AltaMod_sexo.Text,
                         cbo_ABMAfiliado_AltaMod_estadocivil.Text, cbo_ABMAfiliado_AltaMod_planmedico.Text, idTipoNumeroAfiliado.ToString(), nroAfiliado.ToString());
 
-                        MessageBox.Show("Se ha creado el afiliado correctamente");
+                        MessageBox.Show("Se ha creado el afiliado correctamente", "Alta");
 
                     }
                 catch (Exception ex)
@@ -174,7 +174,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 }
             else
             {
-                MessageBox.Show("Faltan completar datos");
+                MessageBox.Show("Faltan completar datos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -192,14 +192,38 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 afiliado_a_modificar.afil_estado_civil = afiliado_a_modificar.parsearEstadoCivil(cbo_ABMAfiliado_AltaMod_estadocivil.Text);
             if (cbo_ABMAfiliado_AltaMod_planmedico.Text != "")
             {
-                runner.Insert("INSERT INTO SIGKILL.cambio_plan(capla_afiliado,capla_plan_viejo,capla_plan_nuevo,capla_fecha)" +
-                    "VALUES ({0},{1},{2},'{3}')", afiliado_a_modificar.afil_numero, afiliado_a_modificar.afil_id_plan_medico, afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text), Properties.Settings.Default.Date.ToString("yyyy-MM-dd"));
-                afiliado_a_modificar.afil_id_plan_medico = afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text);
+                if (afiliado_a_modificar.afil_id_plan_medico != afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text))
+                {
+                    string motivo = "Motivo...";
+                    if (InputBox.Show("Cambio de plan", "Complete el motivo del cambio de plan médico.", ref motivo) == DialogResult.OK)
+                    {
+                        if (motivo.Length <= 255)
+                        {
+                            runner.Insert("INSERT INTO SIGKILL.cambio_plan(capla_afiliado,capla_plan_viejo,capla_plan_nuevo,capla_fecha,capla_motivo)" +
+                                "VALUES ({0},{1},{2},'{3}','{4}')", afiliado_a_modificar.afil_numero, afiliado_a_modificar.afil_id_plan_medico, afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text), Properties.Settings.Default.Date.ToString("yyyy-MM-dd"), motivo);
+                            afiliado_a_modificar.afil_id_plan_medico = afiliado_a_modificar.parsearPlanMedico(cbo_ABMAfiliado_AltaMod_planmedico.Text);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El motivo es muy largo. Máximo 255 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Escriba un motivo válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se registrará el cambio de plan médico debido a que el nuevo plan es el mismo que el anterior.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            
+
             afiliado_a_modificar.commit();
 
-            MessageBox.Show("La modificación fue completada con éxito");
+            MessageBox.Show("La modificación fue completada con éxito", "Modificación");
             this.Close();
         }
 
