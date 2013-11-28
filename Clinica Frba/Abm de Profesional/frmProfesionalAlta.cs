@@ -311,6 +311,16 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
 
         }
 
-
+        private void txt_ABMpro_mail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
     }
 }

@@ -202,6 +202,7 @@
             this.txt_ABMAfiliado_AltaMod_mail.Name = "txt_ABMAfiliado_AltaMod_mail";
             this.txt_ABMAfiliado_AltaMod_mail.Size = new System.Drawing.Size(155, 20);
             this.txt_ABMAfiliado_AltaMod_mail.TabIndex = 55;
+            this.txt_ABMAfiliado_AltaMod_mail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMAfiliado_AltaMod_mail_KeyPress);
             // 
             // txt_ABMAfiliado_AltaMod_telefono
             // 

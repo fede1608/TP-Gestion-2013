@@ -30,6 +30,9 @@
         private void InitializeComponent()
         {
             this.gbox_ABMpro_nuevoProfesional = new System.Windows.Forms.GroupBox();
+            this.btn_ABMpro_actualizar = new System.Windows.Forms.Button();
+            this.chlb_especialidades = new System.Windows.Forms.CheckedListBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lbl_ABMpro_especialidades = new System.Windows.Forms.Label();
             this.lbl_ABMpro_sexo = new System.Windows.Forms.Label();
             this.lbl_ABMpro_mail = new System.Windows.Forms.Label();
@@ -51,9 +54,6 @@
             this.txt_ABMpro_NDoc = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_apellido = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.chlb_especialidades = new System.Windows.Forms.CheckedListBox();
-            this.btn_ABMpro_actualizar = new System.Windows.Forms.Button();
             this.gbox_ABMpro_nuevoProfesional.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,32 @@
             this.gbox_ABMpro_nuevoProfesional.TabStop = false;
             this.gbox_ABMpro_nuevoProfesional.Text = "Profesional";
             this.gbox_ABMpro_nuevoProfesional.Enter += new System.EventHandler(this.gbox_ABMpro_nuevoProfesional_Enter);
+            // 
+            // btn_ABMpro_actualizar
+            // 
+            this.btn_ABMpro_actualizar.Location = new System.Drawing.Point(553, 245);
+            this.btn_ABMpro_actualizar.Name = "btn_ABMpro_actualizar";
+            this.btn_ABMpro_actualizar.Size = new System.Drawing.Size(75, 23);
+            this.btn_ABMpro_actualizar.TabIndex = 80;
+            this.btn_ABMpro_actualizar.Text = "Actualizar";
+            this.btn_ABMpro_actualizar.UseVisualStyleBackColor = true;
+            this.btn_ABMpro_actualizar.Visible = false;
+            this.btn_ABMpro_actualizar.Click += new System.EventHandler(this.btn_ABMpro_actualizar_Click);
+            // 
+            // chlb_especialidades
+            // 
+            this.chlb_especialidades.FormattingEnabled = true;
+            this.chlb_especialidades.Location = new System.Drawing.Point(355, 51);
+            this.chlb_especialidades.Name = "chlb_especialidades";
+            this.chlb_especialidades.Size = new System.Drawing.Size(273, 184);
+            this.chlb_especialidades.TabIndex = 79;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(131, 247);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(191, 20);
+            this.dateTimePicker1.TabIndex = 78;
             // 
             // lbl_ABMpro_especialidades
             // 
@@ -239,6 +265,7 @@
             this.txt_ABMpro_mail.Name = "txt_ABMpro_mail";
             this.txt_ABMpro_mail.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_mail.TabIndex = 55;
+            this.txt_ABMpro_mail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMpro_mail_KeyPress);
             // 
             // txt_ABMpro_telefono
             // 
@@ -282,32 +309,6 @@
             this.txt_ABMpro_nombre.Name = "txt_ABMpro_nombre";
             this.txt_ABMpro_nombre.Size = new System.Drawing.Size(190, 20);
             this.txt_ABMpro_nombre.TabIndex = 50;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(131, 247);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(191, 20);
-            this.dateTimePicker1.TabIndex = 78;
-            // 
-            // chlb_especialidades
-            // 
-            this.chlb_especialidades.FormattingEnabled = true;
-            this.chlb_especialidades.Location = new System.Drawing.Point(355, 51);
-            this.chlb_especialidades.Name = "chlb_especialidades";
-            this.chlb_especialidades.Size = new System.Drawing.Size(273, 184);
-            this.chlb_especialidades.TabIndex = 79;
-            // 
-            // btn_ABMpro_actualizar
-            // 
-            this.btn_ABMpro_actualizar.Location = new System.Drawing.Point(553, 245);
-            this.btn_ABMpro_actualizar.Name = "btn_ABMpro_actualizar";
-            this.btn_ABMpro_actualizar.Size = new System.Drawing.Size(75, 23);
-            this.btn_ABMpro_actualizar.TabIndex = 80;
-            this.btn_ABMpro_actualizar.Text = "Actualizar";
-            this.btn_ABMpro_actualizar.UseVisualStyleBackColor = true;
-            this.btn_ABMpro_actualizar.Visible = false;
-            this.btn_ABMpro_actualizar.Click += new System.EventHandler(this.btn_ABMpro_actualizar_Click);
             // 
             // frm_ABMpro_Alta
             // 

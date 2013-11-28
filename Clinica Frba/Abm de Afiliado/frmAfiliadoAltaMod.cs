@@ -317,5 +317,17 @@ namespace Clinica_Frba.Abm_de_Afiliado
             }
         }
 
+        private void txt_ABMAfiliado_AltaMod_mail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
     }
 }
