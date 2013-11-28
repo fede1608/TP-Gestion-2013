@@ -61,7 +61,7 @@ namespace Clinica_Frba.Abm_de_Rol
             {
                 filter.AddEqual("rol_nombre", txtnombre.Text);
             }
-            
+           
             try
             {
                 var result = runner
@@ -95,9 +95,13 @@ namespace Clinica_Frba.Abm_de_Rol
                 DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar el rol "+cell.Cells[1].Value.ToString()+"?", "Eliminar Rol", MessageBoxButtons.YesNo);
                 if(dialogResult == DialogResult.Yes)
                 {
-                    runner.Delete("DELETE FROM SIGKILL.func_rol WHERE frol_rol={0}", cell.Cells[0].Value);
-                    runner.Delete("DELETE FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value);
-                    MessageBox.Show("Se ha eliminado correctamente el Rol");
+                    //No puede tener asignado un rol inhabilitado un usuario
+                    runner.Delete("DELETE FROM SIGKILL.rol_usuario WHERE rusr_rol = {0}", cell.Cells[0].Value);
+                    //Es una baja lógica
+                    runner.Update("UPDATE SIGKILL.rol SET rol_habilitado = {0} WHERE rol_id = {1}", 0, cell.Cells[0].Value);
+                    //runner.Delete("DELETE FROM SIGKILL.func_rol WHERE frol_rol={0}", cell.Cells[0].Value);
+                    //runner.Delete("DELETE FROM SIGKILL.rol WHERE rol_id={0}", cell.Cells[0].Value);
+                    MessageBox.Show("Se ha inhabilitado el Rol correctamente");
                     button1_Click(new object(), new EventArgs());
                 }
             }
