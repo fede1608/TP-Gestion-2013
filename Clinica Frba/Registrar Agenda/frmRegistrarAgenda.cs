@@ -28,7 +28,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void frmRegistrarAgenda_Load(object sender, EventArgs e)
         {
-            dtp_fin.Value = dtp_inicio.Value;
+            dtp_fin.Value = dtp_inicio.Value=Properties.Settings.Default.Date;
             lbl_profesional.Text = prof.pro_apellido + ", " + prof.pro_nombre;
         }
 
@@ -45,7 +45,7 @@ namespace Clinica_Frba.Registrar_Agenda
                 {MessageBox.Show("Has ingresado mal el rango de Fechas"); return;};
             TimeSpan span=dtp_fin.Value-Properties.Settings.Default.Date;
             if (span.TotalDays > 120)
-                {MessageBox.Show("El rango de fechas debe estar entre los próximos 120 días");return;}
+                {MessageBox.Show("El rango de fechas debe estar entre los próximos 120 días "+ span.TotalDays.ToString());return;}
             if (chk_lunes.Checked && (combo_lunes_inicio.SelectedIndex > combo_lunes_fin.SelectedIndex || combo_lunes_inicio.SelectedIndex<0 ||combo_lunes_fin.SelectedIndex<0))
                 {MessageBox.Show("Has ingresado mal el rango de horarios del Lunes");return;};
             if (chk_martes.Checked && (combo_martes_inicio.SelectedIndex > combo_martes_fin.SelectedIndex || combo_martes_inicio.SelectedIndex < 0 || combo_martes_fin.SelectedIndex < 0))
@@ -64,7 +64,7 @@ namespace Clinica_Frba.Registrar_Agenda
             {
                 var collision = runner.Single("Select COUNT(*) as cant FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"));
                 if ((int)collision["cant"] != 0)
-                    throw new System.ArgumentException("Se encontro una colisión en la base de datos con el rango de fechas especificadas. Por favor, ingrese otro rango.");
+                    throw new System.ArgumentException("Se encontro otro período registrado que colisiona con el rango de fechas especificadas. Por favor, ingrese otro rango.");
                 runner.Insert("INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)" +
                     "VALUES ('{0}','{1}',{2})", dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"), prof.pro_id.ToString());
                 Filters f = new Filters();
