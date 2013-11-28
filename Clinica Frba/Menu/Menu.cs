@@ -466,7 +466,7 @@ namespace Clinica_Frba.Menu
                 {
                     System.Windows.Forms.Button btn_ver_agenda = new System.Windows.Forms.Button();
                     btn_ver_agenda.Location = new Point(baseX, baseY + (29 * i));
-                    btn_ver_agenda.Text = "Ver Agenda Profesional";
+                    btn_ver_agenda.Text = "Registrar Agenda";//solo de profesional
                     i++;
 
                     tamañoFormY = tamañoFormY + baseY;
@@ -671,7 +671,7 @@ namespace Clinica_Frba.Menu
         //Evento click de ver agenda
         private void btn_ver_agenda_Click(object sender, EventArgs e)
         {
-            //new Clinica_Frba.Abm_de_Afiliado.frmAfiliadoAltaMod().Show();
+            new Clinica_Frba.Registrar_Agenda.frmRegistrarAgenda(sesionActual.usuario.getProfesional()).Show();
         }
 
         #endregion

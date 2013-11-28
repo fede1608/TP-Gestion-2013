@@ -307,7 +307,7 @@ GO
 
 --insert de relacion funcionalidad-rol
 INSERT INTO SIGKILL.func_rol(frol_rol,frol_funcionalidad)
-VALUES (1,1),(1,2),(1,3),(1,4),(1,6),(1,7),(1,8),(1,10),(1,12),(1,13),(1,15),(2,9),(2,11),(3,5),(3,7),(3,10)
+VALUES (1,1),(1,2),(1,3),(1,4),(1,6),(1,7),(1,8),(1,10),(1,12),(1,13),(1,15),(2,9),(2,11),(2,14),(3,5),(3,7),(3,10)
 GO
 
 --insert de tipos de documentos

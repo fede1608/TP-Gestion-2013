@@ -110,6 +110,7 @@ namespace Clinica_Frba.Registrar_Agenda
                         "VALUES ({0},'{1}','{2}',7)", res["agp_id"].ToString(), combo_sabado_inicio.Text, combo_sabado_fin.Text);
                 }
                 MessageBox.Show("Se ha agregado en la Agenda Correctamente");
+                this.Close();
             }
             catch (Exception ex)
             {
