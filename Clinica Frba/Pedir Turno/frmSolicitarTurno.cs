@@ -91,8 +91,8 @@ namespace Clinica_Frba.Pedir_Turno
             fecha = combo_fecha.Text.Split(',')[1];
             comboHorario.Enabled = true;
             comboHorario.Items.Clear();
-            var hag = new Adapter().Transform<Horario_Agenda>(runner.Single("SELECT hag_id,hag_horario_inicio,hag_horario_fin,hag_id_agenda,hag_dia_semana,hag_disponible FROM SIGKILL.horario_Agenda,SIGKILL.agenda_profesional WHERE agp_id=hag_id_agenda AND agp_profesional={0} AND hag_dia_semana={1} AND '{2}' between agp_fecha_inicio AND agp_fecha_fin", prof.pro_id.ToString(),(((int)(DateTime.Parse(fecha).DayOfWeek)) +1).ToString(), fecha));
-            var turnos = new Adapter().TransformMany<Turno>(runner.Select("SELECT * FROM SIGKILL.Turno WHERE trn_profesional={0} AND DATEDIFF(day,trn_fecha_hora,'{1}')=0 AND trn_valido=1",prof.pro_id.ToString(),fecha));
+            var hag = new Adapter().Transform<Horario_Agenda>(runner.Single("SELECT hag_id,hag_horario_inicio,hag_horario_fin,hag_id_agenda,hag_dia_semana,hag_disponible FROM SIGKILL.horario_Agenda,SIGKILL.agenda_profesional WHERE agp_id=hag_id_agenda AND agp_profesional={0} AND hag_dia_semana={1} AND CONVERT(datetime,'{2}',101) between agp_fecha_inicio AND agp_fecha_fin", prof.pro_id.ToString(), (((int)(DateTime.Parse(fecha).DayOfWeek)) + 1).ToString(), fecha));
+            var turnos = new Adapter().TransformMany<Turno>(runner.Select("SELECT * FROM SIGKILL.Turno WHERE trn_profesional={0} AND DATEDIFF(day,trn_fecha_hora,CONVERT(datetime,'{1}',101))=0 AND trn_valido=1", prof.pro_id.ToString(), fecha));
             for (var hs = hag.hag_horario_inicio.TotalMinutes; hs <= hag.hag_horario_fin.TotalMinutes; hs++)
             {
                 var ts=TimeSpan.FromMinutes(hs);
@@ -114,9 +114,9 @@ namespace Clinica_Frba.Pedir_Turno
             {
                 var next = runner.Single("SELECT MAX(trn_id)+1 as next FROM SIGKILL.turno");
                 runner.Insert("INSERT INTO SIGKILL.Turno(trn_id,trn_afiliado,trn_profesional,trn_fecha_hora)" +
-                    "VALUES ({0},{1},{2},'{3}')",next["next"].ToString(), afil.afil_numero.ToString(), prof.pro_id.ToString(), fecha);
+                    "VALUES ({0},{1},{2},CONVERT(datetime,'{3}',101))", next["next"].ToString(), afil.afil_numero.ToString(), prof.pro_id.ToString(), fecha);
 
-                MessageBox.Show("El turno se ha creado Correctamente. Su numero de Turno es: " + next["next"].ToString());
+                MessageBox.Show("El turno se ha creado correctamente. Su numero de Turno es: " + next["next"].ToString(), "Solicitar turno");
                 this.Close();
             }
             catch (Exception ex)
