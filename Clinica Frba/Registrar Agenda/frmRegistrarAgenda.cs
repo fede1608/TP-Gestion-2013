@@ -45,21 +45,21 @@ namespace Clinica_Frba.Registrar_Agenda
                 {MessageBox.Show("Has ingresado mal el rango de Fechas"); return;};
             TimeSpan span=dtp_fin.Value-Properties.Settings.Default.Date;
             if (span.TotalDays > 120)
-                {MessageBox.Show("El rango de fechas debe estar entre los próximos 120 días "+ span.TotalDays.ToString());return;}
+                {MessageBox.Show("Ingresó un rango de fechas que comienza en "+ span.TotalDays.ToString()+" días. El rango de fechas debe estar entre los próximos 120 días como máximo","Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);return;}
             if (chk_lunes.Checked && (combo_lunes_inicio.SelectedIndex > combo_lunes_fin.SelectedIndex || combo_lunes_inicio.SelectedIndex<0 ||combo_lunes_fin.SelectedIndex<0))
-                {MessageBox.Show("Has ingresado mal el rango de horarios del Lunes");return;};
+            { MessageBox.Show("Has ingresado mal el rango de horarios del lunes", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             if (chk_martes.Checked && (combo_martes_inicio.SelectedIndex > combo_martes_fin.SelectedIndex || combo_martes_inicio.SelectedIndex < 0 || combo_martes_fin.SelectedIndex < 0))
-                {MessageBox.Show("Has ingresado mal el rango de horarios del martes");return;};
+            { MessageBox.Show("Has ingresado mal el rango de horarios del martes", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             if (chk_miercoles.Checked && (combo_miercoles_inicio.SelectedIndex > combo_miercoles_fin.SelectedIndex || combo_miercoles_inicio.SelectedIndex < 0 || combo_miercoles_fin.SelectedIndex < 0))
-                {MessageBox.Show("Has ingresado mal el rango de horarios del miercoles");return;};
+            { MessageBox.Show("Has ingresado mal el rango de horarios del miercoles", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             if (chk_jueves.Checked && (combo_jueves_inicio.SelectedIndex > combo_jueves_fin.SelectedIndex || combo_jueves_inicio.SelectedIndex < 0 || combo_jueves_fin.SelectedIndex < 0))
-                {MessageBox.Show("Has ingresado mal el rango de horarios del jueves");return;};
+            { MessageBox.Show("Has ingresado mal el rango de horarios del jueves", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             if (chk_viernes.Checked && (combo_viernes_inicio.SelectedIndex > combo_viernes_fin.SelectedIndex || combo_viernes_inicio.SelectedIndex < 0 || combo_viernes_fin.SelectedIndex < 0))
-                {MessageBox.Show("Has ingresado mal el rango de horarios del viernes");return;};
+            { MessageBox.Show("Has ingresado mal el rango de horarios del viernes", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             if (chk_sabado.Checked && (combo_sabado_inicio.SelectedIndex > combo_sabado_fin.SelectedIndex || combo_sabado_inicio.SelectedIndex < 0 || combo_sabado_fin.SelectedIndex < 0))
-                { MessageBox.Show("Has ingresado mal el rango de horarios del sabado"); return; };
+            { MessageBox.Show("Has ingresado mal el rango de horarios del sabado", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             if (cant_horas_semanales()>48)
-            { MessageBox.Show("Has Ingresado mas de 48 semanales para el profesional"); return; };
+            { MessageBox.Show("Has Ingresado mas de 48 semanales para el profesional", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             try
             {
                 var collision = runner.Single("Select COUNT(*) as cant FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"));
@@ -109,7 +109,7 @@ namespace Clinica_Frba.Registrar_Agenda
                     runner.Insert("INSERT INTO SIGKILL.horario_agenda(hag_id_agenda,hag_horario_inicio,hag_horario_fin,hag_dia_semana)" +
                         "VALUES ({0},'{1}','{2}',7)", res["agp_id"].ToString(), combo_sabado_inicio.Text, combo_sabado_fin.Text);
                 }
-                MessageBox.Show("Se ha agregado en la Agenda Correctamente");
+                MessageBox.Show("Se ha agregado en la Agenda Correctamente", "Registrar agenda");
                 this.Close();
             }
             catch (Exception ex)
