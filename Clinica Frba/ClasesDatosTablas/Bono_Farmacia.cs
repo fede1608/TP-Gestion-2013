@@ -14,6 +14,7 @@ namespace Clinica_Frba.ClasesDatosTablas
         public long bonof_plan_medico { get; set; }
         public long bonof_consumido { get; set; }
         public double bonof_precio { get; set; }
+        public long bonoc_compra { get; set; }
         
         public bool esValidoPara(Afiliado afil)
         {

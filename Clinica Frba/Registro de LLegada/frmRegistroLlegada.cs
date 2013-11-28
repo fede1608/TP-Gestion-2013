@@ -46,8 +46,9 @@ namespace Clinica_Frba.Registro_de_LLegada
                 {
                     bono = new Adapter().Transform<Bono_Consulta>(runner.Single("SELECT * FROM SIGKILL.bono_consulta WHERE bonoc_id={0}", txt_bono_consulta.Text));
                 }
-                catch
+                catch(Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                     MessageBox.Show("El número de bono ingresado no existe");
                     return;
                 }
