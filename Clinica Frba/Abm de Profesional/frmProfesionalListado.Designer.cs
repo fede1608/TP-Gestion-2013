@@ -30,6 +30,7 @@
         {
             this.dbgrb_ABMpro_vistaListado = new System.Windows.Forms.DataGridView();
             this.gbox_ABMpro_filtros = new System.Windows.Forms.GroupBox();
+            this.combo_especialidad = new System.Windows.Forms.ComboBox();
             this.txt_ABMpro_matricula = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_nombre = new System.Windows.Forms.TextBox();
             this.txt_ABMpro_apellido = new System.Windows.Forms.TextBox();
@@ -41,7 +42,6 @@
             this.lbl_ABMpro_matricula = new System.Windows.Forms.Label();
             this.btn_ABMpro_limpiar = new System.Windows.Forms.Button();
             this.btn_ABMpro_buscar = new System.Windows.Forms.Button();
-            this.combo_especialidad = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dbgrb_ABMpro_vistaListado)).BeginInit();
             this.gbox_ABMpro_filtros.SuspendLayout();
             this.SuspendLayout();
@@ -79,12 +79,21 @@
             this.gbox_ABMpro_filtros.Text = "Filtros de búsqueda";
             this.gbox_ABMpro_filtros.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // combo_especialidad
+            // 
+            this.combo_especialidad.FormattingEnabled = true;
+            this.combo_especialidad.Location = new System.Drawing.Point(347, 53);
+            this.combo_especialidad.Name = "combo_especialidad";
+            this.combo_especialidad.Size = new System.Drawing.Size(149, 21);
+            this.combo_especialidad.TabIndex = 10;
+            // 
             // txt_ABMpro_matricula
             // 
             this.txt_ABMpro_matricula.Location = new System.Drawing.Point(89, 23);
             this.txt_ABMpro_matricula.Name = "txt_ABMpro_matricula";
             this.txt_ABMpro_matricula.Size = new System.Drawing.Size(159, 20);
             this.txt_ABMpro_matricula.TabIndex = 9;
+            this.txt_ABMpro_matricula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMpro_matricula_KeyPress);
             // 
             // txt_ABMpro_nombre
             // 
@@ -106,6 +115,7 @@
             this.txt_ABMpro_dni.Name = "txt_ABMpro_dni";
             this.txt_ABMpro_dni.Size = new System.Drawing.Size(152, 20);
             this.txt_ABMpro_dni.TabIndex = 6;
+            this.txt_ABMpro_dni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ABMpro_dni_KeyPress);
             // 
             // lbl_ABMpro_listado
             // 
@@ -173,14 +183,6 @@
             this.btn_ABMpro_buscar.Text = "Buscar";
             this.btn_ABMpro_buscar.UseVisualStyleBackColor = true;
             this.btn_ABMpro_buscar.Click += new System.EventHandler(this.btn_ABMpro_buscar_Click);
-            // 
-            // combo_especialidad
-            // 
-            this.combo_especialidad.FormattingEnabled = true;
-            this.combo_especialidad.Location = new System.Drawing.Point(347, 53);
-            this.combo_especialidad.Name = "combo_especialidad";
-            this.combo_especialidad.Size = new System.Drawing.Size(149, 21);
-            this.combo_especialidad.TabIndex = 10;
             // 
             // frm_ABMpro_listado
             // 

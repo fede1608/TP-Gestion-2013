@@ -91,12 +91,12 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
 
             if (txt_ABMpro_nombre.Text.Length > 0)
             {
-                filter.AddEqual("pro_nombre", txt_ABMpro_nombre.Text);
+                filter.AddLike("pro_nombre", txt_ABMpro_nombre.Text);
             }
 
             if (txt_ABMpro_apellido.Text.Length > 0)
             {
-                filter.AddEqual("pro_apellido", txt_ABMpro_apellido.Text);
+                filter.AddLike("pro_apellido", txt_ABMpro_apellido.Text);
             }
 
             if (txt_ABMpro_dni.Text.Length > 0)
@@ -119,7 +119,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
             }
             catch
             {
-                MessageBox.Show("Error al buscar el profesional en la DB");
+                MessageBox.Show("Hubo un error en la entrada de datos, por favor verifíquelos.");
             }
         }
 
@@ -178,6 +178,38 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
                 //FIN CANCELAR ATENCION
             }
             
+        }
+
+        private void txt_ABMpro_matricula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+               && !char.IsDigit(e.KeyChar)
+               && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_ABMpro_dni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+               && !char.IsDigit(e.KeyChar)
+               && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.'
+                && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
         }
 
 
