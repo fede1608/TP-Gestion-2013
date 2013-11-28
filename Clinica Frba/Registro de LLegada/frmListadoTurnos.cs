@@ -87,6 +87,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             {
                 filter.AddEqual("esp_nombre_especialidad", combo_especialidad.Text);
             }
+            filter.AddEqual("trn_valido", "1");
             switch (type){
                 case 2: case 3:
                     filter.AddNotEqual("DATEDIFF(day,'" + Properties.Settings.Default.Date.ToString("yyyy-MM-dd") + "',trn_fecha_hora)", "0");
@@ -157,9 +158,9 @@ namespace Clinica_Frba.Registro_de_LLegada
                         string value = "Motivo de la cancelacion";
                         if (InputBox.Show("Cancelar Turno", "Ingrese el motivo de cancelación.", ref value) == DialogResult.OK)
                         {
-                            runner.Delete("DELETE FROM SIGKILL.turno WHERE trn_id={0}", cell.Cells[0].Value.ToString());
-                            runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)" +
-                            "VALUES ({0},{1},{2},'{3}','{4}','{5}')", cell.Cells[5].Value.ToString(), cell.Cells[2].Value.ToString(), type.ToString(), value, ((DateTime)cell.Cells[1].Value).ToString("yyyy-MM-dd HH:mm"), Properties.Settings.Default.Date.ToString("yyyy-MM-dd HH:mm"));
+                            runner.Delete("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_id={0} AND trn_valido=1", cell.Cells[0].Value.ToString());
+                            runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion,cam_turno_id)" +
+                            "VALUES ({0},{1},{2},'{3}','{4}','{5}')", cell.Cells[5].Value.ToString(), cell.Cells[2].Value.ToString(), type.ToString(), value, ((DateTime)cell.Cells[1].Value).ToString("yyyy-MM-dd HH:mm"), Properties.Settings.Default.Date.ToString("yyyy-MM-dd HH:mm"), cell.Cells[0].Value.ToString());
                             MessageBox.Show("Se ha cancelado correctamente el turno");
                             btn_buscar_Click(new object(), new EventArgs());
                         }

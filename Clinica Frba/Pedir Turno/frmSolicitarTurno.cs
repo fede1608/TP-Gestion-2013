@@ -92,7 +92,7 @@ namespace Clinica_Frba.Pedir_Turno
             comboHorario.Enabled = true;
             comboHorario.Items.Clear();
             var hag = new Adapter().Transform<Horario_Agenda>(runner.Single("SELECT hag_id,hag_horario_inicio,hag_horario_fin,hag_id_agenda,hag_dia_semana,hag_disponible FROM SIGKILL.horario_Agenda,SIGKILL.agenda_profesional WHERE agp_id=hag_id_agenda AND agp_profesional={0} AND hag_dia_semana={1} AND '{2}' between agp_fecha_inicio AND agp_fecha_fin", prof.pro_id.ToString(),(((int)(DateTime.Parse(fecha).DayOfWeek)) +1).ToString(), fecha));
-            var turnos = new Adapter().TransformMany<Turno>(runner.Select("SELECT * FROM SIGKILL.Turno WHERE trn_profesional={0} AND DATEDIFF(day,trn_fecha_hora,'{1}')=0",prof.pro_id.ToString(),fecha));
+            var turnos = new Adapter().TransformMany<Turno>(runner.Select("SELECT * FROM SIGKILL.Turno WHERE trn_profesional={0} AND DATEDIFF(day,trn_fecha_hora,'{1}')=0 AND trn_valido=1",prof.pro_id.ToString(),fecha));
             for (var hs = hag.hag_horario_inicio.TotalMinutes; hs <= hag.hag_horario_fin.TotalMinutes; hs++)
             {
                 var ts=TimeSpan.FromMinutes(hs);

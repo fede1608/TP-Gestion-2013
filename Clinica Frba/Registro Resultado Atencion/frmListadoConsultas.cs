@@ -32,6 +32,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             filter.AddEqual(String.Format("DATEDIFF(DAY,trn_fecha_hora,'{0}')", Properties.Settings.Default.Date.ToString("yyyy-MM-dd")), "0");
             filter.AddLessThanOrEqual(String.Format("DATEDIFF(HOUR,trn_fecha_hora,'{0}')", Properties.Settings.Default.Date.ToString("yyyy-MM-dd HH:mm")), "0");
             filter.AddOrderBy("trn_fecha_hora", "ASC");
+            filter.AddEqual("trn_valido", "1");
             if (txtId.Text.Length > 0)
             {
                 filter.AddEqual("trn_id", txtId.Text);

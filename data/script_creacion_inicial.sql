@@ -163,24 +163,26 @@ CREATE TABLE SIGKILL.tipo_cancelacion(
 	)
 GO
 
+-- Tabla Turno
+CREATE TABLE SIGKILL.turno(
+	trn_id bigint PRIMARY KEY NOT NULL,
+	trn_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
+	trn_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	trn_fecha_hora datetime NOT NULL,
+	trn_valido int DEFAULT 1 NOT NULL--Para determinar baja logica
+	)
+GO
+
 -- Tabla Cancelacion Atencion Medica
 CREATE TABLE SIGKILL.cancelacion_atencion_medica(
 	cam_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	cam_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
 	cam_nro_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
 	cam_tipo_cancelacion bigint REFERENCES SIGKILL.tipo_cancelacion(tic_id),
+	cam_turno_id bigint REFERENCES SIGKILL.turno(trn_id),
 	cam_motivo nvarchar(255) NULL,
 	cam_fecha_turno datetime NOT NULL,
 	cam_fecha_cancelacion datetime NOT NULL
-	)
-GO
-
--- Tabla Turno
-CREATE TABLE SIGKILL.turno(
-	trn_id bigint PRIMARY KEY NOT NULL,
-	trn_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
-	trn_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
-	trn_fecha_hora datetime NOT NULL
 	)
 GO
 
@@ -393,14 +395,14 @@ INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
  WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
 GO
 
---insert de cancelaciones de turnos Domingo
-INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion)
-(SELECT trn_profesional,trn_afiliado,5,'Cancelado por dia domingo',trn_fecha_hora,GETDATE() 
+--insert de cancelaciones de turnos Domingo 
+INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion,cam_turno_id)
+(SELECT trn_profesional,trn_afiliado,5,'Cancelado por dia domingo',trn_fecha_hora,GETDATE(),trn_id 
 	FROM SIGKILL.turno 
 	WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0)
 
 --Delete de turnos domingo           
-DELETE FROM SIGKILL.turno 
+UPDATE SIGKILL.turno SET trn_valido=0
 WHERE DATEPART(dw, trn_fecha_hora) = 1 AND DATEDIFF(day,trn_fecha_hora,GETDATE()) < 0
 
 -- Tabla Compra Bono auxiliar
