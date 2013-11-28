@@ -34,7 +34,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
             lbl_afiliado.Text = afil.getName();
             lbl_turno.Text = turno.ToString();
-            lbl_hora_llegada.Text = DateTime.Today.ToString("HH:mm");//Properties.Settings.Default.Date.ToString("HH:mm"); //Modificado por correcion de los ayudantes
+            lbl_hora_llegada.Text = DateTime.Now.ToString("HH:mm");//Properties.Settings.Default.Date.ToString("HH:mm"); //Modificado por correcion de los ayudantes
         }
 
         private void btn_aceptar_Click(object sender, EventArgs e)
