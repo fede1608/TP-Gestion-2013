@@ -83,6 +83,7 @@
             this.txt_Listado_nroafiliado.Name = "txt_Listado_nroafiliado";
             this.txt_Listado_nroafiliado.Size = new System.Drawing.Size(159, 20);
             this.txt_Listado_nroafiliado.TabIndex = 9;
+            this.txt_Listado_nroafiliado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Listado_nroafiliado_KeyPress);
             // 
             // txt_Listado_nombre
             // 
@@ -104,6 +105,7 @@
             this.txt_Listado_nrodoc.Name = "txt_Listado_nrodoc";
             this.txt_Listado_nrodoc.Size = new System.Drawing.Size(152, 20);
             this.txt_Listado_nrodoc.TabIndex = 6;
+            this.txt_Listado_nrodoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Listado_nroafiliado_KeyPress);
             // 
             // cbo_Listado_planmedico
             // 

@@ -55,11 +55,11 @@ namespace Clinica_Frba.Abm_de_Afiliado
             }
             if (txt_Listado_nombre.Text.Length > 0)
             {
-                filter.AddEqual("afil_nombre", txt_Listado_nombre.Text);
+                filter.AddLike("afil_nombre", txt_Listado_nombre.Text);
             }
             if (txt_Listado_apellido.Text.Length > 0)
             {
-                filter.AddEqual("afil_apellido", txt_Listado_apellido.Text);
+                filter.AddLike("afil_apellido", txt_Listado_apellido.Text);
             }
             if (txt_Listado_nrodoc.Text.Length > 0)
             {
@@ -135,6 +135,18 @@ namespace Clinica_Frba.Abm_de_Afiliado
                         MessageBox.Show(ex.Message);
                     }
                 }
+            }
+        }
+
+        private void txt_Listado_nroafiliado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }
