@@ -109,7 +109,11 @@ namespace Clinica_Frba.Compra_de_Bono
                     string num_bonosc = "";
                     for (i = id; i < id + Convert.ToInt64(txtConsulta.Text); i++)
                     {
-                        num_bonosc += i.ToString() + " ";
+                        if ((i + 1) < id + Convert.ToInt64(txtConsulta.Text))
+                            num_bonosc += i.ToString() + ", ";
+                        else
+                            num_bonosc += i.ToString() + " ";
+
                         runner.Insert("INSERT INTO SIGKILL.bono_consulta(bonoc_id,bonoc_afiliado,bonoc_fecha_compra,bonoc_plan_medico,bonoc_precio,bonoc_compra)" +
                             "VALUES ({0},{1},GETDATE(),{2},{3},{4})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_consulta,compra);
 
@@ -120,12 +124,23 @@ namespace Clinica_Frba.Compra_de_Bono
                     string num_bonosf = "";
                     for (i = id2; i < id2 + Convert.ToInt64(txtFarmacia.Text); i++)
                     {
-                        num_bonosf += i.ToString() + " ";
+                        if ((i + 1) < id2 + Convert.ToInt64(txtFarmacia.Text))
+                            num_bonosf += i.ToString() + ", ";
+                        else
+                            num_bonosf += i.ToString() + " ";
+
                         runner.Insert("INSERT INTO SIGKILL.bono_farmacia(bonof_id,bonof_afiliado,bonof_fecha_compra,bonof_plan_medico,bonof_precio,bonof_compra)" +
                             "VALUES ({0},{1},GETDATE(),{2},{3},{4})", i, afil.afil_numero, afil.afil_id_plan_medico, pmed.pmed_precio_bono_farmacia,compra);
 
                     }
-                    MessageBox.Show("Se ha comprado correctamente. Los Numeros de bonos de consulta son: " + num_bonosc + " y los de Farmacia: " + num_bonosf);
+
+                    if (num_bonosc == "")
+                        num_bonosc = "No se compraron";
+
+                    if (num_bonosf == "")
+                        num_bonosf = "No se compraron";
+
+                    MessageBox.Show("Se ha comprado correctamente. Los Números de bonos de consulta son: " + num_bonosc + " y los de Farmacia: " + num_bonosf, "Compra finalizada");
 
                 }
             }

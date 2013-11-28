@@ -56,6 +56,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
             {
                 var result = runner
                     .Select("SELECT * FROM SIGKILL.profesional");
+                
                 var profesionalDb = new Adapter().TransformMany<Profesional>(result);
 
                 IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
@@ -111,7 +112,8 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
             try
             {
                 var result = runner
-                    .Select("SELECT * FROM SIGKILL.profesional", filter);
+                    .Select("SELECT pro_id, pro_matricula, pro_usuario, pro_nombre, pro_apellido, (SELECT tdoc_descripcion FROM SIGKILL.tipo_doc WHERE tdoc_id = pro_tipo_doc) as tipo_doc ,"+
+                    "pro_dni as numero_doc, pro_direccion, pro_telefono, pro_mail, pro_nacimiento, pro_sexo, pro_cant_hs_acum, pro_habilitado FROM SIGKILL.profesional", filter);
                 dbgrb_ABMpro_vistaListado.DataSource = result;
 
             }
