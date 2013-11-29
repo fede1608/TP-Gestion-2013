@@ -40,6 +40,7 @@
             // 
             // combo_semestre
             // 
+            this.combo_semestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_semestre.FormattingEnabled = true;
             this.combo_semestre.Items.AddRange(new object[] {
             "1er Semestre",
