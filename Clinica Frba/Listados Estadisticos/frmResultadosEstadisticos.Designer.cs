@@ -47,6 +47,7 @@
             // 
             // combo_fecha
             // 
+            this.combo_fecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_fecha.FormattingEnabled = true;
             this.combo_fecha.Location = new System.Drawing.Point(21, 39);
             this.combo_fecha.Name = "combo_fecha";
