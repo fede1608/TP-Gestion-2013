@@ -700,14 +700,15 @@ namespace Clinica_Frba.Menu
  
                     }
                 }
+                listaAux.Clear();
+
+                new Clinica_Frba.Login.frmLogin(this).Refresh();
+                new Clinica_Frba.Login.frmLogin(this).Show();
+
+                this.Hide();
 
             }
-            listaAux.Clear();
 
-            new Clinica_Frba.Login.frmLogin(this).Refresh();
-            new Clinica_Frba.Login.frmLogin(this).Show();
-
-            this.Hide();
         }
     }
 }
