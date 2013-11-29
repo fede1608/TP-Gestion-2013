@@ -20,5 +20,15 @@ namespace Clinica_Frba.ClasesDatosTablas
             d = (DayOfWeek) hag_dia_semana - 1;
             return d;
         }
+
+        public int cantMaxTurnos()
+        {
+            int turnos = 0;
+            for (var hs = hag_horario_inicio.TotalMinutes; hs <= hag_horario_fin.TotalMinutes; hs+=30)
+            {
+                turnos++;
+            }
+            return turnos;
+        }
     }
 }
