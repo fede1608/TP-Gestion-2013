@@ -81,6 +81,7 @@ namespace Clinica_Frba.Abm_de_Rol
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             var cell = dataGridView1.Rows[e.RowIndex];
             //MessageBox.Show("Se clickeo " + cell.Cells[0].Value.ToString());
             if (tipo == 1)

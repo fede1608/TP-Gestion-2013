@@ -95,6 +95,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void dbgrb_ABMAfiliado_Listado_vista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
 
             var cell = dbgrb_ABMAfiliado_Listado_vista.Rows[e.RowIndex];

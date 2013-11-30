@@ -54,6 +54,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             filter.AddEqualField("pro_id", "espprof_profesional");
             filter.AddEqualField("espprof_especialidad", "esp_id");
             filter.AddLessThanOrEqual(String.Format("DATEDIFF(HOUR,trn_fecha_hora,'{0}')",Properties.Settings.Default.Date.ToString("yyyy-MM-dd HH:mm")), "0");
+            filter.AddLessThanOrEqual(String.Format("DATEDIFF(DAY,trn_fecha_hora,'{0}')", Properties.Settings.Default.Date.ToString("yyyy-MM-dd")), "0");
             filter.AddOrderBy("trn_fecha_hora", "ASC");
             if (chk_hoy.Checked)
             {
@@ -88,13 +89,10 @@ namespace Clinica_Frba.Registro_de_LLegada
                 filter.AddEqual("esp_nombre_especialidad", combo_especialidad.Text);
             }
             filter.AddEqual("trn_valido", "1");
+            filter.AddCustom("trn_id", "not in", "(SELECT cons_turno FROM SIGKILL.consulta)");
             switch (type){
                 case 2: case 3:
                     filter.AddNotEqual("DATEDIFF(day,'" + Properties.Settings.Default.Date.ToString("yyyy-MM-dd") + "',trn_fecha_hora)", "0");
-                    filter.AddCustom("trn_id", "not in", "(SELECT cons_turno FROM SIGKILL.consulta)");
-                    break;
-                case 1: 
-                    filter.AddCustom("trn_id", "not in", "(SELECT cons_turno FROM SIGKILL.consulta)");
                     break;
             }
             try
@@ -143,6 +141,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             var cell = dataGridView1.Rows[e.RowIndex];
             switch (type)
             {

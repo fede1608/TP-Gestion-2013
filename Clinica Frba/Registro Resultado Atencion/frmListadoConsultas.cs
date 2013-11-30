@@ -69,6 +69,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             var cell = dataGridView1.Rows[e.RowIndex];
             new Clinica_Frba.Registro_Resultado_Atencion.frmRegistroAtencion(Afiliado.newFromId((long)cell.Cells[3].Value), prof, Consulta.newFromId((long)cell.Cells[0].Value)).Show();
             this.Close();

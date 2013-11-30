@@ -130,6 +130,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
 
         private void dbgrb_ABMpro_vistaListado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             var cell = dbgrb_ABMpro_vistaListado.Rows[e.RowIndex];
            
             switch(tipo)

@@ -614,7 +614,7 @@ namespace Clinica_Frba.Menu
         //Evento click de registrar llegada
         private void btn_registrar_llegada_Click(object sender, EventArgs e)
         {
-            new Clinica_Frba.Registro_de_LLegada.frmListadoTurnos().Show();
+            new Clinica_Frba.Registro_de_LLegada.frmListadoTurnos(1).Show();
         }
 
         //Evento click de registrar resultado
