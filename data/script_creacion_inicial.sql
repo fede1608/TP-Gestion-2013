@@ -101,6 +101,7 @@ CREATE TABLE SIGKILL.agenda_profesional(
 	agp_fecha_inicio date NOT NULL,
 	agp_fecha_fin date NOT NULL,
 	agp_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
+	agp_especialidad bigint REFERENCES SIGKILL.especialidad(esp_id),
 	agp_disponible int DEFAULT 1 NOT NULL
 	)
 GO
@@ -168,6 +169,7 @@ CREATE TABLE SIGKILL.turno(
 	trn_id bigint PRIMARY KEY NOT NULL,
 	trn_profesional bigint REFERENCES SIGKILL.profesional(pro_id),
 	trn_afiliado bigint REFERENCES SIGKILL.afiliado(afil_numero),
+	trn_agenda bigint REFERENCES SIGKILL.agenda_profesional(agp_id) NULL,
 	trn_fecha_hora datetime NOT NULL,
 	trn_valido int DEFAULT 1 NOT NULL--Para determinar baja logica
 	)
@@ -372,9 +374,17 @@ INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_tipo_do
  ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
 GO
 
+--Especialidad y tipo universal para las agendas base de la migración
+INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
+VALUES (0,'Tipo Universal')
+GO
+INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
+VALUES (0,'Cualquiera de las habilitadas',0)
+GO
+
 --insert de agendas de profesionales desde el dia de la migracion hasta el ultimo dia que tengan turnos
-INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)
-(SELECT GETDATE(),(SELECT MAX(Turno_Fecha) FROM gd_esquema.Maestra WHERE Medico_Dni=pro_dni AND Turno_Fecha is not null),pro_id FROM SIGKILL.profesional)
+INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional,agp_especialidad)
+(SELECT GETDATE(),(SELECT MAX(Turno_Fecha) FROM gd_esquema.Maestra WHERE Medico_Dni=pro_dni AND Turno_Fecha is not null),pro_id,0 FROM SIGKILL.profesional)
 GO
 
 --insert de horarios de la agenda (Lunes a Jueves 40Hs semanales)
@@ -393,6 +403,40 @@ INSERT INTO SIGKILL.turno(trn_id,trn_profesional,trn_afiliado,trn_fecha_hora)
 (SELECT DISTINCT Turno_Numero,pro_id,afil_numero,Turno_Fecha
  FROM gd_esquema.Maestra,SIGKILL.afiliado,SIGKILL.profesional 
  WHERE Turno_Numero is not null AND afil_dni=Paciente_Dni AND pro_dni=Medico_Dni)
+GO
+
+--inserts de tipos de especialidades
+INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
+(SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 
+ FROM gd_esquema.Maestra 
+ WHERE Tipo_Especialidad_Codigo is not null)
+GO
+
+--inserts de especialidades 
+INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
+ (SELECT DISTINCT Especialidad_Codigo,Especialidad_Descripcion,Tipo_Especialidad_Codigo 
+  FROM gd_esquema.Maestra 
+  WHERE Especialidad_Codigo is not null)
+go
+
+--inserts de relacion especialidad-profesional
+INSERT INTO SIGKILL.esp_prof(espprof_especialidad,espprof_profesional)
+(SELECT DISTINCT Especialidad_Codigo,pro_id FROM gd_esquema.Maestra,SIGKILL.profesional WHERE Medico_Dni=pro_dni)
+GO
+
+--UPDATE de especialidades de agenda cuyo prof solo tiene una especialidad
+UPDATE SIGKILL.agenda_profesional SET agp_especialidad=espprof_especialidad 
+FROM SIGKILL.agenda_profesional,SIGKILL.profesional,SIGKILL.esp_prof 
+WHERE agp_profesional=pro_id AND pro_id=espprof_profesional AND 
+	(SELECT COUNT(*) 
+	FROM SIGKILL.esp_prof as ep 
+	WHERE ep.espprof_profesional=pro_id)=1
+GO
+
+--Update del id de agenda
+UPDATE SIGKILL.turno SET trn_agenda=agp_id 
+FROM SIGKILL.turno,SIGKILL.agenda_profesional 
+WHERE trn_profesional=agp_profesional AND trn_fecha_hora between agp_fecha_inicio and agp_fecha_fin
 GO
 
 --insert de cancelaciones de turnos Domingo 
@@ -455,7 +499,7 @@ INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consu
 (SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
 FROM gd_esquema.Maestra 
 WHERE Consulta_Sintomas is not null AND ( DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
-
+GO
 
 	
 --Update de bonos consulta consumidos hasta la fecha de la migracion(aquellos que se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)
@@ -463,36 +507,21 @@ UPDATE SIGKILL.bono_consulta
 SET bonoc_consumido=1,bonoc_fecha_compra=Turno_Fecha
 FROM SIGKILL.bono_consulta,gd_esquema.Maestra 
 WHERE Consulta_Sintomas is not null AND bonoc_id=Bono_Consulta_Numero AND NOT(DATEDIFF(day,Turno_Fecha,GETDATE()) < 0)
+GO
 
 --Update de bonos farmacia consumidos hasta la fecha de la migracion(aquellos q se hayan usado desp de la misma no se cargaran, aunque esta informacion permanece en la tabla auxiliar de consultas)	
 UPDATE SIGKILL.bono_farmacia 
 SET bonof_consumido=1,bonof_fecha_compra=Turno_Fecha,bonof_consulta=cons_id
 FROM SIGKILL.bono_farmacia,gd_esquema.Maestra,SIGKILL.consulta
 WHERE Consulta_Sintomas is not null AND bonof_id=Bono_Farmacia_Numero AND Turno_Numero=cons_turno AND NOT(DATEDIFF(day,Turno_Fecha,GETDATE()) < 0)
+GO
 
 --Update de nro de consulta individual de cada bono consulta utilizado
 UPDATE SIGKILL.bono_consulta
 SET bonoc_nro_consulta_individual=(SELECT COUNT(*) FROM SIGKILL.bono_consulta as bc2 WHERE bc2.bonoc_afiliado=bc1.bonoc_afiliado AND bc2.bonoc_fecha_compra<=bc1.bonoc_fecha_compra AND bc2.bonoc_consumido=1 )
 from SIGKILL.bono_consulta as bc1
 WHERE bc1.bonoc_consumido=1
-
---inserts de tipos de especialidades
-INSERT INTO SIGKILL.tipo_especialidad(tesp_id,tesp_tipo_nombre)
-(SELECT DISTINCT Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion 
- FROM gd_esquema.Maestra 
- WHERE Tipo_Especialidad_Codigo is not null)
 GO
-
---inserts de especialidades 
-INSERT INTO SIGKILL.especialidad(esp_id,esp_nombre_especialidad,esp_tipo)
- (SELECT DISTINCT Especialidad_Codigo,Especialidad_Descripcion,Tipo_Especialidad_Codigo 
-  FROM gd_esquema.Maestra 
-  WHERE Especialidad_Codigo is not null)
-go
-
---inserts de relacion especialidad-profesional
-INSERT INTO SIGKILL.esp_prof(espprof_especialidad,espprof_profesional)
-(SELECT DISTINCT Especialidad_Codigo,pro_id FROM gd_esquema.Maestra,SIGKILL.profesional WHERE Medico_Dni=pro_dni)
 
 --inserts de medicamentos
 INSERT INTO SIGKILL.medicamento (medic_nombre)

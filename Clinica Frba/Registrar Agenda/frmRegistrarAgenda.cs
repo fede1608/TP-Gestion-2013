@@ -56,6 +56,13 @@ namespace Clinica_Frba.Registrar_Agenda
                 //combo_sabado_fin.Items.Add(ts.ToString());
                
             }
+            var res = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT esp_id,esp_nombre_especialidad,esp_tipo FROM SIGKILL.especialidad,Sigkill.esp_prof WHERE esp_id=espprof_especialidad AND espprof_profesional={0}",prof.pro_id));
+            foreach (Especialidad esp in res)
+            {
+                combo_especialidad.Items.Add(esp);
+            }
+            combo_especialidad.DisplayMember = "esp_nombre_especialidad";
+
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -88,11 +95,11 @@ namespace Clinica_Frba.Registrar_Agenda
             { MessageBox.Show("Has Ingresado mas de 48 semanales para el profesional", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             try
             {
-                var collision = runner.Single("Select COUNT(*) as cant FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"));
+                var collision = runner.Single("Select COUNT(*) as cant FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND agp_especialidad in (0,{3}) AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"),((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString());
                 if ((int)collision["cant"] != 0)
                     throw new System.ArgumentException("Se encontro otro período registrado que colisiona con el rango de fechas especificadas. Por favor, ingrese otro rango.");
-                runner.Insert("INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional)" +
-                    "VALUES ('{0}','{1}',{2})", dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"), prof.pro_id.ToString());
+                runner.Insert("INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional,agp_especialidad)" +
+                    "VALUES ('{0}','{1}',{2},{3})", dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"), prof.pro_id.ToString(),((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString());
                 Filters f = new Filters();
                 f.AddEqual("agp_fecha_inicio", dtp_inicio.Value.ToString("yyyy-MM-dd"));
                 f.AddEqual("agp_fecha_fin", dtp_fin.Value.ToString("yyyy-MM-dd"));
@@ -197,6 +204,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void combo_lunes_inicio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chk_lunes.Checked = true;
             combo_lunes_fin.Items.Clear();
             TimeSpan inicio = TimeSpan.Parse((String)combo_lunes_inicio.SelectedItem);
             for (var hs = inicio.TotalMinutes+30; hs <= fin_semana.TotalMinutes; hs += 30)
@@ -209,6 +217,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void combo_martes_inicio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chk_martes.Checked = true;
             combo_martes_fin.Items.Clear();
             TimeSpan inicio = TimeSpan.Parse((String)combo_martes_inicio.SelectedItem);
             for (var hs = inicio.TotalMinutes + 30; hs <= fin_semana.TotalMinutes; hs += 30)
@@ -221,6 +230,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void combo_miercoles_inicio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chk_miercoles.Checked = true;
             combo_miercoles_fin.Items.Clear();
             TimeSpan inicio = TimeSpan.Parse((String)combo_miercoles_inicio.SelectedItem);
             for (var hs = inicio.TotalMinutes + 30; hs <= fin_semana.TotalMinutes; hs += 30)
@@ -233,6 +243,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void combo_jueves_inicio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chk_jueves.Checked = true;
             combo_jueves_fin.Items.Clear();
             TimeSpan inicio = TimeSpan.Parse((String)combo_jueves_inicio.SelectedItem);
             for (var hs = inicio.TotalMinutes + 30; hs <= fin_semana.TotalMinutes; hs += 30)
@@ -245,6 +256,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void combo_viernes_inicio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chk_viernes.Checked = true;
             combo_viernes_fin.Items.Clear();
             TimeSpan inicio = TimeSpan.Parse((String)combo_viernes_inicio.SelectedItem);
             for (var hs = inicio.TotalMinutes + 30; hs <= fin_semana.TotalMinutes; hs += 30)
@@ -257,6 +269,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
         private void combo_sabado_inicio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chk_sabado.Checked = true;
             combo_sabado_fin.Items.Clear();
             TimeSpan inicio = TimeSpan.Parse((String)combo_sabado_inicio.SelectedItem);
             for (var hs = inicio.TotalMinutes + 30; hs <= fin_sabado.TotalMinutes; hs += 30)

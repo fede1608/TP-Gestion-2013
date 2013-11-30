@@ -12,5 +12,6 @@ namespace Clinica_Frba.ClasesDatosTablas
         public DateTime agp_fecha_fin { get; set; }
         public long agp_profesional { get; set; }
         public int agp_disponible { get; set; }
+        public long agp_especialidad { get; set; }
     }
 }

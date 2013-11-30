@@ -59,15 +59,20 @@
             this.lbl_profesional = new System.Windows.Forms.Label();
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.btn_cancelar = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.combo_especialidad = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox3);
@@ -87,7 +92,7 @@
             this.groupBox5.Controls.Add(this.dtp_inicio);
             this.groupBox5.Location = new System.Drawing.Point(13, 19);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(599, 85);
+            this.groupBox5.Size = new System.Drawing.Size(431, 85);
             this.groupBox5.TabIndex = 29;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Establecer Período";
@@ -95,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(373, 22);
+            this.label2.Location = new System.Drawing.Point(218, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 13);
             this.label2.TabIndex = 28;
@@ -104,7 +109,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 22);
+            this.label1.Location = new System.Drawing.Point(10, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 13);
             this.label1.TabIndex = 27;
@@ -112,14 +117,14 @@
             // 
             // dtp_fin
             // 
-            this.dtp_fin.Location = new System.Drawing.Point(373, 53);
+            this.dtp_fin.Location = new System.Drawing.Point(221, 53);
             this.dtp_fin.Name = "dtp_fin";
             this.dtp_fin.Size = new System.Drawing.Size(200, 20);
             this.dtp_fin.TabIndex = 1;
             // 
             // dtp_inicio
             // 
-            this.dtp_inicio.Location = new System.Drawing.Point(15, 53);
+            this.dtp_inicio.Location = new System.Drawing.Point(10, 53);
             this.dtp_inicio.Name = "dtp_inicio";
             this.dtp_inicio.Size = new System.Drawing.Size(200, 20);
             this.dtp_inicio.TabIndex = 0;
@@ -382,7 +387,7 @@
             // 
             // btn_Agregar
             // 
-            this.btn_Agregar.Location = new System.Drawing.Point(523, 18);
+            this.btn_Agregar.Location = new System.Drawing.Point(564, 18);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(75, 23);
             this.btn_Agregar.TabIndex = 3;
@@ -392,13 +397,42 @@
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(342, 18);
+            this.btn_cancelar.Location = new System.Drawing.Point(381, 19);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
             this.btn_cancelar.TabIndex = 4;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.combo_especialidad);
+            this.groupBox6.Controls.Add(this.label4);
+            this.groupBox6.Location = new System.Drawing.Point(452, 19);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(160, 84);
+            this.groupBox6.TabIndex = 30;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Especialidad";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(129, 13);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Seleccionar Especialidad:";
+            // 
+            // combo_especialidad
+            // 
+            this.combo_especialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_especialidad.FormattingEnabled = true;
+            this.combo_especialidad.Location = new System.Drawing.Point(8, 51);
+            this.combo_especialidad.Name = "combo_especialidad";
+            this.combo_especialidad.Size = new System.Drawing.Size(142, 21);
+            this.combo_especialidad.TabIndex = 30;
             // 
             // frmRegistrarAgenda
             // 
@@ -420,6 +454,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +494,8 @@
         private System.Windows.Forms.Label lbl_profesional;
         private System.Windows.Forms.Button btn_Agregar;
         private System.Windows.Forms.Button btn_cancelar;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ComboBox combo_especialidad;
+        private System.Windows.Forms.Label label4;
     }
 }
