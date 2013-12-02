@@ -41,7 +41,20 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
             txt_ABMpro_matricula.Text = prof.pro_matricula.ToString();
             txt_ABMpro_nombre.Text = prof.pro_nombre;
             txt_ABMpro_telefono.Text = prof.pro_telefono.ToString();
-            cbo_ABMpro_sexo.SelectedIndex = (prof.pro_sexo == "M" || prof.pro_sexo == "m") ? 0 : 1;
+
+            switch (prof.pro_sexo)
+            {
+                case "m":case "M":
+                    cbo_ABMpro_sexo.SelectedIndex = 0;
+                    break;
+                case "f": case "F":
+                    cbo_ABMpro_sexo.SelectedIndex = 1;
+                    break;
+                case "D": case "d":
+                    cbo_ABMpro_sexo.SelectedIndex = 2;
+                    break;
+            }
+            //cbo_ABMpro_sexo.SelectedIndex = (prof.pro_sexo == "M" || prof.pro_sexo == "m") ? 0 : 1;
             dateTimePicker1.Value = prof.pro_nacimiento;
             //txt_ABMpro_nombre.Enabled = false;
             txt_ABMpro_NDoc.Enabled = false;

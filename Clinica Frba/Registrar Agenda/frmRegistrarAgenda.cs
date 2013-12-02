@@ -233,7 +233,7 @@ namespace Clinica_Frba.Registrar_Agenda
                 }
 
             }
-}
+        }
 
         private double cant_horas_semanales()
         {

@@ -36,7 +36,7 @@ namespace Clinica_Frba.Menu
             switch (sesionActual.rol.rol_id)
             {
                 case 3:
-                    if (sesionActual.usuario.getAfiliado().afil_tipo_doc == 0)
+                    if (sesionActual.usuario.getAfiliado().afil_tipo_doc == 4)
                     {
                         MessageBox.Show("Por favor, Actualice sus datos personales");
                         new Clinica_Frba.Abm_de_Afiliado.frmActualizarXMigracion(sesionActual.usuario.getAfiliado()).Show();

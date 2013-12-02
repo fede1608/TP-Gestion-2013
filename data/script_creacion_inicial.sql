@@ -369,7 +369,7 @@ GO
 
 --insert de datos de profesionales
 INSERT INTO SIGKILL.profesional (pro_usuario,pro_nombre,pro_apellido,pro_tipo_doc,pro_dni,pro_sexo,pro_direccion,pro_telefono,pro_mail,pro_nacimiento)
-(SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,4,Medico_Dni,'D',Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
+(SELECT DISTINCT usr_id,Medico_Nombre,Medico_Apellido,1,Medico_Dni,'D',Medico_Direccion,Medico_Telefono,Medico_Mail,Medico_Fecha_nac
  FROM gd_esquema.Maestra INNER JOIN SIGKILL.usuario 
  ON (usr_usuario=('u'+CONVERT(nvarchar,Medico_Dni))))
 GO

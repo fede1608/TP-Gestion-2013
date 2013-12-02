@@ -78,6 +78,21 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
             //Esto es para que al apretar esc (cancelbutton) se "clickee" el boton limpiar
             this.CancelButton = btn_ABMpro_limpiar;
 
+            switch (tipo)
+            {
+                case 1:
+                    MessageBox.Show("Seleccione un profesional para modificar sus datos");
+                    break;
+                case 2:
+                    MessageBox.Show("Seleccione un profesional para darlo de baja");
+                    break;
+                case 3:
+                    MessageBox.Show("Seleccione un profesional para cancelar atenciones medicas");
+                    break;
+                case 4:
+                    MessageBox.Show("Seleccione un profesional para registrar su agenda");
+                    break;
+            }
         }
 
         private void btn_ABMpro_buscar_Click(object sender, EventArgs e)

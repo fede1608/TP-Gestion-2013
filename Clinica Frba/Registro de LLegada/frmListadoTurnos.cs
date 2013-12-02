@@ -117,6 +117,9 @@ namespace Clinica_Frba.Registro_de_LLegada
             }
             switch (type)
             {
+                case 1:
+                    MessageBox.Show("Seleccione un turno para registrar su llegada");
+                    break;
                 case 2://cancelar turno afiliado
                     txt_num_afil.Text = afil.afil_numero.ToString();
                     txt_nom_afil.Text = afil.afil_nombre;
@@ -126,6 +129,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                     txt_ape_afil.Enabled = false;
                     chk_hoy.Checked = false;
                     chk_hoy.Visible = false;
+                    MessageBox.Show("Seleccione un turno para cancelar");
                     break;
                 case 3://cancelar turno profesional
                    
@@ -135,6 +139,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                     txt_ape_prof.Enabled = false;
                     chk_hoy.Checked = false;
                     chk_hoy.Visible = false;
+                    MessageBox.Show("Seleccione un turno para cancelar");
                     break;
             }
         }

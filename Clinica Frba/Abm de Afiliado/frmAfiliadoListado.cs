@@ -42,6 +42,25 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 cbo_Listado_planmedico.Items.Add(r);
             }
             cbo_Listado_planmedico.DisplayMember = "pmed_nombre";
+
+            switch (tipo)
+            {
+                case 1:
+                    MessageBox.Show("Seleccione un afiliado para modificar sus datos");
+                    break;
+                case 2:
+                    MessageBox.Show("Seleccione un afiliado para darlo de baja");
+                    break;
+                case 3:
+                    MessageBox.Show("Seleccione un afiliado para cancelar atenciones medicas");
+                    break;
+                case 4:
+                    MessageBox.Show("Seleccione un afiliado para pedir un turno");
+                    break;
+                case 5:
+                    MessageBox.Show("Seleccione un afiliado para comprar bonos");
+                    break;
+            }
         }
 
         private void btn_ABMAfiliado_Listado_Buscar_Click(object sender, EventArgs e)

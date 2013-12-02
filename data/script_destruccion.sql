@@ -24,8 +24,8 @@ DROP TABLE SIGKILL.rol_usuario
 DROP TABLE SIGKILL.rol
 DROP TABLE SIGKILL.turno
 DROP TABLE SIGKILL.esp_prof
-DROP TABLE SIGKILL.agenda_profesional
 DROP TABLE SIGKILL.horario_agenda
+DROP TABLE SIGKILL.agenda_profesional
 DROP TABLE SIGKILL.especialidad
 DROP TABLE SIGKILL.tipo_especialidad
 DROP TABLE SIGKILL.profesional
