@@ -52,6 +52,70 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txt_ABMAfiliado_AltaMod_telefono.Text = afiliado_a_modificar.afil_telefono.ToString();
             txt_ABMAfiliado_AltaMod_mail.Text = afiliado_a_modificar.afil_mail;
 
+            switch (afiliado_a_modificar.afil_sexo.ToString())
+            {
+                case "M":
+                    cbo_ABMAfiliado_AltaMod_sexo.Text = "Masculino";
+                    break;
+
+                case "F":
+                    cbo_ABMAfiliado_AltaMod_sexo.Text = "Femenino";
+                    break;
+
+                case "D":
+                    cbo_ABMAfiliado_AltaMod_sexo.Text = "Desconocido";
+                    break;
+
+                default:
+                    cbo_ABMAfiliado_AltaMod_sexo.Text = "Desconocido";
+                    break;
+            }
+
+            switch (afiliado_a_modificar.afil_tipo_doc)
+            {
+                case 1:
+                    cbo_ABMAfiliado_AltaMod_tipodoc.Text = "DU";
+                    break;
+                case 2:
+                    cbo_ABMAfiliado_AltaMod_tipodoc.Text = "Libreta Cívica";
+                    break;
+                case 3:
+                    cbo_ABMAfiliado_AltaMod_tipodoc.Text = "Libreta de Enrolamiento";
+                    break;
+                default:
+                    cbo_ABMAfiliado_AltaMod_tipodoc.Text = "Desconocido";
+                    break;
+
+            }
+
+            switch (afiliado_a_modificar.afil_estado_civil)
+            {
+                case 1:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Soltero/a";
+                    break;
+                case 2:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Casado/a";
+                    break;
+                case 3:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Viudo/a";
+                    break;
+                case 4:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Divorciado/a";
+                    break;
+                case 5:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Concubinato";
+                    break;
+                case 6:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Desconocido";
+                    break;
+                default:
+                    cbo_ABMAfiliado_AltaMod_estadocivil.Text = "Desconocido";
+                    break;
+
+            }
+
+
+
         }
         public frmAfiliadoAltaMod(double unId, int tipoFamiliar )
         {
@@ -150,15 +214,35 @@ namespace Clinica_Frba.Abm_de_Afiliado
                 && txt_ABMAfiliado_AltaMod_direccion.Text != ""
                 && txt_ABMAfiliado_AltaMod_telefono.Text != ""
                // && txt_ABMAfiliado_AltaMod_mail.Text != ""
+                && cbo_ABMAfiliado_AltaMod_tipodoc.Text != ""
                 && cbo_ABMAfiliado_AltaMod_sexo.Text != ""
                 && cbo_ABMAfiliado_AltaMod_estadocivil.Text != ""
                 && cbo_ABMAfiliado_AltaMod_planmedico.Text != ""
                 ){
 
+                    int tipo_doc;
+
+                    switch (cbo_ABMAfiliado_AltaMod_tipodoc.Text)
+                    {
+                        case "DU":
+                            tipo_doc = 1;
+                            break;
+                        case "Libreta Cívica":
+                            tipo_doc = 2;
+                            break;
+                        case "Libreta de Enrolamiento":
+                            tipo_doc = 3;
+                            break;
+                        default:
+                            tipo_doc = 4;
+                            break;
+
+                    }
+
                 try
                     {
                         runner.Insert("EXEC SIGKILL.nuevoAfiliado '{0}', '{1}', {2}, {3},'{4}',{5},'{6}','{7}','{8}','{9}','{10}',{11},{12}",
-                        txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, 1, int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text),
+                        txt_ABMAfiliado_AltaMod_nombre.Text, txt_ABMAfiliado_AltaMod_apellido.Text, tipo_doc, int.Parse(txt_ABMAfiliado_AltaMod_nrodoc.Text),
                         txt_ABMAfiliado_AltaMod_direccion.Text, long.Parse(txt_ABMAfiliado_AltaMod_telefono.Text), txt_ABMAfiliado_AltaMod_mail.Text,
                         monthCalendar_ABMAfiliado_AltaMod_nacimiento.SelectionRange.Start.ToString("yyyy-MM-dd"), cbo_ABMAfiliado_AltaMod_sexo.Text,
                         cbo_ABMAfiliado_AltaMod_estadocivil.Text, cbo_ABMAfiliado_AltaMod_planmedico.Text, idTipoNumeroAfiliado.ToString(), nroAfiliado.ToString());
@@ -193,6 +277,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
         {
             if (txt_ABMAfiliado_AltaMod_direccion.Text != "")
                 afiliado_a_modificar.afil_direccion = txt_ABMAfiliado_AltaMod_direccion.Text;
+            if (cbo_ABMAfiliado_AltaMod_tipodoc.Text != "")
+                afiliado_a_modificar.afil_tipo_doc = afiliado_a_modificar.parsearTipoDoc(cbo_ABMAfiliado_AltaMod_tipodoc.Text);
             if (txt_ABMAfiliado_AltaMod_telefono.Text != "")
                 afiliado_a_modificar.afil_telefono = long.Parse(txt_ABMAfiliado_AltaMod_telefono.Text);
             if (txt_ABMAfiliado_AltaMod_mail.Text != "")

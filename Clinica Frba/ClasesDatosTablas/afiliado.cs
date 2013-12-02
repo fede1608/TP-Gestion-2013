@@ -73,6 +73,13 @@ namespace Clinica_Frba.ClasesDatosTablas
             return (long)result[0];
 
         }
+
+        public long parsearTipoDoc(String tipo_doc_texto)
+        {
+            var result = runner.Single("SELECT tdoc_id from GD2C2013.SIGKILL.tipo_doc WHERE tdoc_descripcion = '{0}'", tipo_doc_texto);
+            return (long)result[0];
+
+        }
         
         public long parsearPlanMedico(String plan_medico_texto)
         {
@@ -82,8 +89,8 @@ namespace Clinica_Frba.ClasesDatosTablas
 
         public Boolean commit()
         {
-            runner.Update("UPDATE SIGKILL.afiliado SET afil_direccion='{0}', afil_telefono={1}, afil_mail='{2}', afil_sexo='{3}', afil_estado_civil={4}, afil_id_plan_medico={5}, afil_activo={6} WHERE afil_numero={7}",
-                    afil_direccion, afil_telefono, afil_mail, afil_sexo, afil_estado_civil, afil_id_plan_medico, afil_activo, afil_numero);
+            runner.Update("UPDATE SIGKILL.afiliado SET afil_direccion='{0}', afil_telefono={1}, afil_mail='{2}', afil_sexo='{3}', afil_estado_civil={4}, afil_id_plan_medico={5}, afil_activo={6}, afil_tipo_doc={7} WHERE afil_numero={8}",
+                    afil_direccion, afil_telefono, afil_mail, afil_sexo, afil_estado_civil, afil_id_plan_medico, afil_activo, afil_tipo_doc, afil_numero);
 
             return true;
         }

@@ -108,7 +108,10 @@
             this.cbo_ABMAfiliado_AltaMod_tipodoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_ABMAfiliado_AltaMod_tipodoc.FormattingEnabled = true;
             this.cbo_ABMAfiliado_AltaMod_tipodoc.Items.AddRange(new object[] {
-            "DU"});
+            "DU",
+            "Libreta Cívica",
+            "Libreta de Enrolamiento",
+            "Desconocido"});
             this.cbo_ABMAfiliado_AltaMod_tipodoc.Location = new System.Drawing.Point(131, 74);
             this.cbo_ABMAfiliado_AltaMod_tipodoc.Name = "cbo_ABMAfiliado_AltaMod_tipodoc";
             this.cbo_ABMAfiliado_AltaMod_tipodoc.Size = new System.Drawing.Size(155, 21);
@@ -177,7 +180,8 @@
             "Casado/a",
             "Viudo/a",
             "Concubinato",
-            "Divorciado/a"});
+            "Divorciado/a",
+            "Desconocido"});
             this.cbo_ABMAfiliado_AltaMod_estadocivil.Location = new System.Drawing.Point(131, 241);
             this.cbo_ABMAfiliado_AltaMod_estadocivil.Name = "cbo_ABMAfiliado_AltaMod_estadocivil";
             this.cbo_ABMAfiliado_AltaMod_estadocivil.Size = new System.Drawing.Size(155, 21);
