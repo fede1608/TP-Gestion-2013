@@ -95,9 +95,10 @@ namespace Clinica_Frba.Registrar_Agenda
             { MessageBox.Show("Has Ingresado mas de 48 semanales para el profesional", "Registrar agenda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; };
             try
             {
-                var collision = runner.Single("Select COUNT(*) as cant FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND agp_especialidad in (0,{3}) AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"),((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString());
-                if ((int)collision["cant"] != 0)
-                    throw new System.ArgumentException("Se encontro otro período registrado que colisiona con el rango de fechas especificadas. Por favor, ingrese otro rango.");
+                comprobarColisiones();
+                
+                
+                
                 runner.Insert("INSERT INTO SIGKILL.agenda_profesional(agp_fecha_inicio,agp_fecha_fin,agp_profesional,agp_especialidad)" +
                     "VALUES ('{0}','{1}',{2},{3})", dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"), prof.pro_id.ToString(),((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString());
                 Filters f = new Filters();
@@ -151,6 +152,88 @@ namespace Clinica_Frba.Registrar_Agenda
             }
             
         }
+
+        private void comprobarColisiones()
+        {
+            var collision = runner.Single("Select COUNT(*) as cant FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND agp_especialidad in (0,{3}) AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"),((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString());
+            if ((int)collision["cant"] != 0)
+                throw new System.ArgumentException("Se encontro otro período registrado que colisiona con el rango de fechas especificadas. Por favor, ingrese otro rango.");
+                
+            IList<Horario_Agenda> horariosNuevos=new List<Horario_Agenda>();
+            if (chk_lunes.Checked)
+            {
+                Horario_Agenda hor = new Horario_Agenda();
+                hor.hag_dia_semana = 2;
+                hor.hag_horario_inicio = TimeSpan.Parse(combo_lunes_inicio.Text);
+                hor.hag_horario_fin = TimeSpan.Parse(combo_lunes_fin.Text);
+                horariosNuevos.Add(hor);
+            }
+
+            if (chk_martes.Checked)
+            {
+                Horario_Agenda hor = new Horario_Agenda();
+                hor.hag_dia_semana = 3;
+                hor.hag_horario_inicio = TimeSpan.Parse(combo_martes_inicio.Text);
+                hor.hag_horario_fin = TimeSpan.Parse(combo_martes_fin.Text);
+                horariosNuevos.Add(hor);
+            }
+
+            if (chk_miercoles.Checked)
+            {
+                Horario_Agenda hor = new Horario_Agenda();
+                hor.hag_dia_semana = 4;
+                hor.hag_horario_inicio = TimeSpan.Parse(combo_miercoles_inicio.Text);
+                hor.hag_horario_fin = TimeSpan.Parse(combo_miercoles_fin.Text);
+                horariosNuevos.Add(hor);
+            }
+
+            if (chk_jueves.Checked)
+            {
+                Horario_Agenda hor = new Horario_Agenda();
+                hor.hag_dia_semana = 5;
+                hor.hag_horario_inicio = TimeSpan.Parse(combo_jueves_inicio.Text);
+                hor.hag_horario_fin = TimeSpan.Parse(combo_jueves_fin.Text);
+                horariosNuevos.Add(hor);
+            }
+
+            if (chk_viernes.Checked)
+            {
+                Horario_Agenda hor = new Horario_Agenda();
+                hor.hag_dia_semana = 6;
+                hor.hag_horario_inicio = TimeSpan.Parse(combo_viernes_inicio.Text);
+                hor.hag_horario_fin = TimeSpan.Parse(combo_viernes_fin.Text);
+                horariosNuevos.Add(hor);
+            }
+
+            if (chk_sabado.Checked)
+            {
+                Horario_Agenda hor = new Horario_Agenda();
+                hor.hag_dia_semana = 7;
+                hor.hag_horario_inicio = TimeSpan.Parse(combo_sabado_inicio.Text);
+                hor.hag_horario_fin = TimeSpan.Parse(combo_sabado_fin.Text);
+                horariosNuevos.Add(hor);
+            }   
+
+            IList<Agenda_Profesional> agendas_colisionables= new Adapter().TransformMany<Agenda_Profesional>(runner.Select("SELECT * FROM SIGKILL.agenda_profesional WHERE agp_profesional={0} AND agp_especialidad not in (0,{3}) AND DATEDIFF(day,agp_fecha_fin,'{1}') <= 0 AND DATEDIFF(day,agp_fecha_inicio,'{2}') >= 0", prof.pro_id.ToString(),dtp_inicio.Value.ToString("yyyy-MM-dd"), dtp_fin.Value.ToString("yyyy-MM-dd"),((Especialidad)combo_especialidad.SelectedItem).esp_id.ToString()));
+            foreach (Agenda_Profesional ap in agendas_colisionables)
+            {
+                IList<Horario_Agenda> horarios=new Adapter().TransformMany<Horario_Agenda>(runner.Select("SELECT * FROM SIGKILL.horario_agenda WHERE hag_id_agenda={0}",ap.agp_id.ToString()));
+                foreach (Horario_Agenda ha in horariosNuevos)
+                {
+                    foreach (Horario_Agenda ha2 in horarios)
+                    {
+                        if (ha.hag_dia_semana == ha2.hag_dia_semana)
+                        {
+                            if (!((TimeSpan.Compare(ha.hag_horario_inicio,ha2.hag_horario_inicio)==-1&&(TimeSpan.Compare(ha.hag_horario_fin,ha2.hag_horario_inicio)<=0)||(TimeSpan.Compare(ha.hag_horario_inicio,ha2.hag_horario_fin)>=0&&(TimeSpan.Compare(ha.hag_horario_fin,ha2.hag_horario_fin)==1)))))
+                            {
+                                throw new System.ArgumentException("Se encontro otro período registrado que colisiona con el rango de fechas y horarios especificadas. Por favor, ingrese otro rango horario para el dia " + Enum.GetName(typeof(DayOfWeek),ha.hag_dia_semana-1));
+                            }
+                        }
+                    }
+                }
+
+            }
+}
 
         private double cant_horas_semanales()
         {

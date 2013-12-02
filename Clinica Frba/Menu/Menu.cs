@@ -429,7 +429,7 @@ namespace Clinica_Frba.Menu
 
                     btn_generar_receta.Width = 150;
                     btn_generar_receta.Height = 30;
-
+                    btn_generar_receta.Visible = false;
                     this.Controls.Add(btn_generar_receta);
                     tamañoFormY = tamañoFormY + baseY;
                     btn_generar_receta.Click += new EventHandler(btn_generar_receta_Click);
