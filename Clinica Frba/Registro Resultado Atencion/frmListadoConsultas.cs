@@ -49,6 +49,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             {
                 filter.AddEqual("afil_numero", txt_num_afil.Text);
             }
+            filter.AddEqual("cons_valido", "1");
             try
             {
                 var result = runner

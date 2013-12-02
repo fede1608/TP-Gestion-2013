@@ -239,7 +239,8 @@ CREATE TABLE SIGKILL.consulta(
 	cons_fecha_hora_llegada time NOT NULL,
 	cons_fecha_hora_atencion time NULL,
 	cons_sintomas nvarchar(255) NULL,
-	cons_diagnostico nvarchar(255) NULL
+	cons_diagnostico nvarchar(255) NULL,
+	cons_valido int DEFAULT 1 NOT NULL
 	)
 GO
 
@@ -257,16 +258,16 @@ CREATE TABLE SIGKILL.bono_farmacia(
 GO
 
 -- Tabla Consulta Auxiliar
-CREATE TABLE SIGKILL.consulta_auxiliar_inconsistencias(
-	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	cons_turno bigint,
-	cons_bono_consulta bigint,
-	cons_fecha_hora_llegada time NOT NULL,
-	cons_fecha_hora_atencion time NULL,
-	cons_sintomas nvarchar(255) NULL,
-	cons_diagnostico nvarchar(255) NULL
-	)
-GO
+--CREATE TABLE SIGKILL.consulta_auxiliar_inconsistencias(
+--	cons_id bigint PRIMARY KEY IDENTITY(1,1) NOT NULL,
+--	cons_turno bigint,
+--	cons_bono_consulta bigint,
+--	cons_fecha_hora_llegada time NOT NULL,
+--	cons_fecha_hora_atencion time NULL,
+--	cons_sintomas nvarchar(255) NULL,
+--	cons_diagnostico nvarchar(255) NULL
+--	)
+--GO
 
 -- Tabla Medicamento
 CREATE TABLE SIGKILL.medicamento(
@@ -495,8 +496,8 @@ FROM gd_esquema.Maestra
 WHERE Consulta_Sintomas is not null AND NOT( DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 
 --insert de Consultas inconsistentes que sucedieron despues del dia de la migracion q son inconsistente para ser revisadas
-INSERT INTO SIGKILL.consulta_auxiliar_inconsistencias(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico)
-(SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades
+INSERT INTO SIGKILL.consulta(cons_turno,cons_bono_consulta,cons_fecha_hora_llegada,cons_fecha_hora_atencion,cons_sintomas,cons_diagnostico,cons_valido)
+(SELECT Turno_Numero,Bono_Consulta_Numero,Turno_Fecha,Turno_Fecha,Consulta_Sintomas,Consulta_Enfermedades,0
 FROM gd_esquema.Maestra 
 WHERE Consulta_Sintomas is not null AND ( DATEDIFF(day,Turno_Fecha,GETDATE()) <= 0))
 GO

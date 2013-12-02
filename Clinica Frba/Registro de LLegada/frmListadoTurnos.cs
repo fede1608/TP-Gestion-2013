@@ -89,7 +89,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                 filter.AddEqual("esp_nombre_especialidad", combo_especialidad.Text);
             }
             filter.AddEqual("trn_valido", "1");
-            filter.AddCustom("trn_id", "not in", "(SELECT cons_turno FROM SIGKILL.consulta)");
+            filter.AddCustom("trn_id", "not in", "(SELECT cons_turno FROM SIGKILL.consulta WHERE cons_valido=1)");
             switch (type){
                 case 2: case 3:
                     filter.AddNotEqual("DATEDIFF(day,'" + Properties.Settings.Default.Date.ToString("yyyy-MM-dd") + "',trn_fecha_hora)", "0");

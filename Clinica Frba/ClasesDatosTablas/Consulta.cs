@@ -18,7 +18,7 @@ namespace Clinica_Frba.ClasesDatosTablas
 
         public static Consulta newFromId(long id)
         {
-            return new Adapter().Transform<Consulta>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.Consulta WHERE cons_id={0}", id.ToString()));
+            return new Adapter().Transform<Consulta>(new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString).Single("SELECT * FROM SIGKILL.Consulta WHERE cons_id={0} AND cons_valido=1", id.ToString()));
         }
     }
 }

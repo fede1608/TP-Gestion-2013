@@ -99,8 +99,8 @@ namespace Clinica_Frba.ClasesDatosTablas
             DateTime fin = Properties.Settings.Default.Date;
             fin.AddDays(1);
             runner.Insert("INSERT INTO SIGKILL.cancelacion_atencion_medica(cam_profesional,cam_nro_afiliado,cam_tipo_cancelacion,cam_motivo,cam_fecha_turno,cam_fecha_cancelacion,cam_turno_id)" +
-            "(SELECT trn_profesional,trn_afiliado,{1},'{2}',trn_fecha_hora,'{3}',trn_id FROM SIGKILL.turno WHERE  trn_fecha_hora > '{0}' AND trn_afiliado = {4} AND trn_id not in (SELECT cons_turno FROM SIGKILL.consulta) AND trn_valido=1)", fin.ToString("yyyy-MM-dd"), "8", "Baja de Afiliado", Properties.Settings.Default.Date.ToString("yyyy-MM-dd"), this.afil_numero);
-            runner.Delete("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_fecha_hora > '{0}' AND trn_afiliado = {1} AND trn_id not in (SELECT cons_turno FROM SIGKILL.consulta)", fin.ToString("yyyy-MM-dd"), this.afil_numero);
+            "(SELECT trn_profesional,trn_afiliado,{1},'{2}',trn_fecha_hora,'{3}',trn_id FROM SIGKILL.turno WHERE  trn_fecha_hora > '{0}' AND trn_afiliado = {4} AND trn_id not in (SELECT cons_turno FROM SIGKILL.consulta WHERE cons_valido=1) AND trn_valido=1)", fin.ToString("yyyy-MM-dd"), "8", "Baja de Afiliado", Properties.Settings.Default.Date.ToString("yyyy-MM-dd"), this.afil_numero);
+            runner.Delete("UPDATE SIGKILL.turno SET trn_valido=0 WHERE trn_fecha_hora > '{0}' AND trn_afiliado = {1} AND trn_id not in (SELECT cons_turno FROM SIGKILL.consulta WHERE cons_valido=1)", fin.ToString("yyyy-MM-dd"), this.afil_numero);
         }
         public static Afiliado newFromDNI(int p)
         {
