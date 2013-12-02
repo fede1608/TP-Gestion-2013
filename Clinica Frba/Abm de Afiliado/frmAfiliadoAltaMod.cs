@@ -18,6 +18,7 @@ namespace Clinica_Frba.Abm_de_Afiliado
         Afiliado afiliado_a_modificar;
         long nroAfiliado;
         int idTipoNumeroAfiliado = 0;
+        bool modificacion = false;
         public frmAfiliadoAltaMod(long unId) //Modificacion
         {
             //unId --> Da el Id base de un grupo familiar, sino es 0
@@ -28,10 +29,10 @@ namespace Clinica_Frba.Abm_de_Afiliado
             //Si es Modificación ---> id del afiliado que se quiere modificar
             nroAfiliado = unId;
             Text = "Modificación";
-
+            modificacion = true;
             afiliado_a_modificar = Afiliado.newFromId(nroAfiliado);
 
-            cargarDatosModificacion();
+            
             //Este es el botón siguiente del Alta
             btn_ABMAfiliado_Alta_siguiente.Visible = false;
             //cbo_ABMAfiliado_AltaMod_tipodoc.Enabled = false;
@@ -54,15 +55,15 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             switch (afiliado_a_modificar.afil_sexo.ToString())
             {
-                case "M":
+                case "M":case "m":
                     cbo_ABMAfiliado_AltaMod_sexo.Text = "Masculino";
                     break;
 
-                case "F":
+                case "F":case "f":
                     cbo_ABMAfiliado_AltaMod_sexo.Text = "Femenino";
                     break;
 
-                case "D":
+                case "D":case "d":
                     cbo_ABMAfiliado_AltaMod_sexo.Text = "Desconocido";
                     break;
 
@@ -114,6 +115,15 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
             }
 
+            for (int i = 0; i < cbo_ABMAfiliado_AltaMod_planmedico.Items.Count; i++)
+            {
+                Plan_Medico pm = (Plan_Medico)cbo_ABMAfiliado_AltaMod_planmedico.Items[i];
+                if (afiliado_a_modificar.afil_id_plan_medico == pm.pmed_id)
+                {
+                    cbo_ABMAfiliado_AltaMod_planmedico.SelectedIndex = i;
+                }
+            }
+            
 
 
         }
@@ -377,9 +387,10 @@ namespace Clinica_Frba.Abm_de_Afiliado
             var pmed = new Adapter().TransformMany<Plan_Medico>(runner.Select("SELECT * FROM SIGKILL.plan_medico"));
             foreach (Plan_Medico r in pmed)
             {
-                cbo_ABMAfiliado_AltaMod_planmedico.Items.Add(r.pmed_nombre);
+                cbo_ABMAfiliado_AltaMod_planmedico.Items.Add(r);
             }
-
+            cbo_ABMAfiliado_AltaMod_planmedico.DisplayMember = "pmed_nombre";
+            if (modificacion) cargarDatosModificacion();
             switch (idTipoNumeroAfiliado)
             {
                 case 0:
