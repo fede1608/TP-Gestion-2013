@@ -99,7 +99,21 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
 
                 //Cambiamos el contenido del comboBox de elección de sexo acorde al formato que admite la columna en la BD
                 char sexo;
-                if (cbo_ABMpro_sexo.Text == "Masculino") {sexo='M';} else {sexo='F';}
+
+                switch (cbo_ABMpro_sexo.Text) {
+                    case "Masculino":
+                        sexo='M';
+                        break;
+                    case "Femenino":
+                        sexo='F';
+                        break;
+                    case "Desconocido":
+                        sexo = 'D';
+                        break;
+                    default:
+                        sexo = 'D';
+                        break;
+                }
 
                 //Si llegamos a este punto, ya esta controlado que el profesional no tenga datos
                 //repetidos, por lo que procedemos a crearle un usuario primero si es que no lo tiene
@@ -291,13 +305,27 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
                 p2.pro_nacimiento = dateTimePicker1.Value;
                 p2.pro_nombre = txt_ABMpro_nombre.Text;
                 string sexo;
-                if (cbo_ABMpro_sexo.Text == "Masculino") { sexo = "M"; } else { sexo = "F"; }
+                switch (cbo_ABMpro_sexo.Text)
+                {
+                    case "Masculino":
+                        sexo = "M";
+                        break;
+                    case "Femenino":
+                        sexo = "F";
+                        break;
+                    case "Desconocido":
+                        sexo = "D";
+                        break;
+                    default:
+                        sexo = "D";
+                        break;
+                }
                 p2.pro_sexo = sexo;
                 p2.pro_telefono = int.Parse(txt_ABMpro_telefono.Text);
                 try
                 {
                     p2.actualizar(prof,chlb_especialidades.CheckedItems.OfType<Especialidad>().ToList());
-                    MessageBox.Show("Se han actualizado correctamente los datos");
+                    MessageBox.Show("Se han actualizado correctamente los datos", "Modificación");
                     this.Close();
                 }
                 catch (Exception ex)

@@ -189,7 +189,8 @@
             this.cbo_ABMAfiliado_AltaMod_sexo.FormattingEnabled = true;
             this.cbo_ABMAfiliado_AltaMod_sexo.Items.AddRange(new object[] {
             "Masculino",
-            "Femenino"});
+            "Femenino",
+            "Desconocido"});
             this.cbo_ABMAfiliado_AltaMod_sexo.Location = new System.Drawing.Point(131, 212);
             this.cbo_ABMAfiliado_AltaMod_sexo.Name = "cbo_ABMAfiliado_AltaMod_sexo";
             this.cbo_ABMAfiliado_AltaMod_sexo.Size = new System.Drawing.Size(156, 21);

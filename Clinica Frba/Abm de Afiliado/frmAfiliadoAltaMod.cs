@@ -48,6 +48,9 @@ namespace Clinica_Frba.Abm_de_Afiliado
             txt_ABMAfiliado_AltaMod_nrodoc.Enabled = false;
             txt_ABMAfiliado_AltaMod_nrodoc.Text = afiliado_a_modificar.afil_dni.ToString();
             monthCalendar_ABMAfiliado_AltaMod_nacimiento.Enabled = false;
+            txt_ABMAfiliado_AltaMod_direccion.Text = afiliado_a_modificar.afil_direccion;
+            txt_ABMAfiliado_AltaMod_telefono.Text = afiliado_a_modificar.afil_telefono.ToString();
+            txt_ABMAfiliado_AltaMod_mail.Text = afiliado_a_modificar.afil_mail;
 
         }
         public frmAfiliadoAltaMod(double unId, int tipoFamiliar )

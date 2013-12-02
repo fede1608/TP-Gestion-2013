@@ -252,7 +252,8 @@
             this.cbo_ABMpro_sexo.FormattingEnabled = true;
             this.cbo_ABMpro_sexo.Items.AddRange(new object[] {
             "Masculino",
-            "Femenino"});
+            "Femenino",
+            "Desconocido"});
             this.cbo_ABMpro_sexo.Location = new System.Drawing.Point(131, 218);
             this.cbo_ABMpro_sexo.Name = "cbo_ABMpro_sexo";
             this.cbo_ABMpro_sexo.Size = new System.Drawing.Size(191, 21);
