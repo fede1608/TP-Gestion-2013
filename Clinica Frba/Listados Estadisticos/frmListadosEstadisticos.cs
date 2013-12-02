@@ -30,7 +30,7 @@ namespace Clinica_Frba.Listados_Estadisticos
         {
             var est = new Estadistica();
             est.name = ((Button)sender).Text;
-            est.consulta = "SELECT TOP 5 ROW_NUMBER() OVER (ORDER BY COUNT(a.cam_id) DESC) as Puesto,esp_nombre_especialidad as Especialidad,Count(a.cam_id) as Cantidad FROM SIGKILL.especialidad LEFT JOIN (SELECT * 	FROM SIGKILL.cancelacion_atencion_medica,SIGKILL.profesional,SIGKILL.esp_prof	WHERE cam_profesional=pro_id AND pro_id=espprof_profesional AND cam_tipo_cancelacion in (2,3,4,5) AND MONTH(cam_fecha_cancelacion) in ({0}) AND YEAR(cam_fecha_cancelacion) ={1}) as a ON (a.espprof_especialidad=esp_id) GROUP BY esp_nombre_especialidad ORDER BY 3 DESC,2 ";
+            est.consulta = "SELECT TOP 5 ROW_NUMBER() OVER (ORDER BY COUNT(a.cam_id) DESC,esp_nombre_especialidad) as Puesto,esp_nombre_especialidad as Especialidad,Count(a.cam_id) as Cantidad FROM SIGKILL.especialidad LEFT JOIN (SELECT * 	FROM SIGKILL.cancelacion_atencion_medica,SIGKILL.profesional,SIGKILL.esp_prof	WHERE cam_profesional=pro_id AND pro_id=espprof_profesional AND cam_tipo_cancelacion in (2,3,4,5) AND MONTH(cam_fecha_cancelacion) in ({0}) AND YEAR(cam_fecha_cancelacion) ={1}) as a ON (a.espprof_especialidad=esp_id) GROUP BY esp_nombre_especialidad ORDER BY 3 DESC,2 ";
             est.semestre = combo_semestre.SelectedIndex+1;
             new Clinica_Frba.Listados_Estadisticos.frmResultadosEstadisticos(est).Show();
         }
