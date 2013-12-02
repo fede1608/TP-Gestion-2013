@@ -25,7 +25,7 @@ namespace Clinica_Frba.Abm_de_Especialidades_Medicas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = runner.Select("SELECT * FROM SIGKILL.especialidad");
+            dataGridView1.DataSource = runner.Select("SELECT * FROM SIGKILL.especialidad WHERE esp_id>0");
         }
     }
 }

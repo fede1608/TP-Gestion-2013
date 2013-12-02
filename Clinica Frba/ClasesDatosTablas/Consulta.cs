@@ -15,6 +15,7 @@ namespace Clinica_Frba.ClasesDatosTablas
         public TimeSpan cons_fecha_hora_atencion { get; set; }
         public String cons_sintomas { get; set; }
         public String cons_diagnostico { get; set; }
+        public int cons_valido { get; set; }
 
         public static Consulta newFromId(long id)
         {

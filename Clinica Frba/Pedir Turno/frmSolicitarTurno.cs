@@ -43,7 +43,7 @@ namespace Clinica_Frba.Pedir_Turno
             combo_profesional.Enabled = false;
             combo_profesional.Items.Clear();
             btn_aceptar.Enabled = false;
-            var res = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad ORDER BY esp_nombre_especialidad"));
+            var res = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad WHERE esp_id>0 ORDER BY esp_nombre_especialidad"));
             foreach (Especialidad esp in res)
             {
                 combo_especialidad.Items.Add(esp);

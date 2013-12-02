@@ -68,9 +68,12 @@ namespace Clinica_Frba.Abm_de_Afiliado
             SqlRunner runner = new SqlRunner(Properties.Settings.Default.GD2C2013ConnectionString);
 
             Filters filter = new Filters();
+            filter.AddEqualField("afil_estado_civil", "estciv_id");
+            filter.AddEqualField("afil_id_plan_medico", "pmed_id");
+            filter.AddEqualField("afil_tipo_doc", "tdoc_id");
             if (txt_Listado_nroafiliado.Text.Length > 0)
             {
-                filter.AddEqual("afil_numero", txt_Listado_nroafiliado.Text);
+                filter.AddEqualField("afil_numero", txt_Listado_nroafiliado.Text);
             }
             if (txt_Listado_nombre.Text.Length > 0)
             {
@@ -82,24 +85,24 @@ namespace Clinica_Frba.Abm_de_Afiliado
             }
             if (txt_Listado_nrodoc.Text.Length > 0)
             {
-                filter.AddEqual("afil_dni", txt_Listado_nrodoc.Text);
+                filter.AddEqualField("afil_dni", txt_Listado_nrodoc.Text);
             }
             if (cbo_Listado_planmedico.Text.Length > 0)
             {
                 Plan_Medico plan_med = (Plan_Medico)cbo_Listado_planmedico.SelectedItem;
-                filter.AddEqual("afil_id_plan_medico", plan_med.pmed_id.ToString());
+                filter.AddEqualField("afil_id_plan_medico", plan_med.pmed_id.ToString());
             }
-            filter.AddEqual("afil_activo", "1");
+            filter.AddEqualField("afil_activo", "1");
             try
             {
                 var result = runner
-                    .Select("SELECT * FROM SIGKILL.afiliado", filter);
+                    .Select("SELECT [afil_numero] as Numero_Afiliado,[afil_usuario] as Usuario,[afil_nombre] as Nombre      ,[afil_apellido] as Apellido      ,[tdoc_descripcion] as Tipo_Doc       ,[afil_dni] as DNI      ,[afil_direccion] as Direccion      ,[afil_telefono] as Telefono      ,[afil_mail] as Mail      ,[afil_nacimiento] as Fecha_Nacimiento      ,[afil_sexo] as Sexo      ,[estciv_descripcion] as Estado_Civil      ,[afil_cant_hijos] as Cantidad_de_hijos      ,[afil_cant_fam_a_cargo] as Cantidad_de_familiares      ,[pmed_nombre] as Plan_medico  FROM SIGKILL.afiliado,SIGKILL.estado_civil,SIGKILL.tipo_doc,SIGKILL.plan_medico ", filter);
                 dbgrb_ABMAfiliado_Listado_vista.DataSource = result;
 
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error de rol");
+                MessageBox.Show(ex.Message);
             }
         }
 

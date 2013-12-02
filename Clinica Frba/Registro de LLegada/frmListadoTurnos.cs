@@ -110,7 +110,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
         private void frmListadoTurnos_Load(object sender, EventArgs e)
         {
-            var esp= new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
+            var esp= new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad WHERE esp_id>0"));
             foreach (Especialidad r in esp)
             {
                 combo_especialidad.Items.Add(r.esp_nombre_especialidad);

@@ -279,7 +279,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Alta
         private void frm_ABMpro_Alta_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Value = Properties.Settings.Default.Date;
-            IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
+            IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad WHERE esp_id>0"));
             foreach (Especialidad es in esp)
             {
                 chlb_especialidades.Items.Add(es);

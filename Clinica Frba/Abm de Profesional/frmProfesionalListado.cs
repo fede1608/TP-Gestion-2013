@@ -59,7 +59,7 @@ namespace Clinica_Frba.Abm_de_Profesional_Listado
                 
                 var profesionalDb = new Adapter().TransformMany<Profesional>(result);
 
-                IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad"));
+                IList<Especialidad> esp = new Adapter().TransformMany<Especialidad>(runner.Select("SELECT * FROM SIGKILL.especialidad WHERE esp_id>0"));
                 foreach (Especialidad es in esp)
                 {
                     combo_especialidad.Items.Add(es);
